@@ -17,8 +17,10 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ngmin');
+  grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   /**
    * Load in our build configuration file.
@@ -35,7 +37,14 @@ module.exports = function ( grunt ) {
      * version. It's already there, so we don't repeat ourselves here.
      */
     pkg: grunt.file.readJSON("package.json"),
-
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: 'build'
+        }
+      }
+    },
     /**
      * The banner is the comment that is placed at the top of our compiled
      * source files. It is first processed as a Grunt template, where the `<%=`
@@ -233,6 +242,19 @@ module.exports = function ( grunt ) {
      */
     ngmin: {
       compile: {
+        files: [
+          {
+            src: [ '<%= app_files.js %>' ],
+            cwd: '<%= build_dir %>',
+            dest: '<%= build_dir %>',
+            expand: true
+          }
+        ]
+      }
+    },
+
+    ngAnnotate: {
+      app: {
         files: [
           {
             src: [ '<%= app_files.js %>' ],
@@ -590,7 +612,7 @@ module.exports = function ( grunt ) {
    * before watching for changes.
    */
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
+  grunt.registerTask( 'watch', [ 'connect', 'build', 'karma:unit', 'delta' ] );
 
   /**
    * The default task is to build and compile.
@@ -612,7 +634,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'ngmin', 'concat:compile_js', 'uglify', 'index:compile'
+    'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   /**
@@ -648,7 +670,7 @@ module.exports = function ( grunt ) {
       return file.replace( dirRE, '' );
     });
 
-    grunt.file.copy('src/commande.html', this.data.dir + '/commande.html', {
+    grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {

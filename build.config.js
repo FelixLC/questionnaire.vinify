@@ -7,7 +7,7 @@ module.exports = {
    * development and the `compile_dir` folder is where our app resides once it's
    * completely built.
    */
-  build_dir: 'commande',
+  build_dir: 'build',
   compile_dir: 'bin',
 
   /**
@@ -29,7 +29,7 @@ module.exports = {
     atpl: [ 'src/app/**/*.tpl.html' ],
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
-    html: [ 'src/commande.html' ],
+    html: [ 'src/index.html' ],
     less: 'src/less/main.less'
   },
 
