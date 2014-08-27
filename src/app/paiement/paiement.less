@@ -1,0 +1,87 @@
+// GENERAL RULES
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -80px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  /* .push must be the same height as footer */
+  height: 80px;
+}
+
+.site-footer {
+  p {
+    font-size: 14px;
+  }
+}
+
+.overlay-paiement {
+  .overlay;
+  padding: 30px;
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+
+    &:hover, &:active, &:visited, &:focus {
+      background-color: @bluelight;
+      border-color: @bluelight;
+      outline: none;
+      color: #ffffff;
+    }
+}
+
+.btn-blue {
+  background-color: @bluelight;
+  border-color: @bluelight;
+  color: #FFFFFF;
+
+    &:hover, &:active, &:visited, &:focus{
+      background-color: transparent;
+      border-color: #FFFFFF;
+      outline: none;
+      color: #ffffff;
+    }
+}
+
+.btn-big {
+  font-size: 1.2em;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+}
+
+#btn-pay {
+  margin-top: 50px;
+}
+
+.bordered-row {
+  border-top: 1px solid #FFFFFF;
+}
+
+.table-centered {
+  margin: 20px auto;
+}
+
+#please-login {
+  margin-bottom: 50px;
+}
+
+.paiement-footer {
+  background-color: transparent;
+  p {
+    color: #FFFFFF;
+  }
+}
+
+.background-paiement {
+  background-image: url(background-tonio-carafe.JPG);
+    .prefix-background;
+    .full-cover;
+}
+
+

@@ -1,0 +1,40 @@
+<div class="background-cuisine">
+  <div class="overlay">
+    <div class="vertical-align centered">
+      <div class="row">
+        <h3>Vous aimez les cuisines :</h3>
+        <p>(Choisissez une ou plusieurs réponses, puis validez avec la flèche)</p>
+      </div>
+      <div class="row" id="quest_cuisine">
+        <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2">
+
+          <button class="btn button-overlay"
+                  ng-class="{selected: newuser.survey.cuisine.fr == true}"
+                  ng-click="newuser.survey.cuisine.fr = !newuser.survey.cuisine.fr">Française</button><br>
+          <button class="btn button-overlay"
+                  ng-class="{selected: newuser.survey.cuisine.it == true}"
+                  ng-click="newuser.survey.cuisine.it = !newuser.survey.cuisine.it">Italienne</button><br>
+          <button class="btn button-overlay"
+                  ng-class="{selected: newuser.survey.cuisine.as == true}"
+                  ng-click="newuser.survey.cuisine.as = !newuser.survey.cuisine.as">Asiatique</button><br>
+        </div>
+
+        <div class="col-lg-4 col-md-4">
+          <button class="btn button-overlay" analytics-on="click" analytics-event="Button 1" analytics-category="Commands"
+                  ng-class="{selected: newuser.survey.cuisine.usa == true}"
+                  ng-click="newuser.survey.cuisine.usa = !newuser.survey.cuisine.usa">Américaine</button><br>
+          <button class="btn button-overlay" analytics-on="click" analytics-event="Button 2" analytics-category="Commands"
+                  ng-class="{selected: newuser.survey.cuisine.veg == true}"
+                  ng-click="newuser.survey.cuisine.veg = !newuser.survey.cuisine.veg">Végétarienne</button><br>
+        </div>
+      </div>
+    </div>
+    <div class="navlinks">
+      <a ui-sref="questionnaire.juice"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    </div>
+    <div class="navlinks-right">
+      <a ui-sref="questionnaire.starter" ><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
+
+  </div>
+</div>

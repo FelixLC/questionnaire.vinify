@@ -1,0 +1,29 @@
+<nav class="navbar" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+       <a href=""><img alt="" src="assets/LogoVinifycoBlanc.png" style="height:45px"/></a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div>
+</nav>
+<div class="container" id="mondialrelay">
+    <div class="bg-danger fader centered" ng-show="error"><p>{{error}}</p></div>
+      <div class="col-lg-8 col-sm-8" id="mondialrelay-widget">
+          <div id="Zone_Widget">
+          </div>
+          <input type="text" id="Retour_Widget" class=""/>
+      </div>
+      <div class="col-lg-4 col-sm-4">
+         <h2>Instructions</h2>
+         <br><br>
+         <p>Choississez le Point Relais que vous souhaitez et validez.</p>
+        <button class="btn" ng-click="sendMR()" id="submit_shop">Valider</button>
+        <br><br><br>
+         <p>Vous ne trouvez pas de point relais qui vous convient ? Cliquez sur changer la livraison</p>
+        <button class="btn" ng-click="changeDelivery()" id="change_delivery">Changer la livraison</button>
+      </div>
+</div> <!-- container delivery -->

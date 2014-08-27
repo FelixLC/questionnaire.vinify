@@ -1,0 +1,155 @@
+<div class="container">
+    <div class="row-fluid">
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <form novalidate name="form_commander">
+          <div class="form-group">
+            <label for="first_name">Prénom</label>
+            <input type="text"
+                placeholder="John"
+                name="prenom"
+                ng-model="user.first_name"
+                required
+                class="form-control"
+                id="first_name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="last_name">Nom</label>
+            <input type="text"
+                placeholder="Doe"
+                name="nom"
+                ng-model="user.last_name"
+                required
+                class="form-control"
+                id="last_name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email" name="email">Email</label>
+            <input type="email"
+                name="email"
+                ng-model="user.email"
+                placeholder="john@vinify.co"
+                required
+                class="form-control"
+                id="email"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel"
+                placeholder="+33 6 XX XX XX XX"
+                name="tel"
+                ng-model="user.phone"
+                required
+                class="form-control"
+                id="phone"/>
+          </div>
+
+          <div class="form-group">
+            <label for="birthday">Date de Naissance</label>
+            <input type="date"
+                ng-model="user.birthday"
+                required
+                class="form-control"
+                id="birthday"/>
+          </div>
+
+                <!-- ADRESSE AUTOCOMPLETE -->
+         <!--    <label>Adresse de Facturation</label>
+              <div class="adresse">
+               <input type="text"
+                  id="adresse"
+                  ng-autocomplete
+                  ng-model="user.billing_address"
+                  options = {
+                    country: 'fr'
+                  } />
+              </div> -->
+          <div class="form-group">
+              <label for="billing_address.company">Adresse de Facturation</label>
+              <input type="text"
+                  ng-model="user.billing_address.company"
+                  placeholder="Société"
+                  class="form-control"
+                  id="billing_address.company"/>
+          </div>
+          <div class="form-group">
+              <input type="text"
+                  ng-model="user.billing_address.street"
+                  placeholder="Rue"
+                  class="form-control" />
+          </div>
+          <div class="form-group">
+              <input type="text"
+                  ng-model="user.billing_address.city"
+                  placeholder="Ville"
+                  class="form-control" />
+          </div>
+          <div class="form-group">
+              <input type="text"
+                  ng-model="user.billing_address.zipcode"
+                  placeholder="Code Postal"
+                  class="form-control" />
+          </div>
+          <div class="form-group">
+              <input type="text"
+                  ng-model="user.billing_address.country"
+                  placeholder="Pays"
+                  class="form-control" />
+          </div>
+
+
+           <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="identical"> Adresse de Livraison identique
+            </label>
+          </div>
+
+          <div ng-hide="identical" class="fade">
+            <div class="form-group">
+              <label for="delivery_address.company">Adresse de Livraison</label>
+              <input type="text"
+                  ng-model="user.delivery_address.company"
+                  placeholder="Société"
+                  class="form-control"
+                  id="delivery_address.company"/>
+            </div>
+            <div class="form-group">
+                <input type="text"
+                    ng-model="user.delivery_address.street"
+                    placeholder="Rue"
+                    class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text"
+                    ng-model="user.delivery_address.city"
+                    placeholder="Ville"
+                    class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text"
+                    ng-model="user.delivery_address.zipcode"
+                    placeholder="Code Postal"
+                    class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text"
+                    ng-model="user.delivery_address.country"
+                    placeholder="Pays"
+                    class="form-control" />
+            </div>
+          </div>
+
+          <pre>{{ user | json }}</pre>
+
+          <!-- <button type="button" class="btn btn-primary"  ng-disabled="form_commander.$invalid" ng-click="Send(user)">Valider !</button> -->
+          <a class="btn btn-primary" href="#/questionnaire">Valider</a>
+
+        </form>
+      <!-- Col -->
+      </div>
+    <!-- ROW -->
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+      <div class="col-lg-12 col-md-12 col-sm-12 bouchons">
+        <div class="order-button-container">
+          <button stripe-checkout class="btn btn-order">Commander mon Vinibar !</button>
+        </div>
+      </div>
+<div class="container container-delivery-confirmation">
+  <h3 class="confirmation-first-title">Merci de vérifier vos informations</h3>
+  <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 bill">
+  <!--           <ul>
+              <li><h3>Vinibar - 99€</h3></li>
+              <li><h3>{{delivery_mode}} - {{delivery_price}}€</h3></li>
+              <li><h3>Total - 109,90</h3></li>
+            </ul> -->
+                <h4 class="confirmation-first-title">{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>
+                <h4>{{currentClient.email}}</h4>
+                <h4>{{currentClient.userinfos.delivery_address.street}}<br>
+                {{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</h4>
+
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 bill">
+
+              <table>
+                  <tr>
+                    <td><h4>Vinibar </h4></td>
+                    <td><h4>{{currentClient.order.amount}}€</h4></td>
+                  </tr>
+                  <tr>
+                    <td><h4>Livraison {{delivery_mode}} </h4></td>
+                    <td><h4>{{currentClient.order.delivery_cost}}€</h4></td>
+                  </tr>
+                  <tr>
+                    <td><h4 class="bill-total">Total </h4></td>
+                    <td><h4 class="bill-total">{{currentClient.order.final_price}}€</h4></td>
+                  </tr>
+              </table>
+      </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 proceed">
+          <a ui-sref="order.userinfos" class="btn btn-back pull-left">< Précédent</a>
+    </div>
+  </div>
+</div>
+

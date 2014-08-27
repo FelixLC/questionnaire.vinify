@@ -1,0 +1,62 @@
+<div class="background-balance">
+  <div class="overlay">
+    <div class="form-errors fader" ng-show="answerAll">
+      Merci de choisir une préférence pour chaque type de vin, puis valider avec la flèche
+    </div>
+    <div class="vertical-align centered  vertical-align-mobile">
+        <div class="row">
+          <h3>Vos préférences de composition du Vinibar</h3>
+          <p>(Indiquez les proportions que vous désirez pour votre Vinibar)</p>
+        </div>
+
+        <div class="row" id="quest_balance">
+          <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <h4>Vin Rouge</h4>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.red == 2}"
+                      ng-click="newuser.survey.balance.red = 2;">Beaucoup</button><br>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.red == 1}"
+                      ng-click="newuser.survey.balance.red = 1">Un peu</button><br>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.red == 0}"
+                      ng-click="newuser.survey.balance.red = 0">Pas</button><br>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <h4>Vin Blanc</h4>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.white == 2}"
+                      ng-click="newuser.survey.balance.white = 2">Beaucoup</button><br>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.white == 1}"
+                      ng-click="newuser.survey.balance.white = 1">Un peu</button><br>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.white == 0}"
+                      ng-click="newuser.survey.balance.white = 0">Pas</button><br>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+              <h4>Vin Rosé</h4>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.rose == 2}"
+                      ng-click="newuser.survey.balance.rose = 2">Beaucoup</button><br>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.rose == 1}"
+                      ng-click="newuser.survey.balance.rose = 1">Un peu</button><br>
+              <button class="btn button-overlay"
+                      ng-class="{selected: newuser.survey.balance.rose == 0}"
+                      ng-click="newuser.survey.balance.rose = 0">Pas</button><br>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="navlinks">
+      <a ui-sref="questionnaire.starter"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    </div>
+    <div class="navlinks-right">
+      <a class="validateBalanceAnswer" ng-click="validateBalanceAnswer()"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="background-juice">
+  <div class="overlay">
+    <div class="vertical-align centered">
+      <div class="row">
+        <h3>Pour vous désaltérer, ce sera ... </h3>
+      </div>
+      <div class="row">
+        <div class="elements-quest" id="quest_juice">
+
+          <div class="col-lg-4 col-md-4">
+            <a ui-sref="questionnaire.cuisine" ng-class="{selected: newuser.survey.juice == 'Pamplemousse'}" class="btn button-overlay" ng-click="newuser.survey.juice = 'Pamplemousse'">Un jus de pamplemousse</a>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <a ui-sref="questionnaire.cuisine" ng-class="{selected: newuser.survey.juice == 'Pomme'}" class="btn button-overlay" ng-click="newuser.survey.juice = 'Pomme'">Un jus de pomme</a>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <a ui-sref="questionnaire.cuisine" ng-class="{selected: newuser.survey.juice == 'Exotique'}" class="btn button-overlay" ng-click="newuser.survey.juice = 'Exotique'">Un jus de fruits exotiques</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="navlinks">
+      <a ui-sref="questionnaire.coffee"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    </div>
+<!--     <div class="navlinks-right">
+      <a ui-sref="questionnaire.cuisine"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<h4>Quelques informations sur vous ...</h4>
+<div class="row">
+  <div class="col-lg-6 col-md-6">
+    <div class="form-group">
+      <textarea class="form-control" rows="3" ng-model="newuser.survey.infos" placeholder="Vos appellations ou régions préférées, un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ..."></textarea>
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="email" name="email">Email</label>
+        <input type="email"
+            name="email"
+            ng-model="newuser.email"
+            placeholder="Email"
+            required
+            class="form-control"
+            id="email"/>
+        <label for="first_name">Prénom</label>
+        <input type="text"
+            placeholder="Marcel"
+            name="first_name"
+            ng-model="newuser.first_name"
+            required
+            class="form-control"
+            id="first_name"/>
+        <label for="last_name">Nom</label>
+        <input type="text"
+            placeholder="Dettmann"
+            name="last_name"
+            ng-model="newuser.last_name"
+            required
+            class="form-control"
+            id="last_name"/>
+      </div>
+      <button class="btn btn-primary btn-quest" ng-click="createDiscoveryUser()">Valider</button>
+    </div>
+
+  </div>
+</div>

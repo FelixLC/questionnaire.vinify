@@ -1,0 +1,52 @@
+<div class="background-coffee">
+  <div class="overlay">
+    <div class="vertical-align centered">
+      <div class="row">
+        <h3>Vous preferez votre café :</h3>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 elements-quest" id="quest_coffee">
+
+          <div class="col-lg-3 col-md-3">
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.coffee == 'Noir'}" class="btn button-overlay" ng-click="newuser.survey.coffee = 'Noir'">Noir</a>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.coffee == 'Sucre'}" class="btn button-overlay" ng-click="newuser.survey.coffee = 'Sucre'">Avec du sucre</a>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.coffee == 'Crème'}" class="btn button-overlay" ng-click="newuser.survey.coffee = 'Crème'">Avec de la crème ou du lait</a>
+          </div>
+          <div class="col-lg-3 col-md-3">
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.coffee == 'No'}" class="btn button-overlay" ng-click="newuser.survey.coffee = 'No'">Je ne prends pas de café</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+<!--     <div class="navlinks-right">
+      <a ui-sref="questionnaire.juice"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div> -->
+  </div>
+
+        <script type="text/ng-template" id="myModalContent.html">
+
+            <div class="modal-body">
+                <h3 class="modal-title">Démarrer l'aventure vinify</h3>
+                <p>Merci de rentrer votre adresse email pour démarrer l'aventure :)</p>
+                  <div class="input-group col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <input type="email"
+                        name="email"
+                        ng-model="selectedEmail.email"
+                        placeholder="Email"
+                        required
+                        class="form-control"
+                        id="email"/>
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" ng-click="ok()">Go!</button>
+                    </span>
+                  </div>
+            </div>
+
+        </script>
+
+</div>
