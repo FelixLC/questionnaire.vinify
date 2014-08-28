@@ -6967,9 +6967,16 @@ footer {
 .container-delivery-confirmation #payment_title:after {
   position: absolute;
   content: "";
-  width: 117px;
+  width: 366px;
   height: 0;
   border-top: 5px solid #34495e;
+}
+.container-delivery-confirmation #payment-bckg {
+  background-image: url(wines.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .container-delivery-confirmation .ruler-delivery {
   margin-top: 5px;
@@ -7021,9 +7028,16 @@ footer {
 .container-delivery #payment_title:after {
   position: absolute;
   content: "";
-  width: 117px;
+  width: 366px;
   height: 0;
   border-top: 5px solid #34495e;
+}
+.container-delivery #payment-bckg {
+  background-image: url(wines.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .container-delivery .ruler-delivery {
   margin-top: 5px;
@@ -7076,6 +7090,26 @@ footer {
 .btn-proceed:hover,
 .btn-proceed:focus {
   color: #fff;
+}
+.button-overlay-primary {
+  text-align: center;
+  color: #fff;
+  font-family: 'Montserrat';
+  font-size: 24px;
+  background-color: #34495e;
+  border-color: transparent;
+  margin: 2.5px;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.button-overlay-primary:active {
+  color: #34495e;
+  background-color: transparent;
+}
+.button-overlay-primary:hover {
+  color: #34495e;
+  background-color: transparent;
+  border-color: #34495e;
 }
 .btn-order {
   padding: 20px;

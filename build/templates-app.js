@@ -573,20 +573,47 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
   $templateCache.put("order/parts/order.paiement.tpl.html",
     "<div class=\"container container-delivery\">\n" +
     "	<div class=\"row container-title\">\n" +
-    "		<div class=\"col-lg-4 col-md-4 col-sm-4\" id=\"payment_title\">\n" +
-    "			<h3><span>Paiement</span></h3>\n" +
+    "		<div class=\"col-lg-12 col-md-6 col-sm-6\" id=\"payment_title\">\n" +
+    "			<h3><span>Récapitulatif de la commande</span></h3>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "	<hr class=\"ruler-delivery\">\n" +
-    "	<div class=\"row\"\n" +
-    "			<div class=\"col-lg-6 col-md-6 col-sm-4 background-paiement\">\n" +
-    "			<h4>Hey</h4>\n" +
-    "			<br><br><br><br><br><br>\n" +
-    "			</div>\n" +
-    "	</div>    <!-- ROW -->\n" +
-    "\n" +
     "	<div class=\"row\">\n" +
+    "			<div class=\"col-lg-6 col-md-6 col-sm-4\">\n" +
+    "				<img src=\"assets/wines.jpg\" class=\"img img-responsice\" alt=\"\">\n" +
+    "			</div>\n" +
+    "			<div class=\"col-lg-6 col-md-6 col-sm-4\">\n" +
+    "			  <div class=\"row\">\n" +
+    "			      <div class=\"col-lg-6 col-md-6 col-sm-12 bill\">\n" +
+    "			                <h4 class=\"confirmation-first-title\">Félix Le Chevallier{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>\n" +
+    "			                <h4>felix@vinify.co{{currentClient.email}}</h4>\n" +
+    "			                <p>106 rue du président wilson{{currentClient.userinfos.delivery_address.street}}<br>\n" +
+    "			                92300 Levallois{{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</p>\n" +
     "\n" +
+    "			      </div>\n" +
+    "			      <div class=\"col-lg-6 col-md-6 col-sm-12 bill\">\n" +
+    "			              <table>\n" +
+    "			                  <tr>\n" +
+    "			                    <td><h4>Vinibar </h4></td>\n" +
+    "			                    <td><h4>69{{currentClient.order.amount}}€</h4></td>\n" +
+    "			                  </tr>\n" +
+    "			                  <tr>\n" +
+    "			                    <td><h4>Livraison {{delivery_mode}} </h4></td>\n" +
+    "			                    <td><h4>10{{currentClient.order.delivery_cost}}€</h4></td>\n" +
+    "			                  </tr>\n" +
+    "			                  <tr>\n" +
+    "			                    <td><h4 class=\"bill-total\">Total </h4></td>\n" +
+    "			                    <td><h4 class=\"bill-total\">79{{currentClient.order.final_price}}€</h4></td>\n" +
+    "			                  </tr>\n" +
+    "			              </table>\n" +
+    "			      </div>\n" +
+    "		  	</div>\n" +
+    "			<div class=\"row\">\n" +
+    "				<div class=\"col-lg-12 col-md-12 col-sm-12 centered\">\n" +
+    "					<button class=\"btn button-overlay-primary\">Commander mes vin</button>\n" +
+    "				</div>\n" +
+    "			</div>    <!-- ROW -->\n" +
+    "			</div>\n" +
     "	</div>    <!-- ROW -->\n" +
     "\n" +
     "</div> <!-- container delivery -->\n" +
@@ -939,7 +966,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "\n" +
     "	<div class=\"row\">\n" +
     "		<div class=\"col-lg-3 col-md-3 pull-right\">\n" +
-    "			  <a class=\"btn btn-proceed pull-right\" ng-click=\"addUserInfo(form_commander)\">Valider</a>\n" +
+    "			  <a class=\"btn button-overlay-primary pull-right\" ng-click=\"addUserInfo(form_commander)\">Valider</a>\n" +
     "		</div>\n" +
     "		<div class=\"col-lg-3 col-md-3 pull-right\">\n" +
     "			  <label for=\"first_name\">Votre code d'accès Vinify</label>\n" +

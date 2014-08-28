@@ -1,19 +1,46 @@
 <div class="container container-delivery">
 	<div class="row container-title">
-		<div class="col-lg-4 col-md-4 col-sm-4" id="payment_title">
-			<h3><span>Paiement</span></h3>
+		<div class="col-lg-12 col-md-6 col-sm-6" id="payment_title">
+			<h3><span>Récapitulatif de la commande</span></h3>
 		</div>
 	</div>
 	<hr class="ruler-delivery">
-	<div class="row"
-			<div class="col-lg-6 col-md-6 col-sm-4 background-paiement">
-			<h4>Hey</h4>
-			<br><br><br><br><br><br>
-			</div>
-	</div>    <!-- ROW -->
-
 	<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-4">
+				<img src="assets/wines.jpg" class="img img-responsice" alt="">
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-4">
+			  <div class="row">
+			      <div class="col-lg-6 col-md-6 col-sm-12 bill">
+			                <h4 class="confirmation-first-title">Félix Le Chevallier{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>
+			                <h4>felix@vinify.co{{currentClient.email}}</h4>
+			                <p>106 rue du président wilson{{currentClient.userinfos.delivery_address.street}}<br>
+			                92300 Levallois{{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</p>
 
+			      </div>
+			      <div class="col-lg-6 col-md-6 col-sm-12 bill">
+			              <table>
+			                  <tr>
+			                    <td><h4>Vinibar </h4></td>
+			                    <td><h4>69{{currentClient.order.amount}}€</h4></td>
+			                  </tr>
+			                  <tr>
+			                    <td><h4>Livraison {{delivery_mode}} </h4></td>
+			                    <td><h4>10{{currentClient.order.delivery_cost}}€</h4></td>
+			                  </tr>
+			                  <tr>
+			                    <td><h4 class="bill-total">Total </h4></td>
+			                    <td><h4 class="bill-total">79{{currentClient.order.final_price}}€</h4></td>
+			                  </tr>
+			              </table>
+			      </div>
+		  	</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 centered">
+					<button class="btn button-overlay-primary">Commander mes vin</button>
+				</div>
+			</div>    <!-- ROW -->
+			</div>
 	</div>    <!-- ROW -->
 
 </div> <!-- container delivery -->

@@ -19,10 +19,6 @@
 	}
 }
 
-#payment-bckg {
-
-}
-
 .birthdate {
 	input {
 		margin: 2px;
@@ -97,9 +93,13 @@ footer {
 	#payment_title:after {
 		position: absolute;
 		content:"";
-		width:117px;
+		width:366px;
 		height:0;
 		border-top:5px solid @brand-primary;
+	}
+	#payment-bckg {
+		background-image: url(wines.jpg);
+		.prefix-background;
 	}
 	.ruler-delivery {
 		margin-top: 5px;
@@ -152,6 +152,27 @@ footer {
 			color: #fff;
 		}
 }
+
+  .button-overlay-primary {
+    text-align: center;
+    color: #fff;
+    font-family: 'Montserrat';
+    font-size: 24px;
+    background-color: @brand-primary;
+    border-color: transparent;
+    margin: 2.5px;
+    padding-left:10px;
+    border-radius: 20px;
+    &:active {
+      color: @brand-primary;
+      background-color: transparent;
+    }
+    &:hover {
+      color: @brand-primary;
+      background-color: transparent;
+      border-color: @brand-primary;
+    }
+  }
 
 .btn-order {
 	.btn-proceed;
