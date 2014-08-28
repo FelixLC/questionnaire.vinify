@@ -6909,7 +6909,13 @@ h3 {
   margin: 2px;
   border-radius: 4px;
 }
+.container-underline {
+  margin-left: 15px;
+  margin-right: 15px;
+  border-top-color: #34495e;
+}
 .background-order {
+  background-color: #F7F7F7;
   position: absolute;
   top: 0;
   right: 0;
@@ -6945,10 +6951,28 @@ footer {
   padding-left: 0;
   padding-right: 0;
 }
+.container-delivery-confirmation label {
+  font-weight: 300;
+}
 .container-delivery-confirmation .container-title {
-  margin-left: 15px;
-  margin-bottom: 20px;
-  color: #2c3e50;
+  position: relative;
+}
+.container-delivery-confirmation #delivery_billing_title:after {
+  position: absolute;
+  content: "";
+  width: 282px;
+  height: 0;
+  border-top: 5px solid #34495e;
+}
+.container-delivery-confirmation #payment_title:after {
+  position: absolute;
+  content: "";
+  width: 117px;
+  height: 0;
+  border-top: 5px solid #34495e;
+}
+.container-delivery-confirmation .ruler-delivery {
+  margin-top: 5px;
 }
 .container-delivery-confirmation .bill {
   background-color: transparent;
@@ -6973,9 +6997,6 @@ footer {
 .container-delivery-confirmation .bg-danger {
   text-align: center;
 }
-.container-delivery-confirmation .container-title {
-  margin-bottom: 30px;
-}
 .confirmation-first-title {
   margin-top: 50px;
 }
@@ -6984,10 +7005,28 @@ footer {
   margin-top: 50px;
   font-size: 0.8rem;
 }
+.container-delivery label {
+  font-weight: 300;
+}
 .container-delivery .container-title {
-  margin-left: 15px;
-  margin-bottom: 20px;
-  color: #2c3e50;
+  position: relative;
+}
+.container-delivery #delivery_billing_title:after {
+  position: absolute;
+  content: "";
+  width: 282px;
+  height: 0;
+  border-top: 5px solid #34495e;
+}
+.container-delivery #payment_title:after {
+  position: absolute;
+  content: "";
+  width: 117px;
+  height: 0;
+  border-top: 5px solid #34495e;
+}
+.container-delivery .ruler-delivery {
+  margin-top: 5px;
 }
 .container-delivery .bill {
   background-color: transparent;

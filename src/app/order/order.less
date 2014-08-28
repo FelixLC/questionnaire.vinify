@@ -1,152 +1,171 @@
 // GENERAL RULES
 .page-wrap {
-  min-height: 100%;
-  /* equal to footer height */
-  margin-bottom: -80px;
+	min-height: 100%;
+	/* equal to footer height */
+	margin-bottom: -80px;
 }
 .page-wrap:after {
-  content: "";
-  display: block;
+	content: "";
+	display: block;
 }
 .site-footer, .page-wrap:after {
-  /* .push must be the same height as footer */
-  height: 80px;
+	/* .push must be the same height as footer */
+	height: 80px;
 }
 
 .site-footer {
-  p {
-    font-size: 14px;
-  }
+	p {
+		font-size: 14px;
+	}
 }
 
+#payment-bckg {
+
+}
 
 .birthdate {
-  input {
-    margin: 2px;
-    border-radius: 4px;
-  }
+	input {
+		margin: 2px;
+		border-radius: 4px;
+	}
 }
 
-
+.container-underline {
+	margin-left: 15px;
+	margin-right: 15px;
+	border-top-color: @brand-primary;
+}
 
 
 .background-order {
-  // background-image: url(crossword.png);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+background-color: #F7F7F7;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 
 .bouchons {
-    height: 300px;
-    margin-top: -20px;
-    background-image: url(bouchons2.jpg);
-    text-align: center;
-    // background-color: @blue;
-      .order-button-container {
-        .vertical-align;
-      }
+		height: 300px;
+		margin-top: -20px;
+		background-image: url(bouchons2.jpg);
+		text-align: center;
+		// background-color: @blue;
+			.order-button-container {
+				.vertical-align;
+			}
 }
 
 footer {
-  margin: 0;
-  background-color: #FFFFFF;
-  text-align: center;
-  padding: 10px 0px 5px 0px;
+	margin: 0;
+	background-color: #FFFFFF;
+	text-align: center;
+	padding: 10px 0px 5px 0px;
 }
 
 .container-delivery-confirmation {
-  text-align: center;
-  .container-delivery;
-  margin-top: 0;
-  padding-left: 0;
-  padding-right: 0;
-  // background-color: @blue;
-  .container-title {
-    margin-bottom: 30px;
-  }
+	text-align: center;
+	.container-delivery;
+	margin-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+	// background-color: @blue;
 }
 
-  .confirmation-first-title {
-    margin-top: 50px;
-  }
+	.confirmation-first-title {
+		margin-top: 50px;
+	}
 
 .container-delivery {
-  background-color: transparent;
-  margin-top: 50px;
-    .container-title {
-      margin-left: 15px;
-      margin-bottom: 20px;
-      color: @blue;
-    }
-
-  font-size: 0.8rem;
-
-  .bill {
-
-    background-color: transparent;
-      h3, h4, p {
-        color: @blue;
-        text-align: center;
-      }
-      table {margin: 50px auto;}
-      table td {
-        padding: 0 10px;
-      }
-      .bill-total {
-        color: @blue;
-        font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-        font-weight: 700;
-      };
-  }
-  .bg-danger {
-    text-align: center;
-  }
+	label {
+		font-weight: 300;
+	}
+	background-color: transparent;
+	margin-top: 50px;
+	font-size: 0.8rem;
+	.container-title {
+		position: relative;
+	}
+	#delivery_billing_title:after {
+		position: absolute;
+		content:"";
+		width:282px;
+		height:0;
+		border-top:5px solid @brand-primary;
+	}
+	#payment_title:after {
+		position: absolute;
+		content:"";
+		width:117px;
+		height:0;
+		border-top:5px solid @brand-primary;
+	}
+	.ruler-delivery {
+		margin-top: 5px;
+	}
+	.bill {
+		background-color: transparent;
+			h3, h4, p {
+				color: @blue;
+				text-align: center;
+			}
+			table {margin: 50px auto;}
+			table td {
+				padding: 0 10px;
+			}
+			.bill-total {
+				color: @blue;
+				font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+				font-weight: 700;
+			};
+	}
+	.bg-danger {
+		text-align: center;
+	}
 }
 
 .delivery-button {
-  width: 100%;
-  background-color: @dark-grey;
-  margin-top: 5px;
+	width: 100%;
+	background-color: @dark-grey;
+	margin-top: 5px;
 
-  &:hover, &:focus {
-    background-color: @blue;
-    color: #ffffff;
-  }
+	&:hover, &:focus {
+		background-color: @blue;
+		color: #ffffff;
+	}
 }
 
 .selecteddelivery {
-    background-color: @blue;
-    color: #ffffff;
+		background-color: @blue;
+		color: #ffffff;
 }
 
 .btn-proceed {
-    padding: 20px;
-    text-align: center;
-    border-radius: 0;
-    background-color: @blue;
-    border-radius: 50px;
-    color: #ffffff;
-    &:hover, &:focus {
-      color: #fff;
-    }
+		padding: 20px;
+		text-align: center;
+		border-radius: 0;
+		background-color: @blue;
+		border-radius: 50px;
+		color: #ffffff;
+		&:hover, &:focus {
+			color: #fff;
+		}
 }
 
 .btn-order {
-  .btn-proceed;
-  background-color: @red;
-  border-radius: 50px;
+	.btn-proceed;
+	background-color: @red;
+	border-radius: 50px;
 }
 
 .btn-back {
-    padding: 20px;
-    text-align: center;
-    border-radius: 0;
-    background-color: #fff;
-    color: @blue;
-    &:hover, &:focus {
-      color: @blue;
-    }
+		padding: 20px;
+		text-align: center;
+		border-radius: 0;
+		background-color: #fff;
+		color: @blue;
+		&:hover, &:focus {
+			color: @blue;
+		}
 }

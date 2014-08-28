@@ -176,8 +176,8 @@ angular.module( 'vinibar.questionnaire', [
 		starter_bckg.src = "assets/millefeuille.jpg";
 	var balance_bckg = new Image ();
 			balance_bckg.src = "assets/vineyard.jpg";
-	var comments_bckg = new Image ();
-			comments_bckg.src = "assets/vinibar3.jpg";
+	var winemap_bckg = new Image ();
+			winemap_bckg.src = "assets/winery.jpg";
 
 
 
