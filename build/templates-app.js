@@ -1086,16 +1086,16 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
     "        <div class=\"col-lg-12 col-md-12 col-sm-12 elements-quest\" id=\"quest_coffee\">\n" +
     "\n" +
     "          <div class=\"col-lg-3 col-md-3\">\n" +
-    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.coffee == 'Noir'}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.coffee = 'Noir'\">Noir</a>\n" +
+    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_1 == true}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_1 = true\">Noir</a>\n" +
     "          </div>\n" +
     "          <div class=\"col-lg-3 col-md-3\">\n" +
-    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.coffee == 'Sucre'}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.coffee = 'Sucre'\">Avec du sucre</a>\n" +
+    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_2 == true}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_2 = true\">Avec du sucre</a>\n" +
     "          </div>\n" +
     "          <div class=\"col-lg-3 col-md-3\">\n" +
-    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.coffee == 'Crème'}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.coffee = 'Crème'\">Avec de la crème ou du lait</a>\n" +
+    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_3 == true}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_3 = true\">Avec de la crème ou du lait</a>\n" +
     "          </div>\n" +
     "          <div class=\"col-lg-3 col-md-3\">\n" +
-    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.coffee == 'No'}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.coffee = 'No'\">Je ne prends pas de café</a>\n" +
+    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_4 == true}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_4 = true\">Je ne prends pas de café</a>\n" +
     "          </div>\n" +
     "\n" +
     "        </div>\n" +
