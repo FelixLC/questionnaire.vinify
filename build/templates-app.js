@@ -336,13 +336,11 @@ angular.module("order/order.tpl.html", []).run(["$templateCache", function($temp
     "      </div>\n" +
     "    </nav>\n" +
     "\n" +
-    "    <div class=\"main-container page-wrap\" ui-view autoscroll=\"false\"></div>\n" +
+    "    <div class=\"main-container\" ui-view autoscroll=\"false\"></div>\n" +
     "\n" +
-    "  <footer class=\"site-footer\">\n" +
+    "  <footer>\n" +
     "        <p>\n" +
     "          Une question ? Contactez <a href=\"mailto:charlotte@vinify.co\">charlotte@vinify.co</a>.\n" +
-    "        </p>\n" +
-    "        <p>\n" +
     "          Copyright &copy; <b>Vinify</b> 2014 &middot; L'abus d'alcool est dangereux pour la santé, à consommer avec modération.\n" +
     "        </p>\n" +
     "  </footer>\n" +

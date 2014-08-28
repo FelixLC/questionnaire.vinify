@@ -156,7 +156,7 @@ angular.module( 'vinibar.order', [
                         .success(function(data, status, headers, config) {
                               console.log('success @ createOrder');
                               $scope.currentClient.order = data;
-                              $state.go('order.confirmation');
+                              $state.go('order.paiement');
                               $rootScope.loading = false;
                           })
 
