@@ -6442,13 +6442,6 @@ h3 {
   margin-top: 4px;
   margin-bottom: 4px;
 }
-.form-gouts {
-  margin-top: 70px;
-  margin-bottom: 40px;
-}
-#form-comments {
-  margin-top: 20px;
-}
 .navlinks {
   color: #fff;
   position: absolute;
@@ -6489,48 +6482,6 @@ h3 {
 }
 .form-creation-compte {
   padding-top: 4px;
-}
-.form-creation-compte select {
-  font-weight: 300;
-  width: 100%;
-  background-color: #686D6F;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-}
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  .form-creation-compte select {
-    background-color: transparent;
-  }
-}
-.form-creation-compte label {
-  position: relative;
-}
-.form-creation-compte label:after {
-  content: '< >';
-  font: 11px "Open Sans", Helvetica, monospace;
-  color: #fff;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  right: 8px;
-  top: 10px;
-  padding: 0 0 2px;
-  position: absolute;
-  pointer-events: none;
-}
-.form-creation-compte label:before {
-  content: '';
-  right: 6px;
-  top: 0px;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  position: absolute;
-  pointer-events: none;
-  display: block;
 }
 .background-coffee {
   background-image: url(coffee-grains.jpg);
@@ -6641,6 +6592,48 @@ h3 {
 .background-winemap *:-ms-input-placeholder {
   color: #fff;
   font-weight: 400;
+}
+.background-winemap #region label {
+  position: relative;
+}
+.background-winemap #region label:after {
+  content: '< >';
+  font: 11px "Open Sans", Helvetica, monospace;
+  color: #fff;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  right: 8px;
+  top: 10px;
+  padding: 0 0 2px;
+  position: absolute;
+  pointer-events: none;
+}
+.background-winemap #region label:before {
+  content: '';
+  right: 6px;
+  top: 0px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  position: absolute;
+  pointer-events: none;
+  display: block;
+}
+.background-winemap #region select {
+  font-weight: 300;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .background-winemap #region select {
+    background-color: transparent;
+  }
 }
 .background-balance {
   background-image: url(vineyard.jpg);

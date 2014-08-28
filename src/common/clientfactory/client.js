@@ -30,11 +30,9 @@ angular.module('clientFactory', [])
 				this.quest_1 = {
 					answ: 0
 				};
-
 				this.quest_2 = {
 					answ: 0
 				};
-
 				this.quest_3 = {
 					answ_1: false,
 					answ_2: false,
@@ -54,11 +52,19 @@ angular.module('clientFactory', [])
 					answ_3: false,
 					answ_4: false
 				};
-
 				this.quest_6 = {
 					answ_1: 4,
 					answ_2: 4,
 					answ_3: 4
+				};
+				this.quest_7 = {
+					answ: null
+				};
+				this.quest_8 = {
+					answ: null
+				};
+				this.quest_9 = {
+					answ: null
 				};
 
 			};

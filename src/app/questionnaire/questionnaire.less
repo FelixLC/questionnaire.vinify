@@ -182,16 +182,6 @@
   }
 }
 
-
-.form-gouts {
-  margin-top: 70px;
-  margin-bottom: 40px;
-}
-
-#form-comments {
-  margin-top: 20px;
-}
-
 .navlinks {
   color: #fff;
   position: absolute;
@@ -235,42 +225,9 @@
 }
 
 .form-creation-compte {
-  select {
-    font-weight: 300;
-    width: 100%;
-    background-color: #686D6F;
-    @media screen and (-webkit-min-device-pixel-ratio:0) {
-      background-color: transparent;
-    }
-    -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;
-    cursor:pointer;
-  }
+
   padding-top: 4px;
-  label {position:relative}
-  label:after {
-      content:'< >';
-      font:11px "Open Sans", Helvetica, monospace;
-      color:#fff;
-      -webkit-transform:rotate(90deg);
-      -moz-transform:rotate(90deg);
-      -ms-transform:rotate(90deg);
-      transform:rotate(90deg);
-      right:8px; top:10px;
-      padding:0 0 2px;
-      position:absolute;
-      pointer-events:none;
-  }
-  label:before {
-      content:'';
-      right:6px; top:0px;
-      width:20px; height:20px;
-      background:transparent;
-      position:absolute;
-      pointer-events:none;
-      display:block;
-  }
+
 }
 
 .background-coffee {
@@ -333,6 +290,44 @@
     *:-ms-input-placeholder {
         color: #fff;
         font-weight: 400;
+    }
+    #region {
+      label {position:relative}
+      label:after {
+          content:'< >';
+          font:11px "Open Sans", Helvetica, monospace;
+          color:#fff;
+          -webkit-transform:rotate(90deg);
+          -moz-transform:rotate(90deg);
+          -ms-transform:rotate(90deg);
+          transform:rotate(90deg);
+          right:8px; top:10px;
+          padding:0 0 2px;
+          position:absolute;
+          pointer-events:none;
+      }
+      label:before {
+          content:'';
+          right:6px; top:0px;
+          width:20px; height:20px;
+          background:transparent;
+          position:absolute;
+          pointer-events:none;
+          display:block;
+      }
+      select {
+        font-weight: 300;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.2);;
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+          background-color: transparent;
+        }
+
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        appearance:none;
+        cursor:pointer;
+      }
     }
 }
 

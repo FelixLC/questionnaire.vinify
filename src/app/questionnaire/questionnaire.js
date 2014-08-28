@@ -89,7 +89,7 @@ angular.module( 'vinibar.questionnaire', [
 	};
 
 	$scope.select= function(region) {
-		$scope.region.selected = region;
+		$scope.newuser.survey.quest_7.answ = region;
 	};
 
 
@@ -126,13 +126,26 @@ angular.module( 'vinibar.questionnaire', [
 	$scope.validateBalanceAnswer = function() {
 
 		//  CHECK IF ALL BALANCE ARE NOT SET TO 4 (DEFAULT VALUE)
-		if ( $scope.newuser.survey.quest_6.answ_1 == 4 ||  $scope.newuser.survey.quest_6.answ_2 === 4 ||  $scope.newuser.survey.quest_6.answ_3 === 4) {
+		if ( $scope.newuser.survey.quest_6.answ_1 === 4 ||  $scope.newuser.survey.quest_6.answ_2 === 4 ||  $scope.newuser.survey.quest_6.answ_3 === 4) {
 			$scope.answerAll = true;
-					}
-
-		else {
+		} else if ( $scope.newuser.survey.quest_6.answ_1 === 0 &&  $scope.newuser.survey.quest_6.answ_2 === 0 &&  $scope.newuser.survey.quest_6.answ_3 === 0) {
+			$scope.nowine = true;
+		} else {
 			$scope.answerAll = false;
-			$state.go('questionnaire.comments');
+			$scope.nowine = false;
+			$state.go('questionnaire.winemap');
+		}
+
+	};
+
+	$scope.validateCuisineAnswer = function() {
+
+		//  CHECK IF ALL cuisines ARE NOT SET TO false (DEFAULT VALUE)
+		if ( $scope.newuser.survey.quest_3.answ_1 === false &&  $scope.newuser.survey.quest_3.answ_2 === false &&  $scope.newuser.survey.quest_3.answ_3 === false &&  $scope.newuser.survey.quest_3.answ_4 === false &&  $scope.newuser.survey.quest_3.answ_5 === false) {
+			$scope.answerOne = true;
+		} else {
+			$scope.answerOne = false;
+			$state.go('questionnaire.starter');
 		}
 
 	};
@@ -141,16 +154,12 @@ angular.module( 'vinibar.questionnaire', [
 		'Je ne sais pas',
 		'Alsace',
 		'Provence - Corse',
-		'Sud-Ouest',
-		'Beaujolais',
-		'Vallée du Rhône',
+		'Rhône',
 		'Bordeaux',
-		'Vallée de la Loire',
+		'Loire',
 		'Bourgogne',
-		'Languedoc',
-		'Graves',
-		'Champagne',
-		'Savoie'
+		'Languedoc Roussillon',
+		'Champagne'
 	];
 
 	// $scope.trackLink = function(n) {
@@ -173,8 +182,11 @@ angular.module( 'vinibar.questionnaire', [
 
 
 	$scope.createUser = function(name, user, tastes) {
+		console.log(name);
+		console.log(user);
+		console.log(tastes);
 		// IF FORM IS VALID
-		if (name.$valid && user.$valid && tastes.$valid) {
+		if (name.$valid && user.$valid) {
 				$rootScope.loading = true;
 				$scope.showFormEmailError = false;
 				$scope.showFormErrors = false;

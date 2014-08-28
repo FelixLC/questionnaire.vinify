@@ -1,4 +1,4 @@
-angular.module('templates-app', ['commander/commander.tpl.html', 'mrelay/mrelay.tpl.html', 'offrir/offrir.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_order/remerciement_order.tpl.html']);
+angular.module('templates-app', ['commander/commander.tpl.html', 'mrelay/mrelay.tpl.html', 'offrir/offrir.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_order/remerciement_order.tpl.html']);
 
 angular.module("commander/commander.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("commander/commander.tpl.html",
@@ -1015,10 +1015,13 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "    <div class=\"form-errors fader\" ng-show=\"answerAll\">\n" +
     "      Merci de choisir une préférence pour chaque type de vin, puis valider avec la flèche\n" +
     "    </div>\n" +
+    "    <div class=\"form-errors fader\" ng-show=\"nowine\">\n" +
+    "      Vous ne voulez pas de vins dans votre Vinibar :) ?\n" +
+    "    </div>\n" +
     "    <div class=\"vertical-align centered  vertical-align-mobile\">\n" +
     "        <div class=\"row\">\n" +
-    "          <h3>Vos préférences de composition du Vinibar</h3>\n" +
-    "          <p>(Indiquez les proportions que vous désirez pour votre Vinibar)</p>\n" +
+    "          <h3>Votre Vinibar</h3>\n" +
+    "          <p>(Indiquez vos préférences de composition pour votre Vinibar)</p>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"row\" id=\"quest_balance\">\n" +
@@ -1068,7 +1071,7 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "      <a ui-sref=\"questionnaire.starter\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks-right\">\n" +
-    "      <a class=\"validateBalanceAnswer\" ng-click=\"validateBalanceAnswer()\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "      <a class=\"validateBalanceAnswer()\" ng-click=\"validateBalanceAnswer()\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>");
@@ -1236,10 +1239,13 @@ angular.module("questionnaire/parts/questionnaire.cuisine.tpl.html", []).run(["$
   $templateCache.put("questionnaire/parts/questionnaire.cuisine.tpl.html",
     "<div class=\"background-cuisine\">\n" +
     "  <div class=\"overlay\">\n" +
+    "    <div class=\"form-errors fader\" ng-show=\"answerOne\">\n" +
+    "      Merci de choisir au moins une cuisine, puis valider avec la flèche\n" +
+    "    </div>\n" +
     "    <div class=\"vertical-align centered\">\n" +
     "      <div class=\"row\">\n" +
     "        <h3>Vous aimez les cuisines :</h3>\n" +
-    "        <p>(Choisissez une ou plusieurs réponses, puis validez avec la flèche)</p>\n" +
+    "        <p>(Choisissez TOUS les styles que vous appréciez, puis validez avec la flèche)</p>\n" +
     "      </div>\n" +
     "      <div class=\"row\" id=\"quest_cuisine\">\n" +
     "        <div class=\"col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2\">\n" +
@@ -1269,7 +1275,7 @@ angular.module("questionnaire/parts/questionnaire.cuisine.tpl.html", []).run(["$
     "      <a ui-sref=\"questionnaire.juice\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks-right\">\n" +
-    "      <a ui-sref=\"questionnaire.starter\" ><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "      <a href ng-click=\"validateCuisineAnswer()\" ><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
     "    </div>\n" +
     "\n" +
     "  </div>\n" +
@@ -1353,6 +1359,11 @@ angular.module("questionnaire/parts/questionnaire.juice.tpl.html", []).run(["$te
     "</div>");
 }]);
 
+angular.module("questionnaire/parts/questionnaire.profile.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("questionnaire/parts/questionnaire.profile.tpl.html",
+    "");
+}]);
+
 angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("questionnaire/parts/questionnaire.starter.tpl.html",
     "<div class=\"background-starter\">\n" +
@@ -1360,7 +1371,7 @@ angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$
     "        <div class=\"vertical-align centered\">\n" +
     "            <div class=\"row\">\n" +
     "                <h3>Quels plats vous font envie ?</h3>\n" +
-    "                <p>(Choisissez tous les plats qui vous tentent, puis validez avec la flèche)</p>\n" +
+    "                <p>(Choisissez TOUS les plats que vous appréciez, puis validez avec la flèche)</p>\n" +
     "            </div>\n" +
     "            <div class=\"row\" id=\"quest_starter\">\n" +
     "              <div class=\"col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2\">\n" +
@@ -1370,7 +1381,7 @@ angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$
     "                        ng-click=\"newuser.survey.quest_4.answ_1 = !newuser.survey.quest_4.answ_1\">Assiette d'huîtres</button><br>\n" +
     "                <button class=\"btn button-overlay\"\n" +
     "                        ng-class=\"{selected: newuser.survey.quest_4.answ_2 == true}\"\n" +
-    "                        ng-click=\"newuser.survey.quest_4.answ_2 = !newuser.survey.quest_4.answ_2\">Pain toasté et tapenade d'olive</button><br>\n" +
+    "                        ng-click=\"newuser.survey.quest_4.answ_2 = !newuser.survey.quest_4.answ_2\">Pain toasté et tapenade d'olives</button><br>\n" +
     "                <button class=\"btn button-overlay\"\n" +
     "                        ng-class=\"{selected: newuser.survey.quest_4.answ_3 == true}\"\n" +
     "                        ng-click=\"newuser.survey.quest_4.answ_3 = !newuser.survey.quest_4.answ_3\">Foie gras et pain d'épices</button><br>\n" +
@@ -1386,7 +1397,7 @@ angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$
     "                        ng-click=\"newuser.survey.quest_5.answ_2 = !newuser.survey.quest_5.answ_2\">Ganache chocolat à la cannelle</button><br>\n" +
     "                <button class=\"btn button-overlay\"\n" +
     "                        ng-class=\"{selected: newuser.survey.quest_5.answ_3 == true}\"\n" +
-    "                        ng-click=\"newuser.survey.quest_5.answ_3 = !newuser.survey.quest_5.answ_3\">Carpaccio de fruit frais & sorbet</button><br>\n" +
+    "                        ng-click=\"newuser.survey.quest_5.answ_3 = !newuser.survey.quest_5.answ_3\">Carpaccio de fruits frais & sorbet</button><br>\n" +
     "\n" +
     "              </div>\n" +
     "            </div>\n" +
@@ -1411,20 +1422,24 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "<div class=\"background-winemap\">\n" +
     "	<div class=\"overlay\">\n" +
     "		<div class=\"form-errors fader\" ng-show=\"showFormErrors\">\n" +
-    "		Le(s) champ(s) suivant(s) sont requis:\n" +
-    "		<span ng-show=\"form_name.first_name.$invalid\">Prénom, </span>\n" +
-    "		<span ng-show=\"form_name.last_name.$invalid\">Nom, </span>\n" +
-    "		<span ng-show=\"form_user.password.$invalid\">Mot de passe, </span>\n" +
-    "		<span ng-show=\"form_name.email.$invalid\">Email, </span>\n" +
-    "		<span ng-show=\"form_tastes.region.$invalid\">Région préférée, </span>\n" +
-    "		<span ng-show=\"form_tastes.textarea.$invalid\">Au moins un vin qui vous a marqué&nbsp;:) </span>\n" +
-    "	</div>\n" +
+    "			<span ng-hide=\"form_name.$valid && form_user.$valid\" >Le(s) champ(s) suivant(s) sont requis:</span>\n" +
+    "			<span ng-show=\"form_name.first_name.$invalid\">Prénom, </span>\n" +
+    "			<span ng-show=\"form_name.last_name.$invalid\">Nom, </span>\n" +
+    "			<span ng-show=\"form_user.password.$invalid\">Mot de passe, </span>\n" +
+    "			<span ng-show=\"form_name.email.$invalid\">Email, </span>\n" +
+    "		</div>\n" +
+    "	    <div class=\"form-errors fader\" ng-show=\"showFormEmailError\">\n" +
+    "	      Oops, votre adresse email ne semble pas valide ...\n" +
+    "	    </div>\n" +
+    "	    <div class=\"form-errors fader\" ng-show=\"invalidLogin\">\n" +
+    "	      Oops, un compte est déjà associé à cet Email, mais avec un autre mot de passe. Une question ? Contactez <a href=\"mailto:charlotte@vinify.co\">charlotte@vinify.co</a>\n" +
+    "	    </div>\n" +
     "		<div class=\"vertical-align-comments centered\">\n" +
     "			<div class=\"row\">\n" +
-    "				<div class=\"col-lg-6 col-md-6 col-sm-6 elements-quest\" id=\"quest_winemap\">\n" +
+    "				<div class=\"col-lg-6 col-md-6 col-sm-6 hidden-xs elements-quest\" id=\"quest_winemap\">\n" +
     "					<h3>Ma région préférée&nbsp;: <br>\n" +
-    "					<span ng-hide=\"region.selected || region.hover\">(Cliquez sur la carte)</span>\n" +
-    "					<span ng-show=\"!region.selected\">{{ region.hover }}</span>{{ region.selected }}</h3>\n" +
+    "					<span ng-hide=\"newuser.survey.quest_7.answ || region.hover\">(Cliquez sur la carte)</span>\n" +
+    "					<span ng-show=\"!newuser.survey.quest_7.answ\">{{ region.hover }}</span>{{ newuser.survey.quest_7.answ }}</h3>\n" +
     "						<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n" +
     "							 viewBox=\"0 0 145.78 143.313\" enable-background=\"new 0 0 145.78 143.313\"\n" +
     "							 xml:space=\"preserve\">\n" +
@@ -1486,7 +1501,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.031,0.146-4.933,1.49-5.8,1.706c-1.187,0.298-1.85,2.253-2.729,2.474c-0.433,0.108-0.587,0.176-0.938,0\n" +
     "								c-0.532-0.307-1.015-0.676-1.45-1.108c-0.161-0.161-0.542-0.086-0.768-0.086\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Languedoc')\" ng-mouseleave=\"leave('Languedoc')\" ng-click=\"select('Languedoc')\" id=\"Languedoc\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-mouseenter=\"enter('Languedoc Roussillon')\" ng-mouseleave=\"leave('Languedoc Roussillon')\" ng-click=\"select('Languedoc Roussillon')\" id=\"Languedoc\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M102.805,125.872c-0.221-0.425-0.382-0.871-0.482-1.338c0.318-0.232,0.622-0.482,0.912-0.75c0.375-0.096-0.021-0.387-0.107-0.43\n" +
     "								c-0.229-0.113,0.872-1.53,0.91-1.607c0.316-0.626,0.01-1.419-0.268-1.98c-1.931-3.861-28.059,4.396-25.872,13.068\n" +
     "								c0.187,0.735,0.731,1.496,1.18,2.09c1.591,2.138,4.501,2.579,5.249,5.57c-0.044-0.179,2.657-0.329,2.838-0.375\n" +
@@ -1553,7 +1568,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c-0.17-0.084,0.062-0.391,0.074-0.414C109.652,126.704,110.131,126.518,110.178,126.481\n" +
     "								C110.264,126.524,110.131,126.518,110.178,126.481z\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Côtes du Rhône')\" ng-mouseleave=\"leave('Côtes du Rhône')\" ng-click=\"select('Côtes du Rhône')\" id=\"Cote_du_Rhone\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M108.615,102.473c0.123-0.156,0.572-0.395,0.758-0.488\n" +
+    "								<path ng-mouseenter=\"enter('Rhône')\" ng-mouseleave=\"leave('Rhône')\" ng-click=\"select('Rhône')\" id=\"Cote_du_Rhone\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M108.615,102.473c0.123-0.156,0.572-0.395,0.758-0.488\n" +
     "								c0.205-0.102,0.66,0.033,0.812,0.109c1.112,0.552,0.233,1.415-0.596,1.627c-0.305,0.076-0.42,0.002-0.65-0.055\n" +
     "								c-0.191-0.049-0.328-0.273-0.434-0.379C108.285,103.067,108.482,102.637,108.615,102.473\n" +
     "								C108.738,102.317,108.482,102.637,108.615,102.473z M112.857,110.905c0.158-0.278,0.343-0.539,0.553-0.781\n" +
@@ -1593,10 +1608,19 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "						</g>\n" +
     "						</svg>\n" +
     "				</div>\n" +
-    "				<div class=\"col-lg-6 col-md-6 col-sm-6 elements-quest\" id=\"quest_winemap\">\n" +
-    "					<h3>Mes goûts</h3>\n" +
-    "					<label for=\"comments\" class=\"sr-only\">Un vin qui vous a marqué ?</label>\n" +
-    "					<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.infos\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
+    "				<div class=\"col-lg-6 col-md-6 col-sm-6 elements-quest\">\n" +
+    "					<form role=\"form\" name=\"form_tastes\" class=\"form-gouts\">\n" +
+    "						<h3>Mes goûts</h3>\n" +
+    "						<div id=\"region\">\n" +
+    "							<label class=\"visible-xs\">\n" +
+    "								<select name=\"region\" class=\"form-control\" ng-model=\"newuser.survey.region\" ng-options=\"region as region for region in regions | orderBy: 'toString()'\">\n" +
+    "								<option value=\"\">Votre région préférée ... &nbsp;&nbsp;</option>\n" +
+    "								</select>\n" +
+    "							</label>\n" +
+    "						</div>\n" +
+    "						<label for=\"comments\" class=\"sr-only\">Un vin qui vous a marqué ?</label>\n" +
+    "						<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.infos\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
+    "					</form>\n" +
     "			            <form name=\"form_name\" role=\"form\" class=\"form-inline\">\n" +
     "			              <h3>Mon compte Vinify</h3>\n" +
     "			              <div class=\"form-group\">\n" +
@@ -1607,7 +1631,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			                    ng-model=\"newuser.first_name\"\n" +
     "			                    required\n" +
     "			                    class=\"form-control\"\n" +
-    "			                    id=\"first_name\"/>\n" +
+    "			                    id=\"first_name\" required/>\n" +
     "			              </div>\n" +
     "			              <div class=\"form-group\">\n" +
     "			                <label class=\"sr-only\" for=\"last_name\">Nom</label>\n" +
@@ -1617,7 +1641,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			                    ng-model=\"newuser.last_name\"\n" +
     "			                    required\n" +
     "			                    class=\"form-control\"\n" +
-    "			                    id=\"last_name\"/>\n" +
+    "			                    id=\"last_name\" required/>\n" +
     "			              </div>\n" +
     "			            </form>\n" +
     "			            <form role=\"form\" name=\"form_user\" class=\"form-inline\">\n" +
@@ -1629,7 +1653,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			                    placeholder=\"Email\"\n" +
     "			                    required\n" +
     "			                    class=\"form-control\"\n" +
-    "			                    id=\"email\"/>\n" +
+    "			                    id=\"email\" required/>\n" +
     "			              </div>\n" +
     "			              <div class=\"form-group\">\n" +
     "			                <label class=\"sr-only\" for=\"password\">Mot de Passe</label>\n" +
@@ -1641,16 +1665,16 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			                    required\n" +
     "			                    class=\"form-control\"\n" +
     "			                    ng-minlength=\"5\"\n" +
-    "			                    id=\"password\"/>\n" +
+    "			                    id=\"password\" required/>\n" +
     "			              </div>\n" +
     "			            </form>\n" +
     "              			<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">Créer mon compte</button>\n" +
     "	                  </div>\n" +
     "			</div>\n" +
     "		</div>\n" +
-    "<!--     <div class=\"navlinks-right\">\n" +
-    "			<a ui-sref=\"questionnaire.juice\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
-    "		</div> -->\n" +
+    "	    <div class=\"navlinks\">\n" +
+    "	      <a ui-sref=\"questionnaire.balance\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
+    "	    </div>\n" +
     "	</div>\n" +
     "\n" +
     "</div>");

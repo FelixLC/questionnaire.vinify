@@ -3,10 +3,13 @@
     <div class="form-errors fader" ng-show="answerAll">
       Merci de choisir une préférence pour chaque type de vin, puis valider avec la flèche
     </div>
+    <div class="form-errors fader" ng-show="nowine">
+      Vous ne voulez pas de vins dans votre Vinibar :) ?
+    </div>
     <div class="vertical-align centered  vertical-align-mobile">
         <div class="row">
-          <h3>Vos préférences de composition du Vinibar</h3>
-          <p>(Indiquez les proportions que vous désirez pour votre Vinibar)</p>
+          <h3>Votre Vinibar</h3>
+          <p>(Indiquez vos préférences de composition pour votre Vinibar)</p>
         </div>
 
         <div class="row" id="quest_balance">
@@ -56,7 +59,7 @@
       <a ui-sref="questionnaire.starter"><i class="glyphicon glyphicon-chevron-left"></i></a>
     </div>
     <div class="navlinks-right">
-      <a class="validateBalanceAnswer" ng-click="validateBalanceAnswer()"><i class="glyphicon glyphicon-chevron-right"></i></a>
+      <a class="validateBalanceAnswer()" ng-click="validateBalanceAnswer()"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div>
   </div>
 </div>
