@@ -6400,7 +6400,6 @@ h3 {
   background-color: #fff;
 }
 .questionnaire .vertical-align-comments {
-  overflow: auto;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -6593,6 +6592,56 @@ h3 {
   margin: 0;
   padding: 0;
 }
+.background-winemap {
+  background-image: url(winery.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+.background-winemap .form-control {
+  color: #fff;
+}
+.background-winemap .overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 30px;
+}
+.background-winemap input {
+  background-color: transparent;
+}
+.background-winemap textarea {
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+@media screen and (min-width: 1000px) {
+  .background-winemap textarea {
+    width: 408px;
+  }
+}
+.background-winemap *::-webkit-input-placeholder {
+  color: #fff;
+  font-weight: 400;
+}
+.background-winemap *:-moz-placeholder {
+  color: #fff;
+  font-weight: 400;
+}
+.background-winemap *::-moz-placeholder {
+  color: #fff;
+  font-weight: 400;
+}
+.background-winemap *:-ms-input-placeholder {
+  color: #fff;
+  font-weight: 400;
+}
 .background-balance {
   background-image: url(vineyard.jpg);
   -webkit-background-size: cover;
@@ -6651,11 +6700,6 @@ h3 {
 .background-comments input {
   background-color: transparent;
 }
-.background-comments textarea {
-  margin-top: 50px;
-  background-color: transparent;
-  width: 100%;
-}
 .background-comments *::-webkit-input-placeholder {
   color: #fff;
 }
@@ -6670,6 +6714,24 @@ h3 {
 }
 #comments {
   margin-top: 4px;
+}
+#quest_winemap svg {
+  height: 300px;
+}
+@media screen and (max-width: 450px) {
+  #quest_winemap svg {
+    width: 250px;
+  }
+}
+#quest_winemap #Loire,
+#quest_winemap #Alsace,
+#quest_winemap #Bourgogne_1_,
+#quest_winemap #Languedoc,
+#quest_winemap #Champagne,
+#quest_winemap #Provence,
+#quest_winemap #Cote_du_Rhone,
+#quest_winemap #Bordeaux {
+  cursor: pointer;
 }
 .my-slide-animation.ng-enter {
   -webkit-animation: fadeIn 0s;

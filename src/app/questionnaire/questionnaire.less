@@ -131,7 +131,6 @@
   }
 
   .vertical-align-comments {
-    overflow: auto;
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -298,6 +297,45 @@
     .full-cover;
 }
 
+.background-winemap {
+  background-image: url(winery.jpg);
+    .prefix-background;
+    .full-cover;
+    .form-control {
+      color: #fff;
+    }
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding-bottom: 30px;
+    }
+    input {
+      background-color: transparent;
+    }
+    textarea {
+      @media screen and (min-width: 1000px) {
+        width: 408px;
+      }
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    *::-webkit-input-placeholder {
+        color: #fff;
+        font-weight: 400;
+    }
+    *:-moz-placeholder {
+        color: #fff;
+        font-weight: 400;
+    }
+    *::-moz-placeholder {
+        color: #fff;
+        font-weight: 400;
+    }
+    *:-ms-input-placeholder {
+        color: #fff;
+        font-weight: 400;
+    }
+}
+
 .background-balance {
   background-image: url(vineyard.jpg);
     .prefix-background;
@@ -339,11 +377,6 @@
     input {
       background-color: transparent;
     }
-    textarea {
-      margin-top: 50px;
-      background-color: transparent;
-      width: 100%;
-    }
     *::-webkit-input-placeholder {
         color: #fff;
     }
@@ -363,6 +396,17 @@
   margin-top: 4px;
 }
 
+#quest_winemap {
+  svg {
+    height: 300px;
+      @media screen and (max-width: 450px) {
+        width: 250px;
+      }
+  }
+  #Loire, #Alsace, #Bourgogne_1_, #Languedoc, #Champagne, #Provence, #Cote_du_Rhone, #Bordeaux {
+    cursor: pointer;
+  }
+}
 
 .my-slide-animation.ng-enter {
   -webkit-animation: fadeIn 0s;

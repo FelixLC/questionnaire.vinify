@@ -8,16 +8,16 @@
         <div class="col-lg-12 col-md-12 col-sm-12 elements-quest" id="quest_coffee">
 
           <div class="col-lg-3 col-md-3">
-            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1 == true}" class="btn button-overlay" ng-click="newuser.survey.quest_1 = true">Noir</a>
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 1}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 1 ">Noir</a>
           </div>
           <div class="col-lg-3 col-md-3">
-            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_2 == true}" class="btn button-overlay" ng-click="newuser.survey.quest_2 = true">Avec du sucre</a>
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 2}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 2">Avec du sucre</a>
           </div>
           <div class="col-lg-3 col-md-3">
-            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_3 == true}" class="btn button-overlay" ng-click="newuser.survey.quest_3 = true">Avec de la crème ou du lait</a>
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 3}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 3">Avec de la crème ou du lait</a>
           </div>
           <div class="col-lg-3 col-md-3">
-            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_4 == true}" class="btn button-overlay" ng-click="newuser.survey.quest_4 = true">Je ne prends pas de café</a>
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 4}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 4">Je ne prends pas de café</a>
           </div>
 
         </div>

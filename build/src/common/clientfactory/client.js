@@ -28,16 +28,11 @@ angular.module('clientFactory', [])
 // 5,3,Dessert - Carpaccio
 // 5,4,Dessert - No
 				this.quest_1 = {
-					answ_1: false,
-					answ_2: false,
-					answ_3: false,
-					answ_4: false
+					answ: 0
 				};
 
 				this.quest_2 = {
-					answ_1: false,
-					answ_2: false,
-					answ_3: false
+					answ: 0
 				};
 
 				this.quest_3 = {
