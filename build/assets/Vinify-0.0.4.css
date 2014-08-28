@@ -6543,6 +6543,9 @@ h3 {
   margin: 0;
   padding: 0;
 }
+.background-starter .overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
 .background-winemap {
   background-image: url(winery.jpg);
   -webkit-background-size: cover;
@@ -6562,11 +6565,22 @@ h3 {
   color: #fff;
 }
 .background-winemap .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   padding-bottom: 30px;
+}
+.background-winemap #form-gouts {
+  margin-bottom: 20px;
 }
 .background-winemap input {
   background-color: transparent;
+}
+.background-winemap input[type='range'] {
+  margin: 20px auto;
+}
+@media screen and (min-width: 1000px) {
+  .background-winemap input[type='range'] {
+    width: 408px;
+  }
 }
 .background-winemap textarea {
   margin: 0 auto;
@@ -6634,6 +6648,9 @@ h3 {
   .background-winemap #region select {
     background-color: transparent;
   }
+}
+.background-winemap .form-gouts {
+  padding-bottom: 20px;
 }
 .background-balance {
   background-image: url(vineyard.jpg);

@@ -1609,67 +1609,92 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "						</svg>\n" +
     "				</div>\n" +
     "				<div class=\"col-lg-6 col-md-6 col-sm-6 elements-quest\">\n" +
-    "					<form role=\"form\" name=\"form_tastes\" class=\"form-gouts\">\n" +
-    "						<h3>Mes goûts</h3>\n" +
-    "						<div id=\"region\">\n" +
-    "							<label class=\"visible-xs\">\n" +
-    "								<select name=\"region\" class=\"form-control\" ng-model=\"newuser.survey.region\" ng-options=\"region as region for region in regions | orderBy: 'toString()'\">\n" +
-    "								<option value=\"\">Votre région préférée ... &nbsp;&nbsp;</option>\n" +
-    "								</select>\n" +
-    "							</label>\n" +
-    "						</div>\n" +
-    "						<label for=\"comments\" class=\"sr-only\">Un vin qui vous a marqué ?</label>\n" +
-    "						<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.infos\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
-    "					</form>\n" +
-    "			            <form name=\"form_name\" role=\"form\" class=\"form-inline\">\n" +
-    "			              <h3>Mon compte Vinify</h3>\n" +
-    "			              <div class=\"form-group\">\n" +
-    "			                <label class=\"sr-only\" for=\"first_name\">Prénom</label>\n" +
-    "			                <input type=\"text\"\n" +
-    "			                    placeholder=\"Prénom\"\n" +
-    "			                    name=\"first_name\"\n" +
-    "			                    ng-model=\"newuser.first_name\"\n" +
-    "			                    required\n" +
-    "			                    class=\"form-control\"\n" +
-    "			                    id=\"first_name\" required/>\n" +
-    "			              </div>\n" +
-    "			              <div class=\"form-group\">\n" +
-    "			                <label class=\"sr-only\" for=\"last_name\">Nom</label>\n" +
-    "			                <input type=\"text\"\n" +
-    "			                    placeholder=\"Nom\"\n" +
-    "			                    name=\"last_name\"\n" +
-    "			                    ng-model=\"newuser.last_name\"\n" +
-    "			                    required\n" +
-    "			                    class=\"form-control\"\n" +
-    "			                    id=\"last_name\" required/>\n" +
-    "			              </div>\n" +
-    "			            </form>\n" +
-    "			            <form role=\"form\" name=\"form_user\" class=\"form-inline\">\n" +
-    "			              <div class=\"form-group\">\n" +
-    "			                <label class=\"sr-only\" for=\"email\" name=\"email\">Email</label>\n" +
-    "			                <input type=\"email\"\n" +
-    "			                    name=\"email\"\n" +
-    "			                    ng-model=\"newuser.email\"\n" +
-    "			                    placeholder=\"Email\"\n" +
-    "			                    required\n" +
-    "			                    class=\"form-control\"\n" +
-    "			                    id=\"email\" required/>\n" +
-    "			              </div>\n" +
-    "			              <div class=\"form-group\">\n" +
-    "			                <label class=\"sr-only\" for=\"password\">Mot de Passe</label>\n" +
-    "			                <input type=\"password\"\n" +
-    "			                    tooltip=\"Min. 5 charactères\"  tooltip-trigger=\"focus\" tooltip-placement=\"bottom\"\n" +
-    "			                    placeholder=\"Password\"\n" +
-    "			                    name=\"password\"\n" +
-    "			                    ng-model=\"newuser.password\"\n" +
-    "			                    required\n" +
-    "			                    class=\"form-control\"\n" +
-    "			                    ng-minlength=\"5\"\n" +
-    "			                    id=\"password\" required/>\n" +
-    "			              </div>\n" +
-    "			            </form>\n" +
-    "              			<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">Créer mon compte</button>\n" +
-    "	                  </div>\n" +
+    "					<div class=\"row\">\n" +
+    "						<form class=\"col-lg-12 col-md-12\" role=\"form\" name=\"form_tastes\" class=\"form-gouts\">\n" +
+    "							<h3>Mes goûts</h3>\n" +
+    "							<div id=\"region\">\n" +
+    "								<label class=\"visible-xs\">\n" +
+    "									<select name=\"region\" class=\"form-control\" ng-model=\"newuser.survey.region\" ng-options=\"region as region for region in regions | orderBy: 'toString()'\">\n" +
+    "									<option value=\"\">Votre région préférée ... &nbsp;&nbsp;</option>\n" +
+    "									</select>\n" +
+    "								</label>\n" +
+    "							</div>\n" +
+    "							<label for=\"comments\" class=\"sr-only\">Un vin qui vous a marqué ?</label>\n" +
+    "							<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.infos\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
+    "						</form>\n" +
+    "					</div>\n" +
+    "					<div class=\"row\">\n" +
+    "						<form class=\"col-lg-12 col-md-12\" role=\"form\" name=\"form_price\">\n" +
+    "							<h3>Ma gamme de vin habituelle :</h3>\n" +
+    "							<div class=\"col-lg-3 col-md-3\">\n" +
+    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 1}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 1 \">5 - 10 €</a>\n" +
+    "							</div>\n" +
+    "							<div class=\"col-lg-3 col-md-3\">\n" +
+    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 2}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 2\">10 - 15 €</a>\n" +
+    "							</div>\n" +
+    "							<div class=\"col-lg-3 col-md-3\">\n" +
+    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 3}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 3\">15€ - 20 €</a>\n" +
+    "							</div>\n" +
+    "							<div class=\"col-lg-3 col-md-3\">\n" +
+    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 4}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 4\">20 € & +</a>\n" +
+    "							</div>\n" +
+    "						</form>\n" +
+    "					</div>\n" +
+    "					<div class=\"row\">\n" +
+    "				            <form name=\"form_name\" role=\"form\" class=\"form-inline\">\n" +
+    "					              <h3>Mon compte Vinify</h3>\n" +
+    "					              <div class=\"form-group\">\n" +
+    "					                <label class=\"sr-only\" for=\"first_name\">Prénom</label>\n" +
+    "					                <input type=\"text\"\n" +
+    "					                    placeholder=\"Prénom\"\n" +
+    "					                    name=\"first_name\"\n" +
+    "					                    ng-model=\"newuser.first_name\"\n" +
+    "					                    required\n" +
+    "					                    class=\"form-control\"\n" +
+    "					                    id=\"first_name\" required/>\n" +
+    "					              </div>\n" +
+    "					              <div class=\"form-group\">\n" +
+    "					                <label class=\"sr-only\" for=\"last_name\">Nom</label>\n" +
+    "					                <input type=\"text\"\n" +
+    "					                    placeholder=\"Nom\"\n" +
+    "					                    name=\"last_name\"\n" +
+    "					                    ng-model=\"newuser.last_name\"\n" +
+    "					                    required\n" +
+    "					                    class=\"form-control\"\n" +
+    "					                    id=\"last_name\" required/>\n" +
+    "							</div>\n" +
+    "			            		</form>\n" +
+    "				            <form   role=\"form\" name=\"form_user\" class=\"form-inline\">\n" +
+    "				              <div class=\"form-group\">\n" +
+    "				                <label class=\"sr-only\" for=\"email\" name=\"email\">Email</label>\n" +
+    "				                <input type=\"email\"\n" +
+    "				                    name=\"email\"\n" +
+    "				                    ng-model=\"newuser.email\"\n" +
+    "				                    placeholder=\"Email\"\n" +
+    "				                    required\n" +
+    "				                    class=\"form-control\"\n" +
+    "				                    id=\"email\" required/>\n" +
+    "				              </div>\n" +
+    "				              <div class=\"form-group\">\n" +
+    "				                <label class=\"sr-only\" for=\"password\">Mot de Passe</label>\n" +
+    "				                <input type=\"password\"\n" +
+    "				                    tooltip=\"Min. 5 charactères\"  tooltip-trigger=\"focus\" tooltip-placement=\"bottom\"\n" +
+    "				                    placeholder=\"Password\"\n" +
+    "				                    name=\"password\"\n" +
+    "				                    ng-model=\"newuser.password\"\n" +
+    "				                    required\n" +
+    "				                    class=\"form-control\"\n" +
+    "				                    ng-minlength=\"5\"\n" +
+    "				                    id=\"password\" required/>\n" +
+    "				              </div>\n" +
+    "				            </form>\n" +
+    "			            </div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"row\">\n" +
+    "				<div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
+    "					<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">Créer mon compte</button>\n" +
+    "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "	    <div class=\"navlinks\">\n" +

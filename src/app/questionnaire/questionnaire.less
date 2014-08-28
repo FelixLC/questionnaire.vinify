@@ -252,6 +252,9 @@
   background-image: url(millefeuille.jpg);
     .prefix-background;
     .full-cover;
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
 }
 
 .background-winemap {
@@ -262,11 +265,20 @@
       color: #fff;
     }
     .overlay {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.6);
       padding-bottom: 30px;
     }
+  #form-gouts {
+    margin-bottom: 20px;
+  }
     input {
       background-color: transparent;
+    }
+    input[type='range'] {
+      @media screen and (min-width: 1000px) {
+        width: 408px;
+      }
+      margin: 20px auto;
     }
     textarea {
       @media screen and (min-width: 1000px) {
@@ -328,6 +340,9 @@
         appearance:none;
         cursor:pointer;
       }
+    }
+    .form-gouts{
+      padding-bottom: 20px;
     }
 }
 
