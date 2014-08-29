@@ -1680,7 +1680,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								</label>\n" +
     "							</div>\n" +
     "							<label for=\"comments\" class=\"sr-only\">Un vin qui vous a marqué ?</label>\n" +
-    "							<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.infos\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
+    "							<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.quest_9.answ\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
     "						</form>\n" +
     "					</div>\n" +
     "					<div class=\"row\">\n" +
