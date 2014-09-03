@@ -1,27 +1,26 @@
 <div class="background-order">
-    <nav class="navbar" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-           <a href=""><img alt="" src="assets/LogoVinifycoBlanc.png" style="height:45px"/></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href=""><img alt="" src="assets/oclipboard.png" class="opacity-link" style="height:45px"/></a></li>
-            <li ng-show="state == 'order.userinfos'"><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
-            <li ng-show="!(state == 'order.userinfos')"><a href=""><img alt="" class="opacity-link" src="assets/odolly.png" style="height:45px"/></a></li>
-            <li ng-show="state == 'order.confirmation'"><a href=""><img alt="" src="assets/creditcard.png" style="height:45px"/></a></li>
-            <li ng-show="!(state == 'order.confirmation')"><a href=""><img alt="" class="opacity-link" src="assets/ocreditcard.png" style="height:45px"/></a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div>
-    </nav>
+		<nav class="navbar" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					 <a href=""><img alt="" src="assets/LogoVinifyco.png" style="height:45px"/></a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href=""><img alt="" src="assets/oclipboard.png" class="opacity-link" style="height:45px"/></a></li>
+						<li ng-show="state == 'order.userinfos'"><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
+						<li ng-show="!(state == 'order.userinfos')"><a href=""><img alt="" class="opacity-link" src="assets/odolly.png" style="height:45px"/></a></li>
+						<li ng-show="state == 'order.confirmation'"><a href=""><img alt="" src="assets/creditcard.png" style="height:45px"/></a></li>
+						<li ng-show="!(state == 'order.confirmation')"><a href=""><img alt="" class="opacity-link" src="assets/ocreditcard.png" style="height:45px"/></a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+	<div class="container-delivery">
+		<div class="bg-danger fader" ng-show="formInvalid"><p>Oops, un ou plusieurs champs sont incomplets ou erronés.</p></div>
+		<div class="bg-danger fader" ng-show="couponError"><p>{{couponError}}</p></div>
 
-    <div class="main-container" ui-view autoscroll="false"></div>
-
-  <footer>
-        <p>
-          Une question ? Contactez <a href="mailto:charlotte@vinify.co">charlotte@vinify.co</a>.
-          Copyright &copy; <b>Vinify</b> 2014 &middot; L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
-        </p>
-  </footer>
+		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding">
+			<div class="main-container" ui-view autoscroll="false"></div>
+		</div>
+	</div>
 </div>

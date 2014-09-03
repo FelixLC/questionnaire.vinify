@@ -39,6 +39,7 @@ angular.module( 'vinibar.order', [
 .controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope ) {
 
   $scope.currentClient = currentClient.currentClient;
+  $scope.currentClient.userinfos.same_billing = true;
   $scope.formInvalid = false;
   $scope.coupon = {};
   $scope.b = {};

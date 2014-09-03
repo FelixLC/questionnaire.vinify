@@ -322,7 +322,7 @@ angular.module("order/order.tpl.html", []).run(["$templateCache", function($temp
     "    <nav class=\"navbar\" role=\"navigation\">\n" +
     "      <div class=\"container-fluid\">\n" +
     "        <div class=\"navbar-header\">\n" +
-    "           <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifycoBlanc.png\" style=\"height:45px\"/></a>\n" +
+    "           <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifyco.png\" style=\"height:45px\"/></a>\n" +
     "        </div>\n" +
     "        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
     "          <ul class=\"nav navbar-nav navbar-right\">\n" +
@@ -337,13 +337,6 @@ angular.module("order/order.tpl.html", []).run(["$templateCache", function($temp
     "    </nav>\n" +
     "\n" +
     "    <div class=\"main-container\" ui-view autoscroll=\"false\"></div>\n" +
-    "\n" +
-    "  <footer>\n" +
-    "        <p>\n" +
-    "          Une question ? Contactez <a href=\"mailto:charlotte@vinify.co\">charlotte@vinify.co</a>.\n" +
-    "          Copyright &copy; <b>Vinify</b> 2014 &middot; L'abus d'alcool est dangereux pour la santé, à consommer avec modération.\n" +
-    "        </p>\n" +
-    "  </footer>\n" +
     "</div>");
 }]);
 
@@ -578,7 +571,7 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "	<hr class=\"ruler-delivery\">\n" +
     "	<div class=\"row\">\n" +
     "			<div class=\"col-lg-6 col-md-6 col-sm-4\">\n" +
-    "				<img src=\"assets/wines.jpg\" class=\"img img-responsice\" alt=\"\">\n" +
+    "				<img src=\"assets/wines.jpg\" class=\"img img-responsive\" alt=\"\">\n" +
     "			</div>\n" +
     "			<div class=\"col-lg-6 col-md-6 col-sm-4\">\n" +
     "			  <div class=\"row\">\n" +
@@ -621,364 +614,339 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
 
 angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("order/parts/order.userinfos.tpl.html",
-    "<div class=\"container container-delivery\">\n" +
+    "<div class=\"container-delivery\">\n" +
     "	<div class=\"bg-danger fader\" ng-show=\"formInvalid\"><p>Oops, un ou plusieurs champs sont incomplets ou erronés.</p></div>\n" +
     "	<div class=\"bg-danger fader\" ng-show=\"couponError\"><p>{{couponError}}</p></div>\n" +
-    "	<div class=\"row container-title\">\n" +
-    "		<div class=\"col-lg-4 col-md-4 col-sm-4\" id=\"delivery_billing_title\">\n" +
-    "			<h3><span>Livraison & Facturation</span></h3>\n" +
-    "		</div>\n" +
+    "\n" +
+    "	<div class=\"col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding\">\n" +
+    "<!-- 		<div class=\"row container-title\">\n" +
+    "			<div class=\"col-lg-8 col-md-8 col-sm-8\" id=\"delivery_billing_title\">\n" +
+    "				<h3><span>Livraison & Facturation</span></h3>\n" +
+    "			</div>\n" +
+    "		</div> -->\n" +
+    "		<!-- <hr class=\"ruler-delivery\"> -->\n" +
+    "		<div class=\"row\">\n" +
+    "			<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "				<h4 class=\"centered\">Notre Oenologue va préparer votre sélection personnalisée</h4>\n" +
+    "				<hr>\n" +
+    "				<form novalidate name=\"form_commander\" class=\"clearfix\">\n" +
+    "					<div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
+    "						<div class=\"form-group\">\n" +
+    "							<label for=\"first_name\">Prénom *</label>\n" +
+    "							<input type=\"text\"\n" +
+    "								placeholder=\"John\"\n" +
+    "								name=\"first_name\"\n" +
+    "								ng-model=\"currentClient.userinfos.first_name\"\n" +
+    "								required\n" +
+    "								class=\"form-control\"\n" +
+    "								id=\"first_name\"/>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"form-group\">\n" +
+    "							<label for=\"last_name\">Nom *</label>\n" +
+    "							<input type=\"text\"\n" +
+    "								placeholder=\"Snow\"\n" +
+    "								name=\"last_name\"\n" +
+    "								ng-model=\"currentClient.userinfos.last_name\"\n" +
+    "								required\n" +
+    "								class=\"form-control\"\n" +
+    "								id=\"last_name\"/>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"form-group\">\n" +
+    "							<label for=\"phone\">Téléphone *</label>\n" +
+    "							<input type=\"tel\"\n" +
+    "								placeholder=\"+33 6 XX XX XX XX\"\n" +
+    "								name=\"phone\"\n" +
+    "								ng-model=\"currentClient.userinfos.phone\"\n" +
+    "								required\n" +
+    "								class=\"form-control\"\n" +
+    "								id=\"phone\"/>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<label for=\"birthday\">Date de Naissance*</label>\n" +
+    "\n" +
+    "						  <div class=\"birthdate\">\n" +
+    "							<div class=\"\">\n" +
+    "							  <select class=\"form-control col-lg-4 col-md-4 col-sm-4 col-xs-4\" ng-model=\"b.birthday\" name=\"birthday\">\n" +
+    "								<option value=\"\">JJ</option>\n" +
+    "								<option value=\"1\">1</option>\n" +
+    "								<option value=\"2\">2</option>\n" +
+    "								<option value=\"3\">3</option>\n" +
+    "								<option value=\"4\">4</option>\n" +
+    "								<option value=\"5\">5</option>\n" +
+    "								<option value=\"6\">6</option>\n" +
+    "								<option value=\"7\">7</option>\n" +
+    "								<option value=\"8\">8</option>\n" +
+    "								<option value=\"9\">9</option>\n" +
+    "								<option value=\"10\">10</option>\n" +
+    "								<option value=\"11\">11</option>\n" +
+    "								<option value=\"12\">12</option>\n" +
+    "								<option value=\"13\">13</option>\n" +
+    "								<option value=\"14\">14</option>\n" +
+    "								<option value=\"15\">15</option>\n" +
+    "								<option value=\"16\">16</option>\n" +
+    "								<option value=\"17\">17</option>\n" +
+    "								<option value=\"18\">18</option>\n" +
+    "								<option value=\"19\">19</option>\n" +
+    "								<option value=\"20\">20</option>\n" +
+    "								<option value=\"21\">21</option>\n" +
+    "								<option value=\"22\">22</option>\n" +
+    "								<option value=\"23\">23</option>\n" +
+    "								<option value=\"24\">24</option>\n" +
+    "								<option value=\"25\">25</option>\n" +
+    "								<option value=\"26\">26</option>\n" +
+    "								<option value=\"27\">27</option>\n" +
+    "								<option value=\"28\">28</option>\n" +
+    "								<option value=\"29\">29</option>\n" +
+    "								<option value=\"30\">30</option>\n" +
+    "								<option value=\"31\">31</option>\n" +
+    "							  </select>\n" +
+    "							</div>\n" +
+    "							<div class=\"\">\n" +
+    "							  <select class=\"form-control col-lg-4 col-md-4 col-sm-4 col-xs-4\" ng-model=\"b.birthmonth\" name=\"birthmonth\">\n" +
+    "								<option value=\"\">MM</option>\n" +
+    "								<option value=\"1\">Janvier</option>\n" +
+    "								<option value=\"2\">Février</option>\n" +
+    "								<option value=\"3\">Mars</option>\n" +
+    "								<option value=\"4\">Avril</option>\n" +
+    "								<option value=\"5\">Mai</option>\n" +
+    "								<option value=\"6\">Juin</option>\n" +
+    "								<option value=\"7\">Juillet</option>\n" +
+    "								<option value=\"8\">Aout</option>\n" +
+    "								<option value=\"9\">Septembre</option>\n" +
+    "								<option value=\"10\">Octobre</option>\n" +
+    "								<option value=\"11\">Novembre</option>\n" +
+    "								<option value=\"12\">Décembre</option>\n" +
+    "							  </select>\n" +
+    "							</div>\n" +
+    "							<div class=\"\">\n" +
+    "							  <select class=\"form-control col-lg-4 col-md-4 col-sm-4 col-xs-4\" ng-model=\"b.birthyear\" name=\"birthmonth\">\n" +
+    "								<option value=\"\">AAAA</option>\n" +
+    "								<option value=\"1920\">1920</option>\n" +
+    "								<option value=\"1921\">1921</option>\n" +
+    "								<option value=\"1922\">1922</option>\n" +
+    "								<option value=\"1923\">1923</option>\n" +
+    "								<option value=\"1924\">1924</option>\n" +
+    "								<option value=\"1925\">1925</option>\n" +
+    "								<option value=\"1926\">1926</option>\n" +
+    "								<option value=\"1927\">1927</option>\n" +
+    "								<option value=\"1928\">1928</option>\n" +
+    "								<option value=\"1929\">1929</option>\n" +
+    "								<option value=\"1930\">1930</option>\n" +
+    "								<option value=\"1931\">1931</option>\n" +
+    "								<option value=\"1932\">1932</option>\n" +
+    "								<option value=\"1933\">1933</option>\n" +
+    "								<option value=\"1934\">1934</option>\n" +
+    "								<option value=\"1935\">1935</option>\n" +
+    "								<option value=\"1936\">1936</option>\n" +
+    "								<option value=\"1937\">1937</option>\n" +
+    "								<option value=\"1938\">1938</option>\n" +
+    "								<option value=\"1939\">1939</option>\n" +
+    "								<option value=\"1940\">1940</option>\n" +
+    "								<option value=\"1941\">1941</option>\n" +
+    "								<option value=\"1942\">1942</option>\n" +
+    "								<option value=\"1943\">1943</option>\n" +
+    "								<option value=\"1944\">1944</option>\n" +
+    "								<option value=\"1945\">1945</option>\n" +
+    "								<option value=\"1946\">1946</option>\n" +
+    "								<option value=\"1947\">1947</option>\n" +
+    "								<option value=\"1948\">1948</option>\n" +
+    "								<option value=\"1949\">1949</option>\n" +
+    "								<option value=\"1950\">1950</option>\n" +
+    "								<option value=\"1951\">1951</option>\n" +
+    "								<option value=\"1952\">1952</option>\n" +
+    "								<option value=\"1953\">1953</option>\n" +
+    "								<option value=\"1954\">1954</option>\n" +
+    "								<option value=\"1955\">1955</option>\n" +
+    "								<option value=\"1956\">1956</option>\n" +
+    "								<option value=\"1957\">1957</option>\n" +
+    "								<option value=\"1958\">1958</option>\n" +
+    "								<option value=\"1959\">1959</option>\n" +
+    "								<option value=\"1960\">1960</option>\n" +
+    "								<option value=\"1961\">1961</option>\n" +
+    "								<option value=\"1962\">1962</option>\n" +
+    "								<option value=\"1963\">1963</option>\n" +
+    "								<option value=\"1964\">1964</option>\n" +
+    "								<option value=\"1965\">1965</option>\n" +
+    "								<option value=\"1966\">1966</option>\n" +
+    "								<option value=\"1967\">1967</option>\n" +
+    "								<option value=\"1968\">1968</option>\n" +
+    "								<option value=\"1969\">1969</option>\n" +
+    "								<option value=\"1970\">1970</option>\n" +
+    "								<option value=\"1971\">1971</option>\n" +
+    "								<option value=\"1972\">1972</option>\n" +
+    "								<option value=\"1973\">1973</option>\n" +
+    "								<option value=\"1974\">1974</option>\n" +
+    "								<option value=\"1975\">1975</option>\n" +
+    "								<option value=\"1976\">1976</option>\n" +
+    "								<option value=\"1977\">1977</option>\n" +
+    "								<option value=\"1978\">1978</option>\n" +
+    "								<option value=\"1979\">1979</option>\n" +
+    "								<option value=\"1980\">1980</option>\n" +
+    "								<option value=\"1981\">1981</option>\n" +
+    "								<option value=\"1982\">1982</option>\n" +
+    "								<option value=\"1983\">1983</option>\n" +
+    "								<option value=\"1984\">1984</option>\n" +
+    "								<option value=\"1985\">1985</option>\n" +
+    "								<option value=\"1986\">1986</option>\n" +
+    "								<option value=\"1987\">1987</option>\n" +
+    "								<option value=\"1988\">1988</option>\n" +
+    "								<option value=\"1989\">1989</option>\n" +
+    "								<option value=\"1990\">1990</option>\n" +
+    "								<option value=\"1991\">1991</option>\n" +
+    "								<option value=\"1992\">1992</option>\n" +
+    "								<option value=\"1993\">1993</option>\n" +
+    "								<option value=\"1994\">1994</option>\n" +
+    "								<option value=\"1995\">1995</option>\n" +
+    "								<option value=\"1996\">1996</option>\n" +
+    "								<option value=\"1997\">1997</option>\n" +
+    "							  </select>\n" +
+    "							</div>\n" +
+    "						  </div>\n" +
+    "					</div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
+    "\n" +
+    "					<div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
+    "							<label for=\"delivery_address.company\">Adresse de Livraison *</label>\n" +
+    "\n" +
+    "							<div class=\"form-group\">\n" +
+    "								<label for=\"delivery_address.street\" class=\"sr-only\">Rue</label>\n" +
+    "								<input type=\"text\"\n" +
+    "									ng-model=\"currentClient.userinfos.delivery_address.street\"\n" +
+    "									placeholder=\"Rue\"\n" +
+    "									class=\"form-control\"\n" +
+    "									id=\"delivery_address.street\"/>\n" +
+    "							</div>\n" +
+    "\n" +
+    "							<div class=\"u-w50 inline-left form-group\">\n" +
+    "							<label for=\"delivery_address.company\">Ville</label>\n" +
+    "							  <label for=\"delivery_address.zipcode\" class=\"sr-only\">CP</label>\n" +
+    "							  <input type=\"text\"\n" +
+    "								  ng-model=\"currentClient.userinfos.delivery_address.zipcode\"\n" +
+    "								  placeholder=\"Code Postal\"\n" +
+    "								  class=\"form-control\"\n" +
+    "								  id=\"delivery_address.zipcode\"/>\n" +
+    "							</div>\n" +
+    "							<div class=\"u-w50 inline-right form-group\">\n" +
+    "							<label for=\"delivery_address.company\">&nbsp;</label>\n" +
+    "							  <label for=\"delivery_address.city\" class=\"sr-only\">Ville</label>\n" +
+    "							  <input type=\"text\"\n" +
+    "								  ng-model=\"currentClient.userinfos.delivery_address.city\"\n" +
+    "								  placeholder=\"Ville\"\n" +
+    "								  class=\"form-control\"\n" +
+    "								  id=\"delivery_address.city\"/>\n" +
+    "							</div>\n" +
+    "\n" +
+    "							<div class=\"form-group\">\n" +
+    "							  <label for=\"delivery_address.other_info\">Informations Complémentaires</label>\n" +
+    "								<div class=\"u-w50 inline-left form-group\">\n" +
+    "								  <label for=\"delivery_address.zipcode\" class=\"sr-only\">Code</label>\n" +
+    "								  <input type=\"text\"\n" +
+    "									  ng-model=\"currentClient.userinfos.delivery_address.digicode\"\n" +
+    "									  placeholder=\"Code Porte\"\n" +
+    "									  class=\"form-control\"\n" +
+    "									  id=\"delivery_address.zipcode\"/>\n" +
+    "								</div>\n" +
+    "								<div class=\"u-w50 inline-right form-group\">\n" +
+    "								  <label for=\"delivery_address.city\" class=\"sr-only\">Interphone</label>\n" +
+    "								  <input type=\"text\"\n" +
+    "									  ng-model=\"currentClient.userinfos.delivery_address.intercom\"\n" +
+    "									  placeholder=\"Interphone\"\n" +
+    "									  class=\"form-control\"\n" +
+    "									  id=\"delivery_address.city\"/>\n" +
+    "								</div>\n" +
+    "							  <textarea class=\"form-control\" rows=\"2\" ng-model=\"currentClient.userinfos.delivery_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"delivery_address.other_info\"></textarea>\n" +
+    "							</div>\n" +
+    "\n" +
+    "						<div class=\"checkbox\">\n" +
+    "							<label>\n" +
+    "							  <input type=\"checkbox\" ng-model=\"currentClient.userinfos.same_billing\"> Adresse de Facturation identique\n" +
+    "							</label>\n" +
+    "						</div>\n" +
+    "					</div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
+    "\n" +
+    "\n" +
+    "					<div ng-hide=\"currentClient.userinfos.same_billing\" class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
+    "						<label>Adresse de Facturation </label>\n" +
+    "						<!--           <div class=\"form-group\">\n" +
+    "\n" +
+    "							  <label for=\"billing_address.company\" class=\"sr-only\">Company</label>\n" +
+    "							  <input type=\"text\"\n" +
+    "								  ng-model=\"currentClient.userinfos.billing_address.company\"\n" +
+    "								  placeholder=\"Société\"\n" +
+    "								  class=\"form-control\"\n" +
+    "								  id=\"billing_address.company\"/>\n" +
+    "						  </div> -->\n" +
+    "						<div class=\"form-group\">\n" +
+    "							<label for=\"billing_address.street\" class=\"sr-only\">Rue</label>\n" +
+    "							<input type=\"text\"\n" +
+    "							  ng-model=\"currentClient.userinfos.billing_address.street\"\n" +
+    "							  placeholder=\"Rue\"\n" +
+    "							  class=\"form-control\"\n" +
+    "							  id=\"billing_address.street\"\n" +
+    "							  name=\"billing_address.street\"\n" +
+    "							  required/>\n" +
+    "						</div>\n" +
+    "						<div class=\"u-w50 inline-left form-group\">\n" +
+    "						<label for=\"billing_address.company\">Ville</label>\n" +
+    "						  <label for=\"billing_address.zipcode\" class=\"sr-only\">CP</label>\n" +
+    "						  <input type=\"text\"\n" +
+    "							  ng-model=\"currentClient.userinfos.billing_address.zipcode\"\n" +
+    "							  placeholder=\"Code Postal\"\n" +
+    "							  class=\"form-control\"\n" +
+    "							  id=\"billing_address.zipcode\"/>\n" +
+    "						</div>\n" +
+    "						<div class=\"u-w50 inline-right form-group\">\n" +
+    "						<label for=\"billing_address.company\">&nbsp;</label>\n" +
+    "						  <label for=\"billing_address.city\" class=\"sr-only\">Ville</label>\n" +
+    "						  <input type=\"text\"\n" +
+    "							  ng-model=\"currentClient.userinfos.billing_address.city\"\n" +
+    "							  placeholder=\"Ville\"\n" +
+    "							  class=\"form-control\"\n" +
+    "							  id=\"billing_address.city\"/>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"form-group\">\n" +
+    "						  <label for=\"billing_address.other_info\">Informations Complémentaires</label>\n" +
+    "							<div class=\"u-w50 inline-left form-group\">\n" +
+    "							  <label for=\"billing_address.zipcode\" class=\"sr-only\">Code</label>\n" +
+    "							  <input type=\"text\"\n" +
+    "								  ng-model=\"currentClient.userinfos.billing_address.digicode\"\n" +
+    "								  placeholder=\"Code Porte\"\n" +
+    "								  class=\"form-control\"\n" +
+    "								  id=\"billing_address.zipcode\"/>\n" +
+    "							</div>\n" +
+    "							<div class=\"u-w50 inline-right form-group\">\n" +
+    "							  <label for=\"billing_address.city\" class=\"sr-only\">Interphone</label>\n" +
+    "							  <input type=\"text\"\n" +
+    "								  ng-model=\"currentClient.userinfos.billing_address.intercom\"\n" +
+    "								  placeholder=\"Interphone\"\n" +
+    "								  class=\"form-control\"\n" +
+    "								  id=\"billing_address.city\"/>\n" +
+    "							</div>\n" +
+    "						  <textarea class=\"form-control\" rows=\"2\" ng-model=\"currentClient.userinfos.billing_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"billing_address.other_info\"></textarea>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<div ng-show=\"currentClient.userinfos.same_billing\" class=\" form-offer col-lg-4 col-md-4 col-sm-4\">\n" +
+    "						<h4 class=\"centered\">6 Bouteilles</h4>\n" +
+    "						<hr>\n" +
+    "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre sélection</h4>\n" +
+    "						<hr>\n" +
+    "						<h4 class=\"centered\">69 €</h4>\n" +
+    "					</div>\n" +
+    "\n" +
+    "				</form>\n" +
+    "			</div>\n" +
+    "		</div>    <!-- ROW -->\n" +
+    "\n" +
+    "		<div class=\"row\">\n" +
+    "			<div class=\"col-lg-4 col-md-4 pull-right\">\n" +
+    "				  <a class=\"btn button-white pull-right\" ng-click=\"addUserInfo(form_commander)\">Valider</a>\n" +
+    "			</div>\n" +
+    "		</div>    <!-- ROW -->\n" +
+    "\n" +
     "	</div>\n" +
-    "	<hr class=\"ruler-delivery\">\n" +
-    "	<div class=\"row\">\n" +
-    "		<form novalidate name=\"form_commander\">\n" +
-    "			<div class=\"col-lg-3 col-md-3 col-sm-4\">\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label for=\"first_name\">Prénom *</label>\n" +
-    "					<input type=\"text\"\n" +
-    "						placeholder=\"John\"\n" +
-    "						name=\"first_name\"\n" +
-    "						ng-model=\"currentClient.userinfos.first_name\"\n" +
-    "						required\n" +
-    "						class=\"form-control\"\n" +
-    "						id=\"first_name\"/>\n" +
-    "				</div>\n" +
-    "\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label for=\"last_name\">Nom *</label>\n" +
-    "					<input type=\"text\"\n" +
-    "						placeholder=\"Snow\"\n" +
-    "						name=\"last_name\"\n" +
-    "						ng-model=\"currentClient.userinfos.last_name\"\n" +
-    "						required\n" +
-    "						class=\"form-control\"\n" +
-    "						id=\"last_name\"/>\n" +
-    "				</div>\n" +
-    "\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label for=\"phone\">Téléphone *</label>\n" +
-    "					<input type=\"tel\"\n" +
-    "						placeholder=\"+33 6 XX XX XX XX\"\n" +
-    "						name=\"phone\"\n" +
-    "						ng-model=\"currentClient.userinfos.phone\"\n" +
-    "						required\n" +
-    "						class=\"form-control\"\n" +
-    "						id=\"phone\"/>\n" +
-    "				</div>\n" +
-    "\n" +
-    "				<label for=\"birthday\">Date de Naissance*</label>\n" +
-    "\n" +
-    "				  <div class=\"birthdate\">\n" +
-    "					<div class=\"\">\n" +
-    "					  <select class=\"form-control col-lg-4 col-md-4 col-sm-4 col-xs-4\" ng-model=\"b.birthday\" name=\"birthday\">\n" +
-    "						<option value=\"\">JJ</option>\n" +
-    "						<option value=\"1\">1</option>\n" +
-    "						<option value=\"2\">2</option>\n" +
-    "						<option value=\"3\">3</option>\n" +
-    "						<option value=\"4\">4</option>\n" +
-    "						<option value=\"5\">5</option>\n" +
-    "						<option value=\"6\">6</option>\n" +
-    "						<option value=\"7\">7</option>\n" +
-    "						<option value=\"8\">8</option>\n" +
-    "						<option value=\"9\">9</option>\n" +
-    "						<option value=\"10\">10</option>\n" +
-    "						<option value=\"11\">11</option>\n" +
-    "						<option value=\"12\">12</option>\n" +
-    "						<option value=\"13\">13</option>\n" +
-    "						<option value=\"14\">14</option>\n" +
-    "						<option value=\"15\">15</option>\n" +
-    "						<option value=\"16\">16</option>\n" +
-    "						<option value=\"17\">17</option>\n" +
-    "						<option value=\"18\">18</option>\n" +
-    "						<option value=\"19\">19</option>\n" +
-    "						<option value=\"20\">20</option>\n" +
-    "						<option value=\"21\">21</option>\n" +
-    "						<option value=\"22\">22</option>\n" +
-    "						<option value=\"23\">23</option>\n" +
-    "						<option value=\"24\">24</option>\n" +
-    "						<option value=\"25\">25</option>\n" +
-    "						<option value=\"26\">26</option>\n" +
-    "						<option value=\"27\">27</option>\n" +
-    "						<option value=\"28\">28</option>\n" +
-    "						<option value=\"29\">29</option>\n" +
-    "						<option value=\"30\">30</option>\n" +
-    "						<option value=\"31\">31</option>\n" +
-    "					  </select>\n" +
-    "					</div>\n" +
-    "					<div class=\"\">\n" +
-    "					  <select class=\"form-control col-lg-4 col-md-4 col-sm-4 col-xs-4\" ng-model=\"b.birthmonth\" name=\"birthmonth\">\n" +
-    "						<option value=\"\">MM</option>\n" +
-    "						<option value=\"1\">Janvier</option>\n" +
-    "						<option value=\"2\">Février</option>\n" +
-    "						<option value=\"3\">Mars</option>\n" +
-    "						<option value=\"4\">Avril</option>\n" +
-    "						<option value=\"5\">Mai</option>\n" +
-    "						<option value=\"6\">Juin</option>\n" +
-    "						<option value=\"7\">Juillet</option>\n" +
-    "						<option value=\"8\">Aout</option>\n" +
-    "						<option value=\"9\">Septembre</option>\n" +
-    "						<option value=\"10\">Octobre</option>\n" +
-    "						<option value=\"11\">Novembre</option>\n" +
-    "						<option value=\"12\">Décembre</option>\n" +
-    "					  </select>\n" +
-    "					</div>\n" +
-    "					<div class=\"\">\n" +
-    "					  <select class=\"form-control col-lg-4 col-md-4 col-sm-4 col-xs-4\" ng-model=\"b.birthyear\" name=\"birthmonth\">\n" +
-    "						<option value=\"\">AAAA</option>\n" +
-    "						<option value=\"1920\">1920</option>\n" +
-    "						<option value=\"1921\">1921</option>\n" +
-    "						<option value=\"1922\">1922</option>\n" +
-    "						<option value=\"1923\">1923</option>\n" +
-    "						<option value=\"1924\">1924</option>\n" +
-    "						<option value=\"1925\">1925</option>\n" +
-    "						<option value=\"1926\">1926</option>\n" +
-    "						<option value=\"1927\">1927</option>\n" +
-    "						<option value=\"1928\">1928</option>\n" +
-    "						<option value=\"1929\">1929</option>\n" +
-    "						<option value=\"1930\">1930</option>\n" +
-    "						<option value=\"1931\">1931</option>\n" +
-    "						<option value=\"1932\">1932</option>\n" +
-    "						<option value=\"1933\">1933</option>\n" +
-    "						<option value=\"1934\">1934</option>\n" +
-    "						<option value=\"1935\">1935</option>\n" +
-    "						<option value=\"1936\">1936</option>\n" +
-    "						<option value=\"1937\">1937</option>\n" +
-    "						<option value=\"1938\">1938</option>\n" +
-    "						<option value=\"1939\">1939</option>\n" +
-    "						<option value=\"1940\">1940</option>\n" +
-    "						<option value=\"1941\">1941</option>\n" +
-    "						<option value=\"1942\">1942</option>\n" +
-    "						<option value=\"1943\">1943</option>\n" +
-    "						<option value=\"1944\">1944</option>\n" +
-    "						<option value=\"1945\">1945</option>\n" +
-    "						<option value=\"1946\">1946</option>\n" +
-    "						<option value=\"1947\">1947</option>\n" +
-    "						<option value=\"1948\">1948</option>\n" +
-    "						<option value=\"1949\">1949</option>\n" +
-    "						<option value=\"1950\">1950</option>\n" +
-    "						<option value=\"1951\">1951</option>\n" +
-    "						<option value=\"1952\">1952</option>\n" +
-    "						<option value=\"1953\">1953</option>\n" +
-    "						<option value=\"1954\">1954</option>\n" +
-    "						<option value=\"1955\">1955</option>\n" +
-    "						<option value=\"1956\">1956</option>\n" +
-    "						<option value=\"1957\">1957</option>\n" +
-    "						<option value=\"1958\">1958</option>\n" +
-    "						<option value=\"1959\">1959</option>\n" +
-    "						<option value=\"1960\">1960</option>\n" +
-    "						<option value=\"1961\">1961</option>\n" +
-    "						<option value=\"1962\">1962</option>\n" +
-    "						<option value=\"1963\">1963</option>\n" +
-    "						<option value=\"1964\">1964</option>\n" +
-    "						<option value=\"1965\">1965</option>\n" +
-    "						<option value=\"1966\">1966</option>\n" +
-    "						<option value=\"1967\">1967</option>\n" +
-    "						<option value=\"1968\">1968</option>\n" +
-    "						<option value=\"1969\">1969</option>\n" +
-    "						<option value=\"1970\">1970</option>\n" +
-    "						<option value=\"1971\">1971</option>\n" +
-    "						<option value=\"1972\">1972</option>\n" +
-    "						<option value=\"1973\">1973</option>\n" +
-    "						<option value=\"1974\">1974</option>\n" +
-    "						<option value=\"1975\">1975</option>\n" +
-    "						<option value=\"1976\">1976</option>\n" +
-    "						<option value=\"1977\">1977</option>\n" +
-    "						<option value=\"1978\">1978</option>\n" +
-    "						<option value=\"1979\">1979</option>\n" +
-    "						<option value=\"1980\">1980</option>\n" +
-    "						<option value=\"1981\">1981</option>\n" +
-    "						<option value=\"1982\">1982</option>\n" +
-    "						<option value=\"1983\">1983</option>\n" +
-    "						<option value=\"1984\">1984</option>\n" +
-    "						<option value=\"1985\">1985</option>\n" +
-    "						<option value=\"1986\">1986</option>\n" +
-    "						<option value=\"1987\">1987</option>\n" +
-    "						<option value=\"1988\">1988</option>\n" +
-    "						<option value=\"1989\">1989</option>\n" +
-    "						<option value=\"1990\">1990</option>\n" +
-    "						<option value=\"1991\">1991</option>\n" +
-    "						<option value=\"1992\">1992</option>\n" +
-    "						<option value=\"1993\">1993</option>\n" +
-    "						<option value=\"1994\">1994</option>\n" +
-    "						<option value=\"1995\">1995</option>\n" +
-    "						<option value=\"1996\">1996</option>\n" +
-    "						<option value=\"1997\">1997</option>\n" +
-    "					  </select>\n" +
-    "					</div>\n" +
-    "				  </div>\n" +
-    "\n" +
-    "<!--                 <div class=\"form-group\">\n" +
-    "					<label for=\"birthday\">Date de Naissance *</label>\n" +
-    "					<input type=\"date\"\n" +
-    "						ng-model=\"currentClient.userinfos.birthday\"\n" +
-    "						name=\"birthday\"\n" +
-    "						required\n" +
-    "						class=\"form-control\"\n" +
-    "						id=\"birthday\"/>\n" +
-    "				</div> -->\n" +
-    "\n" +
-    "  <!-- <pre>{{currentClient.userinfos.birthday | json}}</pre> -->\n" +
-    "						<!-- ADRESSE AUTOCOMPLETE -->\n" +
-    "				 <!--    <label>Adresse de Facturation</label>\n" +
-    "					  <div class=\"adresse\">\n" +
-    "					   <input type=\"text\"\n" +
-    "						  id=\"adresse\"\n" +
-    "						  ng-autocomplete\n" +
-    "						  ng-model=\"currentClient.userinfos.billing_address\"\n" +
-    "						  options = {\n" +
-    "							country: 'fr'\n" +
-    "						  } />\n" +
-    "					  </div> -->\n" +
-    "			</div><!-- col-lg-3 col-md-3 col-sm-4 -->\n" +
-    "\n" +
-    "			<div class=\"col-lg-3 col-md-3 col-sm-4\">\n" +
-    "					<label for=\"delivery_address.company\">Adresse de Livraison *</label>\n" +
-    "\n" +
-    "					<div class=\"form-group\">\n" +
-    "						<label for=\"delivery_address.street\" class=\"sr-only\">Rue</label>\n" +
-    "						<input type=\"text\"\n" +
-    "							ng-model=\"currentClient.userinfos.delivery_address.street\"\n" +
-    "							placeholder=\"Rue\"\n" +
-    "							class=\"form-control\"\n" +
-    "							id=\"delivery_address.street\"/>\n" +
-    "					</div>\n" +
-    "					<div class=\"form-group\">\n" +
-    "					  <label for=\"delivery_address.zipcode\" class=\"sr-only\">CP</label>\n" +
-    "					  <input type=\"text\"\n" +
-    "						  ng-model=\"currentClient.userinfos.delivery_address.zipcode\"\n" +
-    "						  placeholder=\"Code Postal\"\n" +
-    "						  class=\"form-control\"\n" +
-    "						  id=\"delivery_address.zipcode\"/>\n" +
-    "					</div>\n" +
-    "					<div class=\"form-group\">\n" +
-    "					  <label for=\"delivery_address.city\" class=\"sr-only\">Ville</label>\n" +
-    "					  <input type=\"text\"\n" +
-    "						  ng-model=\"currentClient.userinfos.delivery_address.city\"\n" +
-    "						  placeholder=\"Ville\"\n" +
-    "						  class=\"form-control\"\n" +
-    "						  id=\"delivery_address.city\"/>\n" +
-    "					</div>\n" +
-    "\n" +
-    "					<div class=\"form-group\">\n" +
-    "					  <label for=\"delivery_address.other_info\">Informations Complémentaires</label>\n" +
-    "					  <textarea class=\"form-control\" rows=\"4\" ng-model=\"currentClient.userinfos.delivery_address.other_info\" placeholder=\"Société, Bâtiment, Code, Interphone, Etage ...\" id=\"delivery_address.other_info\"></textarea>\n" +
-    "					</div>\n" +
-    "\n" +
-    "				<div class=\"checkbox\">\n" +
-    "					<label>\n" +
-    "					  <input type=\"checkbox\" ng-model=\"currentClient.userinfos.same_billing\"> Adresse de Facturation identique\n" +
-    "					</label>\n" +
-    "				</div>\n" +
-    "			</div><!-- col-lg-3 col-md-3 col-sm-4 -->\n" +
-    "\n" +
-    "			<div class=\"col-lg-3 col-md-3 col-sm-4\">\n" +
-    "					<label>Mode de Livraison *</label>\n" +
-    "<!--                     <button class=\"btn delivery-button\"\n" +
-    "							ng-class=\"{selecteddelivery: currentClient.userinfos.delivery_mode == 1}\"\n" +
-    "							ng-click=\"deliveryMethod(1)\"\n" +
-    "							tooltip=\"Hey Jude\">\n" +
-    "						<h4>Relais Colis</h4>\n" +
-    "						<p>Attention ! Colis Lourd (14kg) <span class=\"deliveryPrice\">15 €</span></p>\n" +
-    "					</button> -->\n" +
-    "					<button class=\"btn delivery-button\"\n" +
-    "							ng-class=\"{selecteddelivery: currentClient.userinfos.delivery_mode == 2}\"\n" +
-    "							ng-click=\"deliveryMethod(2)\"\n" +
-    "							tooltip=\"Colissimo / TNT avec suivi\">\n" +
-    "						<h4>Envoi par transporteur</h4>\n" +
-    "						<p>Préparation et Livraison <br> sous 10j ouvrables </p>\n" +
-    "						<p><span class=\"deliveryPrice\">17 €</span></p>\n" +
-    "					</button>\n" +
-    "					<button class=\"btn delivery-button\"\n" +
-    "							ng-class=\"{selecteddelivery: currentClient.userinfos.delivery_mode == 3}\"\n" +
-    "							ng-click=\"deliveryMethod(3)\"\n" +
-    "							tooltip=\"Nous prendrons rendez-vous avec vous pour une livraison sur-mesure \">\n" +
-    "						<h4>A la carte</h4>\n" +
-    "						<p>Livraison sur RDV (Lundi & Mardi) <br> le soir après 20h.</p>\n" +
-    "						<p><span class=\"deliveryPrice\">21 €</span></p>\n" +
-    "					</button>\n" +
-    "			</div>\n" +
-    "\n" +
-    "			<div ng-hide=\"currentClient.userinfos.same_billing\" class=\"fader col-lg-3 col-md-3 col-sm-4\">\n" +
-    "				<label>Adresse de Facturation </label>\n" +
-    "				<!--           <div class=\"form-group\">\n" +
-    "\n" +
-    "					  <label for=\"billing_address.company\" class=\"sr-only\">Company</label>\n" +
-    "					  <input type=\"text\"\n" +
-    "						  ng-model=\"currentClient.userinfos.billing_address.company\"\n" +
-    "						  placeholder=\"Société\"\n" +
-    "						  class=\"form-control\"\n" +
-    "						  id=\"billing_address.company\"/>\n" +
-    "				  </div> -->\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label for=\"billing_address.street\" class=\"sr-only\">Rue</label>\n" +
-    "					<input type=\"text\"\n" +
-    "					  ng-model=\"currentClient.userinfos.billing_address.street\"\n" +
-    "					  placeholder=\"Rue\"\n" +
-    "					  class=\"form-control\"\n" +
-    "					  id=\"billing_address.street\"\n" +
-    "					  name=\"billing_address.street\"\n" +
-    "					  required/>\n" +
-    "				</div>\n" +
-    "\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label for=\"billing_address.zipcode\" class=\"sr-only\">CP</label>\n" +
-    "					<input type=\"text\"\n" +
-    "					  ng-model=\"currentClient.userinfos.billing_address.zipcode\"\n" +
-    "					  placeholder=\"Code Postal\"\n" +
-    "					  class=\"form-control\"\n" +
-    "					  id=\"billing_address.zipcode\"\n" +
-    "					  name=\"billing_address.zipcode\"\n" +
-    "					  required/>\n" +
-    "				</div>\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label for=\"billing_address.city\" class=\"sr-only\">Ville</label>\n" +
-    "					<input type=\"text\"\n" +
-    "					  ng-model=\"currentClient.userinfos.billing_address.city\"\n" +
-    "					  placeholder=\"Ville\"\n" +
-    "					  class=\"form-control\"\n" +
-    "					  id=\"billing_address.city\"\n" +
-    "					  name=\"billing_address.city\"\n" +
-    "					  required/>\n" +
-    "				</div>\n" +
-    "\n" +
-    "\n" +
-    "				<!--           <div class=\"form-group\">\n" +
-    "					  <label for=\"billing_address.country\" class=\"sr-only\">Pays</label>\n" +
-    "					  <input type=\"text\"\n" +
-    "						  ng-model=\"currentClient.userinfos.billing_address.country\"\n" +
-    "						  placeholder=\"Pays\"\n" +
-    "						  class=\"form-control\"\n" +
-    "						  id=\"billing_address.country\"/>\n" +
-    "				  </div> -->\n" +
-    "\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label for=\"billing_address.other_info\">Informations Complémentaires</label>\n" +
-    "					<textarea class=\"form-control\" rows=\"4\" ng-model=\"currentClient.userinfos.billing_address.other_info\" placeholder=\"Société, Bâtiment, Code, Interphone, Etage ...\" id=\"billing_address.other_info\"></textarea>\n" +
-    "				</div>\n" +
-    "\n" +
-    "\n" +
-    "			</div>\n" +
-    "\n" +
-    "		</form>\n" +
-    "	</div>    <!-- ROW -->\n" +
-    "\n" +
-    "	<div class=\"row\">\n" +
-    "		<div class=\"col-lg-3 col-md-3 pull-right\">\n" +
-    "			  <a class=\"btn button-overlay-primary pull-right\" ng-click=\"addUserInfo(form_commander)\">Valider</a>\n" +
-    "		</div>\n" +
-    "		<div class=\"col-lg-3 col-md-3 pull-right\">\n" +
-    "			  <label for=\"first_name\">Votre code d'accès Vinify</label>\n" +
-    "			  <input type=\"text\"\n" +
-    "				  placeholder=\"IWANTVY\"\n" +
-    "				  name=\"coupon\"\n" +
-    "				  ng-model=\"coupon.coupon\"\n" +
-    "				  class=\"form-control\"\n" +
-    "				  id=\"coupon\"/>\n" +
-    "			<a class=\"pull-right\" href=\"mailto:charlotte@vinify.co?subject=Code%20Vinify%20&body=Bonjour%2C%0AJe%20voudrais%20r%C3%A9server%20un%20code%20vinify%0A%0ACordialement%2C%0A\">Demander un code</a>\n" +
-    "		</div>\n" +
-    "\n" +
-    "	</div>    <!-- ROW -->\n" +
-    "\n" +
     "</div> <!-- container delivery -->\n" +
     "\n" +
     "");
