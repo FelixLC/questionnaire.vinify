@@ -37,7 +37,7 @@
  .form-infos {
  	background-color: rgba(0, 0, 0, 0.5);
  	margin-top: 40px;
- 	h4, h3 p {
+ 	h4, h3, p {
  		color: #FFF;
  	}
 
@@ -55,6 +55,21 @@
  		padding-top: 60px;
  	}
  }
+
+.table-bill {
+		margin: 0 auto;
+		min-width: 187px;
+		td {
+			padding: 0 15px;
+		}
+		.bill-total {
+			border-top: 1px solid #FFF;
+		}
+}
+
+.terminate-order{
+	margin-top: 60px;
+}
 
 .birthdate {
 	input {
@@ -152,22 +167,6 @@ footer {
 	}
 	.ruler-delivery {
 		margin-top: 5px;
-	}
-	.bill {
-		background-color: transparent;
-			h3, h4, p {
-				color: @blue;
-				text-align: center;
-			}
-			table {margin: 50px auto;}
-			table td {
-				padding: 0 10px;
-			}
-			.bill-total {
-				color: @blue;
-				font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-				font-weight: 700;
-			};
 	}
 	.bg-danger {
 		text-align: center;

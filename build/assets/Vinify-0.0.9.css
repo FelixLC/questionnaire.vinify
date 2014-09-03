@@ -6336,20 +6336,6 @@ h3 {
   color: #000;
   background-color: #fff;
 }
-.questionnaire .button-overlay {
-  text-align: center;
-  width: 100%;
-  color: #fff;
-  background-color: transparent;
-  border-color: #fff;
-  margin: 2.5px;
-  padding-left: 10px;
-  border-radius: 20px;
-}
-.questionnaire .button-overlay:active {
-  color: #000;
-  background-color: #fff;
-}
 .questionnaire .button-overlay-reverse {
   text-align: center;
   width: 100%;
@@ -6927,7 +6913,8 @@ h3 {
   margin-top: 40px;
 }
 .form-infos h4,
-.form-infos h3 p {
+.form-infos h3,
+.form-infos p {
   color: #FFF;
 }
 .form-infos .u-w50 {
@@ -6942,6 +6929,19 @@ h3 {
 }
 .form-infos .form-offer {
   padding-top: 60px;
+}
+.table-bill {
+  margin: 0 auto;
+  min-width: 187px;
+}
+.table-bill td {
+  padding: 0 15px;
+}
+.table-bill .bill-total {
+  border-top: 1px solid #FFF;
+}
+.terminate-order {
+  margin-top: 60px;
 }
 .birthdate input {
   margin: 2px;
@@ -7033,26 +7033,6 @@ footer p {
 .container-delivery-confirmation .ruler-delivery {
   margin-top: 5px;
 }
-.container-delivery-confirmation .bill {
-  background-color: transparent;
-}
-.container-delivery-confirmation .bill h3,
-.container-delivery-confirmation .bill h4,
-.container-delivery-confirmation .bill p {
-  color: #2c3e50;
-  text-align: center;
-}
-.container-delivery-confirmation .bill table {
-  margin: 50px auto;
-}
-.container-delivery-confirmation .bill table td {
-  padding: 0 10px;
-}
-.container-delivery-confirmation .bill .bill-total {
-  color: #2c3e50;
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-}
 .container-delivery-confirmation .bg-danger {
   text-align: center;
 }
@@ -7103,26 +7083,6 @@ footer p {
 }
 .container-delivery .ruler-delivery {
   margin-top: 5px;
-}
-.container-delivery .bill {
-  background-color: transparent;
-}
-.container-delivery .bill h3,
-.container-delivery .bill h4,
-.container-delivery .bill p {
-  color: #2c3e50;
-  text-align: center;
-}
-.container-delivery .bill table {
-  margin: 50px auto;
-}
-.container-delivery .bill table td {
-  padding: 0 10px;
-}
-.container-delivery .bill .bill-total {
-  color: #2c3e50;
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-  font-weight: 700;
 }
 .container-delivery .bg-danger {
   text-align: center;
@@ -7363,7 +7323,6 @@ footer p {
   background-color: #fff;
   border-color: #fff;
   margin: 2.5px;
-  margin-top: 50px;
   padding-left: 10px;
   border-radius: 20px;
 }
@@ -7373,6 +7332,28 @@ footer p {
   border-color: #fff;
 }
 .button-white:active {
+  color: #000;
+  background-color: #fff;
+}
+.button-overlay {
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  background-color: transparent;
+  border-color: #fff;
+  margin: 2.5px;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.button-overlay:active {
+  color: #000;
+  background-color: #fff;
+}
+.button-overlay:hover {
+  color: #000;
+  background-color: #fff;
+}
+.selected {
   color: #000;
   background-color: #fff;
 }

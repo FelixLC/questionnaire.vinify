@@ -196,7 +196,7 @@ angular.module( 'vinibar.questionnaire', [
 				$scope.newuser.createUser()
 													.success(function(data, status, headers, config) {
 
-																$state.go('remerciement');
+																$state.go('order.userinfos');
 																// $state.go('remerciement');
 																$rootScope.loading = false;
 														})

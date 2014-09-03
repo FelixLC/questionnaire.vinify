@@ -319,24 +319,30 @@ angular.module("offrir/offrir.tpl.html", []).run(["$templateCache", function($te
 angular.module("order/order.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("order/order.tpl.html",
     "<div class=\"background-order\">\n" +
-    "    <nav class=\"navbar\" role=\"navigation\">\n" +
-    "      <div class=\"container-fluid\">\n" +
-    "        <div class=\"navbar-header\">\n" +
-    "           <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifyco.png\" style=\"height:45px\"/></a>\n" +
-    "        </div>\n" +
-    "        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
-    "          <ul class=\"nav navbar-nav navbar-right\">\n" +
-    "            <li><a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a></li>\n" +
-    "            <li ng-show=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
-    "            <li ng-show=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
-    "            <li ng-show=\"state == 'order.confirmation'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
-    "            <li ng-show=\"!(state == 'order.confirmation')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a></li>\n" +
-    "          </ul>\n" +
-    "        </div><!-- /.navbar-collapse -->\n" +
-    "      </div>\n" +
-    "    </nav>\n" +
+    "		<nav class=\"navbar\" role=\"navigation\">\n" +
+    "			<div class=\"container-fluid\">\n" +
+    "				<div class=\"navbar-header\">\n" +
+    "					 <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifyco.png\" style=\"height:45px\"/></a>\n" +
+    "				</div>\n" +
+    "				<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "					<ul class=\"nav navbar-nav navbar-right\">\n" +
+    "						<li><a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a></li>\n" +
+    "						<li ng-show=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "						<li ng-show=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "						<li ng-show=\"state == 'order.confirmation'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "						<li ng-show=\"!(state == 'order.confirmation')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "					</ul>\n" +
+    "				</div><!-- /.navbar-collapse -->\n" +
+    "			</div>\n" +
+    "		</nav>\n" +
+    "	<div class=\"container-delivery\">\n" +
+    "		<div class=\"bg-danger fader\" ng-show=\"formInvalid\"><p>Oops, un ou plusieurs champs sont incomplets ou erronés.</p></div>\n" +
+    "		<div class=\"bg-danger fader\" ng-show=\"couponError\"><p>{{couponError}}</p></div>\n" +
     "\n" +
-    "    <div class=\"main-container\" ui-view autoscroll=\"false\"></div>\n" +
+    "		<div class=\"col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding\">\n" +
+    "			<div class=\"main-container\" ui-view autoscroll=\"false\"></div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
     "</div>");
 }]);
 
@@ -562,69 +568,69 @@ angular.module("order/parts/order.delivery.tpl.html", []).run(["$templateCache",
 
 angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("order/parts/order.paiement.tpl.html",
-    "<div class=\"container container-delivery\">\n" +
-    "	<div class=\"row container-title\">\n" +
-    "		<div class=\"col-lg-12 col-md-6 col-sm-6\" id=\"payment_title\">\n" +
-    "			<h3><span>Récapitulatif de la commande</span></h3>\n" +
-    "		</div>\n" +
-    "	</div>\n" +
-    "	<hr class=\"ruler-delivery\">\n" +
+    "\n" +
     "	<div class=\"row\">\n" +
-    "			<div class=\"col-lg-6 col-md-6 col-sm-4\">\n" +
-    "				<img src=\"assets/wines.jpg\" class=\"img img-responsive\" alt=\"\">\n" +
-    "			</div>\n" +
-    "			<div class=\"col-lg-6 col-md-6 col-sm-4\">\n" +
+    "			<div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
+    "			<h3 class=\"centered\">Merci de vérifier vos informations</h3>\n" +
+    "			<hr>\n" +
     "			  <div class=\"row\">\n" +
-    "			      <div class=\"col-lg-6 col-md-6 col-sm-12 bill\">\n" +
-    "			                <h4 class=\"confirmation-first-title\">Félix Le Chevallier{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>\n" +
-    "			                <h4>felix@vinify.co{{currentClient.email}}</h4>\n" +
-    "			                <p>106 rue du président wilson{{currentClient.userinfos.delivery_address.street}}<br>\n" +
-    "			                92300 Levallois{{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</p>\n" +
+    "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
+    "					<p>Adresse</p>\n" +
+    "					<h4 class=\"\">Félix Le Chevallier{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>\n" +
+    "					<h4>felix@vinify.co{{currentClient.email}}</h4>\n" +
+    "					<p>106 rue du président wilson{{currentClient.userinfos.delivery_address.street}}<br>\n" +
+    "					92300 Levallois{{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</p>\n" +
     "\n" +
     "			      </div>\n" +
-    "			      <div class=\"col-lg-6 col-md-6 col-sm-12 bill\">\n" +
-    "			              <table>\n" +
+    "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
+    "					<p>Mode de Livraison</p>\n" +
+    "					<a ng-class=\"{selected: delivery_mode == 1}\" class=\"btn button-overlay\" ng-click=\"delivery_mode = 1\">Point Relais</a>\n" +
+    "					<a ng-class=\"{selected: delivery_mode == 2}\" class=\"btn button-overlay\" ng-click=\"delivery_mode = 2\">Colissimo Suivi</a>\n" +
+    "					<a ng-class=\"{selected: delivery_mode == 3}\" class=\"btn button-overlay\" ng-click=\"delivery_mode = 3\">Retrait Vinify (Issy 92)</a>\n" +
+    "			      </div>\n" +
+    "			      <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
+    "			              <table class=\"table-bill\">\n" +
     "			                  <tr>\n" +
     "			                    <td><h4>Vinibar </h4></td>\n" +
-    "			                    <td><h4>69{{currentClient.order.amount}}€</h4></td>\n" +
+    "			                    <td><h4>69{{currentClient.order.amount}} €</h4></td>\n" +
     "			                  </tr>\n" +
     "			                  <tr>\n" +
-    "			                    <td><h4>Livraison {{delivery_mode}} </h4></td>\n" +
-    "			                    <td><h4>10{{currentClient.order.delivery_cost}}€</h4></td>\n" +
+    "			                    <td><h4>Livraison </h4></td>\n" +
+    "			                    <td>\n" +
+    "			                    	<h4>\n" +
+    "			                    		<span ng-show=\"delivery_mode == 1\">8,90 € &nbsp;</span>\n" +
+    "			                    		<span ng-show=\"delivery_mode == 2\">11,90 €</span>\n" +
+    "			                    		<span ng-show=\"delivery_mode == 3\">Gratuit</span>\n" +
+    "		                    		</h4>\n" +
+    "	                    		</td>\n" +
     "			                  </tr>\n" +
     "			                  <tr>\n" +
-    "			                    <td><h4 class=\"bill-total\">Total </h4></td>\n" +
-    "			                    <td><h4 class=\"bill-total\">79{{currentClient.order.final_price}}€</h4></td>\n" +
+    "			                    <td><h4>Promo </h4></td>\n" +
+    "			                    <td><h4>- 10{{currentClient.order.delivery_cost}} €</h4></td>\n" +
+    "			                  </tr>\n" +
+    "			                  <tr  class=\"bill-total\">\n" +
+    "			                    <td><h4>Total </h4></td>\n" +
+    "			                    <td><h4>79{{currentClient.order.final_price}} €</h4></td>\n" +
     "			                  </tr>\n" +
     "			              </table>\n" +
     "			      </div>\n" +
     "		  	</div>\n" +
-    "			<div class=\"row\">\n" +
-    "				<div class=\"col-lg-12 col-md-12 col-sm-12 centered\">\n" +
-    "					<button class=\"btn button-overlay-primary\">Commander mes vins</button>\n" +
+    "			<div class=\"row terminate-order\">\n" +
+    "				<div class=\"col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-12 centered\">\n" +
+    "					<button class=\"btn button-white\">Commander mes vins</button>\n" +
     "				</div>\n" +
     "			</div>    <!-- ROW -->\n" +
-    "			</div>\n" +
+    "		</div>\n" +
     "	</div>    <!-- ROW -->\n" +
     "\n" +
-    "</div> <!-- container delivery -->\n" +
+    "\n" +
     "\n" +
     "");
 }]);
 
 angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("order/parts/order.userinfos.tpl.html",
-    "<div class=\"container-delivery\">\n" +
-    "	<div class=\"bg-danger fader\" ng-show=\"formInvalid\"><p>Oops, un ou plusieurs champs sont incomplets ou erronés.</p></div>\n" +
-    "	<div class=\"bg-danger fader\" ng-show=\"couponError\"><p>{{couponError}}</p></div>\n" +
     "\n" +
-    "	<div class=\"col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding\">\n" +
-    "<!-- 		<div class=\"row container-title\">\n" +
-    "			<div class=\"col-lg-8 col-md-8 col-sm-8\" id=\"delivery_billing_title\">\n" +
-    "				<h3><span>Livraison & Facturation</span></h3>\n" +
-    "			</div>\n" +
-    "		</div> -->\n" +
-    "		<!-- <hr class=\"ruler-delivery\"> -->\n" +
     "		<div class=\"row\">\n" +
     "			<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "				<h4 class=\"centered\">Notre Oenologue va préparer votre sélection personnalisée</h4>\n" +
@@ -819,7 +825,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							</div>\n" +
     "\n" +
     "							<div class=\"u-w50 inline-left form-group\">\n" +
-    "							<label for=\"delivery_address.company\">Ville</label>\n" +
+    "							<label for=\"delivery_address.company\">Ville *</label>\n" +
     "							  <label for=\"delivery_address.zipcode\" class=\"sr-only\">CP</label>\n" +
     "							  <input type=\"text\"\n" +
     "								  ng-model=\"currentClient.userinfos.delivery_address.zipcode\"\n" +
@@ -860,7 +866,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "\n" +
     "						<div class=\"checkbox\">\n" +
     "							<label>\n" +
-    "							  <input type=\"checkbox\" ng-model=\"currentClient.userinfos.same_billing\"> Adresse de Facturation identique\n" +
+    "							  <input type=\"checkbox\" ng-model=\"currentClient.userinfos.same_billing\"> Facturation identique\n" +
     "							</label>\n" +
     "						</div>\n" +
     "					</div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
@@ -941,13 +947,17 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "		</div>    <!-- ROW -->\n" +
     "\n" +
     "		<div class=\"row\">\n" +
-    "			<div class=\"col-lg-4 col-md-4 pull-right\">\n" +
-    "				  <a class=\"btn button-white pull-right\" ng-click=\"addUserInfo(form_commander)\">Valider</a>\n" +
+    "			<div class=\"col-lg-12 col-md-12\">\n" +
+    "			<form class=\"form-inline pull-right\" role=\"form\">\n" +
+    "			  <div class=\"form-group\">\n" +
+    "			    <label class=\"sr-only\" for=\"exampleInputEmail2\">Email address</label>\n" +
+    "				<input type=\"text\" class=\"form-control\" ng-model=\"currentClient.coupon\" placeholder=\"Code Promo / Parrainage\">\n" +
+    "			  </div>\n" +
+    "				<button class=\"btn button-white\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
+    "			</form>\n" +
+    "\n" +
     "			</div>\n" +
     "		</div>    <!-- ROW -->\n" +
-    "\n" +
-    "	</div>\n" +
-    "</div> <!-- container delivery -->\n" +
     "\n" +
     "");
 }]);

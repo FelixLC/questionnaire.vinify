@@ -193,7 +193,7 @@
 							</div>
 
 							<div class="u-w50 inline-left form-group">
-							<label for="delivery_address.company">Ville</label>
+							<label for="delivery_address.company">Ville *</label>
 							  <label for="delivery_address.zipcode" class="sr-only">CP</label>
 							  <input type="text"
 								  ng-model="currentClient.userinfos.delivery_address.zipcode"
@@ -234,7 +234,7 @@
 
 						<div class="checkbox">
 							<label>
-							  <input type="checkbox" ng-model="currentClient.userinfos.same_billing"> Adresse de Facturation identique
+							  <input type="checkbox" ng-model="currentClient.userinfos.same_billing"> Facturation identique
 							</label>
 						</div>
 					</div><!-- col-lg-4 col-md-4 col-sm-4 -->
@@ -315,8 +315,15 @@
 		</div>    <!-- ROW -->
 
 		<div class="row">
-			<div class="col-lg-4 col-md-4 pull-right">
-				  <a class="btn button-white pull-right" ng-click="addUserInfo(form_commander)">Valider</a>
+			<div class="col-lg-12 col-md-12">
+			<form class="form-inline pull-right" role="form">
+			  <div class="form-group">
+			    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+				<input type="text" class="form-control" ng-model="currentClient.coupon" placeholder="Code Promo / Parrainage">
+			  </div>
+				<button class="btn button-white" ng-click="addUserInfo(form_commander)">Valider</button>
+			</form>
+
 			</div>
 		</div>    <!-- ROW -->
 
