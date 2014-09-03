@@ -151,15 +151,14 @@ angular.module( 'vinibar.questionnaire', [
 	};
 
 	$scope.regions = [
-		'Je ne sais pas',
-		'Alsace',
-		'Provence - Corse',
-		'Rhône',
-		'Bordeaux',
 		'Loire',
-		'Bourgogne',
 		'Languedoc Roussillon',
-		'Champagne'
+		'Champagne',
+		'Bourgogne',
+		'Provence',
+		'Rhône',
+		'Alsace',
+		'Bordeaux'
 	];
 
 	// $scope.trackLink = function(n) {
@@ -197,7 +196,7 @@ angular.module( 'vinibar.questionnaire', [
 				$scope.newuser.createUser()
 													.success(function(data, status, headers, config) {
 
-																$state.go('order.userinfos');
+																$state.go('remerciement');
 																// $state.go('remerciement');
 																$rootScope.loading = false;
 														})

@@ -608,7 +608,7 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "		  	</div>\n" +
     "			<div class=\"row\">\n" +
     "				<div class=\"col-lg-12 col-md-12 col-sm-12 centered\">\n" +
-    "					<button class=\"btn button-overlay-primary\">Commander mes vin</button>\n" +
+    "					<button class=\"btn button-overlay-primary\">Commander mes vins</button>\n" +
     "				</div>\n" +
     "			</div>    <!-- ROW -->\n" +
     "			</div>\n" +
@@ -1680,7 +1680,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								</label>\n" +
     "							</div>\n" +
     "							<label for=\"comments\" class=\"sr-only\">Un vin qui vous a marqué ?</label>\n" +
-    "							<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.quest_9.answ\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
+    "							<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.quest_8.answ\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
     "						</form>\n" +
     "					</div>\n" +
     "					<div class=\"row\">\n" +
@@ -1781,8 +1781,7 @@ angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", 
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +
     "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
-    "        <p>Merci d'avoir créé votre profil de goûts</p>\n" +
-    "        <p>Nous vous contacterons courant juillet pour la sortie des prochains Vinibars :)</p>\n" +
+    "        <p>Merci d'avoir créé votre profil de goûts, nous préparons votre sélection personnalisée !</p>\n" +
     "<!--         <h2>Merci pour votre commande</h2>\n" +
     "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
     "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->\n" +
