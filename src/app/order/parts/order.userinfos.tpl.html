@@ -10,7 +10,7 @@
 							<input type="text"
 								placeholder="John"
 								name="first_name"
-								ng-model="currentClient.userinfos.first_name"
+								ng-model="client.userinfos.first_name"
 								required
 								class="form-control"
 								id="first_name"/>
@@ -21,7 +21,7 @@
 							<input type="text"
 								placeholder="Snow"
 								name="last_name"
-								ng-model="currentClient.userinfos.last_name"
+								ng-model="client.userinfos.last_name"
 								required
 								class="form-control"
 								id="last_name"/>
@@ -32,7 +32,7 @@
 							<input type="tel"
 								placeholder="+33 6 XX XX XX XX"
 								name="phone"
-								ng-model="currentClient.userinfos.phone"
+								ng-model="client.userinfos.phone"
 								required
 								class="form-control"
 								id="phone"/>
@@ -186,7 +186,7 @@
 							<div class="form-group">
 								<label for="delivery_address.street" class="sr-only">Rue</label>
 								<input type="text"
-									ng-model="currentClient.userinfos.delivery_address.street"
+									ng-model="client.userinfos.delivery_address.street"
 									placeholder="Rue"
 									class="form-control"
 									id="delivery_address.street"/>
@@ -196,7 +196,7 @@
 							<label for="delivery_address.company">Ville *</label>
 							  <label for="delivery_address.zipcode" class="sr-only">CP</label>
 							  <input type="text"
-								  ng-model="currentClient.userinfos.delivery_address.zipcode"
+								  ng-model="client.userinfos.delivery_address.zipcode"
 								  placeholder="Code Postal"
 								  class="form-control"
 								  id="delivery_address.zipcode"/>
@@ -205,7 +205,7 @@
 							<label for="delivery_address.company">&nbsp;</label>
 							  <label for="delivery_address.city" class="sr-only">Ville</label>
 							  <input type="text"
-								  ng-model="currentClient.userinfos.delivery_address.city"
+								  ng-model="client.userinfos.delivery_address.city"
 								  placeholder="Ville"
 								  class="form-control"
 								  id="delivery_address.city"/>
@@ -216,7 +216,7 @@
 								<div class="u-w50 inline-left form-group">
 								  <label for="delivery_address.zipcode" class="sr-only">Code</label>
 								  <input type="text"
-									  ng-model="currentClient.userinfos.delivery_address.digicode"
+									  ng-model="client.userinfos.delivery_address.digicode"
 									  placeholder="Code Porte"
 									  class="form-control"
 									  id="delivery_address.zipcode"/>
@@ -224,29 +224,29 @@
 								<div class="u-w50 inline-right form-group">
 								  <label for="delivery_address.city" class="sr-only">Interphone</label>
 								  <input type="text"
-									  ng-model="currentClient.userinfos.delivery_address.intercom"
+									  ng-model="client.userinfos.delivery_address.intercom"
 									  placeholder="Interphone"
 									  class="form-control"
 									  id="delivery_address.city"/>
 								</div>
-							  <textarea class="form-control" rows="2" ng-model="currentClient.userinfos.delivery_address.other_info" placeholder="Société, Bâtiment, Escalier, Etage ..." id="delivery_address.other_info"></textarea>
+							  <textarea class="form-control" rows="2" ng-model="client.userinfos.delivery_address.other_info" placeholder="Société, Bâtiment, Escalier, Etage ..." id="delivery_address.other_info"></textarea>
 							</div>
 
 						<div class="checkbox">
 							<label>
-							  <input type="checkbox" ng-model="currentClient.userinfos.same_billing"> Facturation identique
+							  <input type="checkbox" ng-model="client.userinfos.same_billing"> Facturation identique
 							</label>
 						</div>
 					</div><!-- col-lg-4 col-md-4 col-sm-4 -->
 
 
-					<div ng-hide="currentClient.userinfos.same_billing" class="col-lg-4 col-md-4 col-sm-4">
+					<div ng-hide="client.userinfos.same_billing" class="col-lg-4 col-md-4 col-sm-4">
 						<label>Adresse de Facturation </label>
 						<!--           <div class="form-group">
 
 							  <label for="billing_address.company" class="sr-only">Company</label>
 							  <input type="text"
-								  ng-model="currentClient.userinfos.billing_address.company"
+								  ng-model="client.userinfos.billing_address.company"
 								  placeholder="Société"
 								  class="form-control"
 								  id="billing_address.company"/>
@@ -254,7 +254,7 @@
 						<div class="form-group">
 							<label for="billing_address.street" class="sr-only">Rue</label>
 							<input type="text"
-							  ng-model="currentClient.userinfos.billing_address.street"
+							  ng-model="client.userinfos.billing_address.street"
 							  placeholder="Rue"
 							  class="form-control"
 							  id="billing_address.street"
@@ -265,7 +265,7 @@
 						<label for="billing_address.company">Ville</label>
 						  <label for="billing_address.zipcode" class="sr-only">CP</label>
 						  <input type="text"
-							  ng-model="currentClient.userinfos.billing_address.zipcode"
+							  ng-model="client.userinfos.billing_address.zipcode"
 							  placeholder="Code Postal"
 							  class="form-control"
 							  id="billing_address.zipcode"/>
@@ -274,7 +274,7 @@
 						<label for="billing_address.company">&nbsp;</label>
 						  <label for="billing_address.city" class="sr-only">Ville</label>
 						  <input type="text"
-							  ng-model="currentClient.userinfos.billing_address.city"
+							  ng-model="client.userinfos.billing_address.city"
 							  placeholder="Ville"
 							  class="form-control"
 							  id="billing_address.city"/>
@@ -285,7 +285,7 @@
 							<div class="u-w50 inline-left form-group">
 							  <label for="billing_address.zipcode" class="sr-only">Code</label>
 							  <input type="text"
-								  ng-model="currentClient.userinfos.billing_address.digicode"
+								  ng-model="client.userinfos.billing_address.digicode"
 								  placeholder="Code Porte"
 								  class="form-control"
 								  id="billing_address.zipcode"/>
@@ -293,16 +293,16 @@
 							<div class="u-w50 inline-right form-group">
 							  <label for="billing_address.city" class="sr-only">Interphone</label>
 							  <input type="text"
-								  ng-model="currentClient.userinfos.billing_address.intercom"
+								  ng-model="client.userinfos.billing_address.intercom"
 								  placeholder="Interphone"
 								  class="form-control"
 								  id="billing_address.city"/>
 							</div>
-						  <textarea class="form-control" rows="2" ng-model="currentClient.userinfos.billing_address.other_info" placeholder="Société, Bâtiment, Escalier, Etage ..." id="billing_address.other_info"></textarea>
+						  <textarea class="form-control" rows="2" ng-model="client.userinfos.billing_address.other_info" placeholder="Société, Bâtiment, Escalier, Etage ..." id="billing_address.other_info"></textarea>
 						</div>
 					</div>
 
-					<div ng-show="currentClient.userinfos.same_billing" class=" form-offer col-lg-4 col-md-4 col-sm-4">
+					<div ng-show="client.userinfos.same_billing" class=" form-offer col-lg-4 col-md-4 col-sm-4">
 						<h4 class="centered">6 Bouteilles</h4>
 						<hr>
 						<h4 class="centered">Choisies spécialement pour vous parmi notre sélection</h4>

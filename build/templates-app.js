@@ -338,6 +338,7 @@ angular.module("order/order.tpl.html", []).run(["$templateCache", function($temp
     "	<div class=\"container-delivery\">\n" +
     "		<div class=\"bg-danger fader\" ng-show=\"formInvalid\"><p>Oops, un ou plusieurs champs sont incomplets ou erronés.</p></div>\n" +
     "		<div class=\"bg-danger fader\" ng-show=\"couponError\"><p>{{couponError}}</p></div>\n" +
+    "  		<toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "\n" +
     "		<div class=\"col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding\">\n" +
     "			<div class=\"main-container\" ui-view autoscroll=\"false\"></div>\n" +
@@ -576,41 +577,39 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "			  <div class=\"row\">\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
     "					<p>Adresse</p>\n" +
-    "					<h4 class=\"\">Félix Le Chevallier{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>\n" +
-    "					<h4>felix@vinify.co{{currentClient.email}}</h4>\n" +
-    "					<p>106 rue du président wilson{{currentClient.userinfos.delivery_address.street}}<br>\n" +
-    "					92300 Levallois{{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</p>\n" +
+    "					<h4 class=\"\">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</h4>\n" +
+    "					<h4>{{client.email}}</h4>\n" +
+    "					<p>{{client.userinfos.delivery_address.street}}<br>\n" +
+    "					{{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>\n" +
     "\n" +
     "			      </div>\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
     "					<p>Mode de Livraison</p>\n" +
-    "					<a ng-class=\"{selected: delivery_mode == 1}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(1)\">Point Relais</a>\n" +
-    "					<a ng-class=\"{selected: delivery_mode == 2}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(2)\">Colissimo Suivi</a>\n" +
-    "					<a ng-class=\"{selected: delivery_mode == 3}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(3)\">Retrait Vinify (Issy 92)</a>\n" +
+    "					<a ng-class=\"{selected: delivery.mode == 'Point Relais'}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(1)\">Point Relais</a>\n" +
+    "					<a ng-class=\"{selected: delivery.mode == 'Colissimo'}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(2)\">Colissimo Suivi</a>\n" +
+    "					<a ng-class=\"{selected: delivery.mode == 'Vinify'}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(3)\">Retrait Vinify (Issy 92)</a>\n" +
     "			      </div>\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
     "			              <table class=\"table-bill\">\n" +
     "			                  <tr>\n" +
     "			                    <td><h4>Vinibar </h4></td>\n" +
-    "			                    <td><h4>69{{currentClient.order.amount}} €</h4></td>\n" +
+    "			                    <td><h4>69 €</h4></td>\n" +
     "			                  </tr>\n" +
     "			                  <tr>\n" +
     "			                    <td><h4>Livraison </h4></td>\n" +
     "			                    <td>\n" +
     "			                    	<h4>\n" +
-    "			                    		<span ng-show=\"delivery_mode == 1\">8,90 € &nbsp;</span>\n" +
-    "			                    		<span ng-show=\"delivery_mode == 2\">11,90 €</span>\n" +
-    "			                    		<span ng-show=\"delivery_mode == 3\">Gratuit</span>\n" +
+    "								{{delivery.cost}} €\n" +
     "		                    		</h4>\n" +
     "	                    		</td>\n" +
     "			                  </tr>\n" +
-    "			                  <tr>\n" +
+    "			                  <tr ng-show=\"client.order.coupon.value\">\n" +
     "			                    <td><h4>Promo </h4></td>\n" +
-    "			                    <td><h4>- 10{{currentClient.order.delivery_cost}} €</h4></td>\n" +
+    "			                    <td><h4>- {{client.order.coupon.value}} €</h4></td>\n" +
     "			                  </tr>\n" +
     "			                  <tr  class=\"bill-total\">\n" +
     "			                    <td><h4>Total </h4></td>\n" +
-    "			                    <td><h4>79{{currentClient.order.final_price}} €</h4></td>\n" +
+    "			                    <td><h4>{{69 + delivery.cost - client.order.coupon.value}} €</h4></td>\n" +
     "			                  </tr>\n" +
     "			              </table>\n" +
     "			      </div>\n" +
@@ -642,7 +641,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<input type=\"text\"\n" +
     "								placeholder=\"John\"\n" +
     "								name=\"first_name\"\n" +
-    "								ng-model=\"currentClient.userinfos.first_name\"\n" +
+    "								ng-model=\"client.userinfos.first_name\"\n" +
     "								required\n" +
     "								class=\"form-control\"\n" +
     "								id=\"first_name\"/>\n" +
@@ -653,7 +652,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<input type=\"text\"\n" +
     "								placeholder=\"Snow\"\n" +
     "								name=\"last_name\"\n" +
-    "								ng-model=\"currentClient.userinfos.last_name\"\n" +
+    "								ng-model=\"client.userinfos.last_name\"\n" +
     "								required\n" +
     "								class=\"form-control\"\n" +
     "								id=\"last_name\"/>\n" +
@@ -664,7 +663,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<input type=\"tel\"\n" +
     "								placeholder=\"+33 6 XX XX XX XX\"\n" +
     "								name=\"phone\"\n" +
-    "								ng-model=\"currentClient.userinfos.phone\"\n" +
+    "								ng-model=\"client.userinfos.phone\"\n" +
     "								required\n" +
     "								class=\"form-control\"\n" +
     "								id=\"phone\"/>\n" +
@@ -818,7 +817,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<div class=\"form-group\">\n" +
     "								<label for=\"delivery_address.street\" class=\"sr-only\">Rue</label>\n" +
     "								<input type=\"text\"\n" +
-    "									ng-model=\"currentClient.userinfos.delivery_address.street\"\n" +
+    "									ng-model=\"client.userinfos.delivery_address.street\"\n" +
     "									placeholder=\"Rue\"\n" +
     "									class=\"form-control\"\n" +
     "									id=\"delivery_address.street\"/>\n" +
@@ -828,7 +827,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<label for=\"delivery_address.company\">Ville *</label>\n" +
     "							  <label for=\"delivery_address.zipcode\" class=\"sr-only\">CP</label>\n" +
     "							  <input type=\"text\"\n" +
-    "								  ng-model=\"currentClient.userinfos.delivery_address.zipcode\"\n" +
+    "								  ng-model=\"client.userinfos.delivery_address.zipcode\"\n" +
     "								  placeholder=\"Code Postal\"\n" +
     "								  class=\"form-control\"\n" +
     "								  id=\"delivery_address.zipcode\"/>\n" +
@@ -837,7 +836,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<label for=\"delivery_address.company\">&nbsp;</label>\n" +
     "							  <label for=\"delivery_address.city\" class=\"sr-only\">Ville</label>\n" +
     "							  <input type=\"text\"\n" +
-    "								  ng-model=\"currentClient.userinfos.delivery_address.city\"\n" +
+    "								  ng-model=\"client.userinfos.delivery_address.city\"\n" +
     "								  placeholder=\"Ville\"\n" +
     "								  class=\"form-control\"\n" +
     "								  id=\"delivery_address.city\"/>\n" +
@@ -848,7 +847,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "								<div class=\"u-w50 inline-left form-group\">\n" +
     "								  <label for=\"delivery_address.zipcode\" class=\"sr-only\">Code</label>\n" +
     "								  <input type=\"text\"\n" +
-    "									  ng-model=\"currentClient.userinfos.delivery_address.digicode\"\n" +
+    "									  ng-model=\"client.userinfos.delivery_address.digicode\"\n" +
     "									  placeholder=\"Code Porte\"\n" +
     "									  class=\"form-control\"\n" +
     "									  id=\"delivery_address.zipcode\"/>\n" +
@@ -856,29 +855,29 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "								<div class=\"u-w50 inline-right form-group\">\n" +
     "								  <label for=\"delivery_address.city\" class=\"sr-only\">Interphone</label>\n" +
     "								  <input type=\"text\"\n" +
-    "									  ng-model=\"currentClient.userinfos.delivery_address.intercom\"\n" +
+    "									  ng-model=\"client.userinfos.delivery_address.intercom\"\n" +
     "									  placeholder=\"Interphone\"\n" +
     "									  class=\"form-control\"\n" +
     "									  id=\"delivery_address.city\"/>\n" +
     "								</div>\n" +
-    "							  <textarea class=\"form-control\" rows=\"2\" ng-model=\"currentClient.userinfos.delivery_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"delivery_address.other_info\"></textarea>\n" +
+    "							  <textarea class=\"form-control\" rows=\"2\" ng-model=\"client.userinfos.delivery_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"delivery_address.other_info\"></textarea>\n" +
     "							</div>\n" +
     "\n" +
     "						<div class=\"checkbox\">\n" +
     "							<label>\n" +
-    "							  <input type=\"checkbox\" ng-model=\"currentClient.userinfos.same_billing\"> Facturation identique\n" +
+    "							  <input type=\"checkbox\" ng-model=\"client.userinfos.same_billing\"> Facturation identique\n" +
     "							</label>\n" +
     "						</div>\n" +
     "					</div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
     "\n" +
     "\n" +
-    "					<div ng-hide=\"currentClient.userinfos.same_billing\" class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
+    "					<div ng-hide=\"client.userinfos.same_billing\" class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
     "						<label>Adresse de Facturation </label>\n" +
     "						<!--           <div class=\"form-group\">\n" +
     "\n" +
     "							  <label for=\"billing_address.company\" class=\"sr-only\">Company</label>\n" +
     "							  <input type=\"text\"\n" +
-    "								  ng-model=\"currentClient.userinfos.billing_address.company\"\n" +
+    "								  ng-model=\"client.userinfos.billing_address.company\"\n" +
     "								  placeholder=\"Société\"\n" +
     "								  class=\"form-control\"\n" +
     "								  id=\"billing_address.company\"/>\n" +
@@ -886,7 +885,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "						<div class=\"form-group\">\n" +
     "							<label for=\"billing_address.street\" class=\"sr-only\">Rue</label>\n" +
     "							<input type=\"text\"\n" +
-    "							  ng-model=\"currentClient.userinfos.billing_address.street\"\n" +
+    "							  ng-model=\"client.userinfos.billing_address.street\"\n" +
     "							  placeholder=\"Rue\"\n" +
     "							  class=\"form-control\"\n" +
     "							  id=\"billing_address.street\"\n" +
@@ -897,7 +896,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "						<label for=\"billing_address.company\">Ville</label>\n" +
     "						  <label for=\"billing_address.zipcode\" class=\"sr-only\">CP</label>\n" +
     "						  <input type=\"text\"\n" +
-    "							  ng-model=\"currentClient.userinfos.billing_address.zipcode\"\n" +
+    "							  ng-model=\"client.userinfos.billing_address.zipcode\"\n" +
     "							  placeholder=\"Code Postal\"\n" +
     "							  class=\"form-control\"\n" +
     "							  id=\"billing_address.zipcode\"/>\n" +
@@ -906,7 +905,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "						<label for=\"billing_address.company\">&nbsp;</label>\n" +
     "						  <label for=\"billing_address.city\" class=\"sr-only\">Ville</label>\n" +
     "						  <input type=\"text\"\n" +
-    "							  ng-model=\"currentClient.userinfos.billing_address.city\"\n" +
+    "							  ng-model=\"client.userinfos.billing_address.city\"\n" +
     "							  placeholder=\"Ville\"\n" +
     "							  class=\"form-control\"\n" +
     "							  id=\"billing_address.city\"/>\n" +
@@ -917,7 +916,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<div class=\"u-w50 inline-left form-group\">\n" +
     "							  <label for=\"billing_address.zipcode\" class=\"sr-only\">Code</label>\n" +
     "							  <input type=\"text\"\n" +
-    "								  ng-model=\"currentClient.userinfos.billing_address.digicode\"\n" +
+    "								  ng-model=\"client.userinfos.billing_address.digicode\"\n" +
     "								  placeholder=\"Code Porte\"\n" +
     "								  class=\"form-control\"\n" +
     "								  id=\"billing_address.zipcode\"/>\n" +
@@ -925,16 +924,16 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<div class=\"u-w50 inline-right form-group\">\n" +
     "							  <label for=\"billing_address.city\" class=\"sr-only\">Interphone</label>\n" +
     "							  <input type=\"text\"\n" +
-    "								  ng-model=\"currentClient.userinfos.billing_address.intercom\"\n" +
+    "								  ng-model=\"client.userinfos.billing_address.intercom\"\n" +
     "								  placeholder=\"Interphone\"\n" +
     "								  class=\"form-control\"\n" +
     "								  id=\"billing_address.city\"/>\n" +
     "							</div>\n" +
-    "						  <textarea class=\"form-control\" rows=\"2\" ng-model=\"currentClient.userinfos.billing_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"billing_address.other_info\"></textarea>\n" +
+    "						  <textarea class=\"form-control\" rows=\"2\" ng-model=\"client.userinfos.billing_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"billing_address.other_info\"></textarea>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "\n" +
-    "					<div ng-show=\"currentClient.userinfos.same_billing\" class=\" form-offer col-lg-4 col-md-4 col-sm-4\">\n" +
+    "					<div ng-show=\"client.userinfos.same_billing\" class=\" form-offer col-lg-4 col-md-4 col-sm-4\">\n" +
     "						<h4 class=\"centered\">6 Bouteilles</h4>\n" +
     "						<hr>\n" +
     "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre sélection</h4>\n" +
@@ -1746,6 +1745,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
 angular.module("questionnaire/questionnaire.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("questionnaire/questionnaire.tpl.html",
     "<div class=\"slide-container\">\n" +
+    "  <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "  <div ui-view class=\"questionnaire my-slide-animation\" autoscroll=\"false\"></div>\n" +
     "</div>\n" +
     "\n" +

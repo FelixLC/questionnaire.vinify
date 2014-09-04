@@ -2,7 +2,8 @@ angular.module( 'vinibar.questionnaire', [
 	'ui.router',
 	'placeholders',
 	'ui.bootstrap',
-	'ngAutocomplete'
+	'ngAutocomplete',
+	'toaster'
 ])
 
 .config(function config( $stateProvider ) {
@@ -57,8 +58,8 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','http://127.0.0.0:8000/api')
-.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT) {
+.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
+.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster) {
 
 	// modal
 	$scope.open = function (size) {
@@ -127,12 +128,11 @@ angular.module( 'vinibar.questionnaire', [
 
 		//  CHECK IF ALL BALANCE ARE NOT SET TO 4 (DEFAULT VALUE)
 		if ( $scope.newuser.survey.quest_6.answ_1 === 4 ||  $scope.newuser.survey.quest_6.answ_2 === 4 ||  $scope.newuser.survey.quest_6.answ_3 === 4) {
-			$scope.answerAll = true;
+			toaster.pop('info', 'Merci de choisir une préférence pour chaque type de vin', ' puis valider avec la flèche');
+			console.log('error');
 		} else if ( $scope.newuser.survey.quest_6.answ_1 === 0 &&  $scope.newuser.survey.quest_6.answ_2 === 0 &&  $scope.newuser.survey.quest_6.answ_3 === 0) {
-			$scope.nowine = true;
+			toaster.pop('info', 'Vous ne voulez pas de vins dans votre Vinibar ?');
 		} else {
-			$scope.answerAll = false;
-			$scope.nowine = false;
 			$state.go('questionnaire.winemap');
 		}
 
@@ -142,7 +142,7 @@ angular.module( 'vinibar.questionnaire', [
 
 		//  CHECK IF ALL cuisines ARE NOT SET TO false (DEFAULT VALUE)
 		if ( $scope.newuser.survey.quest_3.answ_1 === false &&  $scope.newuser.survey.quest_3.answ_2 === false &&  $scope.newuser.survey.quest_3.answ_3 === false &&  $scope.newuser.survey.quest_3.answ_4 === false &&  $scope.newuser.survey.quest_3.answ_5 === false) {
-			$scope.answerOne = true;
+			toaster.pop('info', 'Merci de choisir au moins une cuisine', ' puis valider avec la flèche');
 		} else {
 			$scope.answerOne = false;
 			$state.go('questionnaire.starter');
@@ -193,8 +193,7 @@ angular.module( 'vinibar.questionnaire', [
 				currentClient.currentClient.userinfos.first_name = $scope.newuser.first_name;
 				currentClient.currentClient.userinfos.last_name = $scope.newuser.last_name;
 
-				$scope.newuser.createUser()
-													.success(function(data, status, headers, config) {
+				$scope.newuser.createUser().success(function(data, status, headers, config) {
 
 																$state.go('order.userinfos');
 																// $state.go('remerciement');
@@ -213,13 +212,17 @@ angular.module( 'vinibar.questionnaire', [
 
 		// IF EMAIL IS NOT VALID
 		else if (user.email.$invalid) {
-			$scope.showFormEmailError = true;
+			toaster.pop('info', 'Oops, votre adresse email ne semble pas valide');
 		}
 
 	// OTHER NOT VALID INPUTS
 		else {
-			$scope.showFormEmailError = false;
-			$scope.showFormErrors = true;
+			var strings =[];
+			if (name.first_name.$invalid) { strings.push('Prénom');}
+			if (name.last_name.$invalid) { strings.push('Nom');}
+			if (user.password.$invalid) { strings.push('Mot de passe');}
+			if (user.email.$invalid) { strings.push('Email');}
+			toaster.pop('info', 'Le(s) champ(s) suivant(s) sont requis :', strings.toString(" "));
 		}
 	};
 

@@ -18,6 +18,7 @@
 	<div class="container-delivery">
 		<div class="bg-danger fader" ng-show="formInvalid"><p>Oops, un ou plusieurs champs sont incomplets ou erronés.</p></div>
 		<div class="bg-danger fader" ng-show="couponError"><p>{{couponError}}</p></div>
+  		<toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
 
 		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding">
 			<div class="main-container" ui-view autoscroll="false"></div>

@@ -4,8 +4,8 @@ angular.module('stripe', [])
       restrict: 'A',
       controller: function($scope, $http, $location) {
         $scope.handler = StripeCheckout.configure({
-          // key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
-          key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
+          key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
+          // key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
           image: "assets/LogoVinifyMini2.png",
           token: function(token, args) {
             var data_order = token;

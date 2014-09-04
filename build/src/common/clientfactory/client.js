@@ -1,6 +1,6 @@
 
 angular.module('clientFactory', [])
-	.constant('API_ENDPOINT','http://127.0.0.0:8000/api')
+	.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
 
 	//  The Client Factory is used to instantiate a new client
 	.factory('Client', ['$http' , '$state', 'API_ENDPOINT',  function ($http, $state, API_ENDPOINT) {
@@ -72,6 +72,7 @@ angular.module('clientFactory', [])
 
 			// instantiate our initial object
 			var Client = function() {
+					this.uuid = "",
 					this.first_name = null,
 					this.last_name = null,
 					this.email = null;
@@ -103,21 +104,26 @@ angular.module('clientFactory', [])
 														}
 													});
 
-					return request;
+					return request
+								.success(function(data, status, headers, config){
+									self.uuid = data.uuid;
+								});
 			};
 
 			Client.prototype.addUserInfo = function() {
 
 				if(this.userinfos.same_billing)
-					{ this.userinfos.delivery_address = this.userinfos.billing_address; }
-
+					{ this.userinfos.billing_address = this.userinfos.delivery_address; }
+				console.log(this);
 				var data = this.userinfos;
-				data.delivery_address.first_name = currentClient.userinfos.first_name;
-				data.delivery_address.last_name = currentClient.userinfos.last_name;
-				var self = this;
+				console.log(data);
+				data.delivery_address.first_name =data.first_name;
+				data.delivery_address.last_name =data.last_name;
+				data.delivery_address.user = this.uuid;
+				data.billing_address.user = this.uuid;
 
 				var request = $http({
-															url: API_ENDPOINT + '/adduserinfo/',
+															url: API_ENDPOINT + '/users/adduserinfo/',
 															method: 'POST',
 															data: data,
 															headers: {

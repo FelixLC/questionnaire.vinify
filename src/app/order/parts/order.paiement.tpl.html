@@ -6,41 +6,39 @@
 			  <div class="row">
 			      <div class="col-lg-4 col-md-4 col-sm-12 centered">
 					<p>Adresse</p>
-					<h4 class="">Félix Le Chevallier{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>
-					<h4>felix@vinify.co{{currentClient.email}}</h4>
-					<p>106 rue du président wilson{{currentClient.userinfos.delivery_address.street}}<br>
-					92300 Levallois{{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</p>
+					<h4 class="">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</h4>
+					<h4>{{client.email}}</h4>
+					<p>{{client.userinfos.delivery_address.street}}<br>
+					{{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>
 
 			      </div>
 			      <div class="col-lg-4 col-md-4 col-sm-12 centered">
 					<p>Mode de Livraison</p>
-					<a ng-class="{selected: delivery_mode == 1}" class="btn button-overlay" ng-click="deliveryMethod(1)">Point Relais</a>
-					<a ng-class="{selected: delivery_mode == 2}" class="btn button-overlay" ng-click="deliveryMethod(2)">Colissimo Suivi</a>
-					<a ng-class="{selected: delivery_mode == 3}" class="btn button-overlay" ng-click="deliveryMethod(3)">Retrait Vinify (Issy 92)</a>
+					<a ng-class="{selected: delivery.mode == 'Point Relais'}" class="btn button-overlay" ng-click="deliveryMethod(1)">Point Relais</a>
+					<a ng-class="{selected: delivery.mode == 'Colissimo'}" class="btn button-overlay" ng-click="deliveryMethod(2)">Colissimo Suivi</a>
+					<a ng-class="{selected: delivery.mode == 'Vinify'}" class="btn button-overlay" ng-click="deliveryMethod(3)">Retrait Vinify (Issy 92)</a>
 			      </div>
 			      <div class="col-lg-4 col-md-4 col-sm-12">
 			              <table class="table-bill">
 			                  <tr>
 			                    <td><h4>Vinibar </h4></td>
-			                    <td><h4>69{{currentClient.order.amount}} €</h4></td>
+			                    <td><h4>69 €</h4></td>
 			                  </tr>
 			                  <tr>
 			                    <td><h4>Livraison </h4></td>
 			                    <td>
 			                    	<h4>
-			                    		<span ng-show="delivery_mode == 1">8,90 € &nbsp;</span>
-			                    		<span ng-show="delivery_mode == 2">11,90 €</span>
-			                    		<span ng-show="delivery_mode == 3">Gratuit</span>
+								{{delivery.cost}} €
 		                    		</h4>
 	                    		</td>
 			                  </tr>
-			                  <tr>
+			                  <tr ng-show="client.order.coupon.value">
 			                    <td><h4>Promo </h4></td>
-			                    <td><h4>- 10{{currentClient.order.delivery_cost}} €</h4></td>
+			                    <td><h4>- {{client.order.coupon.value}} €</h4></td>
 			                  </tr>
 			                  <tr  class="bill-total">
 			                    <td><h4>Total </h4></td>
-			                    <td><h4>79{{currentClient.order.final_price}} €</h4></td>
+			                    <td><h4>{{69 + delivery.cost - client.order.coupon.value}} €</h4></td>
 			                  </tr>
 			              </table>
 			      </div>
