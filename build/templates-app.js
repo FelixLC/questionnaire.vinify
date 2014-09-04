@@ -642,7 +642,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<input type=\"text\"\n" +
     "								placeholder=\"John\"\n" +
     "								name=\"first_name\"\n" +
-    "								ng-model=\"currentClient.userinfos.delivery_address.first_name\"\n" +
+    "								ng-model=\"currentClient.userinfos.first_name\"\n" +
     "								required\n" +
     "								class=\"form-control\"\n" +
     "								id=\"first_name\"/>\n" +
@@ -653,7 +653,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<input type=\"text\"\n" +
     "								placeholder=\"Snow\"\n" +
     "								name=\"last_name\"\n" +
-    "								ng-model=\"currentClient.userinfos.delivery_address.last_name\"\n" +
+    "								ng-model=\"currentClient.userinfos.last_name\"\n" +
     "								required\n" +
     "								class=\"form-control\"\n" +
     "								id=\"last_name\"/>\n" +
@@ -951,7 +951,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "			<form class=\"form-inline pull-right\" role=\"form\">\n" +
     "			  <div class=\"form-group\">\n" +
     "			    <label class=\"sr-only\" for=\"exampleInputEmail2\">Email address</label>\n" +
-    "				<input type=\"text\" class=\"form-control\" ng-model=\"currentClient.coupon\" placeholder=\"Code Promo / Parrainage\">\n" +
+    "				<input type=\"text\" class=\"form-control\" ng-model=\"coupon.coupon\" placeholder=\"Code Promo / Parrainage\">\n" +
     "			  </div>\n" +
     "				<button class=\"btn button-white\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
     "			</form>\n" +

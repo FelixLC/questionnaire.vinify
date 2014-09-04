@@ -10,7 +10,7 @@
 							<input type="text"
 								placeholder="John"
 								name="first_name"
-								ng-model="currentClient.userinfos.delivery_address.first_name"
+								ng-model="currentClient.userinfos.first_name"
 								required
 								class="form-control"
 								id="first_name"/>
@@ -21,7 +21,7 @@
 							<input type="text"
 								placeholder="Snow"
 								name="last_name"
-								ng-model="currentClient.userinfos.delivery_address.last_name"
+								ng-model="currentClient.userinfos.last_name"
 								required
 								class="form-control"
 								id="last_name"/>
@@ -319,7 +319,7 @@
 			<form class="form-inline pull-right" role="form">
 			  <div class="form-group">
 			    <label class="sr-only" for="exampleInputEmail2">Email address</label>
-				<input type="text" class="form-control" ng-model="currentClient.coupon" placeholder="Code Promo / Parrainage">
+				<input type="text" class="form-control" ng-model="coupon.coupon" placeholder="Code Promo / Parrainage">
 			  </div>
 				<button class="btn button-white" ng-click="addUserInfo(form_commander)">Valider</button>
 			</form>

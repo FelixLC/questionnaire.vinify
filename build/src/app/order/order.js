@@ -35,7 +35,7 @@ angular.module( 'vinibar.order', [
 			templateUrl: 'order/parts/order.confirmation.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','http://powerful-cliffs-5344.herokuapp.com/api')
+.constant('API_ENDPOINT','http://127.0.0.0:8000/api')
 .controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT ) {
 
 	$scope.currentClient = currentClient.currentClient;
@@ -76,7 +76,7 @@ angular.module( 'vinibar.order', [
 			var request = $http({
 									url: API_ENDPOINT +'/orders/vinibarorder/',
 									method: 'POST',
-									data: $scope.coupon,
+									data: $scope.coupon.coupon,
 									headers: {
 										'Content-Type': 'application/json; charset=UTF-8'
 									}

@@ -57,7 +57,7 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','http://powerful-cliffs-5344.herokuapp.com/api')
+.constant('API_ENDPOINT','http://127.0.0.0:8000/api')
 .controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT) {
 
 	// modal
