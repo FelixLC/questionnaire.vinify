@@ -10,7 +10,7 @@
 							<input type="text"
 								placeholder="John"
 								name="first_name"
-								ng-model="currentClient.userinfos.first_name"
+								ng-model="currentClient.userinfos.delivery_address.first_name"
 								required
 								class="form-control"
 								id="first_name"/>
@@ -21,7 +21,7 @@
 							<input type="text"
 								placeholder="Snow"
 								name="last_name"
-								ng-model="currentClient.userinfos.last_name"
+								ng-model="currentClient.userinfos.delivery_address.last_name"
 								required
 								class="form-control"
 								id="last_name"/>
@@ -259,7 +259,7 @@
 							  class="form-control"
 							  id="billing_address.street"
 							  name="billing_address.street"
-							  required/>
+							  />
 						</div>
 						<div class="u-w50 inline-left form-group">
 						<label for="billing_address.company">Ville</label>

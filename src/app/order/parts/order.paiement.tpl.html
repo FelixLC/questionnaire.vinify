@@ -14,9 +14,9 @@
 			      </div>
 			      <div class="col-lg-4 col-md-4 col-sm-12 centered">
 					<p>Mode de Livraison</p>
-					<a ng-class="{selected: delivery_mode == 1}" class="btn button-overlay" ng-click="delivery_mode = 1">Point Relais</a>
-					<a ng-class="{selected: delivery_mode == 2}" class="btn button-overlay" ng-click="delivery_mode = 2">Colissimo Suivi</a>
-					<a ng-class="{selected: delivery_mode == 3}" class="btn button-overlay" ng-click="delivery_mode = 3">Retrait Vinify (Issy 92)</a>
+					<a ng-class="{selected: delivery_mode == 1}" class="btn button-overlay" ng-click="deliveryMethod(1)">Point Relais</a>
+					<a ng-class="{selected: delivery_mode == 2}" class="btn button-overlay" ng-click="deliveryMethod(2)">Colissimo Suivi</a>
+					<a ng-class="{selected: delivery_mode == 3}" class="btn button-overlay" ng-click="deliveryMethod(3)">Retrait Vinify (Issy 92)</a>
 			      </div>
 			      <div class="col-lg-4 col-md-4 col-sm-12">
 			              <table class="table-bill">
@@ -47,7 +47,7 @@
 		  	</div>
 			<div class="row terminate-order">
 				<div class="col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-12 centered">
-					<button class="btn button-white">Commander mes vins</button>
+					<button class="btn button-white" ng-click="createOrder()">Commander mes vins</button>
 				</div>
 			</div>    <!-- ROW -->
 		</div>

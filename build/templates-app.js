@@ -584,9 +584,9 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "			      </div>\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
     "					<p>Mode de Livraison</p>\n" +
-    "					<a ng-class=\"{selected: delivery_mode == 1}\" class=\"btn button-overlay\" ng-click=\"delivery_mode = 1\">Point Relais</a>\n" +
-    "					<a ng-class=\"{selected: delivery_mode == 2}\" class=\"btn button-overlay\" ng-click=\"delivery_mode = 2\">Colissimo Suivi</a>\n" +
-    "					<a ng-class=\"{selected: delivery_mode == 3}\" class=\"btn button-overlay\" ng-click=\"delivery_mode = 3\">Retrait Vinify (Issy 92)</a>\n" +
+    "					<a ng-class=\"{selected: delivery_mode == 1}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(1)\">Point Relais</a>\n" +
+    "					<a ng-class=\"{selected: delivery_mode == 2}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(2)\">Colissimo Suivi</a>\n" +
+    "					<a ng-class=\"{selected: delivery_mode == 3}\" class=\"btn button-overlay\" ng-click=\"deliveryMethod(3)\">Retrait Vinify (Issy 92)</a>\n" +
     "			      </div>\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
     "			              <table class=\"table-bill\">\n" +
@@ -617,7 +617,7 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "		  	</div>\n" +
     "			<div class=\"row terminate-order\">\n" +
     "				<div class=\"col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-12 centered\">\n" +
-    "					<button class=\"btn button-white\">Commander mes vins</button>\n" +
+    "					<button class=\"btn button-white\" ng-click=\"createOrder()\">Commander mes vins</button>\n" +
     "				</div>\n" +
     "			</div>    <!-- ROW -->\n" +
     "		</div>\n" +
@@ -642,7 +642,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<input type=\"text\"\n" +
     "								placeholder=\"John\"\n" +
     "								name=\"first_name\"\n" +
-    "								ng-model=\"currentClient.userinfos.first_name\"\n" +
+    "								ng-model=\"currentClient.userinfos.delivery_address.first_name\"\n" +
     "								required\n" +
     "								class=\"form-control\"\n" +
     "								id=\"first_name\"/>\n" +
@@ -653,7 +653,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							<input type=\"text\"\n" +
     "								placeholder=\"Snow\"\n" +
     "								name=\"last_name\"\n" +
-    "								ng-model=\"currentClient.userinfos.last_name\"\n" +
+    "								ng-model=\"currentClient.userinfos.delivery_address.last_name\"\n" +
     "								required\n" +
     "								class=\"form-control\"\n" +
     "								id=\"last_name\"/>\n" +
@@ -891,7 +891,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							  class=\"form-control\"\n" +
     "							  id=\"billing_address.street\"\n" +
     "							  name=\"billing_address.street\"\n" +
-    "							  required/>\n" +
+    "							  />\n" +
     "						</div>\n" +
     "						<div class=\"u-w50 inline-left form-group\">\n" +
     "						<label for=\"billing_address.company\">Ville</label>\n" +
@@ -1518,7 +1518,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								L22.614,60.048z M8.975,40.853l0.237,0.2l-0.36-0.049L8.975,40.853L8.975,40.853z M18.728,58.271l-0.147,0.212l0.1-0.277\n" +
     "								L18.728,58.271L18.728,58.271z M20.393,38.985l-0.119,0.327l-0.143-0.102L20.393,38.985L20.393,38.985z\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Loire')\" ng-mouseleave=\"leave('Loire')\" ng-click=\"select('Loire')\"  id=\"Loire\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Loire'} \" ng-mouseenter=\"enter('Loire')\" ng-mouseleave=\"leave('Loire')\" ng-click=\"select('Loire')\"  id=\"Loire\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M30.544,65.399c0.295,0.146,0.627,0.626,0.854,0.853c0.364,0.611,0.62,1.265,0.768,1.962c0.52,0.349,0.917,0.804,1.194,1.365\n" +
     "								c1.316,1.316,6.134,0.007,7.335-1.194c0.278-0.278,0.392-0.697,0.512-0.938c0.184-0.366-0.1-0.912-0.17-1.194\n" +
     "								c0.009,0.036,6.101-0.125,6.909,0.683c1.373,1.378-0.05,2.12,2.388,2.729c1.665,0.416,2.886,2.828,4.947,1.279\n" +
@@ -1539,7 +1539,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.031,0.146-4.933,1.49-5.8,1.706c-1.187,0.298-1.85,2.253-2.729,2.474c-0.433,0.108-0.587,0.176-0.938,0\n" +
     "								c-0.532-0.307-1.015-0.676-1.45-1.108c-0.161-0.161-0.542-0.086-0.768-0.086\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Languedoc Roussillon')\" ng-mouseleave=\"leave('Languedoc Roussillon')\" ng-click=\"select('Languedoc Roussillon')\" id=\"Languedoc\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Languedoc Roussillon'} \" ng-mouseenter=\"enter('Languedoc Roussillon')\" ng-mouseleave=\"leave('Languedoc Roussillon')\" ng-click=\"select('Languedoc Roussillon')\" id=\"Languedoc\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M102.805,125.872c-0.221-0.425-0.382-0.871-0.482-1.338c0.318-0.232,0.622-0.482,0.912-0.75c0.375-0.096-0.021-0.387-0.107-0.43\n" +
     "								c-0.229-0.113,0.872-1.53,0.91-1.607c0.316-0.626,0.01-1.419-0.268-1.98c-1.931-3.861-28.059,4.396-25.872,13.068\n" +
     "								c0.187,0.735,0.731,1.496,1.18,2.09c1.591,2.138,4.501,2.579,5.249,5.57c-0.044-0.179,2.657-0.329,2.838-0.375\n" +
@@ -1556,7 +1556,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.182-0.092,0.326,0.021,0.443-0.094c0.162-0.164,0.176-0.424,0.361-0.482c0.716-0.229,1.334-0.584,2.062-0.764\n" +
     "								c0.259-0.064,0.886,1.75,1.043,1.928c0.322,0.362,1.919,0.259,2.385,0.375\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Champagne')\" ng-mouseleave=\"leave('Champagne')\" ng-click=\"select('Champagne')\" id=\"Champagne\" sodipodi:nodetypes=\"csssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Champagne'} \" ng-mouseenter=\"enter('Champagne')\" ng-mouseleave=\"leave('Champagne')\" ng-click=\"select('Champagne')\" id=\"Champagne\" sodipodi:nodetypes=\"csssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M89.291,36.756c1.566-3.002,6.633-2.556,9.264-1.886c-0.264-0.065,0.611-4.597,0.721-5.048c0.6-2.409,6.677,3.741,7.156,4.382\n" +
     "								c0.538,0.716-0.073,2.187-0.611,2.718c-0.844,0.85-2.192,0.948-2.939,1.941c-2.105,2.823-3.621,2.671-6.6,4.16\n" +
     "								c-0.596,0.033-1.188-0.004-1.775-0.111c-0.061-0.015-0.088-0.628-0.111-0.721c-0.08-0.32,0.133-0.449,0.334-0.499\n" +
@@ -1564,7 +1564,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c-1.934-1.915-4.621,1.319-5.023,1.097c-0.242-0.134-0.641,0.446-0.689,0.336c-0.105-0.242-0.375-0.231-0.648-0.095\n" +
     "								C89.17,37.442,89.373,37.178,89.291,36.756C89.408,36.531,89.373,37.178,89.291,36.756z\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Bourgogne')\" ng-mouseleave=\"leave('Bourgogne')\" ng-click=\"select('Bourgogne')\" id=\"Bourgogne_1_\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M98.217,58.001c-0.09-0.18-0.16-0.354,0.156-0.274\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Bourgogne'} \" ng-mouseenter=\"enter('Bourgogne')\" ng-mouseleave=\"leave('Bourgogne')\" ng-click=\"select('Bourgogne')\" id=\"Bourgogne_1_\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M98.217,58.001c-0.09-0.18-0.16-0.354,0.156-0.274\n" +
     "								c0.191,0.048,0.27,0.076,0.432,0.157c0.397,0.199,0.441,0.739,0.941,0.862c0.456,0.114,1.488,0.116,1.646,0.745\n" +
     "								c0.043,0.169,0.09,0.274,0.039,0.471c-0.053,0.215-0.141,0.326-0.352,0.432c-1.043,0.521-2.25,1.044-3.453,0.746\n" +
     "								c-0.287-0.087-0.562-0.205-0.822-0.354c-0.123-0.123-0.148-0.176-0.039-0.393c0.278-0.567,1.127-0.77,1.373-1.255\n" +
@@ -1577,7 +1577,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.057,0.227,0.221,0.334,0.277,0.555c0.214,0.861,0.467,2.885,0.055,3.717c-0.703,1.406-2.125,3.394-1.332,4.992\n" +
     "								c0.234,0.505,0.623,0.634,1.166,0.389c0.176-0.045,0.523-0.355,0.609-0.334\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Provence')\" ng-mouseleave=\"leave('Provence')\" ng-click=\"select('Provence')\" id=\"Provence\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Provence'} \" ng-mouseenter=\"enter('Provence')\" ng-mouseleave=\"leave('Provence')\" ng-click=\"select('Provence')\" id=\"Provence\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M110.178,126.481c0.361,0.083,0.712,0.058,1.053-0.076c0.115-0.057,0.262-0.148,0.338-0.225c0.202-0.224,0.315-0.486,0.338-0.789\n" +
     "								c-0.016-0.152-0.092-0.15-0.244-0.113c-0.123,0.031-0.268,0.213-0.471,0.264c-0.152,0.037-0.295-0.227-0.338-0.311\n" +
     "								c-0.021-0.248-0.128-0.448-0.318-0.602c-0.166-0.082-0.373,0.057-0.545-0.066c-0.09-0.062-0.217-0.197-0.273-0.254\n" +
@@ -1606,7 +1606,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c-0.17-0.084,0.062-0.391,0.074-0.414C109.652,126.704,110.131,126.518,110.178,126.481\n" +
     "								C110.264,126.524,110.131,126.518,110.178,126.481z\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Rhône')\" ng-mouseleave=\"leave('Rhône')\" ng-click=\"select('Rhône')\" id=\"Cote_du_Rhone\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M108.615,102.473c0.123-0.156,0.572-0.395,0.758-0.488\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Rhône'} \" ng-mouseenter=\"enter('Rhône')\" ng-mouseleave=\"leave('Rhône')\" ng-click=\"select('Rhône')\" id=\"Cote_du_Rhone\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M108.615,102.473c0.123-0.156,0.572-0.395,0.758-0.488\n" +
     "								c0.205-0.102,0.66,0.033,0.812,0.109c1.112,0.552,0.233,1.415-0.596,1.627c-0.305,0.076-0.42,0.002-0.65-0.055\n" +
     "								c-0.191-0.049-0.328-0.273-0.434-0.379C108.285,103.067,108.482,102.637,108.615,102.473\n" +
     "								C108.738,102.317,108.482,102.637,108.615,102.473z M112.857,110.905c0.158-0.278,0.343-0.539,0.553-0.781\n" +
@@ -1624,12 +1624,12 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.08-0.041,0.236-0.084,0.277-0.168c0.348-0.67-0.412-1.401-0.277-1.969c0.047-0.186,0.754-0.651,0.916-0.693\n" +
     "								c1.121-0.274,0.305-1.292-0.223-2.33c-0.906-1.774-1.374-2.312-1.691-4.408C106.994,94.604,106.939,94.627,106.848,94.719z\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Alsace')\" ng-mouseleave=\"leave('Alsace')\" ng-click=\"select('Alsace')\" id=\"Alsace\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M139.102,44.28c-3.75,1.875-3.522,11.279-5.168,14.597\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Alsace'} \" ng-mouseenter=\"enter('Alsace')\" ng-mouseleave=\"leave('Alsace')\" ng-click=\"select('Alsace')\" id=\"Alsace\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M139.102,44.28c-3.75,1.875-3.522,11.279-5.168,14.597\n" +
     "								c-0.458,0.166-0.924,0.306-1.396,0.419c-0.398,0.099-0.859-0.059-1.188-0.14c-0.223-0.056-0.408-0.398-0.49-0.559\n" +
     "								c-0.27-0.604-0.362-1.232-0.279-1.886c0.411-0.5,0.807-1.013,1.188-1.537c1.722-3.423,1.565-8.562,4.4-11.383\n" +
     "								c0.665-0.351,1.363-0.607,2.096-0.769c0.352-0.176,0.555-0.01,0.627,0.279c0.045,0.18,0.225,0.337,0.279,0.559\"/>\n" +
     "\n" +
-    "								<path ng-mouseenter=\"enter('Bordeaux')\" ng-mouseleave=\"leave('Bordeaux')\" ng-click=\"select('Bordeaux')\" id=\"Bordeaux\" sodipodi:nodetypes=\"csssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Bordeaux'} \" ng-mouseenter=\"enter('Bordeaux')\" ng-mouseleave=\"leave('Bordeaux')\" ng-click=\"select('Bordeaux')\" id=\"Bordeaux\" sodipodi:nodetypes=\"csssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M41.233,93.713c0.3,1.355,2.026,5.771,1.411,7c-0.098,0.195-0.322,0.242-0.482,0.322c-0.277,0.139-0.202,0.291-0.107,0.482\n" +
     "								c0.097,0.191,0.24,0.426,0.321,0.588c0.301,0.603,0.354,2.05,0.536,2.787c0.438,1.755,3.534,3.393,4.874,4.391\n" +
     "								c0.358,0.269,0.66,1.159,0.857,1.555c0.448,0.896,2.646-0.047,3.106-0.16c0.163-0.041,0.104-0.389,0.268-0.43\n" +
@@ -1665,16 +1665,16 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "						<form class=\"col-lg-12 col-md-12\" role=\"form\" name=\"form_price\">\n" +
     "							<h3>Ma gamme de vin habituelle :</h3>\n" +
     "							<div class=\"col-lg-3 col-md-3\">\n" +
-    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 1}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 1 \">5 - 10 €</a>\n" +
+    "								<button ng-class=\"{selected: newuser.survey.quest_9.answ == 1}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 1 \">5 - 10 €</button>\n" +
     "							</div>\n" +
     "							<div class=\"col-lg-3 col-md-3\">\n" +
-    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 2}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 2\">10 - 15 €</a>\n" +
+    "								<button ng-class=\"{selected: newuser.survey.quest_9.answ == 2}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 2\">10 - 15 €</button>\n" +
     "							</div>\n" +
     "							<div class=\"col-lg-3 col-md-3\">\n" +
-    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 3}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 3\">15€ - 20 €</a>\n" +
+    "								<button ng-class=\"{selected: newuser.survey.quest_9.answ == 3}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 3\">15€ - 20 €</button>\n" +
     "							</div>\n" +
     "							<div class=\"col-lg-3 col-md-3\">\n" +
-    "								<a ng-class=\"{selected: newuser.survey.quest_9.answ == 4}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 4\">20 € & +</a>\n" +
+    "								<button ng-class=\"{selected: newuser.survey.quest_9.answ == 4}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 4\">20 € & +</button>\n" +
     "							</div>\n" +
     "						</form>\n" +
     "					</div>\n" +

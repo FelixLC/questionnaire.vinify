@@ -6376,9 +6376,9 @@ h3 {
   color: #000;
   background-color: #fff;
 }
-.questionnaire .selected {
-  color: #000;
-  background-color: #fff;
+.questionnaire .selectedregion {
+  fill: #CB0001;
+  stroke: #CB0001;
 }
 .questionnaire .selected2 {
   color: #fff;

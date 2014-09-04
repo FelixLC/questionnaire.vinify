@@ -57,9 +57,8 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-
-
-.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout) {
+.constant('API_ENDPOINT','http://powerful-cliffs-5344.herokuapp.com/api')
+.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT) {
 
 	// modal
 	$scope.open = function (size) {
@@ -96,7 +95,7 @@ angular.module( 'vinibar.questionnaire', [
 	// Please note that $modalInstance represents a modal window (instance) dependency.
 	// It is not the same as the $modal service used above.
 
-	var ModalInstanceCtrl = function ($scope, $modalInstance) {
+	var ModalInstanceCtrl = function ($scope, $modalInstance, $http) {
 
 		$scope.selectedEmail = {
 			email: null
@@ -104,7 +103,8 @@ angular.module( 'vinibar.questionnaire', [
 
 		$scope.ok = function () {
 			if($scope.selectedEmail.email) {
-					mixpanel.track('Questionnaire Démarré', {email: $scope.selectedEmail.email});
+					// mixpanel.track('Questionnaire Démarré', {email: $scope.selectedEmail.email});
+					$http.post(API_ENDPOINT + '/users/createprospect/', {email: $scope.selectedEmail.email});
 					$modalInstance.close($scope.selectedEmail.email);
 			}
 		};

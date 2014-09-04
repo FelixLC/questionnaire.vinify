@@ -112,10 +112,12 @@ angular.module('clientFactory', [])
 					{ this.userinfos.delivery_address = this.userinfos.billing_address; }
 
 				var data = this.userinfos;
+				data.delivery_address.first_name = currentClient.userinfos.first_name;
+				data.delivery_address.last_name = currentClient.userinfos.last_name;
 				var self = this;
 
 				var request = $http({
-															url: '/adduserinfo/',
+															url: API_ENDPOINT + '/adduserinfo/',
 															method: 'POST',
 															data: data,
 															headers: {
