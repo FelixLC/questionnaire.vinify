@@ -167,7 +167,6 @@ angular.module( 'vinibar.order', [
 									})
 									.error(function(data, status, headers, config) {
 										toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
-										‹
 										mixpanel.track('Server Failed to proceed payment');
 
 									});

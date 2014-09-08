@@ -4,7 +4,7 @@ angular.module( 'vinibar.mondialrelay', [
   'ui.bootstrap'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'mondialrelay', {
       url: '/mondialrelay/:orderid/:zipcode',
@@ -16,10 +16,10 @@ angular.module( 'vinibar.mondialrelay', [
       },
       data:{ pageTitle: 'mondialrelay' }
     });
-}])
+})
 
 
-.controller( 'mondialrelayCtrl', ["$scope", "$stateParams", "$http", "$state", function mondialrelayCtrl( $scope, $stateParams, $http, $state) {
+.controller( 'mondialrelayCtrl', function mondialrelayCtrl( $scope, $stateParams, $http, $state) {
 
   var order_id = $stateParams.orderid;
   var zipcode = $stateParams.zipcode;
@@ -96,4 +96,4 @@ angular.module( 'vinibar.mondialrelay', [
 
 
 
-}]);
+});

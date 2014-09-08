@@ -7,7 +7,7 @@ angular.module( 'vinibar.order', [
 	'toaster'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
 	$stateProvider
 		.state( 'order', {
 			url: '/order',
@@ -35,9 +35,9 @@ angular.module( 'vinibar.order', [
 			url: '/confirmation',
 			templateUrl: 'order/parts/order.confirmation.tpl.html'
 		});
-}])
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'orderCtrl', ["$scope", "$http", "$location", "currentClient", "$state", "$filter", "$rootScope", "API_ENDPOINT", "toaster", function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
+})
+.constant('API_ENDPOINT','https://powerful-cliffs-5344.herokuapp.com/api')
+.controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
 
 	$scope.client = currentClient.currentClient;
 	$scope.formInvalid = false;
@@ -237,7 +237,7 @@ angular.module( 'vinibar.order', [
  };
 
 
-}])
+})
 
 .filter('characters', function () {
 					return function (input, chars, breakOnWord) {

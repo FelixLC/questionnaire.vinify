@@ -6,7 +6,7 @@ angular.module( 'vinibar.paiement', [
   'ngAutocomplete'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'paiement', {
       url: '/paiement',
@@ -26,9 +26,9 @@ angular.module( 'vinibar.paiement', [
       url: '/confirmation',
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
-}])
+})
 
-.controller( 'paiementCtrl', ["$scope", "$http", "$state", function paiementCtrl( $scope, $http, $state) {
+.controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state) {
 
   $scope.login = function(email, password) {
 
@@ -69,4 +69,4 @@ angular.module( 'vinibar.paiement', [
 
   };
 
-}]);
+});

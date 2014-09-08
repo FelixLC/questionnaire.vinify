@@ -5,7 +5,7 @@ angular.module( 'vinibar.commander', [
   'ngAutocomplete'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider.state( 'commander', {
     url: '/commander',
     views: {
@@ -16,9 +16,9 @@ angular.module( 'vinibar.commander', [
     },
     data:{ pageTitle: 'Commander' }
   });
-}])
+})
 
-.controller( 'commanderCtrl', ["$scope", "$http", "$location", function commanderCtrl( $scope, $http, $location ) {
+.controller( 'commanderCtrl', function commanderCtrl( $scope, $http, $location ) {
 
   $scope.user = {};
   $scope.identical = true;
@@ -42,4 +42,4 @@ angular.module( 'vinibar.commander', [
   };
 
 
-}]);
+});
