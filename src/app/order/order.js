@@ -36,7 +36,7 @@ angular.module( 'vinibar.order', [
 			templateUrl: 'order/parts/order.confirmation.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
+.constant('API_ENDPOINT','https://powerful-cliffs-5344.herokuapp.com/api')
 .controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
 
 	$scope.client = currentClient.currentClient;
@@ -167,6 +167,7 @@ angular.module( 'vinibar.order', [
 									})
 									.error(function(data, status, headers, config) {
 										toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
+										‹
 										mixpanel.track('Server Failed to proceed payment');
 
 									});
