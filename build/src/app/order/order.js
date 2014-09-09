@@ -36,11 +36,10 @@ angular.module( 'vinibar.order', [
 			templateUrl: 'order/parts/order.confirmation.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://powerful-cliffs-5344.herokuapp.com/api')
+.constant('API_ENDPOINT','https://vinify-client-api.cleverapps.io/api')
 .controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
 
 	$scope.client = currentClient.currentClient;
-	$scope.formInvalid = false;
 	$scope.coupon = {};
 	$scope.b = {};
 	$scope.delivery = {
@@ -63,14 +62,8 @@ angular.module( 'vinibar.order', [
 //  ADD SCOPE INFO TO FACTORY THEN TRIGGER ORDER IF SUCCESS
 	$scope.addUserInfo = function(form) {
 
-		if (!($scope.coupon.coupon)) {// FIRST, WE CHECK IF THE USER HAS A COUPON
-			console.log('$scope.coupon === null');
-			toaster.pop('info', 'Vinify est encore en Beta privée.', '  Vous devez avoir un code d\'accès. Plus d\'infos à charlotte@vinify.co');
-		} else if (form.$valid) { // THEN, IF THE FORM IS VALID
+		if (form.$valid) { // THEN, IF THE FORM IS VALID
 			// IF WE ARE HERE, A COUPON HAS BEEN ENTERED SO WE ERASE THE ERROR
-			$scope.couponError = false;
-			console.log('form.$valid');
-			$scope.formInvalid = false;
 			$rootScope.loading = true;
 			console.log($scope.client);
 			// THEN, IF THE COUPON IS VALID
@@ -120,10 +113,8 @@ angular.module( 'vinibar.order', [
 		}
 
 		else {
-				$rootScope.loading = false;
-				$scope.couponError = false;
-				console.log('else');
-				$scope.formInvalid = true;
+			$rootScope.loading = false;
+			toaster.pop('info', 'Oops', 'un ou plusieurs champs sont incomplets ou erronés.');
 		}
 
 	};
@@ -142,8 +133,8 @@ angular.module( 'vinibar.order', [
 	$scope.createOrder = function() {
 
 		var handler = StripeCheckout.configure({
-			key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
-			// key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
+			// key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
+			key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
 			image: "assets/LogoVinifyMini2.png",
 			token: function(token, args) {
 				var data_order = token;

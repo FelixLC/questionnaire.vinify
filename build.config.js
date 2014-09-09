@@ -64,6 +64,7 @@ module.exports = {
     js: [
       'vendor/angular/angular.js',
       'vendor/angular-animate/angular-animate.min.js',
+      'bower_components/angular-cookies/angular-cookies.min.js',
       'vendor/angular-toaster/angular-toaster.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
@@ -71,7 +72,6 @@ module.exports = {
       'vendor/angular-ui-utils/modules/route/route.js'
     ],
     css: [
-      'vendor/angular-toaster/angular-toaster.css'
     ],
     assets: [
       'vendor/bootstrap/fonts/*.*',

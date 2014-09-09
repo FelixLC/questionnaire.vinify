@@ -336,8 +336,6 @@ angular.module("order/order.tpl.html", []).run(["$templateCache", function($temp
     "			</div>\n" +
     "		</nav>\n" +
     "	<div class=\"container-delivery\">\n" +
-    "		<div class=\"bg-danger fader\" ng-show=\"formInvalid\"><p>Oops, un ou plusieurs champs sont incomplets ou erronés.</p></div>\n" +
-    "		<div class=\"bg-danger fader\" ng-show=\"couponError\"><p>{{couponError}}</p></div>\n" +
     "  		<toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "\n" +
     "		<div class=\"col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding\">\n" +
@@ -1132,7 +1130,7 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
     "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_1.answ == 2}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_1.answ = 2\">Avec du sucre</a>\n" +
     "          </div>\n" +
     "          <div class=\"col-lg-3 col-md-3\">\n" +
-    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_1.answ == 3}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_1.answ = 3\">Avec de la crème ou du lait</a>\n" +
+    "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_1.answ == 3}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_1.answ = 3\">À la crème ou au lait</a>\n" +
     "          </div>\n" +
     "          <div class=\"col-lg-3 col-md-3\">\n" +
     "            <a ui-sref=\"questionnaire.juice\" ng-class=\"{selected: newuser.survey.quest_1.answ == 4}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_1.answ = 4\">Je ne prends pas de café</a>\n" +
@@ -1148,10 +1146,15 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
     "\n" +
     "        <script type=\"text/ng-template\" id=\"myModalContent.html\">\n" +
     "\n" +
-    "            <div class=\"modal-body\">\n" +
+    "            <div class=\"modal-body\" id=\"modal-email\">\n" +
     "                <h3 class=\"modal-title\">Démarrer l'aventure vinify</h3>\n" +
     "                <p>Merci de rentrer votre adresse email pour démarrer l'aventure :)</p>\n" +
-    "                  <div class=\"input-group col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3\">\n" +
+    "                  <div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
+    "                      <label>\n" +
+    "                        <input type=\"checkbox\"><span>J'ai plus de 18 ans</span>\n" +
+    "                      </label>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"input-group col-lg-6 col-md-6 col-sm-6 centered\">\n" +
     "                    <input type=\"email\"\n" +
     "                        name=\"email\"\n" +
     "                        ng-model=\"selectedEmail.email\"\n" +
@@ -1160,9 +1163,21 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
     "                        class=\"form-control\"\n" +
     "                        id=\"email\"/>\n" +
     "                    <span class=\"input-group-btn\">\n" +
-    "                      <button class=\"btn btn-default\" type=\"button\" ng-click=\"ok()\">Go!</button>\n" +
+    "                      <button class=\"btn btn-default\" type=\"submit\" ng-click=\"ok()\">Go!</button>\n" +
     "                    </span>\n" +
     "                  </div>\n" +
+    "                  <style>\n" +
+    "                    #modal-email input[type=\"checkbox\"] {\n" +
+    "                      width: 15px;\n" +
+    "                    }\n" +
+    "                    #modal-email > div label span {\n" +
+    "                      font-size:14px;\n" +
+    "                      padding-left:5px\n" +
+    "                    }\n" +
+    "                    #modal-email .input-group {\n" +
+    "                      margin: 0 auto;\n" +
+    "                    }\n" +
+    "                  </style>\n" +
     "            </div>\n" +
     "\n" +
     "        </script>\n" +

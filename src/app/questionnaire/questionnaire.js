@@ -58,8 +58,8 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://powerful-cliffs-5344.herokuapp.com/api')
-.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster) {
+.constant('API_ENDPOINT','https://vinify-client-api.cleverapps.io/api')
+.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window) {
 
 	// modal
 	$scope.open = function (size) {
@@ -194,7 +194,7 @@ angular.module( 'vinibar.questionnaire', [
 				currentClient.currentClient.userinfos.last_name = $scope.newuser.last_name;
 
 				$scope.newuser.createUser().success(function(data, status, headers, config) {
-
+																$window.sessionStorage.token = data.token;
 																$state.go('order.userinfos');
 																// $state.go('remerciement');
 																$rootScope.loading = false;

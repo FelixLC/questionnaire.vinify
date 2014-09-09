@@ -1,7 +1,7 @@
 deploy:
 	grunt bump
 	grunt compile
-	s3cmd sync bin/. s3://vinify-questionnaire
+	s3cmd sync bin/. s3://start.vinify.co
 grunt:
 	grunt watch
 

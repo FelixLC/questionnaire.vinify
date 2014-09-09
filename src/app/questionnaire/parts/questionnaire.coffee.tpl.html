@@ -14,7 +14,7 @@
             <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 2}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 2">Avec du sucre</a>
           </div>
           <div class="col-lg-3 col-md-3">
-            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 3}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 3">Avec de la crème ou du lait</a>
+            <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 3}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 3">À la crème ou au lait</a>
           </div>
           <div class="col-lg-3 col-md-3">
             <a ui-sref="questionnaire.juice" ng-class="{selected: newuser.survey.quest_1.answ == 4}" class="btn button-overlay" ng-click="newuser.survey.quest_1.answ = 4">Je ne prends pas de café</a>
@@ -30,10 +30,15 @@
 
         <script type="text/ng-template" id="myModalContent.html">
 
-            <div class="modal-body">
+            <div class="modal-body" id="modal-email">
                 <h3 class="modal-title">Démarrer l'aventure vinify</h3>
                 <p>Merci de rentrer votre adresse email pour démarrer l'aventure :)</p>
-                  <div class="input-group col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                      <label>
+                        <input type="checkbox"><span>J'ai plus de 18 ans</span>
+                      </label>
+                  </div>
+                  <div class="input-group col-lg-6 col-md-6 col-sm-6 centered">
                     <input type="email"
                         name="email"
                         ng-model="selectedEmail.email"
@@ -42,9 +47,21 @@
                         class="form-control"
                         id="email"/>
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button" ng-click="ok()">Go!</button>
+                      <button class="btn btn-default" type="submit" ng-click="ok()">Go!</button>
                     </span>
                   </div>
+                  <style>
+                    #modal-email input[type="checkbox"] {
+                      width: 15px;
+                    }
+                    #modal-email > div label span {
+                      font-size:14px;
+                      padding-left:5px
+                    }
+                    #modal-email .input-group {
+                      margin: 0 auto;
+                    }
+                  </style>
             </div>
 
         </script>
