@@ -1675,7 +1675,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "							<textarea name=\"textarea\" type=\"text\" id=\"comments\" rows=\"4\" class=\"form-control\" ng-model=\"newuser.survey.quest_8.answ\" placeholder=\"Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ...\"></textarea>\n" +
     "						</form>\n" +
     "					</div>\n" +
-    "					<div class=\"row\">\n" +
+    "<!-- 					<div class=\"row\">\n" +
     "						<form class=\"col-lg-12 col-md-12\" role=\"form\" name=\"form_price\">\n" +
     "							<h3>Ma gamme de vin habituelle :</h3>\n" +
     "							<div class=\"col-lg-3 col-md-3\">\n" +
@@ -1691,7 +1691,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								<button ng-class=\"{selected: newuser.survey.quest_9.answ == 4}\" class=\"btn button-overlay\" ng-click=\"newuser.survey.quest_9.answ = 4\">20 € & +</button>\n" +
     "							</div>\n" +
     "						</form>\n" +
-    "					</div>\n" +
+    "					</div> -->\n" +
     "					<div class=\"row\">\n" +
     "				            <form name=\"form_name\" role=\"form\" class=\"form-inline\">\n" +
     "					              <h3>Mon compte Vinify</h3>\n" +

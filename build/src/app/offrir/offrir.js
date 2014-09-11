@@ -22,7 +22,7 @@ angular.module( 'vinibar.offrir', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider.state( 'offrir', {
     url: '/offrir',
     views: {
@@ -33,12 +33,12 @@ angular.module( 'vinibar.offrir', [
     },
     data:{ pageTitle: 'offrir' }
   });
-})
+}])
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'offrirCtrl', function offrirController( $scope ) {
+.controller( 'offrirCtrl', ["$scope", function offrirController( $scope ) {
 
   $scope.Send = function(user) {
 
@@ -57,5 +57,5 @@ angular.module( 'vinibar.offrir', [
 
         return request;
   };
-});
+}]);
 

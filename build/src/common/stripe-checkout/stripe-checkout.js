@@ -2,7 +2,7 @@ angular.module('stripe', [])
   .directive('stripeCheckout', function() {
     return {
       restrict: 'A',
-      controller: function($scope, $http, $location) {
+      controller: ["$scope", "$http", "$location", function($scope, $http, $location) {
         $scope.handler = StripeCheckout.configure({
           key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
           // key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
@@ -34,7 +34,7 @@ angular.module('stripe', [])
                       });
           }
         });
-      },
+      }],
       link: function(scope, element, attrs) {
 
 

@@ -58,7 +58,7 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://vinify-client-api.cleverapps.io/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window) {
 
 	// modal

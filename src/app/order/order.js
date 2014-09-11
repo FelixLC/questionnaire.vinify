@@ -36,7 +36,7 @@ angular.module( 'vinibar.order', [
 			templateUrl: 'order/parts/order.confirmation.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://vinify-client-api.cleverapps.io/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
 
 	$scope.client = currentClient.currentClient;
@@ -68,7 +68,7 @@ angular.module( 'vinibar.order', [
 			console.log($scope.client);
 			// THEN, IF THE COUPON IS VALID
 			var request = $http({
-									url: API_ENDPOINT +'/orders/vinibarorder/',
+									url: 'https://api.vinify.co/api' +'/orders/vinibarorder/',
 									method: 'POST',
 									data: {'coupon' : $scope.coupon.coupon},
 									headers: {
@@ -148,7 +148,7 @@ angular.module( 'vinibar.order', [
 					{urlPOST = '/orders/chargerefill/';}
 
 				$http({
-													url: '/api/' + urlPOST,
+													url: 'API_ENDPOINT' + urlPOST,
 													method: "POST",
 													data: data_order
 									})
