@@ -3,7 +3,7 @@ angular.module( 'vinibar', [
   'templates-common',
   'vinibar.commander',
   'vinibar.offrir',
-  'vinibar.mondialrelay',
+  'mondialrelay',
   'vinibar.order',
   'vinibar.questionnaire',
   'vinibar.paiement',

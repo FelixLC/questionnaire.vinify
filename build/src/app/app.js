@@ -3,7 +3,7 @@ angular.module( 'vinibar', [
   'templates-common',
   'vinibar.commander',
   'vinibar.offrir',
-  'vinibar.mondialrelay',
+  'mondialrelay',
   'vinibar.order',
   'vinibar.questionnaire',
   'vinibar.paiement',
@@ -16,12 +16,12 @@ angular.module( 'vinibar', [
   'ngCookies'
 ])
 
-.config( ["$stateProvider", "$urlRouterProvider", function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/questionnaire/coffee' );
-}])
+})
 
 // We'll intercept all request and put the token in it
-.factory('authInterceptor', ["$rootScope", "$q", "$window", "$location", function ($rootScope, $q, $window, $location) {
+.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
@@ -37,10 +37,10 @@ angular.module( 'vinibar', [
       return response || $q.when(response);
     }
   };
-}])
-.config(["$httpProvider", function ($httpProvider) {
+})
+.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
-}])
+})
 
 .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -53,13 +53,13 @@ angular.module( 'vinibar', [
 .run( function run () {
 })
 
-.controller( 'AppCtrl', ["$scope", "$location", function AppCtrl ( $scope, $location ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | vinibar' ;
     }
   });
-}])
+})
 
 .factory('User', [function () {
 

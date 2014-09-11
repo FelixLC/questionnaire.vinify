@@ -165,7 +165,7 @@ angular.module("mrelay/mrelay.tpl.html", []).run(["$templateCache", function($te
     "<nav class=\"navbar\" role=\"navigation\">\n" +
     "  <div class=\"container-fluid\">\n" +
     "    <div class=\"navbar-header\">\n" +
-    "       <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifycoBlanc.png\" style=\"height:45px\"/></a>\n" +
+    "       <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifyco.png\" style=\"height:45px\"/></a>\n" +
     "    </div>\n" +
     "    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
     "      <ul class=\"nav navbar-nav navbar-right\">\n" +

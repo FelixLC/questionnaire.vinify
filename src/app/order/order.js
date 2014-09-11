@@ -68,7 +68,7 @@ angular.module( 'vinibar.order', [
 			console.log($scope.client);
 			// THEN, IF THE COUPON IS VALID
 			var request = $http({
-									url: 'https://api.vinify.co/api' +'/orders/vinibarorder/',
+									url: API_ENDPOINT +'/orders/vinibarorder/',
 									method: 'POST',
 									data: {'coupon' : $scope.coupon.coupon},
 									headers: {
@@ -148,11 +148,21 @@ angular.module( 'vinibar.order', [
 					{urlPOST = '/orders/chargerefill/';}
 
 				$http({
-													url: 'API_ENDPOINT' + urlPOST,
+													url: API_ENDPOINT + urlPOST,
 													method: "POST",
 													data: data_order
 									})
 									.success(function(data, status, headers, config) {
+										if ($scope.client.order.delivery_mode === 'Point Relais') {
+											$http({
+												url: apiEndPoint + '/orders/pickmremail/',
+												method: "POST",
+												data: { 'order_id': $scope.client.order.uuid },
+												headers: {
+													'Content-Type': 'application/json; charset=UTF-8'
+												}
+											});
+										}
 										$location.path('/remerciement_order');
 										mixpanel.track('Sucessful payment');
 									})

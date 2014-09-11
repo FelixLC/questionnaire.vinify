@@ -7,7 +7,7 @@ angular.module( 'vinibar.order', [
 	'toaster'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
 	$stateProvider
 		.state( 'order', {
 			url: '/order',
@@ -35,9 +35,9 @@ angular.module( 'vinibar.order', [
 			url: '/confirmation',
 			templateUrl: 'order/parts/order.confirmation.tpl.html'
 		});
-}])
+})
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'orderCtrl', ["$scope", "$http", "$location", "currentClient", "$state", "$filter", "$rootScope", "API_ENDPOINT", "toaster", function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
+.controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
 
 	$scope.client = currentClient.currentClient;
 	$scope.coupon = {};
@@ -68,7 +68,7 @@ angular.module( 'vinibar.order', [
 			console.log($scope.client);
 			// THEN, IF THE COUPON IS VALID
 			var request = $http({
-									url: 'https://api.vinify.co/api' +'/orders/vinibarorder/',
+									url: API_ENDPOINT +'/orders/vinibarorder/',
 									method: 'POST',
 									data: {'coupon' : $scope.coupon.coupon},
 									headers: {
@@ -148,11 +148,21 @@ angular.module( 'vinibar.order', [
 					{urlPOST = '/orders/chargerefill/';}
 
 				$http({
-													url: 'API_ENDPOINT' + urlPOST,
+													url: API_ENDPOINT + urlPOST,
 													method: "POST",
 													data: data_order
 									})
 									.success(function(data, status, headers, config) {
+										if ($scope.client.order.delivery_mode === 'Point Relais') {
+											$http({
+												url: apiEndPoint + '/orders/pickmremail/',
+												method: "POST",
+												data: { 'order_id': $scope.client.order.uuid },
+												headers: {
+													'Content-Type': 'application/json; charset=UTF-8'
+												}
+											});
+										}
 										$location.path('/remerciement_order');
 										mixpanel.track('Sucessful payment');
 									})
@@ -228,7 +238,7 @@ angular.module( 'vinibar.order', [
  };
 
 
-}])
+})
 
 .filter('characters', function () {
 					return function (input, chars, breakOnWord) {
