@@ -11,6 +11,7 @@
   </div>
 </nav>
 <div class="container" id="mondialrelay">
+    <toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
     <div class="bg-danger fader centered" ng-show="error"><p>{{error}}</p></div>
       <div class="col-lg-8 col-sm-8" id="mondialrelay-widget">
           <div id="Zone_Widget">
@@ -23,7 +24,8 @@
          <p>Choississez le Point Relais que vous souhaitez et validez.</p>
         <button class="btn" ng-click="sendMR()" id="submit_shop">Valider</button>
         <br><br><br>
-         <p>Vous ne trouvez pas de point relais qui vous convient ? Cliquez sur changer la livraison</p>
-        <button class="btn" ng-click="changeDelivery()" id="change_delivery">Changer la livraison</button>
+         <p>Vous ne trouvez pas de point relais qui vous convient ?</p>
+         <p>Contactez <a href="mailto:charlotte@vinify.co">Charlotte</a></p>
+        <!-- <button class="btn" ng-click="changeDelivery()" id="change_delivery">Changer la livraison</button> -->
       </div>
 </div> <!-- container delivery -->

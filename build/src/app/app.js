@@ -7,6 +7,7 @@ angular.module( 'vinibar', [
   'vinibar.order',
   'vinibar.questionnaire',
   'vinibar.paiement',
+  'vinibar.welcome',
   'vinibar.remerciement',
   'vinibar.remerciement_order',
   'ui.router',

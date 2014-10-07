@@ -78,6 +78,13 @@
 	}
 }
 
+.birthdate {
+	display: table;
+}
+.birthdate > div {
+	display: table-cell;
+	width: 33%;
+}
 .container-underline {
 	margin-left: 15px;
 	margin-right: 15px;
@@ -172,7 +179,50 @@ footer {
 		text-align: center;
 	}
 }
-
+@media screen and (max-width: 640px) {
+	.container-delivery {
+		background-image: none;
+	}
+	.form-infos {
+		margin-top:0;
+		background-color: #FFF;
+		h4, label {
+			color: #000;
+		}
+	  .button-white {
+	    text-align: center;
+	    width: 200px;
+	    color: #FFF;
+	    background-color: @color-support-strong;
+	    border-color: @color-support-strong;
+	    margin: 2.5px;
+	    padding-left:10px;
+	    border-radius: 20px;
+	    &:hover {
+	      color: #fff;
+	      background-color: transparent;
+	      border-color: #fff;
+	    }
+	    &:active {
+	      color: #FFF;
+	      background-color: @color-support-strong;
+	    }
+	  }
+	}
+	.row-paiement,
+	.row-paiement p,
+	.row-paiement h3,
+	.row-paiement h4 {
+		color: #000;
+	}
+	a.btn.button-overlay.deliverymode {
+		border: 1px solid #000;
+		color: #000;
+	}
+	.table-bill {
+		margin-top: 20px;
+	}
+}
 .delivery-button {
 	width: 100%;
 	background-color: @dark-grey;

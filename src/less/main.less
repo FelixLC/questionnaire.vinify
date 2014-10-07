@@ -95,7 +95,39 @@ html, body { font-size: 100%; }
 html {
   height: 100%;
 }
+@font-face {
+    font-family: 'amaranthbold';
+    src: url('fonts/amaranth-bold-webfont.eot');
+    src: url('fonts/amaranth-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/amaranth-bold-webfont.woff') format('woff'),
+         url('fonts/amaranth-bold-webfont.ttf') format('truetype'),
+         url('fonts/amaranth-bold-webfont.svg#amaranthregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
+}
+@font-face {
+    font-family: 'amaranthregular';
+    src: url('fonts/amaranth-regular-webfont.eot');
+    src: url('fonts/amaranth-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/amaranth-regular-webfont.woff') format('woff'),
+         url('fonts/amaranth-regular-webfont.ttf') format('truetype'),
+         url('fonts/amaranth-regular-webfont.svg#amaranthregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'actorregular';
+    src: url('fonts/actor-regular-webfont.eot');
+    src: url('fonts/actor-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/actor-regular-webfont.woff') format('woff'),
+         url('fonts/actor-regular-webfont.ttf') format('truetype'),
+         url('fonts/actor-regular-webfont.svg#actorregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 .vertical-align {
   overflow: visible;
   position: relative;
@@ -108,7 +140,27 @@ html {
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: none;
 }
+@color-support-strong: #006DB2;
+.btn-cta {
+  color: #ffffff;
+  font-family: 'amaranthregular', Helvetica, Arial, sans-serif;
+  border-color: @color-support-strong;
+  background-color: @color-support-strong;
+  border-radius: 50px;
+  cursor: pointer;
+}
 
+.btn-cta:hover, .btn-cta:focus, .btn-cta:active, .btn-cta.active, .open .dropdown-toggle.btn-cta {
+  color: #ffffff;
+  background-color: @color-support-strong;
+  border-color: @color-support-strong;
+}
+
+.btn-cta-outline {
+  font-family: 'amaranthregular', Helvetica, Arial, sans-serif;
+  border-radius: 50px;
+  background-color: transparent;
+}
 @media screen and (max-width: 640px) {
   .vertical-align-mobile {
     top: 10%;
@@ -221,6 +273,7 @@ h1, h2, h3 {
 @import '../app/remerciement/remerciement.less';
 @import '../app/remerciement_order/remerciement_order.less';
 @import '../app/order/order.less';
+@import '../app/welcome/welcome.less';
 @import '../app/mrelay/mrelay.less';
 
 // ANIMATIONS
@@ -398,14 +451,6 @@ h1, h2, h3 {
     margin: 2.5px;
     padding-left:10px;
     border-radius: 20px;
-    &:active {
-      color: #000;
-      background-color: #fff;
-    }
-    &:hover {
-      color: #000;
-      background-color: #fff;
-    }
   }
 
   .selected {

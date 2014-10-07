@@ -1,4 +1,12 @@
 <div class="background-winemap">
+	  <div class="progressbar">
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div class="progress-whole"></div>
+	  </div>
 	<div class="overlay">
 		<div class="form-errors fader" ng-show="showFormErrors">
 			<span ng-hide="form_name.$valid && form_user.$valid" >Le(s) champ(s) suivant(s) sont requis:</span>
@@ -16,9 +24,9 @@
 		<div class="vertical-align-comments centered">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6 hidden-xs elements-quest" id="quest_winemap">
-					<h3>Ma région préférée&nbsp;: <br>
+					<h3>Ma région viticole préférée&nbsp;: <br>
 					<span ng-hide="newuser.survey.quest_7.answ || region.hover">(Cliquez sur la carte)</span>
-					<span ng-show="!newuser.survey.quest_7.answ">{{ region.hover }}</span>{{ newuser.survey.quest_7.answ }}</h3>
+					<span ng-show="!newuser.survey.quest_7.answ">{{ region.hover }}</span><span class="selected-region">{{ newuser.survey.quest_7.answ }}</span></h3>
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							 viewBox="0 0 145.78 143.313" enable-background="new 0 0 145.78 143.313"
 							 xml:space="preserve">
@@ -194,11 +202,11 @@
 							<div id="region">
 								<label class="visible-xs">
 									<select name="region" class="form-control" ng-model="newuser.survey.region" ng-options="region as region for region in regions | orderBy: 'toString()'">
-									<option value="">Votre région préférée ... &nbsp;&nbsp;</option>
+									<option value="">Ma région viticole préférée ... &nbsp;&nbsp;</option>
 									</select>
 								</label>
 							</div>
-							<label for="comments" class="sr-only">Un vin qui vous a marqué ?</label>
+							<label for="comments" class="sr-only">Un vin qui m'a marqué ?</label>
 							<textarea name="textarea" type="text" id="comments" rows="4" class="form-control" ng-model="newuser.survey.quest_8.answ" placeholder="Un vin qui vous a marqué, vos cépages préférés, une expérience dans le vin que vous souhaitez partager ..."></textarea>
 						</form>
 					</div>

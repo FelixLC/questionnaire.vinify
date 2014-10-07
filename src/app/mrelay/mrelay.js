@@ -1,6 +1,7 @@
 angular.module( 'mondialrelay', [
 	'ui.router',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'toaster'
 ])
 
 .config(function config( $stateProvider ) {
@@ -13,12 +14,12 @@ angular.module( 'mondialrelay', [
 					templateUrl: 'mrelay/mrelay.tpl.html'
 				}
 			},
-			data:{ pageTitle: 'Mondial Relay00' }
+			data:{ pageTitle: 'Mondial Relay' }
 		});
 })
 
-
-.controller( 'mondialrelayCtrl', function mondialrelayCtrl( $scope, $stateParams, $http, $state) {
+.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
+.controller( 'mondialrelayCtrl', function mondialrelayCtrl( $scope, $stateParams, $http, $state, API_ENDPOINT, toaster, $timeout) {
 
 	var order_id = $stateParams.orderid;
 	var zipcode = $stateParams.zipcode;
@@ -48,7 +49,7 @@ angular.module( 'mondialrelay', [
 				};
 
 				var request = $http({
-												url: '/pickmrshop/',
+												url: API_ENDPOINT + '/orders/pickmrshop/',
 												method: 'POST',
 												data: data,
 												headers: {
@@ -56,10 +57,11 @@ angular.module( 'mondialrelay', [
 												}
 				})
 				.success(function(data, status, headers, config) {
-					$state.go('remerciement');
+					toaster.pop('success', 'Votre point de réservation a été enregistré', 'A bientôt');
+					$timeout(function () { $window.location.href = 'http://facebook.com/vinify.co';}, 40000);
 				})
 				.error(function(data, status, headers, config) {
-					alert('Une erreur est survenue, merci de réessayer');
+					toaster.pop('error', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
 				});
 
 				return request;
@@ -75,7 +77,7 @@ angular.module( 'mondialrelay', [
 			};
 
 			var request = $http({
-											url: '/changedeliverymode/',
+											url: API_ENDPOINT + 'orders/changedeliverymode/',
 											method: 'POST',
 											data: data,
 											headers: {

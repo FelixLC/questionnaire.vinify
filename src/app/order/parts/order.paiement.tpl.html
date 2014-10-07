@@ -1,5 +1,5 @@
 
-	<div class="row">
+	<div class="row row-paiement">
 			<div class="col-lg-12 col-md-12 col-sm-12">
 			<h3 class="centered">Merci de vérifier vos informations</h3>
 			<hr>
@@ -14,9 +14,9 @@
 			      </div>
 			      <div class="col-lg-4 col-md-4 col-sm-12 centered">
 					<p>Mode de Livraison</p>
-					<a ng-class="{selected: delivery.mode == 'Point Relais'}" class="btn button-overlay" ng-click="deliveryMethod(1)">Point Relais</a>
-					<a ng-class="{selected: delivery.mode == 'Colissimo'}" class="btn button-overlay" ng-click="deliveryMethod(2)">Colissimo Suivi</a>
-					<a ng-class="{selected: delivery.mode == 'Vinify'}" class="btn button-overlay" ng-click="deliveryMethod(3)">Retrait Vinify (Issy 92)</a>
+					<a ng-class="{selected: delivery.mode == 'Point Relais'}" class="btn button-overlay deliverymode" ng-click="updateOrder(1)">Point Relais</a>
+					<a ng-class="{selected: delivery.mode == 'Colissimo'}" class="btn button-overlay deliverymode" ng-click="updateOrder(2)">Colissimo Suivi</a>
+					<a ng-class="{selected: delivery.mode == 'Vinify'}" class="btn button-overlay deliverymode" ng-click="updateOrder(3)">Retrait Vinify (Issy 92)</a>
 			      </div>
 			      <div class="col-lg-4 col-md-4 col-sm-12">
 			              <table class="table-bill">

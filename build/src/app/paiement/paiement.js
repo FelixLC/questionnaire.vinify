@@ -3,7 +3,8 @@ angular.module( 'vinibar.paiement', [
   'placeholders',
   'ui.bootstrap',
   'stripe',
-  'ngAutocomplete'
+  'ngAutocomplete',
+  'toaster'
 ])
 
 .config(function config( $stateProvider ) {
@@ -16,7 +17,7 @@ angular.module( 'vinibar.paiement', [
           templateUrl: 'paiement/paiement.tpl.html'
         }
       },
-      data:{ pageTitle: 'paiement' }
+      data:{ pageTitle: 'Paiement' }
     })
     .state( 'paiement.login', {
       url: '/login',
@@ -27,9 +28,26 @@ angular.module( 'vinibar.paiement', [
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
 })
+.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
+.controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
+  $scope.delivery = {
+    mode: 'Colissimo',
+    cost: 11.90
+  };
+  $scope.deliveryMethod = function(num) {
 
-.controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state) {
+    if (num === 1) {  $scope.delivery.cost = 8.90;
+                      $scope.delivery.mode = 'Point Relais';}
 
+    if (num === 2) {  $scope.delivery.cost = 11.90;
+                      $scope.delivery.mode = 'Colissimo'; }
+
+    if (num === 3) {  $scope.delivery.cost = 0;
+                      $scope.delivery.mode = 'Vinify'; }
+  };
+  var closeLoading = function() {
+                                  $rootScope.loading= false;
+  };
   $scope.login = function(email, password) {
 
     // var unfinishedOrder = $http({
@@ -43,30 +61,131 @@ angular.module( 'vinibar.paiement', [
     //                       });
 
       var request = $http({
-                            url: '/login/',
+                            url: API_ENDPOINT + '/users/login/',
                             method: "POST",
-                            data: 'username=' + email + '&password=' + password,
+                            data: {'username' : email, 'password' : password},
                             headers: {
-                                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                     'Content-Type': 'application/json; charset=UTF-8'
                             }
                     }).success(function(data, status, headers, config) {
-                          $scope.currentClient = {};
+                      $window.sessionStorage.token = data.token;
+                      $scope.client = new Client();
+                      $scope.client.uuid = data.uuid;
+                      $scope.client.email = data.email;
+                      $scope.client.first_name = data.first_name;
+                      $scope.client.last_name = data.last_name;
+                        if(data.status == 2.5) {
                           $http({
-                                  url: '/unfinishedorder/',
+                                  url: API_ENDPOINT + '/orders/unfinishedorder/',
                                   method: "GET"
                                 })
                                 .success(function(data, status, headers, config) {
-                                    $scope.currentClient.order = data;
+                                    $scope.client.order = data;
                                     $state.go('paiement.confirmation');
                                 })
                                 .error(function(data, status, headers, config) {
-                                   alert('Vous n\'avez pas de commande en cours');
+                                  alert('Vous n\'avez pas de commande en cours');
                                 });
+                        } else if (data.status == 2) {
+                          currentClient.currentClient = $scope.client;
+                          currentClient.currentClient.userinfos.first_name = $scope.client.first_name;
+                          currentClient.currentClient.userinfos.last_name = $scope.client.last_name;
+                          $state.go('order.userinfos');
+                        } else if (data.status == 1) {
+                          $state.go('questionnaire.coffee');
+                        } else {
+                          toaster.pop('infos', 'Vous n\'avez pas de commande de Vinibar en cours');
+                        }
                       })
                     .error(function(data, status, headers, config) {
-                        alert(data);
+                        toaster.pop('infos', 'Erreur', 'Combinaison Email / Mot de passe érronée');
                       });
 
+  };
+//  SEND ORDER REQUEST TO SERVER. IF SUCCESS UPDATE SCOPE WITH ORDER DATA AND TRANSITION TO CONFIRMATION
+  $scope.createOrder = function() {
+    $rootScope.loading = true;
+    var handler = StripeCheckout.configure({
+      // key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
+      key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
+      image: "assets/LogoVinifyMini2.png",
+      token: function(token, args) {
+        var data_order = token;
+        data_order.order_uuid = $scope.client.order.uuid;
+        data_order.delivery_cost = $scope.delivery_cost;
+        data_order.delivery_mode = $scope.delivery_mode;
+
+        var urlPOST = '/orders/chargevinibar/';
+
+        if ($scope.client.order.order_type === "Refill")
+          {urlPOST = '/orders/chargerefill/';}
+
+        $http({
+                          url: API_ENDPOINT + urlPOST,
+                          method: "POST",
+                          data: data_order
+                  })
+                  .success(function(data, status, headers, config) {
+                    if ($scope.client.order.delivery_mode === 'Point Relais') {
+                      $http({
+                        url: API_ENDPOINT + '/orders/pickmremail/',
+                        method: "POST",
+                        data: { 'order_id': $scope.client.order.uuid },
+                        headers: {
+                          'Content-Type': 'application/json; charset=UTF-8'
+                        }
+                      });
+                    }
+                    $location.path('/remerciement_order');
+                    mixpanel.track('Sucessful payment');
+                  })
+                  .error(function(data, status, headers, config) {
+                    toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
+                    mixpanel.track('Server Failed to proceed payment');
+
+                  });
+      }
+    });
+
+    $scope.order_data = {
+      'order_uuid': $scope.client.order.uuid,
+      'delivery_cost': $scope.delivery.cost,
+      'delivery_mode': $scope.delivery.mode
+    };
+
+
+    var request = $http({
+                          url: API_ENDPOINT + '/orders/updateorder/',
+                          method: 'POST',
+                          data: $scope.order_data,
+                          headers: {
+                            'Content-Type': 'application/json; charset=UTF-8'
+                          }
+                        })
+
+                        .success(function(data, status, headers, config) {
+                              $scope.order = data;
+                              console.log($scope.order.final_price * 100);
+                              console.log($scope.order.final_price);
+                              console.log(Math.floor($scope.order.final_price * 100));
+                              handler.open({
+                                name: "Vinify",
+                                description: "Vinibar",
+                                currency: "EUR",
+                                panelLabel: "Payer",
+                                opened: closeLoading(),
+                                closed: closeLoading(),
+                                amount: Math.floor($scope.order.final_price * 100),
+                                email: $scope.order.user.email
+                              });
+                          })
+
+                        .error(function(data, status, headers, config) {
+                              console.log('error @ createOrder');
+                              $rootScope.loading = false;
+                          });
+
+        return request;
   };
 
 });

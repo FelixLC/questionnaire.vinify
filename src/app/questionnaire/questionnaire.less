@@ -1,5 +1,21 @@
 .progressbar {
   z-index: 300;
+  position: fixed;
+  top:50px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.progressbar > div {
+  height: 14px;
+  width: 14px;
+  border-radius: 7px;
+  border: 1px solid #FFF;
+  display: inline-block;
+  margin: 10px;
+}
+.progressbar .progress-whole {
+  background-color: #FFF;
 }
 .modal-body {
   text-align: center;
@@ -11,7 +27,14 @@
     width: 200px;
   }
 }
-
+.btn.button-overlay:hover,
+.btn.button-overlay:focus {
+  color: #FFF;
+}
+.btn.button-overlay:active {
+    color: #000;
+    background-color: #fff;
+}
 .form-errors {
   z-index: 500;
   background-color: @blue;
@@ -124,7 +147,6 @@
     transform: translateY(-50%);
 
   }
-
   @media screen and (max-width: 640px) {
     .vertical-align-comments {
         overflow: visible;
@@ -133,10 +155,23 @@
         -webkit-transform: translateY(0);
         -ms-transform: translateY(0);
         transform: translateY(0);
-
+      }
+      .vertical-align {
+        overflow: visible;
+        position: relative;
+        top: 5px;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
       }
     .overlay {
       padding: 25px 50px;
+    }
+    .progressbar {
+      top:1px;
+    }
+    .button-createuser {
+      margin-top: 0;
     }
   }
 
@@ -145,7 +180,9 @@
     margin-bottom: 20px;
     text-align: center;
   }
-
+  .elements-quest .button-overlay{
+    text-transform: uppercase;
+  }
   .btn-quest {
     color: #fff;
     margin: 10px 2.5px;

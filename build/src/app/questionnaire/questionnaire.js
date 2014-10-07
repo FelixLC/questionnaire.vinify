@@ -58,9 +58,9 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window) {
-
+.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
+.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
+	console.log(API_ENDPOINT);
 	// modal
 	$scope.open = function (size) {
 
@@ -103,11 +103,7 @@ angular.module( 'vinibar.questionnaire', [
 		};
 
 		$scope.ok = function () {
-			if($scope.selectedEmail.email) {
-					// mixpanel.track('Questionnaire Démarré', {email: $scope.selectedEmail.email});
-					$http.post(API_ENDPOINT + '/users/createprospect/', {email: $scope.selectedEmail.email});
 					$modalInstance.close($scope.selectedEmail.email);
-			}
 		};
 
 		$scope.cancel = function () {
@@ -167,6 +163,8 @@ angular.module( 'vinibar.questionnaire', [
 	// };
 
 	$scope.newuser = new Client();
+	$scope.newuser.coupon = $stateParams.p ? $stateParams.p : "";
+	console.log($stateParams);
 	var juice_bckg = new Image ();
 		juice_bckg.src = "assets/fruits.jpg";
 	var cuisine_bckg = new Image ();
@@ -177,6 +175,8 @@ angular.module( 'vinibar.questionnaire', [
 			balance_bckg.src = "assets/vineyard.jpg";
 	var winemap_bckg = new Image ();
 			winemap_bckg.src = "assets/winery.jpg";
+	var order_bckg = new Image ();
+			order_bckg.src = "assets/background_order.jpg";
 
 
 
@@ -186,6 +186,7 @@ angular.module( 'vinibar.questionnaire', [
 		console.log(tastes);
 		// IF FORM IS VALID
 		if (name.$valid && user.$valid) {
+				delete $window.sessionStorage.token;
 				$rootScope.loading = true;
 				$scope.showFormEmailError = false;
 				$scope.showFormErrors = false;
@@ -202,10 +203,9 @@ angular.module( 'vinibar.questionnaire', [
 
 													.error(function(data, status, headers, config) {
 																$rootScope.loading = false;
-																$scope.invalidLogin = true;
+																toaster.pop('info', 'Oops, cet email est déjà associé à un compte');
 																console.log('error @ createOrder');
 														});
-				mixpanel.register($scope.newuser);
 				mixpanel.track('User Created');
 
 		}

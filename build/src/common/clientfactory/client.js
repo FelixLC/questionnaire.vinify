@@ -1,6 +1,6 @@
 
 angular.module('clientFactory', [])
-	.constant('API_ENDPOINT','https://api.vinify.co/api')
+	.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
 
 	//  The Client Factory is used to instantiate a new client
 	.factory('Client', ['$http' , '$state', 'API_ENDPOINT',  function ($http, $state, API_ENDPOINT) {
@@ -82,7 +82,7 @@ angular.module('clientFactory', [])
 					this.userinfos = new Userinfos();
 					this.order_type = null;
 					this.referral = null;
-					this.coupon = null;
+					this.coupon = "";
 					this.order = {};
 			};
 
@@ -144,6 +144,15 @@ angular.module('clientFactory', [])
 			currentClient: null,
 			reset: function(){
 				this.currentClient = null;
+			}
+		};
+	}])
+	// the currentClient Factory gives the current Client we're working with
+	.factory('unfinishedOrder', [function () {
+		return {
+			unfinishedOrder: null,
+			reset: function(){
+				this.unfinishedOrder = null;
 			}
 		};
 	}]);
