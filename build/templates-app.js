@@ -339,7 +339,8 @@ angular.module("order/order.tpl.html", []).run(["$templateCache", function($temp
     "		</nav>\n" +
     "	<div class=\"container-delivery\">\n" +
     "  		<toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
-    "\n" +
+    "		<h3 ng-show=\"isState('order.userinfos')\" class=\"centered\">Notre oenologue va préparer votre sélection personnalisée</h3>\n" +
+    "		<h3 ng-show=\"isState('order.paiement')\" class=\"centered\">Merci de vérifier vos informations</h3>\n" +
     "		<div class=\"col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding\">\n" +
     "			<div class=\"main-container\" ui-view autoscroll=\"false\"></div>\n" +
     "		</div>\n" +
@@ -572,8 +573,6 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "\n" +
     "	<div class=\"row row-paiement\">\n" +
     "			<div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
-    "			<h3 class=\"centered\">Merci de vérifier vos informations</h3>\n" +
-    "			<hr>\n" +
     "			  <div class=\"row\">\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
     "					<p>Adresse</p>\n" +
@@ -632,8 +631,6 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "\n" +
     "		<div class=\"row\">\n" +
     "			<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
-    "				<h4 class=\"centered\">Notre oenologue va préparer votre sélection personnalisée</h4>\n" +
-    "				<hr>\n" +
     "				<form novalidate name=\"form_commander\" class=\"clearfix\">\n" +
     "					<div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
     "						<div class=\"form-group\">\n" +

@@ -17,7 +17,8 @@
 		</nav>
 	<div class="container-delivery">
   		<toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
-
+		<h3 ng-show="isState('order.userinfos')" class="centered">Notre oenologue va préparer votre sélection personnalisée</h3>
+		<h3 ng-show="isState('order.paiement')" class="centered">Merci de vérifier vos informations</h3>
 		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding">
 			<div class="main-container" ui-view autoscroll="false"></div>
 		</div>

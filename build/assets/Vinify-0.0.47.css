@@ -7089,17 +7089,12 @@ footer p {
 }
 .container-delivery-confirmation {
   text-align: center;
-  background-image: url(background-order.jpg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   position: absolute;
   left: 0;
   top: 56px;
   right: 0;
   bottom: 0;
-  background-color: transparent;
+  background-color: #EFEEEB;
   font-size: 0.8rem;
   margin-top: 0;
   padding-left: 0;
@@ -7143,17 +7138,12 @@ footer p {
   margin-top: 50px;
 }
 .container-delivery {
-  background-image: url(background-order.jpg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   position: absolute;
   left: 0;
   top: 56px;
   right: 0;
   bottom: 0;
-  background-color: transparent;
+  background-color: #EFEEEB;
   font-size: 0.8rem;
 }
 .container-delivery label {
@@ -7190,50 +7180,62 @@ footer p {
 .container-delivery .bg-danger {
   text-align: center;
 }
+.container-delivery > h3 {
+  font-family: 'amaranthregular';
+  text-transform: uppercase;
+  padding: 20px;
+}
 @media screen and (max-width: 640px) {
-  .container-delivery {
-    background-image: none;
+  .container-delivery > h3 {
+    font-size: 14px;
   }
-  .form-infos {
-    margin-top: 0;
-    background-color: #FFF;
+  .form-infos .form-offer {
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
-  .form-infos h4,
-  .form-infos label {
-    color: #000;
-  }
-  .form-infos .button-white {
-    text-align: center;
-    width: 200px;
-    color: #FFF;
-    background-color: #006db2;
-    border-color: #006db2;
-    margin: 2.5px;
-    padding-left: 10px;
-    border-radius: 20px;
-  }
-  .form-infos .button-white:hover {
-    color: #fff;
-    background-color: transparent;
-    border-color: #fff;
-  }
-  .form-infos .button-white:active {
-    color: #FFF;
-    background-color: #006db2;
-  }
-  .row-paiement,
-  .row-paiement p,
-  .row-paiement h3,
-  .row-paiement h4 {
-    color: #000;
-  }
-  a.btn.button-overlay.deliverymode {
-    border: 1px solid #000;
-    color: #000;
-  }
-  .table-bill {
-    margin-top: 20px;
-  }
+}
+.container-delivery label,
+.container-delivery h4,
+.container-delivery p,
+.container-delivery button {
+  font-family: 'amaranthregular';
+}
+.form-infos {
+  margin-top: 0;
+  background-color: #FFF;
+}
+.form-infos h4,
+.form-infos label {
+  color: #000;
+}
+.form-infos .button-white {
+  text-align: center;
+  width: 200px;
+  font-size: 16px;
+  color: #FFF;
+  background-color: #006db2;
+  border-color: #006db2;
+  margin: 2.5px;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.form-infos .button-white:active,
+.form-infos .button-white:hover {
+  color: #FFF;
+  background-color: #006db2;
+}
+.form-infos .row-paiement,
+.form-infos .row-paiement p,
+.form-infos .row-paiement h3,
+.form-infos .row-paiement h4 {
+  color: #000;
+}
+.form-infos a.btn.button-overlay.deliverymode {
+  border: 1px solid #000;
+  color: #000;
+}
+.form-infos .table-bill {
+  margin-top: 20px;
 }
 .delivery-button {
   width: 100%;
@@ -7356,8 +7358,6 @@ footer p {
     padding: 10px;
   }
   #welcome h3 {
-    font-family: 'amaranthregular';
-    text-transform: uppercase;
     font-size: 16px;
   }
 }

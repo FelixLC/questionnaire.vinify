@@ -137,8 +137,8 @@ footer {
 	}
 
 .container-delivery {
-	background-image: url(background-order.jpg);
-	.prefix-background;
+	// background-image: url(background-order.jpg);
+	// .prefix-background;
 	position:absolute;
 	left: 0;
 	top: 56px;
@@ -148,7 +148,7 @@ footer {
 		font-weight: 300;
 		color: #FFF;
 	}
-	background-color: transparent;
+	background-color: #EFEEEB;
 	// margin-top: 50px;
 	font-size: 0.8rem;
 	.container-title {
@@ -179,36 +179,49 @@ footer {
 		text-align: center;
 	}
 }
+.container-delivery > h3 {
+  	font-family: 'amaranthregular';
+	text-transform: uppercase;
+	padding: 20px;
+}
 @media screen and (max-width: 640px) {
-	.container-delivery {
-		background-image: none;
+	.container-delivery > h3 {
+		font-size: 14px;
 	}
-	.form-infos {
-		margin-top:0;
-		background-color: #FFF;
-		h4, label {
-			color: #000;
-		}
-	  .button-white {
-	    text-align: center;
-	    width: 200px;
-	    color: #FFF;
-	    background-color: @color-support-strong;
-	    border-color: @color-support-strong;
-	    margin: 2.5px;
-	    padding-left:10px;
-	    border-radius: 20px;
-	    &:hover {
-	      color: #fff;
-	      background-color: transparent;
-	      border-color: #fff;
-	    }
-	    &:active {
-	      color: #FFF;
-	      background-color: @color-support-strong;
-	    }
-	  }
+	.form-infos .form-offer {
+		padding-top: 20px;
+		padding-bottom: 20px;
 	}
+}
+.container-delivery label,
+.container-delivery h4,
+.container-delivery p,
+.container-delivery button {
+  	font-family: 'amaranthregular';
+}
+.form-infos {
+	margin-top:0;
+	background-color: #FFF;
+	h4, label {
+		color: #000;
+	}
+  .button-white {
+    text-align: center;
+    width: 200px;
+    font-size: 16px;
+    color: #FFF;
+    background-color: @color-support-strong;
+    border-color: @color-support-strong;
+    margin: 2.5px;
+    padding-left:10px;
+    border-radius: 20px;
+    &:active,
+    &:hover {
+      color: #FFF;
+      background-color: @color-support-strong;
+    }
+  }
+
 	.row-paiement,
 	.row-paiement p,
 	.row-paiement h3,

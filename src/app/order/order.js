@@ -39,6 +39,7 @@ angular.module( 'vinibar.order', [
 .constant('API_ENDPOINT','https://backoffice.vinify.co/api')
 .controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
   console.log(API_ENDPOINT);
+  $scope.isState= function(state){ return $state.is(state);};
   $scope.client = currentClient.currentClient;
   $scope.coupon = {
     coupon: "",
