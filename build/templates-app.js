@@ -1861,7 +1861,7 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "		<div class=\"centered\">\n" +
     "			<img src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
     "			<p>Ces quelques questions permettrons à notre oenologue de sélectionner <span class=\"highlight\">spécialement pour vous 6 bouteilles</span> parmi notre gamme de plus de 100 références.</p>\n" +
-    "			<div ui-sref=\"questionnaire.coffee\" class=\"button btn-cta\">Démarrer l'aventure</div>\n" +
+    "			<div ui-sref=\"questionnaire.coffee\" class=\"button btn-cta\">Démarrer</div>\n" +
     "			<p>En continuant, je certifie avoir plus de 18 ans et j'accepte les <a href=\"\">CGV</a> de Vinify</p>\n" +
     "		</div>\n" +
     "	</div>\n" +

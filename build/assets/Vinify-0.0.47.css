@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:800,400,300|Montserrat:700,400);
+@import url(http://fonts.googleapis.com/css?family=Julius+Sans+One|Roboto:300,400,700);
 /**
  * This is the main application stylesheet. It should include or import all
  * stylesheets used throughout the application as this is the only stylesheet in
@@ -6162,27 +6162,6 @@ body {
 html {
   height: 100%;
 }
-@font-face {
-  font-family: 'amaranthbold';
-  src: url('fonts/amaranth-bold-webfont.eot');
-  src: url('fonts/amaranth-bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/amaranth-bold-webfont.woff') format('woff'), url('fonts/amaranth-bold-webfont.ttf') format('truetype'), url('fonts/amaranth-bold-webfont.svg#amaranthregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'amaranthregular';
-  src: url('fonts/amaranth-regular-webfont.eot');
-  src: url('fonts/amaranth-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/amaranth-regular-webfont.woff') format('woff'), url('fonts/amaranth-regular-webfont.ttf') format('truetype'), url('fonts/amaranth-regular-webfont.svg#amaranthregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'actorregular';
-  src: url('fonts/actor-regular-webfont.eot');
-  src: url('fonts/actor-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/actor-regular-webfont.woff') format('woff'), url('fonts/actor-regular-webfont.ttf') format('truetype'), url('fonts/actor-regular-webfont.svg#actorregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 .vertical-align {
   overflow: visible;
   position: relative;
@@ -6198,7 +6177,7 @@ html {
 }
 .btn-cta {
   color: #ffffff;
-  font-family: 'amaranthregular', Helvetica, Arial, sans-serif;
+  font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
   border-color: #006db2;
   background-color: #006db2;
   border-radius: 50px;
@@ -6214,7 +6193,7 @@ html {
   border-color: #006db2;
 }
 .btn-cta-outline {
-  font-family: 'amaranthregular', Helvetica, Arial, sans-serif;
+  font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
   border-radius: 50px;
   background-color: transparent;
 }
@@ -6277,13 +6256,13 @@ html {
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
 }
 body {
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 h1,
 h2,
 h3 {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
 }
 /**
  * Bootstrapfixes
@@ -6382,9 +6361,6 @@ h3 {
 .questionnaire button:focus,
 .questionnaire button:active {
   outline: none;
-}
-.questionnaire h3 {
-  text-transform: uppercase;
 }
 .questionnaire .btn-quest-radio {
   color: #000;
@@ -6493,9 +6469,6 @@ h3 {
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-}
-.questionnaire .elements-quest .button-overlay {
-  text-transform: uppercase;
 }
 .questionnaire .btn-quest {
   color: #fff;
@@ -6689,7 +6662,7 @@ h3 {
 }
 .background-winemap #region label:after {
   content: '< >';
-  font: 11px "Open Sans", Helvetica, monospace;
+  font: 11px "Roboto", Helvetica, monospace;
   color: #fff;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -6902,7 +6875,7 @@ h3 {
 }
 .btn-big {
   font-size: 1.2em;
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
 }
 #btn-pay {
   margin-top: 50px;
@@ -7181,7 +7154,7 @@ footer p {
   text-align: center;
 }
 .container-delivery > h3 {
-  font-family: 'amaranthregular';
+  font-family: 'Julius Sans One';
   text-transform: uppercase;
   padding: 20px;
 }
@@ -7194,11 +7167,14 @@ footer p {
     padding-bottom: 20px;
   }
 }
-.container-delivery label,
+.container-delivery label {
+  font-family: 'Roboto';
+  font-weight: 400;
+}
 .container-delivery h4,
 .container-delivery p,
 .container-delivery button {
-  font-family: 'amaranthregular';
+  font-family: 'Julius Sans One';
 }
 .form-infos {
   margin-top: 0;
@@ -7266,7 +7242,7 @@ footer p {
 .button-overlay-primary {
   text-align: center;
   color: #fff;
-  font-family: 'Montserrat';
+  font-family: 'Julius Sans One';
   font-size: 24px;
   background-color: #34495e;
   border-color: transparent;
@@ -7332,18 +7308,19 @@ footer p {
   max-width: 500px;
   font-size: 16px;
   margin: 0 auto;
-  font-family: 'amaranthregular';
+  font-family: 'Roboto';
 }
 #welcome > div > div:last-child p:last-child {
   font-size: 12px;
-  font-family: 'amaranthregular';
+  font-family: 'Roboto';
 }
 #welcome h3 {
-  font-family: 'amaranthregular';
+  font-family: 'Julius Sans One';
   text-transform: uppercase;
 }
 #welcome span.highlight {
-  font-family: 'amaranthbold';
+  font-family: 'Roboto';
+  font-weight: 400;
 }
 #welcome div.btn-cta {
   max-width: 250px;
