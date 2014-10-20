@@ -58,7 +58,7 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
 	console.log(API_ENDPOINT);
 	// modal
@@ -115,7 +115,7 @@ angular.module( 'vinibar.questionnaire', [
 	// opening the modal when loading
 	$scope.open('lg');
 
-	mixpanel.track('Questionnaire Ouvert');
+	// mixpanel.track('Questionnaire Ouvert');
 	$scope.form_print = function (form) {
 		$scope.output = form;
 	};
@@ -147,6 +147,7 @@ angular.module( 'vinibar.questionnaire', [
 	};
 
 	$scope.regions = [
+		'Je n\'en ai pas',
 		'Loire',
 		'Languedoc Roussillon',
 		'Champagne',
@@ -159,7 +160,7 @@ angular.module( 'vinibar.questionnaire', [
 
 	// $scope.trackLink = function(n) {
 	//   $scope.newuser.survey.balance.red = 2;
-	//   mixpanel.track('clicked on your face');
+	//   // mixpanel.track('clicked on your face');
 	// };
 
 	$scope.newuser = new Client();
@@ -206,7 +207,7 @@ angular.module( 'vinibar.questionnaire', [
 																toaster.pop('info', 'Oops, cet email est déjà associé à un compte');
 																console.log('error @ createOrder');
 														});
-				mixpanel.track('User Created');
+				// mixpanel.track('User Created');
 
 		}
 

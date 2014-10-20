@@ -18,16 +18,18 @@
 		<meta property="og:url" content="https://app.vinify.co" />
 		<meta property="og:image" content="http://www.vinify.co/img/LogoVinifyMini2.png" />
 		<meta property="og:description" content="6 bouteilles choisies pour moi, selon mes goûts">
+		<link rel="icon" type="image/png" href="https://vinify.co/assets/img/favicon.png" />
 
 		<!-- font awesome from BootstrapCDN -->
-		<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 
 		<!-- compiled CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/Vinify-0.0.47.css" />
+		<link rel="stylesheet" type="text/css" href="assets/Vinify-0.0.71.css" />
 		<!-- compiled JavaScript -->
 		<script type="text/javascript" src="vendor/angular/angular.js"></script>
 		<script type="text/javascript" src="vendor/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-payments/lib/angular-payments.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 		<script type="text/javascript" src="vendor/angular-toaster/angular-toaster.js"></script>
 		<script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
@@ -35,13 +37,14 @@
 		<script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
 		<script type="text/javascript" src="vendor/angular-ui-utils/modules/route/route.js"></script>
 		<script type="text/javascript" src="src/app/app.js"></script>
-		<script type="text/javascript" src="src/app/commander/commander.js"></script>
 		<script type="text/javascript" src="src/app/mrelay/mrelay.js"></script>
 		<script type="text/javascript" src="src/app/offrir/offrir.js"></script>
 		<script type="text/javascript" src="src/app/order/order.js"></script>
 		<script type="text/javascript" src="src/app/paiement/paiement.js"></script>
+		<script type="text/javascript" src="src/app/pay_mobile/pay_mobile.js"></script>
 		<script type="text/javascript" src="src/app/questionnaire/questionnaire.js"></script>
 		<script type="text/javascript" src="src/app/remerciement/remerciement.js"></script>
+		<script type="text/javascript" src="src/app/remerciement_mobile/remerciement_mobile.js"></script>
 		<script type="text/javascript" src="src/app/remerciement_order/remerciement_order.js"></script>
 		<script type="text/javascript" src="src/app/welcome/welcome.js"></script>
 		<script type="text/javascript" src="src/common/clientfactory/client.js"></script>
@@ -88,5 +91,6 @@
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script src="https://widget.mondialrelay.com/parcelshop-picker/v3_0/scripts/jquery.plugin.mondialrelay.parcelshoppicker.min.js"></script>
 		<script src="https://checkout.stripe.com/checkout.js"></script>
+		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 	</body>
 </html>

@@ -1,0 +1,383 @@
+ .vinibar-showcase {
+  img {
+    width: 100%;
+  }
+  overflow: hidden;
+  padding: 0;
+ }
+ .navbar {
+  margin: 0;
+  background-color: #FFF;
+  border: 0 solid #ebebeb;
+  border-bottom-width: 1px;
+  border-radius: 0;
+ }
+
+ .form-infos {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 40px;
+  h4, h3, p {
+    color: #FFF;
+  }
+
+  .u-w50 {
+    width: 50%;
+    float: left;
+  }
+  .inline-left {
+    padding-right: 5px;
+  }
+  .inline-right {
+    padding-left: 5px;
+  }
+  .form-offer {
+    padding-top: 60px;
+  }
+ }
+
+.table-bill {
+    margin: 0 auto;
+    min-width: 187px;
+    td {
+      padding: 0 15px;
+    }
+    .bill-total {
+      border-top: 1px solid #FFF;
+    }
+}
+.table-deliv-mode {
+    margin: 0 auto;
+    margin-top: 20px;
+    min-width: 250px;
+    td {
+      padding: 0 15px;
+    }
+    tr {
+      cursor: pointer;
+    }
+    p {
+      text-align: left;
+      font-family: 'Julius One Sans';
+    }
+}
+
+.terminate-order{
+  margin-top: 60px;
+}
+
+.birthdate {
+  input {
+    margin: 2px;
+    border-radius: 4px;
+  }
+}
+
+.birthdate {
+  display: table;
+}
+.birthdate > div {
+  display: table-cell;
+  width: 33%;
+}
+.container-underline {
+  margin-left: 15px;
+  margin-right: 15px;
+  border-top-color: @brand-primary;
+}
+
+
+.background-order {
+  background-color: #FFF;
+  padding-bottom: 80px;
+}
+
+.bouchons {
+    height: 300px;
+    margin-top: -20px;
+    background-image: url(bouchons2.jpg);
+    text-align: center;
+    // background-color: @blue;
+      .order-button-container {
+        .vertical-align;
+      }
+}
+
+footer {
+  p {
+    font-size: 14px;
+  }
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  left: 0;
+  right: 0;
+  background-color:transparent;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0px 5px 0px;
+}
+
+.container-delivery-confirmation {
+  text-align: center;
+  .container-delivery;
+  margin-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  // background-color: @blue;
+}
+
+  .confirmation-first-title {
+    margin-top: 50px;
+  }
+
+.container-delivery {
+  // background-image: url(background-order.jpg);
+  // .prefix-background;
+  position:absolute;
+  left: 0;
+  top: 56px;
+  right: 0;
+  bottom: 0;
+  label {
+    font-weight: 300;
+    color: #FFF;
+  }
+  background-color: #EFEEEB;
+  // margin-top: 50px;
+  font-size: 0.8rem;
+  .container-title {
+    position: relative;
+  }
+  #delivery_billing_title:after {
+    position: absolute;
+    content:"";
+    width:282px;
+    height:0;
+    border-top:5px solid @brand-primary;
+  }
+  #payment_title:after {
+    position: absolute;
+    content:"";
+    width:366px;
+    height:0;
+    border-top:5px solid @brand-primary;
+  }
+  #payment-bckg {
+    background-image: url(wines.jpg);
+    .prefix-background;
+  }
+  .ruler-delivery {
+    margin-top: 5px;
+  }
+  .bg-danger {
+    text-align: center;
+  }
+}
+.container-delivery > h3 {
+    font-family: 'Julius Sans One';
+  text-transform: uppercase;
+  padding: 20px;
+}
+@media screen and (max-width: 640px) {
+  .container-delivery > h3 {
+    font-size: 14px;
+  }
+  .form-infos .form-offer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+.container-delivery label {
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+.container-delivery h4,
+.container-delivery button {
+    font-family: 'Julius Sans One';
+}
+.container-delivery p {
+  font-family: 'Roboto';
+}
+.form-infos {
+  margin-top:0;
+  background-color: #FFF;
+  h4, label {
+    color: #000;
+  }
+  .button-white {
+    text-align: center;
+    width: 200px;
+    font-size: 16px;
+    color: #FFF;
+    background-color: @color-support-strong;
+    border-color: @color-support-strong;
+    margin: 2.5px;
+    padding-left:10px;
+    border-radius: 20px;
+    &:active,
+    &:hover {
+      color: #FFF;
+      background-color: @color-support-strong;
+    }
+  }
+
+  .row-paiement,
+  .row-paiement p,
+  .row-paiement h3,
+  .row-paiement h4 {
+    color: #000;
+  }
+  a.btn.button-overlay.deliverymode {
+    border: 1px solid #000;
+    color: #000;
+  }
+  .table-bill {
+
+  }
+}
+.delivery-button {
+  width: 100%;
+  background-color: @dark-grey;
+  margin-top: 5px;
+
+  &:hover, &:focus {
+    background-color: @blue;
+    color: #ffffff;
+  }
+}
+
+.selecteddelivery {
+    background-color: @blue;
+    color: #ffffff;
+}
+
+.btn-proceed {
+    padding: 20px;
+    text-align: center;
+    border-radius: 0;
+    background-color: @blue;
+    border-radius: 50px;
+    color: #ffffff;
+    &:hover, &:focus {
+      color: #fff;
+    }
+}
+.radio-deliv > div {
+  display: block;
+  text-align: left;
+  height: 39px;
+  line-height: 39px;
+  cursor: pointer;
+}
+.radio-deliv {
+  margin: 0 auto;
+}
+.radio-deliv > div > div {
+  position: absolute;
+}
+.radio-deliv p {
+  padding-left: 35px;
+}
+.radio-deliv svg {
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+  .button-overlay-primary {
+    text-align: center;
+    color: #fff;
+    font-family: 'Julius Sans One';
+    font-size: 24px;
+    background-color: @brand-primary;
+    border-color: transparent;
+    margin: 2.5px;
+    padding-left:10px;
+    border-radius: 20px;
+    &:active {
+      color: @brand-primary;
+      background-color: transparent;
+    }
+    &:hover {
+      color: @brand-primary;
+      background-color: transparent;
+      border-color: @brand-primary;
+    }
+  }
+
+.btn-order {
+  .btn-proceed;
+  background-color: @red;
+  border-radius: 50px;
+}
+
+.btn-back {
+    padding: 20px;
+    text-align: center;
+    border-radius: 0;
+    background-color: #fff;
+    color: @blue;
+    &:hover, &:focus {
+      color: @blue;
+    }
+}
+
+// *****STRIPE FORM***** //
+#order_mobile {
+  padding-bottom: 43px;
+}
+.item-bill {
+  padding-bottom: 0;
+}
+#stripe-form {
+  position: relative;
+  overflow: visible;
+     .ng-invalid {
+        border-bottom: 1px solid #f00;
+      }
+
+  .ng-pristine {
+    border: none !important;
+  }
+
+  .row-submit {
+    margin-top: 0px;
+    button {
+      margin: 0 auto;
+    }
+  }
+  img {
+    position: absolute;
+    height: 15px;
+    right: 5px;
+    top: -20px;
+    z-index: 9999;
+  }
+
+  input {
+    // padding-left: 10px;
+  }
+  // i {
+  //   color: #34495e;
+  // }
+  .col {
+    .item {
+      border: none;
+    }
+  }
+}
+
+.col-total {
+  border-top: 1px solid #34495e;
+}
+
+.button-order {
+  position: relative;
+  height: 43px;
+  width: 100%;
+  background-color: #34495e;
+  border-color: #34495e;
+  color: #FFF;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}

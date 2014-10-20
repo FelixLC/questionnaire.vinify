@@ -1,0 +1,259 @@
+<div class="background-order" id="order-mobile">
+  <nav class="navbar" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+         <a href=""><img alt="" src="assets/logo.png" style="height:45px"/></a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href=""><img alt="" src="assets/oclipboard.png" class="opacity-link" style="height:45px"/></a></li>
+          <li ng-show="state == 'order.userinfos'"><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
+          <li ng-show="!(state == 'order.userinfos')"><a href=""><img alt="" class="opacity-link" src="assets/odolly.png" style="height:45px"/></a></li>
+          <li ng-show="state == 'order.paiement'"><a href=""><img alt="" src="assets/creditcard.png" style="height:45px"/></a></li>
+          <li ng-hide="state == 'order.paiement'"><a href=""><img alt="" class="opacity-link" src="assets/ocreditcard.png" style="height:45px"/></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </nav>
+  <div class="container-delivery">
+      <toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
+    <h3 ng-show="isState('order.userinfos')" class="centered">Notre oenologue va préparer votre sélection personnalisée</h3>
+    <h3 ng-show="isState('order.paiement')" class="centered">Merci de vérifier vos informations</h3>
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding">
+      <div class="main-container">
+        <div class="row row-paiement">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-12 centered">
+                <h4>Adresse</h4>
+                <p class="">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>
+                <p>{{client.email}}</h4>
+                <p>{{client.userinfos.delivery_address.street}}<br>
+                {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>
+
+                  </div>
+                  <hr class="visible-sm visible-xs">
+                  <div class="col-lg-4 col-md-4 col-sm-12 centered">
+                <h4>Mode de Livraison</h4>
+                          <table class="table-deliv-mode">
+                              <tr ng-click="updateOrder(1)">
+                                <td>
+                      <svg ng-show="delivery.mode === 'Point Relais' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
+                        <title>Grapes</title>
+                        <desc>Created with Sketch.</desc>
+                        <defs></defs>
+                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
+                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
+                                    <g id="Tick">
+                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" fill="#006DB2"></path>
+                                        <g id="Shape-2-+-Shape-3" transform="translate(8.683417, 10.582915)" fill="#FFFFFF">
+                                            <path d="M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z" id="Shape-2" transform="translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) "></path>
+                                            <path d="M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z" id="Shape-3" transform="translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) "></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                      <svg ng-hide="delivery.mode === 'Point Relais' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
+                        <title>Grapes</title>
+                        <desc>Created with Sketch.</desc>
+                        <defs></defs>
+                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
+                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
+                                    <g id="Tick">
+                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" stroke="#006DB2" fill="#FFF"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                                 </h4>
+                                <td><p> Point Relais </p></td>
+                              </tr>
+                              <tr ng-click="updateOrder(2)">
+                                <td>
+                      <svg ng-show="delivery.mode === 'Colissimo' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
+                        <title>Grapes</title>
+                        <desc>Created with Sketch.</desc>
+                        <defs></defs>
+                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
+                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
+                                    <g id="Tick">
+                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" fill="#006DB2"></path>
+                                        <g id="Shape-2-+-Shape-3" transform="translate(8.683417, 10.582915)" fill="#FFFFFF">
+                                            <path d="M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z" id="Shape-2" transform="translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) "></path>
+                                            <path d="M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z" id="Shape-3" transform="translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) "></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                      <svg ng-hide="delivery.mode === 'Colissimo' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
+                        <title>Grapes</title>
+                        <desc>Created with Sketch.</desc>
+                        <defs></defs>
+                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
+                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
+                                    <g id="Tick">
+                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" stroke="#006DB2" fill="#FFF"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                  </td>
+                                <td>
+                    <p> Colissimo Suivi </p>
+                                </td>
+                              </tr>
+                              <tr ng-click="updateOrder(3)"  class="bill-total">
+                                <td>
+                      <svg ng-show="delivery.mode === 'Vinify' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
+                        <title>Grapes</title>
+                        <desc>Created with Sketch.</desc>
+                        <defs></defs>
+                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
+                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
+                                    <g id="Tick">
+                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" fill="#006DB2"></path>
+                                        <g id="Shape-2-+-Shape-3" transform="translate(8.683417, 10.582915)" fill="#FFFFFF">
+                                            <path d="M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z" id="Shape-2" transform="translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) "></path>
+                                            <path d="M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z" id="Shape-3" transform="translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) "></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                      <svg ng-hide="delivery.mode === 'Vinify' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
+                        <title>Grapes</title>
+                        <desc>Created with Sketch.</desc>
+                        <defs></defs>
+                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
+                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
+                                    <g id="Tick">
+                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" stroke="#006DB2" fill="#FFF"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                                </td>
+                                <td><p> Retrait Vinify (Issy 92) </p></td>
+                              </tr>
+                          </table>
+                  </div>
+                  <hr class="visible-sm visible-xs">
+                  <div class="col-lg-4 col-md-4 col-sm-12">
+                       <h4 class="centered">Commande</h4>
+                          <table class="table-bill">
+                              <tr>
+                                <td><h4>Vinibar </h4></td>
+                                <td><h4>69&nbsp;€</h4></td>
+                              </tr>
+                              <tr>
+                                <td><h4>Livraison </h4></td>
+                                <td>
+                                  <h4>
+                                    {{delivery.cost}}&nbsp;€
+                                  </h4>
+                                </td>
+                              </tr>
+                              <tr ng-show="client.order.coupon.value">
+                                <td><h4>Promo </h4></td>
+                                <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>
+                              </tr>
+                              <tr  class="bill-total">
+                                <td><h4>Total </h4></td>
+                                <td><h4>{{69 + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>
+                              </tr>
+                          </table>
+                  </div>
+                  <hr class="visible-sm visible-xs">
+              </div>
+              <div class="row centered">
+                 <img src="assets/credit_cards.png" alt=""> <i class="fa fa-lock"></i> SSL Secure
+                <hr class="visible-sm visible-xs">
+              </div>
+            <div class="row">
+             <form name="stripe-form" id="stripe-form" stripe-form="submit">
+             <h4 class="centered">Vos coordonnées de paiement</h4>
+               <div class="row item">
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                      <label for="">Numéro de carte</label>
+                     <i class="icon ion-card"></i> <input class="form-control" type="text" name="number" id="number" ng-model="number" placeholder="XXXX XXXX XXXX XXXX" payments-validate="card" payments-type-model="type" payments-format="card"  required/>
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                      <label for="">CVC</label>
+                     <i class="icon ion-locked"></i> <input class="form-control" type="text" name="cvc" id="cvc" ng-model="cvc" placeholder="XXX" payments-validate="cvc" payments-format="cvc" required/>
+                 </div>
+               </div>
+               <div class="row item">
+                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+
+                     <label for="">Mois</label>
+                     <select class="form-control" name="expMonth" ng-model="expMonth" placeholder="MM"required>
+                       <option value="01">Janvier</option>
+                       <option value="02">Février</option>
+                       <option value="03">Mars</option>
+                       <option value="04">Avril</option>
+                       <option value="05">Mai</option>
+                       <option value="06">Juin</option>
+                       <option value="07">Juillet</option>
+                       <option value="08">Août</option>
+                       <option value="09">Septembre</option>
+                       <option value="10">Octobre</option>
+                       <option value="11">Novembre</option>
+                       <option value="12">Décembre</option>
+                     </select>
+
+        <!--             <label class="item item-input">
+                     <i class="icon ion-ios7-calendar-outline"></i> <input type="text" name="expiry" id="expiry" ng-model="expiry" placeholder="MM" payments-validate="expiry" payments-format="expiry" required/>
+                   </label> -->
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                     <label for="">Année</label>
+                     <select class="form-control" name="expYear" ng-model="expYear" required>
+                       <option>2014</option>
+                       <option>2015</option>
+                       <option>2016</option>
+                       <option>2017</option>
+                       <option>2018</option>
+                       <option>2019</option>
+                       <option>2020</option>
+                     </select>
+
+        <!--             <label class="item item-input">
+                     <i class="icon ion-locked"></i> <input type="text" name="cvc" id="cvc" ng-model="cvc" placeholder="CVC" payments-validate="cvc" payments-format="cvc" required/>
+                   </label> -->
+                 </div>
+               </div>
+                <hr class="visible-sm visible-xs">
+               <div class="row row-submit centered">
+                <button class="btn button-white" value="submit">Commander mes vins</button>
+                <div><a href ui-sref="order.userinfos">Modifier</a></div>
+               </div>
+             </form>
+            </div>
+          </div>
+        </div>    <!-- ROW -->
+      </div>
+    </div>
+  </div>
+</div>
+

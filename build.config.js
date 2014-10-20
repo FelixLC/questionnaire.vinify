@@ -64,6 +64,7 @@ module.exports = {
     js: [
       'vendor/angular/angular.js',
       'vendor/angular-animate/angular-animate.min.js',
+      'bower_components/angular-payments/lib/angular-payments.min.js',
       'bower_components/angular-cookies/angular-cookies.min.js',
       'vendor/angular-toaster/angular-toaster.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',

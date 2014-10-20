@@ -4,6 +4,7 @@ angular.module( 'vinibar.welcome', [
   'ui.bootstrap',
   'ngAutocomplete',
   'mondialRelay',
+  'clientFactory',
   'toaster'
 ])
 
@@ -20,7 +21,9 @@ angular.module( 'vinibar.welcome', [
       data:{ pageTitle: 'Démarrer l\'aventure' }
     });
 })
-.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'welcomeCtrl', function welcomeCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster, $stateParams ) {
   console.log($stateParams);
+  currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
+  console.log(currentClient);
 });

@@ -1,7 +1,7 @@
 angular.module( 'vinibar', [
   'templates-app',
   'templates-common',
-  'vinibar.commander',
+  'vinibar.pay_mobile',
   'vinibar.offrir',
   'mondialrelay',
   'vinibar.order',
@@ -10,6 +10,7 @@ angular.module( 'vinibar', [
   'vinibar.welcome',
   'vinibar.remerciement',
   'vinibar.remerciement_order',
+  'vinibar.remerciement_mobile',
   'ui.router',
   'ui.route',
   'ngAnimate',
@@ -18,7 +19,7 @@ angular.module( 'vinibar', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/questionnaire/coffee' );
+  $urlRouterProvider.otherwise( '/welcome' );
 })
 
 // We'll intercept all request and put the token in it
@@ -71,7 +72,7 @@ angular.module( 'vinibar', [
     },
     resetCurrentUser: function (argument) {
       currentUser = null;
-    }
-
+    },
+    isMobile: false
   };
 }]);

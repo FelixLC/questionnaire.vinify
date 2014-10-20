@@ -1,164 +1,4 @@
-angular.module('templates-app', ['commander/commander.tpl.html', 'mrelay/mrelay.tpl.html', 'offrir/offrir.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
-
-angular.module("commander/commander.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("commander/commander.tpl.html",
-    "<div class=\"container\">\n" +
-    "    <div class=\"row-fluid\">\n" +
-    "      <div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
-    "        <form novalidate name=\"form_commander\">\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"first_name\">Prénom</label>\n" +
-    "            <input type=\"text\"\n" +
-    "                placeholder=\"John\"\n" +
-    "                name=\"prenom\"\n" +
-    "                ng-model=\"user.first_name\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"first_name\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"last_name\">Nom</label>\n" +
-    "            <input type=\"text\"\n" +
-    "                placeholder=\"Doe\"\n" +
-    "                name=\"nom\"\n" +
-    "                ng-model=\"user.last_name\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"last_name\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"email\" name=\"email\">Email</label>\n" +
-    "            <input type=\"email\"\n" +
-    "                name=\"email\"\n" +
-    "                ng-model=\"user.email\"\n" +
-    "                placeholder=\"john@vinify.co\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"email\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"phone\">Téléphone</label>\n" +
-    "            <input type=\"tel\"\n" +
-    "                placeholder=\"+33 6 XX XX XX XX\"\n" +
-    "                name=\"tel\"\n" +
-    "                ng-model=\"user.phone\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"phone\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"birthday\">Date de Naissance</label>\n" +
-    "            <input type=\"date\"\n" +
-    "                ng-model=\"user.birthday\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"birthday\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "                <!-- ADRESSE AUTOCOMPLETE -->\n" +
-    "         <!--    <label>Adresse de Facturation</label>\n" +
-    "              <div class=\"adresse\">\n" +
-    "               <input type=\"text\"\n" +
-    "                  id=\"adresse\"\n" +
-    "                  ng-autocomplete\n" +
-    "                  ng-model=\"user.billing_address\"\n" +
-    "                  options = {\n" +
-    "                    country: 'fr'\n" +
-    "                  } />\n" +
-    "              </div> -->\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <label for=\"billing_address.company\">Adresse de Facturation</label>\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.billing_address.company\"\n" +
-    "                  placeholder=\"Société\"\n" +
-    "                  class=\"form-control\"\n" +
-    "                  id=\"billing_address.company\"/>\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.billing_address.street\"\n" +
-    "                  placeholder=\"Rue\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.billing_address.city\"\n" +
-    "                  placeholder=\"Ville\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.billing_address.zipcode\"\n" +
-    "                  placeholder=\"Code Postal\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.billing_address.country\"\n" +
-    "                  placeholder=\"Pays\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "\n" +
-    "\n" +
-    "           <div class=\"checkbox\">\n" +
-    "            <label>\n" +
-    "              <input type=\"checkbox\" ng-model=\"identical\"> Adresse de Livraison identique\n" +
-    "            </label>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div ng-hide=\"identical\" class=\"fade\">\n" +
-    "            <div class=\"form-group\">\n" +
-    "              <label for=\"delivery_address.company\">Adresse de Livraison</label>\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.delivery_address.company\"\n" +
-    "                  placeholder=\"Société\"\n" +
-    "                  class=\"form-control\"\n" +
-    "                  id=\"delivery_address.company\"/>\n" +
-    "            </div>\n" +
-    "            <div class=\"form-group\">\n" +
-    "                <input type=\"text\"\n" +
-    "                    ng-model=\"user.delivery_address.street\"\n" +
-    "                    placeholder=\"Rue\"\n" +
-    "                    class=\"form-control\" />\n" +
-    "            </div>\n" +
-    "            <div class=\"form-group\">\n" +
-    "                <input type=\"text\"\n" +
-    "                    ng-model=\"user.delivery_address.city\"\n" +
-    "                    placeholder=\"Ville\"\n" +
-    "                    class=\"form-control\" />\n" +
-    "            </div>\n" +
-    "            <div class=\"form-group\">\n" +
-    "                <input type=\"text\"\n" +
-    "                    ng-model=\"user.delivery_address.zipcode\"\n" +
-    "                    placeholder=\"Code Postal\"\n" +
-    "                    class=\"form-control\" />\n" +
-    "            </div>\n" +
-    "            <div class=\"form-group\">\n" +
-    "                <input type=\"text\"\n" +
-    "                    ng-model=\"user.delivery_address.country\"\n" +
-    "                    placeholder=\"Pays\"\n" +
-    "                    class=\"form-control\" />\n" +
-    "            </div>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <pre>{{ user | json }}</pre>\n" +
-    "\n" +
-    "          <!-- <button type=\"button\" class=\"btn btn-primary\"  ng-disabled=\"form_commander.$invalid\" ng-click=\"Send(user)\">Valider !</button> -->\n" +
-    "          <a class=\"btn btn-primary\" href=\"#/questionnaire\">Valider</a>\n" +
-    "\n" +
-    "        </form>\n" +
-    "      <!-- Col -->\n" +
-    "      </div>\n" +
-    "    <!-- ROW -->\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "");
-}]);
+angular.module('templates-app', ['mrelay/mrelay.tpl.html', 'offrir/offrir.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
 
 angular.module("mrelay/mrelay.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("mrelay/mrelay.tpl.html",
@@ -321,27 +161,27 @@ angular.module("offrir/offrir.tpl.html", []).run(["$templateCache", function($te
 angular.module("order/order.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("order/order.tpl.html",
     "<div class=\"background-order\">\n" +
-    "		<nav class=\"navbar\" role=\"navigation\">\n" +
-    "			<div class=\"container-fluid\">\n" +
-    "				<div class=\"navbar-header\">\n" +
-    "					 <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifyco.png\" style=\"height:45px\"/></a>\n" +
-    "				</div>\n" +
-    "				<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
-    "					<ul class=\"nav navbar-nav navbar-right\">\n" +
-    "						<li><a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a></li>\n" +
-    "						<li ng-show=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
-    "						<li ng-show=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
-    "						<li ng-show=\"state == 'order.confirmation'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
-    "						<li ng-show=\"!(state == 'order.confirmation')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a></li>\n" +
-    "					</ul>\n" +
-    "				</div><!-- /.navbar-collapse -->\n" +
+    "	<nav class=\"navbar\" role=\"navigation\">\n" +
+    "		<div class=\"container-fluid\">\n" +
+    "			<div class=\"navbar-header\">\n" +
+    "				 <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
     "			</div>\n" +
-    "		</nav>\n" +
+    "			<div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "				<ul class=\"nav navbar-nav navbar-right\">\n" +
+    "					<li><a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a></li>\n" +
+    "					<li ng-show=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "					<li ng-show=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "					<li ng-show=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "					<li ng-hide=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "				</ul>\n" +
+    "			</div><!-- /.navbar-collapse -->\n" +
+    "		</div>\n" +
+    "	</nav>\n" +
     "	<div class=\"container-delivery\">\n" +
     "  		<toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "		<h3 ng-show=\"isState('order.userinfos')\" class=\"centered\">Notre oenologue va préparer votre sélection personnalisée</h3>\n" +
     "		<h3 ng-show=\"isState('order.paiement')\" class=\"centered\">Merci de vérifier vos informations</h3>\n" +
-    "		<div class=\"col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding\">\n" +
+    "		<div class=\"col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding\">\n" +
     "			<div class=\"main-container\" ui-view autoscroll=\"false\"></div>\n" +
     "		</div>\n" +
     "	</div>\n" +
@@ -370,10 +210,10 @@ angular.module("order/parts/order.confirmation.tpl.html", []).run(["$templateCac
     "              <li><h3>{{delivery_mode}} - {{delivery_price}}€</h3></li>\n" +
     "              <li><h3>Total - 109,90</h3></li>\n" +
     "            </ul> -->\n" +
-    "                <h4 class=\"confirmation-first-title\">{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</h4>\n" +
-    "                <h4>{{currentClient.email}}</h4>\n" +
-    "                <h4>{{currentClient.userinfos.delivery_address.street}}<br>\n" +
-    "                {{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</h4>\n" +
+    "                <p class=\"confirmation-first-title\">{{currentClient.userinfos.first_name}} {{currentClient.userinfos.last_name}}</p>\n" +
+    "                <p>{{currentClient.email}}</p>\n" +
+    "                <p>{{currentClient.userinfos.delivery_address.street}}<br>\n" +
+    "                {{currentClient.userinfos.delivery_address.zipcode}} {{currentClient.userinfos.delivery_address.city}}</p>\n" +
     "\n" +
     "      </div>\n" +
     "      <div class=\"col-lg-6 col-md-6 col-sm-12 bill\">\n" +
@@ -576,39 +416,160 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "			  <div class=\"row\">\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
     "					<p>Adresse</p>\n" +
-    "					<h4 class=\"\">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</h4>\n" +
-    "					<h4>{{client.email}}</h4>\n" +
+    "					<p class=\"\">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>\n" +
+    "					<p>{{client.email}}</h4>\n" +
     "					<p>{{client.userinfos.delivery_address.street}}<br>\n" +
     "					{{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>\n" +
     "\n" +
     "			      </div>\n" +
+    "			      <hr class=\"visible-sm visible-xs\">\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
     "					<p>Mode de Livraison</p>\n" +
-    "					<a ng-class=\"{selected: delivery.mode == 'Point Relais'}\" class=\"btn button-overlay deliverymode\" ng-click=\"updateOrder(1)\">Point Relais</a>\n" +
-    "					<a ng-class=\"{selected: delivery.mode == 'Colissimo'}\" class=\"btn button-overlay deliverymode\" ng-click=\"updateOrder(2)\">Colissimo Suivi</a>\n" +
-    "					<a ng-class=\"{selected: delivery.mode == 'Vinify'}\" class=\"btn button-overlay deliverymode\" ng-click=\"updateOrder(3)\">Retrait Vinify (Issy 92)</a>\n" +
+    "			              <table class=\"table-deliv-mode\">\n" +
+    "			                  <tr ng-click=\"updateOrder(1)\">\n" +
+    "			                    <td>\n" +
+    "								<svg ng-show=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "								  <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "								  <title>Grapes</title>\n" +
+    "								  <desc>Created with Sketch.</desc>\n" +
+    "								  <defs></defs>\n" +
+    "								  <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "								      <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "								          <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "								              <g id=\"Tick\">\n" +
+    "								                  <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "								                  <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
+    "								                      <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
+    "								                      <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
+    "								                  </g>\n" +
+    "								              </g>\n" +
+    "								          </g>\n" +
+    "								      </g>\n" +
+    "								  </g>\n" +
+    "								</svg>\n" +
+    "								<svg ng-hide=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "								  <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "								  <title>Grapes</title>\n" +
+    "								  <desc>Created with Sketch.</desc>\n" +
+    "								  <defs></defs>\n" +
+    "								  <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "								      <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "								          <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "								              <g id=\"Tick\">\n" +
+    "								                  <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "								              </g>\n" +
+    "								          </g>\n" +
+    "								      </g>\n" +
+    "								  </g>\n" +
+    "								</svg>\n" +
+    "			                     </h4>\n" +
+    "			                    <td><p> Point Relais </p></td>\n" +
+    "			                  </tr>\n" +
+    "			                  <tr ng-click=\"updateOrder(2)\">\n" +
+    "			                    <td>\n" +
+    "								<svg ng-show=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "								  <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "								  <title>Grapes</title>\n" +
+    "								  <desc>Created with Sketch.</desc>\n" +
+    "								  <defs></defs>\n" +
+    "								  <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "								      <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "								          <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "								              <g id=\"Tick\">\n" +
+    "								                  <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "								                  <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
+    "								                      <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
+    "								                      <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
+    "								                  </g>\n" +
+    "								              </g>\n" +
+    "								          </g>\n" +
+    "								      </g>\n" +
+    "								  </g>\n" +
+    "								</svg>\n" +
+    "								<svg ng-hide=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "								  <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "								  <title>Grapes</title>\n" +
+    "								  <desc>Created with Sketch.</desc>\n" +
+    "								  <defs></defs>\n" +
+    "								  <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "								      <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "								          <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "								              <g id=\"Tick\">\n" +
+    "								                  <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "								              </g>\n" +
+    "								          </g>\n" +
+    "								      </g>\n" +
+    "								  </g>\n" +
+    "								</svg>\n" +
+    "						</td>\n" +
+    "			                    <td>\n" +
+    "							<p> Colissimo Suivi </p>\n" +
+    "	                    		</td>\n" +
+    "			                  </tr>\n" +
+    "			                  <tr ng-click=\"updateOrder(3)\"  class=\"bill-total\">\n" +
+    "			                    <td>\n" +
+    "								<svg ng-show=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "								  <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "								  <title>Grapes</title>\n" +
+    "								  <desc>Created with Sketch.</desc>\n" +
+    "								  <defs></defs>\n" +
+    "								  <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "								      <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "								          <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "								              <g id=\"Tick\">\n" +
+    "								                  <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "								                  <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
+    "								                      <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
+    "								                      <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
+    "								                  </g>\n" +
+    "								              </g>\n" +
+    "								          </g>\n" +
+    "								      </g>\n" +
+    "								  </g>\n" +
+    "								</svg>\n" +
+    "								<svg ng-hide=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "								  <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "								  <title>Grapes</title>\n" +
+    "								  <desc>Created with Sketch.</desc>\n" +
+    "								  <defs></defs>\n" +
+    "								  <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "								      <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "								          <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "								              <g id=\"Tick\">\n" +
+    "								                  <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "								              </g>\n" +
+    "								          </g>\n" +
+    "								      </g>\n" +
+    "								  </g>\n" +
+    "								</svg>\n" +
+    "			                    </td>\n" +
+    "			                    <td><p> Retrait Vinify (Issy 92) </p></td>\n" +
+    "			                  </tr>\n" +
+    "			              </table>\n" +
     "			      </div>\n" +
+    "			      <hr class=\"visible-sm visible-xs\">\n" +
     "			      <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
+    "					<p class=\"centered\">Commande</p>\n" +
     "			              <table class=\"table-bill\">\n" +
     "			                  <tr>\n" +
     "			                    <td><h4>Vinibar </h4></td>\n" +
-    "			                    <td><h4>69 €</h4></td>\n" +
+    "			                    <td><h4>69&nbsp;€</h4></td>\n" +
     "			                  </tr>\n" +
     "			                  <tr>\n" +
     "			                    <td><h4>Livraison </h4></td>\n" +
     "			                    <td>\n" +
     "			                    	<h4>\n" +
-    "								{{delivery.cost}} €\n" +
+    "								{{delivery.cost}}&nbsp;€\n" +
     "		                    		</h4>\n" +
     "	                    		</td>\n" +
     "			                  </tr>\n" +
     "			                  <tr ng-show=\"client.order.coupon.value\">\n" +
     "			                    <td><h4>Promo </h4></td>\n" +
-    "			                    <td><h4>- {{client.order.coupon.value}} €</h4></td>\n" +
+    "			                    <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>\n" +
     "			                  </tr>\n" +
     "			                  <tr  class=\"bill-total\">\n" +
     "			                    <td><h4>Total </h4></td>\n" +
-    "			                    <td><h4>{{69 + delivery.cost - client.order.coupon.value}} €</h4></td>\n" +
+    "			                    <td><h4>{{69 + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>\n" +
     "			                  </tr>\n" +
     "			              </table>\n" +
     "			      </div>\n" +
@@ -616,6 +577,7 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
     "			<div class=\"row terminate-order\">\n" +
     "				<div class=\"col-lg-4 col-lg-offset-8 col-md-4 col-md-offset-8 col-sm-12 centered\">\n" +
     "					<button class=\"btn button-white\" ng-click=\"createOrder()\">Commander mes vins</button>\n" +
+    "					<div><a href ui-sref=\"order.userinfos\">Modifier</a></div>\n" +
     "				</div>\n" +
     "			</div>    <!-- ROW -->\n" +
     "		</div>\n" +
@@ -936,7 +898,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "					<div ng-show=\"client.userinfos.same_billing\" class=\" form-offer col-lg-4 col-md-4 col-sm-4\">\n" +
     "						<h4 class=\"centered\">6 Bouteilles</h4>\n" +
     "						<hr>\n" +
-    "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre gamme de plus de 500 références !</h4>\n" +
+    "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>\n" +
     "						<hr>\n" +
     "						<h4 class=\"centered\">69 €</h4>\n" +
     "					</div>\n" +
@@ -998,15 +960,19 @@ angular.module("paiement/parts/paiement.confirmation.tpl.html", []).run(["$templ
     "            </div>\n" +
     "            <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
     "                    <table class=\"table-bill\">\n" +
-    "                        <tr>\n" +
+    "                        <tr ng-show=\"client.order.order_type === 'Refill'\">\n" +
     "                          <td><h4>{{client.order.order_type}} </h4></td>\n" +
     "                          <td><h4>{{client.order.amount}} €</h4></td>\n" +
+    "                        </tr>\n" +
+    "                        <tr ng-show=\"client.order.order_type === 'Vinibar'\">\n" +
+    "                          <td><h4>Vinibar</h4></td>\n" +
+    "                          <td><h4>69 €</h4></td>\n" +
     "                        </tr>\n" +
     "                        <tr>\n" +
     "                          <td><h4>Livraison </h4></td>\n" +
     "                          <td>\n" +
     "                            <h4>\n" +
-    "                {{delivery.cost}} €\n" +
+    "                              {{delivery.cost}} €\n" +
     "                            </h4>\n" +
     "                          </td>\n" +
     "                        </tr>\n" +
@@ -1016,7 +982,7 @@ angular.module("paiement/parts/paiement.confirmation.tpl.html", []).run(["$templ
     "                        </tr>\n" +
     "                        <tr  class=\"bill-total\">\n" +
     "                          <td><h4>Total </h4></td>\n" +
-    "                          <td><h4>{{client.order.amount + delivery.cost - client.order.coupon.value}} €</h4></td>\n" +
+    "                          <td><h4>{{client.order.amount + delivery.cost  | number:1}} €</h4></td>\n" +
     "                        </tr>\n" +
     "                    </table>\n" +
     "            </div>\n" +
@@ -1064,6 +1030,270 @@ angular.module("paiement/parts/paiement.login.tpl.html", []).run(["$templateCach
     "      </form>\n" +
     "      <a id=\"get_pwd\" href=\"http://api.vinify.co/api/users/password/reset/\" target=\"_blank\">Récupérer mon mot de passe</a>\n" +
     "</div>\n" +
+    "");
+}]);
+
+angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("pay_mobile/pay_mobile.tpl.html",
+    "<div class=\"background-order\" id=\"order-mobile\">\n" +
+    "  <nav class=\"navbar\" role=\"navigation\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "      <div class=\"navbar-header\">\n" +
+    "         <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "      </div>\n" +
+    "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "          <li><a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-show=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-show=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-show=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-hide=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "        </ul>\n" +
+    "      </div><!-- /.navbar-collapse -->\n" +
+    "    </div>\n" +
+    "  </nav>\n" +
+    "  <div class=\"container-delivery\">\n" +
+    "      <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "    <h3 ng-show=\"isState('order.userinfos')\" class=\"centered\">Notre oenologue va préparer votre sélection personnalisée</h3>\n" +
+    "    <h3 ng-show=\"isState('order.paiement')\" class=\"centered\">Merci de vérifier vos informations</h3>\n" +
+    "    <div class=\"col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding\">\n" +
+    "      <div class=\"main-container\">\n" +
+    "        <div class=\"row row-paiement\">\n" +
+    "            <div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
+    "              <div class=\"row\">\n" +
+    "                  <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
+    "                <h4>Adresse</h4>\n" +
+    "                <p class=\"\">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>\n" +
+    "                <p>{{client.email}}</h4>\n" +
+    "                <p>{{client.userinfos.delivery_address.street}}<br>\n" +
+    "                {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>\n" +
+    "\n" +
+    "                  </div>\n" +
+    "                  <hr class=\"visible-sm visible-xs\">\n" +
+    "                  <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
+    "                <h4>Mode de Livraison</h4>\n" +
+    "                          <table class=\"table-deliv-mode\">\n" +
+    "                              <tr ng-click=\"updateOrder(1)\">\n" +
+    "                                <td>\n" +
+    "                      <svg ng-show=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "                        <title>Grapes</title>\n" +
+    "                        <desc>Created with Sketch.</desc>\n" +
+    "                        <defs></defs>\n" +
+    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "                                    <g id=\"Tick\">\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
+    "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
+    "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
+    "                                        </g>\n" +
+    "                                    </g>\n" +
+    "                                </g>\n" +
+    "                            </g>\n" +
+    "                        </g>\n" +
+    "                      </svg>\n" +
+    "                      <svg ng-hide=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "                        <title>Grapes</title>\n" +
+    "                        <desc>Created with Sketch.</desc>\n" +
+    "                        <defs></defs>\n" +
+    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "                                    <g id=\"Tick\">\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "                                    </g>\n" +
+    "                                </g>\n" +
+    "                            </g>\n" +
+    "                        </g>\n" +
+    "                      </svg>\n" +
+    "                                 </h4>\n" +
+    "                                <td><p> Point Relais </p></td>\n" +
+    "                              </tr>\n" +
+    "                              <tr ng-click=\"updateOrder(2)\">\n" +
+    "                                <td>\n" +
+    "                      <svg ng-show=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "                        <title>Grapes</title>\n" +
+    "                        <desc>Created with Sketch.</desc>\n" +
+    "                        <defs></defs>\n" +
+    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "                                    <g id=\"Tick\">\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
+    "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
+    "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
+    "                                        </g>\n" +
+    "                                    </g>\n" +
+    "                                </g>\n" +
+    "                            </g>\n" +
+    "                        </g>\n" +
+    "                      </svg>\n" +
+    "                      <svg ng-hide=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "                        <title>Grapes</title>\n" +
+    "                        <desc>Created with Sketch.</desc>\n" +
+    "                        <defs></defs>\n" +
+    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "                                    <g id=\"Tick\">\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "                                    </g>\n" +
+    "                                </g>\n" +
+    "                            </g>\n" +
+    "                        </g>\n" +
+    "                      </svg>\n" +
+    "                  </td>\n" +
+    "                                <td>\n" +
+    "                    <p> Colissimo Suivi </p>\n" +
+    "                                </td>\n" +
+    "                              </tr>\n" +
+    "                              <tr ng-click=\"updateOrder(3)\"  class=\"bill-total\">\n" +
+    "                                <td>\n" +
+    "                      <svg ng-show=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "                        <title>Grapes</title>\n" +
+    "                        <desc>Created with Sketch.</desc>\n" +
+    "                        <defs></defs>\n" +
+    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "                                    <g id=\"Tick\">\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
+    "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
+    "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
+    "                                        </g>\n" +
+    "                                    </g>\n" +
+    "                                </g>\n" +
+    "                            </g>\n" +
+    "                        </g>\n" +
+    "                      </svg>\n" +
+    "                      <svg ng-hide=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
+    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
+    "                        <title>Grapes</title>\n" +
+    "                        <desc>Created with Sketch.</desc>\n" +
+    "                        <defs></defs>\n" +
+    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
+    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
+    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
+    "                                    <g id=\"Tick\">\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "                                    </g>\n" +
+    "                                </g>\n" +
+    "                            </g>\n" +
+    "                        </g>\n" +
+    "                      </svg>\n" +
+    "                                </td>\n" +
+    "                                <td><p> Retrait Vinify (Issy 92) </p></td>\n" +
+    "                              </tr>\n" +
+    "                          </table>\n" +
+    "                  </div>\n" +
+    "                  <hr class=\"visible-sm visible-xs\">\n" +
+    "                  <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
+    "                       <h4 class=\"centered\">Commande</h4>\n" +
+    "                          <table class=\"table-bill\">\n" +
+    "                              <tr>\n" +
+    "                                <td><h4>Vinibar </h4></td>\n" +
+    "                                <td><h4>69&nbsp;€</h4></td>\n" +
+    "                              </tr>\n" +
+    "                              <tr>\n" +
+    "                                <td><h4>Livraison </h4></td>\n" +
+    "                                <td>\n" +
+    "                                  <h4>\n" +
+    "                                    {{delivery.cost}}&nbsp;€\n" +
+    "                                  </h4>\n" +
+    "                                </td>\n" +
+    "                              </tr>\n" +
+    "                              <tr ng-show=\"client.order.coupon.value\">\n" +
+    "                                <td><h4>Promo </h4></td>\n" +
+    "                                <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>\n" +
+    "                              </tr>\n" +
+    "                              <tr  class=\"bill-total\">\n" +
+    "                                <td><h4>Total </h4></td>\n" +
+    "                                <td><h4>{{69 + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>\n" +
+    "                              </tr>\n" +
+    "                          </table>\n" +
+    "                  </div>\n" +
+    "                  <hr class=\"visible-sm visible-xs\">\n" +
+    "              </div>\n" +
+    "              <div class=\"row centered\">\n" +
+    "                 <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa fa-lock\"></i> SSL Secure\n" +
+    "                <hr class=\"visible-sm visible-xs\">\n" +
+    "              </div>\n" +
+    "            <div class=\"row\">\n" +
+    "             <form name=\"stripe-form\" id=\"stripe-form\" stripe-form=\"submit\">\n" +
+    "             <h4 class=\"centered\">Vos coordonnées de paiement</h4>\n" +
+    "               <div class=\"row item\">\n" +
+    "                 <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
+    "                      <label for=\"\">Numéro de carte</label>\n" +
+    "                     <i class=\"icon ion-card\"></i> <input class=\"form-control\" type=\"text\" name=\"number\" id=\"number\" ng-model=\"number\" placeholder=\"XXXX XXXX XXXX XXXX\" payments-validate=\"card\" payments-type-model=\"type\" payments-format=\"card\"  required/>\n" +
+    "                 </div>\n" +
+    "                 <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "                      <label for=\"\">CVC</label>\n" +
+    "                     <i class=\"icon ion-locked\"></i> <input class=\"form-control\" type=\"text\" name=\"cvc\" id=\"cvc\" ng-model=\"cvc\" placeholder=\"XXX\" payments-validate=\"cvc\" payments-format=\"cvc\" required/>\n" +
+    "                 </div>\n" +
+    "               </div>\n" +
+    "               <div class=\"row item\">\n" +
+    "                 <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
+    "\n" +
+    "                     <label for=\"\">Mois</label>\n" +
+    "                     <select class=\"form-control\" name=\"expMonth\" ng-model=\"expMonth\" placeholder=\"MM\"required>\n" +
+    "                       <option value=\"01\">Janvier</option>\n" +
+    "                       <option value=\"02\">Février</option>\n" +
+    "                       <option value=\"03\">Mars</option>\n" +
+    "                       <option value=\"04\">Avril</option>\n" +
+    "                       <option value=\"05\">Mai</option>\n" +
+    "                       <option value=\"06\">Juin</option>\n" +
+    "                       <option value=\"07\">Juillet</option>\n" +
+    "                       <option value=\"08\">Août</option>\n" +
+    "                       <option value=\"09\">Septembre</option>\n" +
+    "                       <option value=\"10\">Octobre</option>\n" +
+    "                       <option value=\"11\">Novembre</option>\n" +
+    "                       <option value=\"12\">Décembre</option>\n" +
+    "                     </select>\n" +
+    "\n" +
+    "        <!--             <label class=\"item item-input\">\n" +
+    "                     <i class=\"icon ion-ios7-calendar-outline\"></i> <input type=\"text\" name=\"expiry\" id=\"expiry\" ng-model=\"expiry\" placeholder=\"MM\" payments-validate=\"expiry\" payments-format=\"expiry\" required/>\n" +
+    "                   </label> -->\n" +
+    "                 </div>\n" +
+    "                 <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "\n" +
+    "                     <label for=\"\">Année</label>\n" +
+    "                     <select class=\"form-control\" name=\"expYear\" ng-model=\"expYear\" required>\n" +
+    "                       <option>2014</option>\n" +
+    "                       <option>2015</option>\n" +
+    "                       <option>2016</option>\n" +
+    "                       <option>2017</option>\n" +
+    "                       <option>2018</option>\n" +
+    "                       <option>2019</option>\n" +
+    "                       <option>2020</option>\n" +
+    "                     </select>\n" +
+    "\n" +
+    "        <!--             <label class=\"item item-input\">\n" +
+    "                     <i class=\"icon ion-locked\"></i> <input type=\"text\" name=\"cvc\" id=\"cvc\" ng-model=\"cvc\" placeholder=\"CVC\" payments-validate=\"cvc\" payments-format=\"cvc\" required/>\n" +
+    "                   </label> -->\n" +
+    "                 </div>\n" +
+    "               </div>\n" +
+    "                <hr class=\"visible-sm visible-xs\">\n" +
+    "               <div class=\"row row-submit centered\">\n" +
+    "                <button class=\"btn button-white\" value=\"submit\">Commander mes vins</button>\n" +
+    "                <div><a href ui-sref=\"order.userinfos\">Modifier</a></div>\n" +
+    "               </div>\n" +
+    "             </form>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>    <!-- ROW -->\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "\n" +
     "");
 }]);
 
@@ -1823,6 +2053,25 @@ angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", 
     "");
 }]);
 
+angular.module("remerciement_mobile/remerciement_mobile.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("remerciement_mobile/remerciement_mobile.tpl.html",
+    "<div class=\"remerciement-container\">\n" +
+    "  <div class=\"vertical-align centered\">\n" +
+    "      <div class=\"container row-fluid\">\n" +
+    "        <h2>Merci pour votre commande</h2>\n" +
+    "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
+    "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p>\n" +
+    "        <div class=\"remerciement\">\n" +
+    "          <img src=\"assets/vinifytailleur.png\" style=\"width:300px;\">\n" +
+    "        <!-- Col -->\n" +
+    "        </div>\n" +
+    "        <p>A très vite pour la suite de l'aventure Vinify !</p>\n" +
+    "      <!-- ROW -->\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
 angular.module("remerciement_order/remerciement_order.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("remerciement_order/remerciement_order.tpl.html",
     "<div class=\"remerciement-container\">\n" +
@@ -1848,7 +2097,7 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "<nav class=\"navbar\" role=\"navigation\">\n" +
     "	<div class=\"container\">\n" +
     "		<div class=\"navbar-header\">\n" +
-    "			 <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifyco.png\" style=\"height:45px\"/></a>\n" +
+    "			 <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</nav>\n" +
@@ -1860,9 +2109,9 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "		</div>\n" +
     "		<div class=\"centered\">\n" +
     "			<img src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
-    "			<p>Ces quelques questions permettrons à notre oenologue de sélectionner <span class=\"highlight\">spécialement pour vous 6 bouteilles</span> parmi notre gamme de plus de 100 références.</p>\n" +
+    "			<p>Ces quelques questions permettront à notre oenologue de sélectionner <span class=\"highlight\">spécialement pour vous 6 bouteilles</span> parmi notre gamme de plus de 100 références.</p>\n" +
     "			<div ui-sref=\"questionnaire.coffee\" class=\"button btn-cta\">Démarrer</div>\n" +
-    "			<p>En continuant, je certifie avoir plus de 18 ans et j'accepte les <a href=\"\">CGV</a> de Vinify</p>\n" +
+    "			<p>En continuant, je certifie avoir plus de 18 ans et j'accepte les <a href=\"https://vinify.co/docs/cgv.pdf\">CGV</a> de Vinify</p>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</div>\n" +

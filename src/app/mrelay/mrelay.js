@@ -18,7 +18,7 @@ angular.module( 'mondialrelay', [
 		});
 })
 
-.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'mondialrelayCtrl', function mondialrelayCtrl( $scope, $stateParams, $http, $state, API_ENDPOINT, toaster, $timeout) {
 
 	var order_id = $stateParams.orderid;

@@ -1,25 +1,25 @@
 <div class="background-order">
-		<nav class="navbar" role="navigation">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					 <a href=""><img alt="" src="assets/LogoVinifyco.png" style="height:45px"/></a>
-				</div>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href=""><img alt="" src="assets/oclipboard.png" class="opacity-link" style="height:45px"/></a></li>
-						<li ng-show="state == 'order.userinfos'"><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
-						<li ng-show="!(state == 'order.userinfos')"><a href=""><img alt="" class="opacity-link" src="assets/odolly.png" style="height:45px"/></a></li>
-						<li ng-show="state == 'order.confirmation'"><a href=""><img alt="" src="assets/creditcard.png" style="height:45px"/></a></li>
-						<li ng-show="!(state == 'order.confirmation')"><a href=""><img alt="" class="opacity-link" src="assets/ocreditcard.png" style="height:45px"/></a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
+	<nav class="navbar" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				 <a href=""><img alt="" src="assets/logo.png" style="height:45px"/></a>
 			</div>
-		</nav>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href=""><img alt="" src="assets/oclipboard.png" class="opacity-link" style="height:45px"/></a></li>
+					<li ng-show="state == 'order.userinfos'"><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
+					<li ng-show="!(state == 'order.userinfos')"><a href=""><img alt="" class="opacity-link" src="assets/odolly.png" style="height:45px"/></a></li>
+					<li ng-show="state == 'order.paiement'"><a href=""><img alt="" src="assets/creditcard.png" style="height:45px"/></a></li>
+					<li ng-hide="state == 'order.paiement'"><a href=""><img alt="" class="opacity-link" src="assets/ocreditcard.png" style="height:45px"/></a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
 	<div class="container-delivery">
   		<toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
 		<h3 ng-show="isState('order.userinfos')" class="centered">Notre oenologue va préparer votre sélection personnalisée</h3>
 		<h3 ng-show="isState('order.paiement')" class="centered">Merci de vérifier vos informations</h3>
-		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 form-infos u-padding">
+		<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding">
 			<div class="main-container" ui-view autoscroll="false"></div>
 		</div>
 	</div>

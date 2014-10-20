@@ -25,11 +25,11 @@ angular.module('stripe', [])
                       })
                       .success(function(data, status, headers, config) {
                         $location.path('/remerciement_order');
-                        mixpanel.track('Sucessful payment');
+                        // mixpanel.track('Sucessful payment');
                       })
                       .error(function(data, status, headers, config) {
                         alert('Il y a eu une erreur avec votre commande, merci de réessayer');
-                        mixpanel.track('Server Failed to proceed payment');
+                        // mixpanel.track('Server Failed to proceed payment');
 
                       });
           }

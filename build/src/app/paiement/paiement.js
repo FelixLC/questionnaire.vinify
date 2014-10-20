@@ -28,7 +28,7 @@ angular.module( 'vinibar.paiement', [
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
 })
-.constant('API_ENDPOINT','https://backoffice.vinify.co/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
   $scope.delivery = {
     mode: 'Colissimo',
@@ -137,11 +137,11 @@ angular.module( 'vinibar.paiement', [
                       });
                     }
                     $location.path('/remerciement_order');
-                    mixpanel.track('Sucessful payment');
+                    // mixpanel.track('Sucessful payment');
                   })
                   .error(function(data, status, headers, config) {
                     toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
-                    mixpanel.track('Server Failed to proceed payment');
+                    // mixpanel.track('Server Failed to proceed payment');
 
                   });
       }
@@ -167,7 +167,7 @@ angular.module( 'vinibar.paiement', [
                               $scope.order = data;
                               console.log($scope.order.final_price * 100);
                               console.log($scope.order.final_price);
-                              console.log(Math.floor($scope.order.final_price * 100));
+                              console.log(Math.round($scope.order.final_price * 100));
                               handler.open({
                                 name: "Vinify",
                                 description: "Vinibar",
@@ -175,7 +175,7 @@ angular.module( 'vinibar.paiement', [
                                 panelLabel: "Payer",
                                 opened: closeLoading(),
                                 closed: closeLoading(),
-                                amount: Math.floor($scope.order.final_price * 100),
+                                amount: Math.round($scope.order.final_price * 100),
                                 email: $scope.order.user.email
                               });
                           })

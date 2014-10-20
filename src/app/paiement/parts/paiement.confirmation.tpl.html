@@ -20,15 +20,19 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
                     <table class="table-bill">
-                        <tr>
+                        <tr ng-show="client.order.order_type === 'Refill'">
                           <td><h4>{{client.order.order_type}} </h4></td>
                           <td><h4>{{client.order.amount}} €</h4></td>
+                        </tr>
+                        <tr ng-show="client.order.order_type === 'Vinibar'">
+                          <td><h4>Vinibar</h4></td>
+                          <td><h4>69 €</h4></td>
                         </tr>
                         <tr>
                           <td><h4>Livraison </h4></td>
                           <td>
                             <h4>
-                {{delivery.cost}} €
+                              {{delivery.cost}} €
                             </h4>
                           </td>
                         </tr>
@@ -38,7 +42,7 @@
                         </tr>
                         <tr  class="bill-total">
                           <td><h4>Total </h4></td>
-                          <td><h4>{{client.order.amount + delivery.cost - client.order.coupon.value}} €</h4></td>
+                          <td><h4>{{client.order.amount + delivery.cost  | number:1}} €</h4></td>
                         </tr>
                     </table>
             </div>
