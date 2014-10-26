@@ -3,6 +3,7 @@ angular.module( 'vinibar.paiement', [
   'placeholders',
   'ui.bootstrap',
   'stripe',
+  'angularPayments',
   'ngAutocomplete',
   'toaster'
 ])
@@ -74,6 +75,9 @@ angular.module( 'vinibar.paiement', [
                       $scope.client.email = data.email;
                       $scope.client.first_name = data.first_name;
                       $scope.client.last_name = data.last_name;
+                      currentClient.currentClient = $scope.client;
+                      currentClient.currentClient.userinfos.first_name = $scope.client.first_name;
+                      currentClient.currentClient.userinfos.last_name = $scope.client.last_name;
                         if(data.status == 2.5) {
                           $http({
                                   url: API_ENDPOINT + '/orders/unfinishedorder/',
@@ -81,15 +85,12 @@ angular.module( 'vinibar.paiement', [
                                 })
                                 .success(function(data, status, headers, config) {
                                     $scope.client.order = data;
-                                    $state.go('paiement.confirmation');
+                                    $state.go('pay_mobile');
                                 })
                                 .error(function(data, status, headers, config) {
                                   alert('Vous n\'avez pas de commande en cours');
                                 });
                         } else if (data.status == 2) {
-                          currentClient.currentClient = $scope.client;
-                          currentClient.currentClient.userinfos.first_name = $scope.client.first_name;
-                          currentClient.currentClient.userinfos.last_name = $scope.client.last_name;
                           $state.go('order.userinfos');
                         } else if (data.status == 1) {
                           $state.go('questionnaire.coffee');

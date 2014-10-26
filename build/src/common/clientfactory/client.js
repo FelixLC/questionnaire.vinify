@@ -119,6 +119,8 @@ angular.module('clientFactory', [])
 				console.log(data);
 				data.delivery_address.first_name =data.first_name;
 				data.delivery_address.last_name =data.last_name;
+				data.billing_address.first_name =data.first_name;
+				data.billing_address.last_name =data.last_name;
 				data.delivery_address.user = this.uuid;
 				data.billing_address.user = this.uuid;
 

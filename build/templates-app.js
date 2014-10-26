@@ -1220,11 +1220,11 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                              </tr>\n" +
     "                          </table>\n" +
     "                  </div>\n" +
-    "                  <hr class=\"visible-sm visible-xs\">\n" +
+    "                  <hr>\n" +
     "              </div>\n" +
     "              <div class=\"row centered\">\n" +
     "                 <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa fa-lock\"></i> SSL Secure\n" +
-    "                <hr class=\"visible-sm visible-xs\">\n" +
+    "                <hr>\n" +
     "              </div>\n" +
     "            <div class=\"row\">\n" +
     "             <form name=\"stripe-form\" id=\"stripe-form\" stripe-form=\"submit\">\n" +
@@ -1280,7 +1280,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                   </label> -->\n" +
     "                 </div>\n" +
     "               </div>\n" +
-    "                <hr class=\"visible-sm visible-xs\">\n" +
+    "                <hr>\n" +
     "               <div class=\"row row-submit centered\">\n" +
     "                <button class=\"btn button-white\" value=\"submit\">Commander mes vins</button>\n" +
     "                <div><a href ui-sref=\"order.userinfos\">Modifier</a></div>\n" +

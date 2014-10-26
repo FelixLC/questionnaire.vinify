@@ -6688,6 +6688,9 @@ footer p {
   padding-bottom: 0;
 }
 #stripe-form {
+  padding: 0 10px;
+  max-width: 400px;
+  margin: 0 auto;
   position: relative;
   overflow: visible;
 }
