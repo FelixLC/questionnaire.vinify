@@ -5,7 +5,7 @@ angular.module( 'vinibar.remerciement_mobile', [
   'ngAutocomplete'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider.state( 'remerciement_mobile', {
     url: '/remerciement_mobile',
     views: {
@@ -16,8 +16,8 @@ angular.module( 'vinibar.remerciement_mobile', [
     },
     data:{ pageTitle: 'remerciement_mobile' }
   });
-}])
+})
 
-.controller( 'remerciement_mobileCtrl', ["$timeout", "$window", "$scope", "$http", "$location", "User", function remerciement_mobileCtrl( $timeout, $window, $scope, $http, $location, User ) {
+.controller( 'remerciement_mobileCtrl', function remerciement_mobileCtrl( $timeout, $window, $scope, $http, $location, User ) {
   $scope.user = {};
-}]);
+});

@@ -2060,7 +2060,7 @@ angular.module("remerciement_mobile/remerciement_mobile.tpl.html", []).run(["$te
     "      <div class=\"container row-fluid\">\n" +
     "        <h2>Merci pour votre commande</h2>\n" +
     "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
-    "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p>\n" +
+    "        <p>Vous allez recevoir un email contenant votre facture et votre numéro de commande.</p>\n" +
     "        <div class=\"remerciement\">\n" +
     "          <img src=\"assets/vinifytailleur.png\" style=\"width:300px;\">\n" +
     "        <!-- Col -->\n" +
@@ -2079,7 +2079,7 @@ angular.module("remerciement_order/remerciement_order.tpl.html", []).run(["$temp
     "      <div class=\"container row-fluid\">\n" +
     "        <h2>Merci pour votre commande</h2>\n" +
     "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
-    "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p>\n" +
+    "        <p>Vous allez recevoir un email contenant votre facture et votre numéro de commande.</p>\n" +
     "        <div class=\"remerciement\">\n" +
     "          <img src=\"assets/vinifytailleur.png\" style=\"width:300px;\">\n" +
     "        <!-- Col -->\n" +
