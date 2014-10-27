@@ -121,20 +121,12 @@ angular.module( 'vinibar.order', [
                                               $rootScope.loading = false;
                                               $location.path('/remerciement_order');
                                             } else {
-                                              if(currentClient.isMobile) {
-                                                $state.go('pay_mobile');
-                                              } else {
-                                                $state.go('order.paiement');
-                                              }
+                                              $state.go('pay_mobile');
                                               $rootScope.loading = false;
                                             }
                                           } else {
                                               console.log('success @ addUserInfo');
-                                              if(currentClient.isMobile) {
-                                                $state.go('pay_mobile');
-                                              } else {
-                                                $state.go('order.paiement');
-                                              }
+                                              $state.go('pay_mobile');
                                               $rootScope.loading = false;
                                               // $scope.createOrder();
                                           }
@@ -191,20 +183,12 @@ angular.module( 'vinibar.order', [
                                               $rootScope.loading = false;
                                               $location.path('/remerciement_order');
                                             } else {
-                                              if(currentClient.isMobile) {
-                                                $state.go('pay_mobile');
-                                              } else {
-                                                $state.go('order.paiement');
-                                              }
+                                              $state.go('pay_mobile');
                                               $rootScope.loading = false;
                                             }
                                           } else {
                                               console.log('success @ addUserInfo');
-                                              if(currentClient.isMobile) {
-                                                $state.go('pay_mobile');
-                                              } else {
-                                                $state.go('order.paiement');
-                                              }
+                                              $state.go('pay_mobile');
                                               $rootScope.loading = false;
                                               // $scope.createOrder();
                                           }

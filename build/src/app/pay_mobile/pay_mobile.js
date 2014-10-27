@@ -72,7 +72,7 @@ angular.module( 'vinibar.pay_mobile', [
           $rootScope.loading = true;
           var data = {
             id: response.id,
-            order_uuid: $scope.serializedOrder.uuid
+            order_uuid: $scope.client.order.uuid
           };
           $http({
             url: apiEndPoint + '/orders/chargevinibar/',
@@ -81,11 +81,11 @@ angular.module( 'vinibar.pay_mobile', [
           })
           .success(function(data, status, headers, config) {
             $rootScope.loading = false;
-            if ($scope.serializedOrder.delivery_mode === 'Point Relais') {
+            if ($scope.client.order.delivery_mode === 'Point Relais') {
               $http({
                 url: apiEndPoint + '/orders/pickmremail/',
                 method: "POST",
-                data: { 'order_id': $scope.serializedOrder.uuid },
+                data: { 'order_id': $scope.client.order.uuid },
                 headers: {
                   'Content-Type': 'application/json; charset=UTF-8'
                 }

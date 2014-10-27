@@ -1054,8 +1054,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "  </nav>\n" +
     "  <div class=\"container-delivery\">\n" +
     "      <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
-    "    <h3 ng-show=\"isState('order.userinfos')\" class=\"centered\">Notre oenologue va préparer votre sélection personnalisée</h3>\n" +
-    "    <h3 ng-show=\"isState('order.paiement')\" class=\"centered\">Merci de vérifier vos informations</h3>\n" +
+    "    <h3 class=\"centered\">Merci de vérifier vos informations</h3>\n" +
     "    <div class=\"col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding\">\n" +
     "      <div class=\"main-container\">\n" +
     "        <div class=\"row row-paiement\">\n" +
