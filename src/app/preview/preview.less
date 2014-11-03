@@ -1,0 +1,131 @@
+#preview {
+	background-color: #EFEEEB;
+	position: absolute;
+	top: 56px;
+	left: 0;
+	right: 0;
+      padding-bottom: 56px;
+}
+#preview .container-preview {
+	// max-width: 600px;
+	margin: 0 auto 50px auto;
+}
+#preview > div > div:last-child {
+	background-color: #FFF;
+	padding: 20px;
+}
+#preview > div > div:first-child {
+	padding: 20px;
+}
+#preview > div > div:last-child  img{
+	margin: 20px auto;
+}
+#preview  p{
+  	font-size: 16px;
+  	font-family: 'Roboto';
+}
+#preview h3 {
+  	font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+}
+#preview span.highlight {
+  	font-family: 'Roboto';
+      font-weight: 400;
+}
+#preview div.btn-cta {
+	max-width: 250px;
+	margin: 20px auto;
+}
+#preview #wines-preview {
+  display: table;
+  width: 100%;
+}
+#preview #wines-preview > div {
+  display: table-cell;
+  width: 33.33%;
+}
+#preview #wines-preview .bottle-row {
+  position: relative;
+  height: 300px;
+  width: 200px;
+  margin: 0 auto;
+}
+#preview #wines-preview .bottle-row .preview-overlay {
+  position: absolute;
+  display: table;
+  height: 300px;
+  padding: 0 10px;
+  width: 200px;
+  top: 0;
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#preview #wines-preview .bottle-row .preview-overlay > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#preview #wines-preview .bottle-row .preview-overlay span {
+  font-weight: 300;
+  font-size: 16px;
+  display: block;
+}
+#preview h4 {
+  font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
+}
+#preview #wines-preview .bottle-row .preview-overlay h4:nth-child(even) {
+  margin-top: 40px;
+}
+#preview #wines-preview > div img{
+  margin: 0 auto;
+}
+#preview .container-hr {
+  display: table;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+#preview .container-hr > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#preview .container-hr > div:nth-child(odd)  {
+  width: 30%;
+}
+#preview #container-offers h4,
+#preview #container-offers p {
+  text-align: left;
+}
+#preview button {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 16px;
+  padding:  5px 10px;
+}
+#preview button.btn-cta-outline {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  border: 1px solid @color-support-strong;
+  color: @color-support-strong;
+}
+#preview button.btn-cta {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  border: 1px solid @color-support-strong;
+}
+@media screen and (max-width: 640px) {
+        #preview div.btn-cta {
+          font-size: 20px;
+        }
+	#preview > div > div:first-child {
+		padding: 10px;
+	}
+	#preview > div > div:last-child {
+		background-color: #FFF;
+		padding: 10px;
+	}
+	#preview h3 {
+		font-size: 16px;
+	}
+      #preview #wines-preview > div {
+        display: block;
+        width: 100%;
+      }
+}

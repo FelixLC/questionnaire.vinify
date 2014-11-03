@@ -29,7 +29,7 @@ angular.module( 'vinibar.paiement', [
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
+.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
 .controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
   $scope.delivery = {
     mode: 'Colissimo',

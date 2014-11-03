@@ -6347,7 +6347,7 @@ h3 {
 }
 .table-deliv-mode p {
   text-align: left;
-  font-family: 'Julius One Sans';
+  font-family: 'Roboto';
 }
 .terminate-order {
   margin-top: 60px;
@@ -6447,93 +6447,59 @@ footer p {
 .container-delivery-confirmation .bg-danger {
   text-align: center;
 }
-.container-delivery-confirmation label {
-  font-weight: 300;
-  color: #FFF;
-}
-.container-delivery-confirmation .container-title {
-  position: relative;
-}
-.container-delivery-confirmation #delivery_billing_title:after {
-  position: absolute;
-  content: "";
-  width: 282px;
-  height: 0;
-  border-top: 5px solid #34495e;
-}
-.container-delivery-confirmation #payment_title:after {
-  position: absolute;
-  content: "";
-  width: 366px;
-  height: 0;
-  border-top: 5px solid #34495e;
-}
-.container-delivery-confirmation #payment-bckg {
-  background-image: url(wines.jpg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.container-delivery-confirmation .ruler-delivery {
-  margin-top: 5px;
-}
-.container-delivery-confirmation .bg-danger {
-  text-align: center;
-}
 .confirmation-first-title {
   margin-top: 50px;
 }
-.container-delivery {
+.container-delivery-checkout-less {
   position: absolute;
   left: 0;
   top: 56px;
   right: 0;
-  bottom: 0;
+  padding-bottom: 56px;
   background-color: #EFEEEB;
   font-size: 0.8rem;
 }
-.container-delivery label {
+.container-delivery-checkout-less label {
   font-weight: 300;
   color: #FFF;
 }
-.container-delivery .container-title {
+.container-delivery-checkout-less .container-title {
   position: relative;
 }
-.container-delivery #delivery_billing_title:after {
+.container-delivery-checkout-less #delivery_billing_title:after {
   position: absolute;
   content: "";
   width: 282px;
   height: 0;
   border-top: 5px solid #34495e;
 }
-.container-delivery #payment_title:after {
+.container-delivery-checkout-less #payment_title:after {
   position: absolute;
   content: "";
   width: 366px;
   height: 0;
   border-top: 5px solid #34495e;
 }
-.container-delivery #payment-bckg {
+.container-delivery-checkout-less #payment-bckg {
   background-image: url(wines.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-.container-delivery .ruler-delivery {
+.container-delivery-checkout-less .ruler-delivery {
   margin-top: 5px;
 }
-.container-delivery .bg-danger {
+.container-delivery-checkout-less .bg-danger {
   text-align: center;
 }
-.container-delivery > h3 {
+.container-delivery-checkout-less > h3 {
   font-family: 'Julius Sans One';
   text-transform: uppercase;
   padding: 20px;
 }
 @media screen and (max-width: 640px) {
-  .container-delivery > h3 {
+  .container-delivery-checkout-less > h3 {
     font-size: 14px;
   }
   .form-infos .form-offer {
@@ -6541,15 +6507,15 @@ footer p {
     padding-bottom: 20px;
   }
 }
-.container-delivery label {
+.container-delivery-checkout-less label {
   font-family: 'Roboto';
   font-weight: 400;
 }
-.container-delivery h4,
-.container-delivery button {
+.container-delivery-checkout-less h4,
+.container-delivery-checkout-less button {
   font-family: 'Julius Sans One';
 }
-.container-delivery p {
+.container-delivery-checkout-less p {
   font-family: 'Roboto';
 }
 .form-infos {
@@ -7233,6 +7199,136 @@ footer p {
   -ms-animation: fadeOut 1s;
   animation: fadeOut 1s;
 }
+#preview {
+  background-color: #EFEEEB;
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  padding-bottom: 56px;
+}
+#preview .container-preview {
+  margin: 0 auto 50px auto;
+}
+#preview > div > div:last-child {
+  background-color: #FFF;
+  padding: 20px;
+}
+#preview > div > div:first-child {
+  padding: 20px;
+}
+#preview > div > div:last-child img {
+  margin: 20px auto;
+}
+#preview p {
+  font-size: 16px;
+  font-family: 'Roboto';
+}
+#preview h3 {
+  font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
+#preview span.highlight {
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+#preview div.btn-cta {
+  max-width: 250px;
+  margin: 20px auto;
+}
+#preview #wines-preview {
+  display: table;
+  width: 100%;
+}
+#preview #wines-preview > div {
+  display: table-cell;
+  width: 33.33%;
+}
+#preview #wines-preview .bottle-row {
+  position: relative;
+  height: 300px;
+  width: 200px;
+  margin: 0 auto;
+}
+#preview #wines-preview .bottle-row .preview-overlay {
+  position: absolute;
+  display: table;
+  height: 300px;
+  padding: 0 10px;
+  width: 200px;
+  top: 0;
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#preview #wines-preview .bottle-row .preview-overlay > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#preview #wines-preview .bottle-row .preview-overlay span {
+  font-weight: 300;
+  font-size: 16px;
+  display: block;
+}
+#preview h4 {
+  font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
+}
+#preview #wines-preview .bottle-row .preview-overlay h4:nth-child(even) {
+  margin-top: 40px;
+}
+#preview #wines-preview > div img {
+  margin: 0 auto;
+}
+#preview .container-hr {
+  display: table;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+#preview .container-hr > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#preview .container-hr > div:nth-child(odd) {
+  width: 30%;
+}
+#preview #container-offers h4,
+#preview #container-offers p {
+  text-align: left;
+}
+#preview button {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+#preview button.btn-cta-outline {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  border: 1px solid #006db2;
+  color: #006db2;
+}
+#preview button.btn-cta {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  border: 1px solid #006db2;
+}
+@media screen and (max-width: 640px) {
+  #preview div.btn-cta {
+    font-size: 20px;
+  }
+  #preview > div > div:first-child {
+    padding: 10px;
+  }
+  #preview > div > div:last-child {
+    background-color: #FFF;
+    padding: 10px;
+  }
+  #preview h3 {
+    font-size: 16px;
+  }
+  #preview #wines-preview > div {
+    display: block;
+    width: 100%;
+  }
+}
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
@@ -7437,21 +7533,6 @@ footer p {
 .table-bill .bill-total {
   border-top: 1px solid #FFF;
 }
-.table-deliv-mode {
-  margin: 0 auto;
-  margin-top: 20px;
-  min-width: 250px;
-}
-.table-deliv-mode td {
-  padding: 0 15px;
-}
-.table-deliv-mode tr {
-  cursor: pointer;
-}
-.table-deliv-mode p {
-  text-align: left;
-  font-family: 'Julius One Sans';
-}
 .terminate-order {
   margin-top: 60px;
 }
@@ -7515,40 +7596,6 @@ footer p {
   margin-top: 0;
   padding-left: 0;
   padding-right: 0;
-}
-.container-delivery-confirmation label {
-  font-weight: 300;
-  color: #FFF;
-}
-.container-delivery-confirmation .container-title {
-  position: relative;
-}
-.container-delivery-confirmation #delivery_billing_title:after {
-  position: absolute;
-  content: "";
-  width: 282px;
-  height: 0;
-  border-top: 5px solid #34495e;
-}
-.container-delivery-confirmation #payment_title:after {
-  position: absolute;
-  content: "";
-  width: 366px;
-  height: 0;
-  border-top: 5px solid #34495e;
-}
-.container-delivery-confirmation #payment-bckg {
-  background-image: url(wines.jpg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.container-delivery-confirmation .ruler-delivery {
-  margin-top: 5px;
-}
-.container-delivery-confirmation .bg-danger {
-  text-align: center;
 }
 .container-delivery-confirmation label {
   font-weight: 300;

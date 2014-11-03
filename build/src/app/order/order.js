@@ -36,7 +36,7 @@ angular.module( 'vinibar.order', [
       templateUrl: 'order/parts/order.confirmation.tpl.html'
     });
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
+.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
 .controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
   console.log(API_ENDPOINT);
   $scope.isState= function(state){ return $state.is(state);};

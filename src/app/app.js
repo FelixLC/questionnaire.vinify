@@ -6,6 +6,7 @@ angular.module( 'vinibar', [
   'mondialrelay',
   'vinibar.order',
   'vinibar.questionnaire',
+  'vinibar.preview',
   'vinibar.paiement',
   'vinibar.welcome',
   'vinibar.remerciement',

@@ -15,7 +15,7 @@
       </div><!-- /.navbar-collapse -->
     </div>
   </nav>
-  <div class="container-delivery">
+  <div class="container-delivery-checkout-less">
       <toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
     <h3 class="centered">Merci de vérifier vos informations</h3>
     <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding">
@@ -244,6 +244,7 @@
                </div>
                 <hr>
                <div class="row row-submit centered">
+                <div><input type="hidden" name="name" ng-model="client.userinfos.last_name"/></div>
                 <button class="btn button-white" value="submit">Commander mes vins</button>
                 <div><a href ui-sref="order.userinfos">Modifier</a></div>
                </div>

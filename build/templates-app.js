@@ -1,4 +1,4 @@
-angular.module('templates-app', ['mrelay/mrelay.tpl.html', 'offrir/offrir.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['mrelay/mrelay.tpl.html', 'offrir/offrir.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
 
 angular.module("mrelay/mrelay.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("mrelay/mrelay.tpl.html",
@@ -1052,7 +1052,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "      </div><!-- /.navbar-collapse -->\n" +
     "    </div>\n" +
     "  </nav>\n" +
-    "  <div class=\"container-delivery\">\n" +
+    "  <div class=\"container-delivery-checkout-less\">\n" +
     "      <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "    <h3 class=\"centered\">Merci de vérifier vos informations</h3>\n" +
     "    <div class=\"col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding\">\n" +
@@ -1281,6 +1281,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "               </div>\n" +
     "                <hr>\n" +
     "               <div class=\"row row-submit centered\">\n" +
+    "                <div><input type=\"hidden\" name=\"name\" ng-model=\"client.userinfos.last_name\"/></div>\n" +
     "                <button class=\"btn button-white\" value=\"submit\">Commander mes vins</button>\n" +
     "                <div><a href ui-sref=\"order.userinfos\">Modifier</a></div>\n" +
     "               </div>\n" +
@@ -1293,6 +1294,101 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "  </div>\n" +
     "</div>\n" +
     "\n" +
+    "");
+}]);
+
+angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("preview/preview.tpl.html",
+    "\n" +
+    "<nav class=\"navbar\" role=\"navigation\">\n" +
+    "	<div class=\"container\">\n" +
+    "		<div class=\"navbar-header\">\n" +
+    "			 <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</nav>\n" +
+    "\n" +
+    "<div id=\"preview\">\n" +
+    "	<div class=\"container-preview\">\n" +
+    "		<div class=\"centered\">\n" +
+    "			<h3>Les 3 vins qui correspondent le plus à vos goûts</h3>\n" +
+    "		</div>\n" +
+    "		<div class=\"centered col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12\">\n" +
+    "			<div id=\"wines-preview\">\n" +
+    "				<div>\n" +
+    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\">\n" +
+    "						<img src=\"assets/wines/13cbac7c677a48cc89a8f4f47381c1ac.jpg\" alt=\"\">\n" +
+    "						<div class=\"preview-overlay\" ng-show=\"wine_1\">\n" +
+    "							<div>\n" +
+    "								<h4>Cépages</h4>\n" +
+    "								<span>{{preview[0].variety}}</span>\n" +
+    "								<h4>Appellation</h4>\n" +
+    "								<span>{{preview[0].appellation}}</span>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div>\n" +
+    "						<h4>{{preview[0].display_name}}</h4>\n" +
+    "						<p>{{preview[0].region}} -  {{preview[0].vintage}}</p>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "				<div>\n" +
+    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_2 = !wine_2\" ng-mouseleave=\"wine_2 = !wine_2\">\n" +
+    "						<img src=\"assets/wines/c40e10a657fa40c1b1726b8d1246e87b.jpg\" alt=\"\">\n" +
+    "						<div class=\"preview-overlay\" ng-show=\"wine_2\">\n" +
+    "							<div>\n" +
+    "								<h4>Cépages</h4>\n" +
+    "								<span>{{preview[1].variety}}</span>\n" +
+    "								<h4>Appellation</h4>\n" +
+    "								<span>{{preview[1].appellation}}</span>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div>\n" +
+    "						<h4>{{preview[1].display_name}}</h4>\n" +
+    "						<p>{{preview[1].region}} -  {{preview[1].vintage}}</p>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "				<div>\n" +
+    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_3 = !wine_3\" ng-mouseleave=\"wine_3 = !wine_3\">\n" +
+    "						<img src=\"assets/wines/dbab75026cdc4480bafac802cb0e92ca.jpg\" alt=\"\">\n" +
+    "						<div class=\"preview-overlay\" ng-show=\"wine_3\">\n" +
+    "							<div>\n" +
+    "								<h4>Cépages</h4>\n" +
+    "								<span>{{preview[2].variety}}</span>\n" +
+    "								<h4>Appellation</h4>\n" +
+    "								<span>{{preview[2].appellation}}</span>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div>\n" +
+    "						<h4>{{preview[2].display_name}}</h4>\n" +
+    "						<p>{{preview[2].region}} -  {{preview[2].vintage}}</p>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"container container-hr\">\n" +
+    "				<div><hr></div>\n" +
+    "				<div><img alt=\"\" src=\"assets/logo_mini.png\" style=\"height:45px\"/></div>\n" +
+    "				<div><hr></div>\n" +
+    "			</div>\n" +
+    "			<div id=\"container-offers\">\n" +
+    "				<div class=\"col-lg-6 col-lg-push-6 col-md-6 col-md-push-6 col-sm-12  col-xs-12 \">\n" +
+    "					<h4 class=\"u-left\">Je veux découvrir ma sélection personnalisée</h4>\n" +
+    "					<p>Dégustez 6 bouteilles sélectionnés parmi plus de 100 références par notre oenologue en fonction de vos réponses.</p>\n" +
+    "					<p>Accédez à notre application pour les noter et retrouver des informations sur vos vins et les conseils d'un oenologue.</p>\n" +
+    "					<button class=\"button btn-cta pull-right\">Commander mon Vinibar</button>\n" +
+    "				</div>\n" +
+    "				<div class=\"col-lg-6 col-lg-pull-6 col-md-6 col-md-pull-6 col-sm-12  col-xs-12 \">\n" +
+    "					<h4 class=\"u-left\">Je veux tester la sélection découverte</h4>\n" +
+    "					<p>Dégustez un avant gout de notre sélection avec les 3 bouteilles présentées ci-dessus.</p>\n" +
+    "					<p>Accédez à notre application pour les noter et retrouver des informations sur vos vins et les conseils d'un oenologue.</p>\n" +
+    "					<button class=\"button btn-cta-outline pull-right\">Commander 3 bouteilles</button>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -1955,53 +2051,55 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "						</form>\n" +
     "					</div> -->\n" +
     "					<div class=\"row\">\n" +
-    "				            <form name=\"form_name\" role=\"form\" class=\"form-inline\">\n" +
-    "					              <h3>Mon compte Vinify</h3>\n" +
+    "						<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "					            <form name=\"form_name\" role=\"form\" class=\"form-inline\">\n" +
+    "						              <h3>Mon compte Vinify</h3>\n" +
+    "						              <div class=\"form-group\">\n" +
+    "						                <label class=\"sr-only\" for=\"first_name\">Prénom</label>\n" +
+    "						                <input type=\"text\"\n" +
+    "						                    placeholder=\"Prénom\"\n" +
+    "						                    name=\"first_name\"\n" +
+    "						                    ng-model=\"newuser.first_name\"\n" +
+    "						                    required\n" +
+    "						                    class=\"form-control\"\n" +
+    "						                    id=\"first_name\" required/>\n" +
+    "						              </div>\n" +
+    "						              <div class=\"form-group\">\n" +
+    "						                <label class=\"sr-only\" for=\"last_name\">Nom</label>\n" +
+    "						                <input type=\"text\"\n" +
+    "						                    placeholder=\"Nom\"\n" +
+    "						                    name=\"last_name\"\n" +
+    "						                    ng-model=\"newuser.last_name\"\n" +
+    "						                    required\n" +
+    "						                    class=\"form-control\"\n" +
+    "						                    id=\"last_name\" required/>\n" +
+    "								</div>\n" +
+    "				            		</form>\n" +
+    "					            <form   role=\"form\" name=\"form_user\" class=\"form-inline\">\n" +
     "					              <div class=\"form-group\">\n" +
-    "					                <label class=\"sr-only\" for=\"first_name\">Prénom</label>\n" +
-    "					                <input type=\"text\"\n" +
-    "					                    placeholder=\"Prénom\"\n" +
-    "					                    name=\"first_name\"\n" +
-    "					                    ng-model=\"newuser.first_name\"\n" +
+    "					                <label class=\"sr-only\" for=\"email\" name=\"email\">Email</label>\n" +
+    "					                <input type=\"email\"\n" +
+    "					                    name=\"email\"\n" +
+    "					                    ng-model=\"newuser.email\"\n" +
+    "					                    placeholder=\"Email\"\n" +
     "					                    required\n" +
     "					                    class=\"form-control\"\n" +
-    "					                    id=\"first_name\" required/>\n" +
+    "					                    id=\"email\" required/>\n" +
     "					              </div>\n" +
     "					              <div class=\"form-group\">\n" +
-    "					                <label class=\"sr-only\" for=\"last_name\">Nom</label>\n" +
-    "					                <input type=\"text\"\n" +
-    "					                    placeholder=\"Nom\"\n" +
-    "					                    name=\"last_name\"\n" +
-    "					                    ng-model=\"newuser.last_name\"\n" +
+    "					                <label class=\"sr-only\" for=\"password\">Mot de Passe</label>\n" +
+    "					                <input type=\"password\"\n" +
+    "					                    tooltip=\"Min. 5 charactères\"  tooltip-trigger=\"focus\" tooltip-placement=\"bottom\"\n" +
+    "					                    placeholder=\"Password\"\n" +
+    "					                    name=\"password\"\n" +
+    "					                    ng-model=\"newuser.password\"\n" +
     "					                    required\n" +
     "					                    class=\"form-control\"\n" +
-    "					                    id=\"last_name\" required/>\n" +
-    "							</div>\n" +
-    "			            		</form>\n" +
-    "				            <form   role=\"form\" name=\"form_user\" class=\"form-inline\">\n" +
-    "				              <div class=\"form-group\">\n" +
-    "				                <label class=\"sr-only\" for=\"email\" name=\"email\">Email</label>\n" +
-    "				                <input type=\"email\"\n" +
-    "				                    name=\"email\"\n" +
-    "				                    ng-model=\"newuser.email\"\n" +
-    "				                    placeholder=\"Email\"\n" +
-    "				                    required\n" +
-    "				                    class=\"form-control\"\n" +
-    "				                    id=\"email\" required/>\n" +
-    "				              </div>\n" +
-    "				              <div class=\"form-group\">\n" +
-    "				                <label class=\"sr-only\" for=\"password\">Mot de Passe</label>\n" +
-    "				                <input type=\"password\"\n" +
-    "				                    tooltip=\"Min. 5 charactères\"  tooltip-trigger=\"focus\" tooltip-placement=\"bottom\"\n" +
-    "				                    placeholder=\"Password\"\n" +
-    "				                    name=\"password\"\n" +
-    "				                    ng-model=\"newuser.password\"\n" +
-    "				                    required\n" +
-    "				                    class=\"form-control\"\n" +
-    "				                    ng-minlength=\"5\"\n" +
-    "				                    id=\"password\" required/>\n" +
-    "				              </div>\n" +
-    "				            </form>\n" +
+    "					                    ng-minlength=\"5\"\n" +
+    "					                    id=\"password\" required/>\n" +
+    "					              </div>\n" +
+    "					            </form>\n" +
+    "				            </div>\n" +
     "			            </div>\n" +
     "				</div>\n" +
     "			</div>\n" +

@@ -18,7 +18,7 @@ angular.module( 'vinibar.pay_mobile', [
     data:{ pageTitle: 'Commander' }
   });
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
+.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
 .controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, $location, currentClient, $rootScope, API_ENDPOINT, $state ) {
     $scope.client = currentClient.currentClient;
     $scope.serializedOrder = $scope.client.order;
@@ -61,7 +61,7 @@ angular.module( 'vinibar.pay_mobile', [
                   $rootScope.loading = false;
               });
       };
-    var apiEndPoint =  'https://api.vinify.co/api';
+    var apiEndPoint =  'http://127.0.0.1:8000/api';
 
     Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
     $scope.submit = function(status, response) {

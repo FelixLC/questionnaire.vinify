@@ -2,6 +2,7 @@ angular.module( 'vinibar.questionnaire', [
 	'ui.router',
 	'placeholders',
 	'ui.bootstrap',
+	'Resources',
 	'ngAutocomplete',
 	'toaster'
 ])
@@ -58,8 +59,8 @@ angular.module( 'vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'questionnaireCtrl', function questionnaireCtrl( $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
+.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
+.controller( 'questionnaireCtrl', function questionnaireCtrl( Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
 	console.log(API_ENDPOINT);
 	// modal
 	$scope.open = function (size) {
@@ -197,9 +198,12 @@ angular.module( 'vinibar.questionnaire', [
 
 				$scope.newuser.createUser().success(function(data, status, headers, config) {
 																$window.sessionStorage.token = data.token;
-																$state.go('order.userinfos');
+																Recommender.calcPreview(data)
+																	.then(function(response) {
+																		$state.go('preview');
+																		$rootScope.loading = false;
+																	});
 																// $state.go('remerciement');
-																$rootScope.loading = false;
 														})
 
 													.error(function(data, status, headers, config) {
