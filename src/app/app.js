@@ -2,7 +2,7 @@ angular.module( 'vinibar', [
   'templates-app',
   'templates-common',
   'vinibar.pay_mobile',
-  'vinibar.offrir',
+  'vinibar.gift',
   'mondialrelay',
   'vinibar.order',
   'vinibar.questionnaire',
@@ -14,6 +14,7 @@ angular.module( 'vinibar', [
   'vinibar.remerciement_mobile',
   'ui.router',
   'ui.route',
+  'params',
   'ngAnimate',
   'clientFactory',
   'ngCookies'

@@ -1,0 +1,64 @@
+<div class="gift-header">
+  <h1>offrez plus que du vin</h1>
+  <h2>Vinify, le bar à vin sur mesure. Livré chez vous, selon vos goûts.</h2>
+</div>
+<div class="gift-overview">
+  <div>
+    <h2 class="col-title">Un Vinibar</h2>
+    <p>6 bouteilles sélectionnés en fonction de ses goûts. L’accès à notre application pour noter les vins et retrouver les conseils d’un  oenologue</p>
+    <p class="price">69€ (+ 10€ livraison France)</p>
+    <h2 class="col-title">Les recharges</h2>
+    <p>Offrez-lui la possibilité de recharger son vinibar avec des vins choisis en fonction des notes qu’il à données au 6 premières bouteilles !</p>
+    <p class="price">à partir de 29€ (3 bouteilles)</p>
+  </div>
+  <div><img src="assets/vinibar-showcase-half.jpg" alt="vinibar-showcase"></div>
+</div>
+<div class="gift-spacer">
+
+</div>
+<div class="gift-header gift-second-header">
+  <h1>Choix du cadeau</h1>
+  <h2>Vous pouvez lui offrir soit un Vinibar, soit une carte cadeau</h2>
+</div>
+<div class="gift-choose">
+  <div class="row">
+    <div  ng-mouseenter="toggle('vinibar')" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <p>Je connais ses goûts, je lui offre directement un bar personnalisé</p>
+      <button ng-class="{'btn_square': hover.view === 'vinibar', 'btn_square_o': hover.view === 'giftCard' }" ui-sref="gift.vinibar.details" class="button">Vinibar</button>
+    </div>
+    <div ng-mouseenter="toggle('giftCard')" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <p>Je ne connais pas ses goûts, je lui offre un bon cadeau pour commencer l’aventure</p>
+      <button ng-class="{'btn_square': hover.view === 'giftCard', 'btn_square_o': hover.view === 'vinibar' }" ui-sref="gift.gift_card.details" class="button">Carte Cadeau</button>
+    </div>
+  </div>
+  <div ng-show="hover.view === 'vinibar' " class="row">
+    <h1>Vinibar</h1>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div><span class="gift-step">1</span></div>
+      <p>Je choisis le destinataire <br> et le montant de son cadeau</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div><span class="gift-step">2</span></div>
+      <p>Je remplis le quiz Vinify <br> sur ses goûts pour lui</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div><span class="gift-step">3</span></div>
+      <p>J’envoie le vinibar  <br> à l’adresse de mon choix</p>
+    </div>
+  </div>
+  <div ng-show="hover.view === 'giftCard' " class="row">
+    <h1>Carte Cadeau</h1>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div><span class="gift-step">1</span></div>
+      <p>Je choisis le destinataire <br> et le montant de son cadeau</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div><span class="gift-step">2</span></div>
+      <p>J’écris mon message et Vinify l’envoie <br> par mail ou par la poste</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div><span class="gift-step">3</span></div>
+      <p>Le destinataire recoit ma carte <br> et démarre l’aventure avec le quiz Vinify</p>
+    </div>
+  </div>
+</div>

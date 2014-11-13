@@ -1,4 +1,628 @@
-angular.module('templates-app', ['mrelay/mrelay.tpl.html', 'offrir/offrir.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['gift/choose.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card/delivery.tpl.html', 'gift/gift_card/details.tpl.html', 'gift/gift_card/infos.tpl.html', 'gift/gift_card/pay.tpl.html', 'gift/gift_card/quiz.tpl.html', 'gift/overview.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/pay.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+
+angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/choose.tpl.html",
+    "<div class=\"gift-header\">\n" +
+    "  <h1>offrez plus que du vin</h1>\n" +
+    "  <h2>Vinify, le bar à vin sur mesure. Livré chez vous, selon vos goûts.</h2>\n" +
+    "</div>\n" +
+    "<div class=\"gift-overview\">\n" +
+    "  <div>\n" +
+    "    <h2 class=\"col-title\">Un Vinibar</h2>\n" +
+    "    <p>6 bouteilles sélectionnés en fonction de ses goûts. L’accès à notre application pour noter les vins et retrouver les conseils d’un  oenologue</p>\n" +
+    "    <p class=\"price\">69€ (+ 10€ livraison France)</p>\n" +
+    "    <h2 class=\"col-title\">Les recharges</h2>\n" +
+    "    <p>Offrez-lui la possibilité de recharger son vinibar avec des vins choisis en fonction des notes qu’il à données au 6 premières bouteilles !</p>\n" +
+    "    <p class=\"price\">à partir de 29€ (3 bouteilles)</p>\n" +
+    "  </div>\n" +
+    "  <div><img src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar-showcase\"></div>\n" +
+    "</div>\n" +
+    "<div class=\"gift-spacer\">\n" +
+    "\n" +
+    "</div>\n" +
+    "<div class=\"gift-header gift-second-header\">\n" +
+    "  <h1>Choix du cadeau</h1>\n" +
+    "  <h2>Vous pouvez lui offrir soit un Vinibar, soit une carte cadeau</h2>\n" +
+    "</div>\n" +
+    "<div class=\"gift-choose\">\n" +
+    "  <div class=\"row\">\n" +
+    "    <div  ng-mouseenter=\"toggle('vinibar')\" class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "      <p>Je connais ses goûts, je lui offre directement un bar personnalisé</p>\n" +
+    "      <button ng-class=\"{'btn_square': hover.view === 'vinibar', 'btn_square_o': hover.view === 'giftCard' }\" ui-sref=\"gift.vinibar.details\" class=\"button\">Vinibar</button>\n" +
+    "    </div>\n" +
+    "    <div ng-mouseenter=\"toggle('giftCard')\" class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "      <p>Je ne connais pas ses goûts, je lui offre un bon cadeau pour commencer l’aventure</p>\n" +
+    "      <button ng-class=\"{'btn_square': hover.view === 'giftCard', 'btn_square_o': hover.view === 'vinibar' }\" ui-sref=\"gift.gift_card.details\" class=\"button\">Carte Cadeau</button>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "  <div ng-show=\"hover.view === 'vinibar' \" class=\"row\">\n" +
+    "    <h1>Vinibar</h1>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <div><span class=\"gift-step\">1</span></div>\n" +
+    "      <p>Je choisis le destinataire <br> et le montant de son cadeau</p>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <div><span class=\"gift-step\">2</span></div>\n" +
+    "      <p>Je remplis le quiz Vinify <br> sur ses goûts pour lui</p>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <div><span class=\"gift-step\">3</span></div>\n" +
+    "      <p>J’envoie le vinibar  <br> à l’adresse de mon choix</p>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "  <div ng-show=\"hover.view === 'giftCard' \" class=\"row\">\n" +
+    "    <h1>Carte Cadeau</h1>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <div><span class=\"gift-step\">1</span></div>\n" +
+    "      <p>Je choisis le destinataire <br> et le montant de son cadeau</p>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <div><span class=\"gift-step\">2</span></div>\n" +
+    "      <p>J’écris mon message et Vinify l’envoie <br> par mail ou par la poste</p>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <div><span class=\"gift-step\">3</span></div>\n" +
+    "      <p>Le destinataire recoit ma carte <br> et démarre l’aventure avec le quiz Vinify</p>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
+angular.module("gift/gift.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/gift.tpl.html",
+    "<div>\n" +
+    "  <nav class=\"navbar\" role=\"navigation\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "      <div class=\"navbar-header\">\n" +
+    "         <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "      </div>\n" +
+    "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "          <li><a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-show=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-show=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-show=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-hide=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "        </ul>\n" +
+    "      </div><!-- /.navbar-collapse -->\n" +
+    "    </div>\n" +
+    "  </nav>\n" +
+    "  <div id=\"gift\">\n" +
+    "      <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "      <div ui-view class=\"gift-container\"></div>\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
+angular.module("gift/gift_card/delivery.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/gift_card/delivery.tpl.html",
+    "<div><h1>hey</h1></div>");
+}]);
+
+angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/gift_card/details.tpl.html",
+    "<div><h1>hey</h1></div>");
+}]);
+
+angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/gift_card/infos.tpl.html",
+    "<div><h1>hey</h1></div>");
+}]);
+
+angular.module("gift/gift_card/pay.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/gift_card/pay.tpl.html",
+    "<div><h1>hey</h1></div>");
+}]);
+
+angular.module("gift/gift_card/quiz.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/gift_card/quiz.tpl.html",
+    "<div><h1>hey</h1></div>");
+}]);
+
+angular.module("gift/overview.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/overview.tpl.html",
+    "<div class=\"gift-header\">\n" +
+    "  <h1>offrez plus que du vin</h1>\n" +
+    "  <h2>Vinify, le bar à vin sur mesure. Livré chez vous, selon vos goûts.</h2>\n" +
+    "</div>\n" +
+    "<div class=\"gift-overview\">\n" +
+    "  <div>\n" +
+    "    <h4>Le Cadeau</h4>\n" +
+    "    <p class=\"title\">Un Vinibar</p>\n" +
+    "    <p>6 bouteilles sélectionnés en fonction de ses goûts. L’accès à notre application pour noter les vins et retrouver les conseils d’un  oenologue</p>\n" +
+    "    <p class=\"price\">69€ (+ 10€ livraison France)</p>\n" +
+    "    <p class=\"title\">Les recharges</p>\n" +
+    "    <p>Offrez-lui la possibilité de recharger son vinibar avec des vins choisis en fonction des notes qu’il à données au 6 premières bouteilles !</p>\n" +
+    "    <p class=\"price\">à partir de 29€ (3 bouteilles)</p>\n" +
+    "  </div>\n" +
+    "  <div><img src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar-showcase\"></div>\n" +
+    "</div>\n" +
+    "<div class=\"gift-continue\">\n" +
+    "  <button class=\"button btn-square\" ui-sref=\"gift.choose\">Continuer</button>\n" +
+    "</div>");
+}]);
+
+angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/vinibar/details.tpl.html",
+    "<div class=\"gift-header\">\n" +
+    "  <h1>offrir un vinibar</h1>\n" +
+    "  <h2>Je choisis la formule que j'offre</h2>\n" +
+    "</div>\n" +
+    "<div class=\"row container-fluid\">\n" +
+    "  <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Vinibar</h2>\n" +
+    "      <div class=\"gift-checkbox checked\">\n" +
+    "        <h3>Vinibar</h3>\n" +
+    "        <p class=\"price\">69 €</p>\n" +
+    "        <p class=\"help\">(quiz Vinify sur ses goûts à l'étape suivante)</p>\n" +
+    "      </div>\n" +
+    "      <p class=\"details-helper\">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter plusieurs recharges d'avance au Vinibar, qui seront prépayées avec leur livraison.</p>\n" +
+    "      <p class=\"details-helper\">Pas d'inquiétude, l'heureux élu pourra toujours changer le mode de livraison après la première réception à sa convenance.</p>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Crédits</h2>\n" +
+    "      <div class=\"gift-checkbox\">\n" +
+    "        <p class=\"col-subtitle\">Nombre de recharges</p>\n" +
+    "        <div class=\"gift-checkbox-price-level\">\n" +
+    "          <div ng-class=\"{checked: details.credits.number === 0 }\"\n" +
+    "                    class=\"no-border\"\n" +
+    "                    ng-click=\"details.credits.number = 0 \">\n" +
+    "            <p>0<p>\n" +
+    "          </div>\n" +
+    "          <div ng-class=\"{checked: details.credits.number === 1 }\"\n" +
+    "                    class=\"no-border\"\n" +
+    "                    ng-click=\"details.credits.number = 1 \">\n" +
+    "            <p>1<p>\n" +
+    "          </div>\n" +
+    "          <div ng-class=\"{checked: details.credits.number === 2 }\"\n" +
+    "                    class=\"no-border\"\n" +
+    "                    ng-click=\"details.credits.number = 2 \">\n" +
+    "            <p>2<p>\n" +
+    "          </div>\n" +
+    "          <div ng-class=\"{checked: details.credits.number === 3 }\"\n" +
+    "                    ng-click=\"details.credits.number = 3 \">\n" +
+    "            <p>3<p>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "        <p class=\"col-subtitle\">Prix des recharges\n" +
+    "          <a href=\"#\" tooltip=\"Le Vinibar est entièrement personnalisé, et le prix des recharges aussi\"><i class=\"fa fa-info-circle\"></i></a></p>\n" +
+    "        <div class=\"gift-checkbox-price-level\">\n" +
+    "          <div ng-class=\"{checked: details.credits.price_level === 29.90 }\"\n" +
+    "                    class=\"no-border\"\n" +
+    "                    ng-click=\"details.credits.price_level = 29.90 \">\n" +
+    "            <p>29€90</p>\n" +
+    "          </div>\n" +
+    "          <div ng-class=\"{checked: details.credits.price_level === 39.90 }\"\n" +
+    "                    class=\"no-border\"\n" +
+    "                    ng-click=\"details.credits.price_level = 39.90 \">\n" +
+    "            <p>39€90</p>\n" +
+    "          </div>\n" +
+    "          <div ng-class=\"{checked: details.credits.price_level === 49.90 }\"\n" +
+    "                    ng-click=\"details.credits.price_level = 49.90 \">\n" +
+    "            <p>49€90</p>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Livraison</h2>\n" +
+    "      <div class=\"gift-checkbox\"\n" +
+    "          ng-class=\"{checked: gift.order.delivery_mode === 'Vinify' }\"\n" +
+    "          ng-click=\"gift.order.delivery_mode ='Vinify'\">\n" +
+    "        <h3>Retrait Vinify</h3>\n" +
+    "        <p class=\"price\">Gratuit</p>\n" +
+    "        <p class=\"help\">Venez nous voir à Issy (92)</p>\n" +
+    "      </div>\n" +
+    "      <div class=\"gift-checkbox\"\n" +
+    "          ng-class=\"{checked: gift.order.delivery_mode === 'Point Relais' }\"\n" +
+    "          ng-click=\"gift.order.delivery_mode = 'Point Relais'\">\n" +
+    "        <h3>Point Relais</h3>\n" +
+    "        <p class=\"price\">{{costs['vinibar']['Point Relais'] }} € + {{details.credits.number * costs['refill']['Point Relais'] | number:2}} €</p>\n" +
+    "        <p class=\"help\">Livré dans le point relais de votre choix</p>\n" +
+    "      </div>\n" +
+    "      <div class=\"gift-checkbox\"\n" +
+    "          ng-class=\"{checked: gift.order.delivery_mode === 'Colissimo' }\"\n" +
+    "          ng-click=\"gift.order.delivery_mode =  'Colissimo'\">\n" +
+    "        <h3>Colissimo Suivi</h3>\n" +
+    "        <p class=\"price\">{{costs['vinibar']['Colissimo'] }} € + {{details.credits.number * costs['refill']['Colissimo'] | number:2}} €</p>\n" +
+    "        <p class=\"help\">Livré à domicile par la Poste</p>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "  <div class=\"row container-fluid row-totals\">\n" +
+    "    <div class=\"col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12\">\n" +
+    "      <div class=\"gift-checkbox\">\n" +
+    "        <p class=\"col-subtitle\">Total de crédits</p>\n" +
+    "        <p class=\"centered\">{{gift.order.credits | number:2}} €</p>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <div class=\"gift-checkbox centered\">\n" +
+    "        <p>Total de la commande</p>\n" +
+    "        <p>{{details.total | number:2}} €</p>\n" +
+    "      </div>\n" +
+    "      <div class=\"btn_block_primary centered margin-top\" ui-sref=\"gift.vinibar.infos\"><p>Continuer</p></div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "");
+}]);
+
+angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/vinibar/infos.tpl.html",
+    "<div class=\"gift-header\">\n" +
+    "  <h1>offrir un vinibar</h1>\n" +
+    "  <h2>Je remplis ses coordonnées</h2>\n" +
+    "</div>\n" +
+    "<div class=\"row container-fluid\">\n" +
+    "  <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Moi</h2>\n" +
+    "      <div class=\"gift-checkbox\" ng-hide=\"logged\">\n" +
+    "        <p class=\"col-subtitle\">Je ne suis pas encore client Vinify</p>\n" +
+    "        <div class=\"gift-giver gift-giver-new\">\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Prénom</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.giver.first_name\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Nom</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.giver.last_name\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Email</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.giver.email\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Mot de Passe</p>\n" +
+    "              <input type=\"password\" class=\"form-control\" ng-model=\"gift.giver.password\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"btn_block_primary_o centered margin-top\" ng-click=\"createGiver()\"><p>Créer mon compte</p></div>\n" +
+    "      <div class=\"gift-checkbox margin-top\"  ng-hide=\"logged\">\n" +
+    "        <p class=\"col-subtitle\">Je ne suis pas déja client Vinify</p>\n" +
+    "        <div class=\"gift-giver\">\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Email</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.client.username\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Mot de Passe</p>\n" +
+    "              <input type=\"password\" class=\"form-control\" ng-model=\"gift.client.password\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"btn_block_primary_o centered margin-top\" ng-click=\"logGiver()\"><p>Login</p></div>\n" +
+    "      <div class=\"gift-checkbox\" ng-show=\"logged\">\n" +
+    "        <p class=\"col-subtitle\">Bonjour, {{gift.giver.first_name}}</p>\n" +
+    "        <p>Vous vous apprêtez à faire un heureux !</p>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">L'heureux élu</h2>\n" +
+    "      <div class=\"gift-checkbox\">\n" +
+    "        <p class=\"col-subtitle\">Glissez un mot doux dans son Vinibar</p>\n" +
+    "        <div class=\"gift-receiver\">\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "              <p class=\"\">Civilité</p>\n" +
+    "              <select name=\"\" id=\"\" ng-model=\"gift.orderUpdate.sex\" class=\"form-control\">\n" +
+    "                <option value=\"m\">M.</option>\n" +
+    "                <option value=\"f\">Mme</option>\n" +
+    "              </select>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
+    "              <p class=\"\">Prénom</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.first_name\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "              <p class=\"\">Email</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.email\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "              <p class=\"\">Message</p>\n" +
+    "              <textarea ng-model=\"gift.orderUpdate.message\" class=\"form-control\" rows=\"6\"></textarea>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Livraison</h2>\n" +
+    "      <div class=\"gift-checkbox\">\n" +
+    "        <p class=\"col-subtitle\">Vous pouvez vous faire livrer le premier bar si vous voulez l'offrir vous même</p>\n" +
+    "        <div class=\"gift-receiver\">\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Prénom</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.address.first_name\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Nom</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.address.last_name\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "              <p class=\"\">Rue</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.address.street\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Code Postal</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.address.zipcode\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Ville</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.address.city\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Code</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.address.digicode\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"\">Interphone</p>\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.orderUpdate.address.intercom\">\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "              <p class=\"\">Informations Complémentaires</p>\n" +
+    "                <textarea class=\"form-control\" rows=\"2\" ng-model=\"gift.orderUpdate.address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"gift.orderUpdate.address.other_info\"></textarea>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"btn_block_primary centered margin-top\" ui-sref=\"gift.vinibar.quiz\" >Continuer</div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("gift/vinibar/pay.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/vinibar/pay.tpl.html",
+    "<div class=\"gift-header\">\n" +
+    "  <h1>offrir un vinibar</h1>\n" +
+    "  <h2>Vous êtes sur le point de rendre quelqu'un heureux !</h2>\n" +
+    "</div>\n" +
+    "<div class=\"row container-fluid\">\n" +
+    "  <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "    <h2 class=\"col-title\">Mon cadeau</h2>\n" +
+    "    <div class=\"gift-checkbox\">\n" +
+    "      <table class=\"table-bill\">\n" +
+    "          <tr>\n" +
+    "            <td><p>Vinibar </p></td>\n" +
+    "            <td><p>69&nbsp;€</p></td>\n" +
+    "          </tr>\n" +
+    "          <tr>\n" +
+    "            <td><p>Livraison </p></td>\n" +
+    "            <td>\n" +
+    "              <p>\n" +
+    "                {{gift.order.delivery_cost}}&nbsp;€\n" +
+    "              </p>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
+    "          <tr ng-show=\"gift.order.credits\">\n" +
+    "            <td><p>Recharges </p></td>\n" +
+    "            <td><p>{{gift.order.credits}}&nbsp;€</p></td>\n" +
+    "          </tr>\n" +
+    "          <tr  class=\"\">\n" +
+    "            <td><h4>Total </h4></td>\n" +
+    "            <td><h4>{{69 + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>\n" +
+    "          </tr>\n" +
+    "      </table>\n" +
+    "    </div>\n" +
+    "    <h2 class=\"col-title\">Paiement</h2>\n" +
+    "    <div class=\"gift-checkbox centered\">\n" +
+    "       <form name=\"stripe-form\" id=\"stripe-form\" stripe-form=\"submit\">\n" +
+    "         <div class=\"row\">\n" +
+    "           <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
+    "                <p class=\"\">Numéro de carte</p>\n" +
+    "               <i class=\"icon ion-card\"></i> <input class=\"form-control\" type=\"text\" name=\"number\" id=\"number\" ng-model=\"number\" placeholder=\"XXXX XXXX XXXX XXXX\" payments-validate=\"card\" payments-type-model=\"type\" payments-format=\"card\"  required/>\n" +
+    "           </div>\n" +
+    "           <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "                <p class=\"\">CVC</p>\n" +
+    "               <i class=\"icon ion-locked\"></i> <input class=\"form-control\" type=\"text\" name=\"cvc\" id=\"cvc\" ng-model=\"cvc\" placeholder=\"XXX\" payments-validate=\"cvc\" payments-format=\"cvc\" required/>\n" +
+    "           </div>\n" +
+    "         </div>\n" +
+    "         <div class=\"row\">\n" +
+    "           <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
+    "\n" +
+    "               <p class=\"\">Mois</p>\n" +
+    "               <select class=\"form-control\" name=\"expMonth\" ng-model=\"expMonth\" placeholder=\"MM\"required>\n" +
+    "                 <option value=\"01\">Janvier</option>\n" +
+    "                 <option value=\"02\">Février</option>\n" +
+    "                 <option value=\"03\">Mars</option>\n" +
+    "                 <option value=\"04\">Avril</option>\n" +
+    "                 <option value=\"05\">Mai</option>\n" +
+    "                 <option value=\"06\">Juin</option>\n" +
+    "                 <option value=\"07\">Juillet</option>\n" +
+    "                 <option value=\"08\">Août</option>\n" +
+    "                 <option value=\"09\">Septembre</option>\n" +
+    "                 <option value=\"10\">Octobre</option>\n" +
+    "                 <option value=\"11\">Novembre</option>\n" +
+    "                 <option value=\"12\">Décembre</option>\n" +
+    "               </select>\n" +
+    "\n" +
+    "  <!--             <label class=-input\">\n" +
+    "               <i class=\"icon ion-ios7-calendar-outline\"></i> <input type=\"text\" name=\"expiry\" id=\"expiry\" ng-model=\"expiry\" placeholder=\"MM\" payments-validate=\"expiry\" payments-format=\"expiry\" required/>\n" +
+    "             </label> -->\n" +
+    "           </div>\n" +
+    "           <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "\n" +
+    "               <p class=\"\">Année</p>\n" +
+    "               <select class=\"form-control\" name=\"expYear\" ng-model=\"expYear\" required>\n" +
+    "                 <option>2014</option>\n" +
+    "                 <option>2015</option>\n" +
+    "                 <option>2016</option>\n" +
+    "                 <option>2017</option>\n" +
+    "                 <option>2018</option>\n" +
+    "                 <option>2019</option>\n" +
+    "                 <option>2020</option>\n" +
+    "               </select>\n" +
+    "\n" +
+    "  <!--             <label class=-input\">\n" +
+    "               <i class=\"icon ion-locked\"></i> <input type=\"text\" name=\"cvc\" id=\"cvc\" ng-model=\"cvc\" placeholder=\"CVC\" payments-validate=\"cvc\" payments-format=\"cvc\" required/>\n" +
+    "             </label> -->\n" +
+    "           </div>\n" +
+    "         </div>\n" +
+    "         <div class=\"row row-submit centered\">\n" +
+    "         <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "            <div><input type=\"hidden\" name=\"name\" ng-model=\"gift.giver.last_name\"/></div>\n" +
+    "            <div class=\"btn_block_primary centered margin-top\"  ng-click=\"updateSurvey(gift)\" ><button class=\"btn btn_square\" value=\"submit\">Offrir mon cadeau</button></div>\n" +
+    "         </div>\n" +
+    "         </div>\n" +
+    "       </form>\n" +
+    "    </div>\n" +
+    "    <div class=\"centered\">\n" +
+    "       <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa fa-lock\"></i> <p>SSL Secure</p>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "  <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "    <h2 class=\"col-title\">Envoyé à</h2>\n" +
+    "    <div class=\"gift-checkbox centered\">\n" +
+    "      <p>{{gift.order.address.first_name}} {{gift.order.address.last_name}}</p>\n" +
+    "      <p>{{gift.order.address.street}}</p>\n" +
+    "      <p>{{gift.order.address.zipcode}} {{gift.order.address.city}}</p>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/vinibar/quiz.tpl.html",
+    "<div class=\"gift-header\">\n" +
+    "  <h1>offrir un vinibar</h1>\n" +
+    "  <h2>Je réponds au quiz vinify</h2>\n" +
+    "</div>\n" +
+    "<div id=\"quiz\" class=\"row container-fluid\">\n" +
+    "  <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Au petit déjeuner</h2>\n" +
+    "      <div class=\"gift-checkbox\">\n" +
+    "        <p class=\"col-subtitle\">Il / elle préfère son café</p>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_1.answ = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 1}\">\n" +
+    "            <p>Noir</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_1.answ = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 2}\">\n" +
+    "            <p>Sucre</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_1.answ = 3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 3}\">\n" +
+    "            <p>Crème</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_1.answ = 4\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 4}\">\n" +
+    "            <p>Pas de café</p>\n" +
+    "          </div>\n" +
+    "        <hr class=\"backgrounded\">\n" +
+    "        <p class=\"col-subtitle\">Pour se désalterer</p>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_2.answ = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_2.answ === 1}\">\n" +
+    "            <p>Un jus de pamplemousse</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_2.answ = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_2.answ === 2}\">\n" +
+    "            <p>Un jus de pomme</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_2.answ = 3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_2.answ === 3}\">\n" +
+    "            <p>Un jus de fruits exotiques</p>\n" +
+    "          </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Ensuite</h2>\n" +
+    "      <div class=\"gift-checkbox\">\n" +
+    "        <p class=\"col-subtitle\">Quelle cuisine préfère-t-il/elle&nbsp;?</p>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_3.answ_1 = !gift.receiver.survey.quest_3.answ_1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_1 === true}\">\n" +
+    "          <p>Française</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_3.answ_2 = !gift.receiver.survey.quest_3.answ_2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_2 === true}\">\n" +
+    "          <p>Italienne</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_3.answ_3 = !gift.receiver.survey.quest_3.answ_3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_3 === true}\">\n" +
+    "          <p>Asiatique</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_3.answ_4 = !gift.receiver.survey.quest_3.answ_4\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_4 === true}\">\n" +
+    "          <p>Américaine</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_3.answ_5 = !gift.receiver.survey.quest_3.answ_5\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_5 === true}\">\n" +
+    "          <p>Végétarienne</p>\n" +
+    "        </div>\n" +
+    "        <hr class=\"backgrounded\">\n" +
+    "        <p class=\"col-subtitle\">Quels entrées lui feraient envie&nbsp;?</p>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_4.answ_1 = !gift.receiver.survey.quest_4.answ_1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_4.answ_1 === true}\">\n" +
+    "          <p>Une assiette d'huîtres</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_4.answ_2 = !gift.receiver.survey.quest_4.answ_2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_4.answ_2 === true}\">\n" +
+    "          <p>Pain toasté et tapenade d'olives</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_4.answ_3 = !gift.receiver.survey.quest_4.answ_3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_4.answ_3 === true}\">\n" +
+    "          <p>Foie gras et pain d'épices</p>\n" +
+    "        </div>\n" +
+    "        <hr class=\"backgrounded\">\n" +
+    "        <p class=\"col-subtitle\">Quels desserts lui feraient envie&nbsp;?</p>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_5.answ_1 = !gift.receiver.survey.quest_5.answ_1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_5.answ_1 === true}\">\n" +
+    "          <p>Millefeuille à la vanille</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_5.answ_2 = !gift.receiver.survey.quest_5.answ_2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_5.answ_2 === true}\">\n" +
+    "          <p>Ganache au chocolat & canelle</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_5.answ_3 = !gift.receiver.survey.quest_5.answ_3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_5.answ_3 === true}\">\n" +
+    "          <p>Carpaccio de fruits & sorbet</p>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">Il/elle est plutôt</h2>\n" +
+    "      <div class=\"gift-checkbox\">\n" +
+    "        <p class=\"col-subtitle\">Du rouge</p>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_1 === 2}\">\n" +
+    "            <p>Beaucoup</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_1 === 1}\">\n" +
+    "            <p>Un peu</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 0\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_1 === 0}\">\n" +
+    "            <p>Pas du tout</p>\n" +
+    "          </div>\n" +
+    "        <hr class=\"backgrounded\">\n" +
+    "        <p class=\"col-subtitle\">Du blanc</p>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_2 === 2}\">\n" +
+    "          <p>Beaucoup</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_2 === 1}\">\n" +
+    "          <p>Un peu</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 0\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_2 === 0}\">\n" +
+    "          <p>Pas du tout</p>\n" +
+    "        </div>\n" +
+    "        <hr class=\"backgrounded\">\n" +
+    "        <p class=\"col-subtitle\">Du rosé</p>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_3 === 2}\">\n" +
+    "          <p>Beaucoup</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_3 === 1}\">\n" +
+    "          <p>Un peu</p>\n" +
+    "        </div>\n" +
+    "        <div class=\"gift-quiz\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 0\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_3 === 0}\">\n" +
+    "          <p>Pas du tout</p>\n" +
+    "        </div>\n" +
+    "        <hr class=\"backgrounded\">\n" +
+    "        <p class=\"col-subtitle\">Quelle est sa région préférée&nbsp;?</p>\n" +
+    "        <select class=\"form-control\" ng-model=\"gift.receiver.survey.quest_7.answ\" ng-options=\"region for region in regions\"></select>\n" +
+    "      </div>\n" +
+    "      <div class=\"btn_block_primary centered margin-top\" ng-click=\"updateSurvey(gift)\" >Continuer</div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
 
 angular.module("mrelay/mrelay.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("mrelay/mrelay.tpl.html",
@@ -33,129 +657,6 @@ angular.module("mrelay/mrelay.tpl.html", []).run(["$templateCache", function($te
     "        <!-- <button class=\"btn\" ng-click=\"changeDelivery()\" id=\"change_delivery\">Changer la livraison</button> -->\n" +
     "      </div>\n" +
     "</div> <!-- container delivery -->");
-}]);
-
-angular.module("offrir/offrir.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("offrir/offrir.tpl.html",
-    "<div class=\"container\">\n" +
-    "    <div class=\"row-fluid\">\n" +
-    "      <div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
-    "        <form novalidate name=\"form_commander\">\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"first_name\">Prénom</label>\n" +
-    "            <input type=\"text\"\n" +
-    "                placeholder=\"John\"\n" +
-    "                name=\"prenom\"\n" +
-    "                ng-model=\"user.first_name\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"first_name\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"last_name\">Nom</label>\n" +
-    "            <input type=\"text\"\n" +
-    "                placeholder=\"Doe\"\n" +
-    "                name=\"nom\"\n" +
-    "                ng-model=\"user.last_name\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"last_name\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"email\" name=\"email\">Email</label>\n" +
-    "            <input type=\"email\"\n" +
-    "                name=\"email\"\n" +
-    "                ng-model=\"user.email\"\n" +
-    "                placeholder=\"john@vinify.co\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"email\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"phone\">Téléphone</label>\n" +
-    "            <input type=\"tel\"\n" +
-    "                placeholder=\"+33 6 XX XX XX XX\"\n" +
-    "                name=\"tel\"\n" +
-    "                ng-model=\"user.phone\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"phone\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <label for=\"birthday\">Date de Naissance</label>\n" +
-    "            <input type=\"date\"\n" +
-    "                ng-model=\"user.birthday\"\n" +
-    "                required\n" +
-    "                class=\"form-control\"\n" +
-    "                id=\"birthday\"/>\n" +
-    "          </div>\n" +
-    "\n" +
-    "                <!-- ADRESSE AUTOCOMPLETE -->\n" +
-    "         <!--    <label>Adresse de Facturation</label>\n" +
-    "              <div class=\"adresse\">\n" +
-    "               <input type=\"text\"\n" +
-    "                  id=\"adresse\"\n" +
-    "                  ng-autocomplete\n" +
-    "                  ng-model=\"user.billing_address\"\n" +
-    "                  options = {\n" +
-    "                    country: 'fr'\n" +
-    "                  } />\n" +
-    "              </div> -->\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <label for=\"delivery_address.company\">Adresse de Facturation</label>\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.delivery_address.company\"\n" +
-    "                  placeholder=\"Société\"\n" +
-    "                  class=\"form-control\"\n" +
-    "                  id=\"delivery_address.company\"/>\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.delivery_address.street\"\n" +
-    "                  placeholder=\"Rue\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.delivery_address.city\"\n" +
-    "                  placeholder=\"Ville\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.delivery_address.zipcode\"\n" +
-    "                  placeholder=\"Code Postal\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "          <div class=\"form-group\">\n" +
-    "              <input type=\"text\"\n" +
-    "                  ng-model=\"user.delivery_address.country\"\n" +
-    "                  placeholder=\"Pays\"\n" +
-    "                  class=\"form-control\" />\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <div class=\"form-group\">\n" +
-    "            <h3>Si vous voulez glisser un mot dans le Vinibar :</h3>\n" +
-    "            <textarea class=\"form-control\" rows=\"3\" ng-model=\"questionnaire.infos\" placeholder=\"Joyeux Anniversaire Michael !\"></textarea>\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <pre>{{ user | json }}</pre>\n" +
-    "\n" +
-    "          <!-- <button type=\"button\" class=\"btn btn-primary\"  ng-disabled=\"form_commander.$invalid\" ng-click=\"Send(user)\">Valider !</button> -->\n" +
-    "          <a class=\"btn btn-primary\" href=\"#/paiement\">Valider</a>\n" +
-    "\n" +
-    "        </form>\n" +
-    "      <!-- Col -->\n" +
-    "      </div>\n" +
-    "    <!-- ROW -->\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "");
 }]);
 
 angular.module("order/order.tpl.html", []).run(["$templateCache", function($templateCache) {

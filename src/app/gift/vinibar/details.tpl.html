@@ -1,0 +1,100 @@
+<div class="gift-header">
+  <h1>offrir un vinibar</h1>
+  <h2>Je choisis la formule que j'offre</h2>
+</div>
+<div class="row container-fluid">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <h2 class="col-title">Vinibar</h2>
+      <div class="gift-checkbox checked">
+        <h3>Vinibar</h3>
+        <p class="price">69 €</p>
+        <p class="help">(quiz Vinify sur ses goûts à l'étape suivante)</p>
+      </div>
+      <p class="details-helper">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter plusieurs recharges d'avance au Vinibar, qui seront prépayées avec leur livraison.</p>
+      <p class="details-helper">Pas d'inquiétude, l'heureux élu pourra toujours changer le mode de livraison après la première réception à sa convenance.</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <h2 class="col-title">Crédits</h2>
+      <div class="gift-checkbox">
+        <p class="col-subtitle">Nombre de recharges</p>
+        <div class="gift-checkbox-price-level">
+          <div ng-class="{checked: details.credits.number === 0 }"
+                    class="no-border"
+                    ng-click="details.credits.number = 0 ">
+            <p>0<p>
+          </div>
+          <div ng-class="{checked: details.credits.number === 1 }"
+                    class="no-border"
+                    ng-click="details.credits.number = 1 ">
+            <p>1<p>
+          </div>
+          <div ng-class="{checked: details.credits.number === 2 }"
+                    class="no-border"
+                    ng-click="details.credits.number = 2 ">
+            <p>2<p>
+          </div>
+          <div ng-class="{checked: details.credits.number === 3 }"
+                    ng-click="details.credits.number = 3 ">
+            <p>3<p>
+          </div>
+        </div>
+        <p class="col-subtitle">Prix des recharges
+          <a href="#" tooltip="Le Vinibar est entièrement personnalisé, et le prix des recharges aussi"><i class="fa fa-info-circle"></i></a></p>
+        <div class="gift-checkbox-price-level">
+          <div ng-class="{checked: details.credits.price_level === 29.90 }"
+                    class="no-border"
+                    ng-click="details.credits.price_level = 29.90 ">
+            <p>29€90</p>
+          </div>
+          <div ng-class="{checked: details.credits.price_level === 39.90 }"
+                    class="no-border"
+                    ng-click="details.credits.price_level = 39.90 ">
+            <p>39€90</p>
+          </div>
+          <div ng-class="{checked: details.credits.price_level === 49.90 }"
+                    ng-click="details.credits.price_level = 49.90 ">
+            <p>49€90</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <h2 class="col-title">Livraison</h2>
+      <div class="gift-checkbox"
+          ng-class="{checked: gift.order.delivery_mode === 'Vinify' }"
+          ng-click="gift.order.delivery_mode ='Vinify'">
+        <h3>Retrait Vinify</h3>
+        <p class="price">Gratuit</p>
+        <p class="help">Venez nous voir à Issy (92)</p>
+      </div>
+      <div class="gift-checkbox"
+          ng-class="{checked: gift.order.delivery_mode === 'Point Relais' }"
+          ng-click="gift.order.delivery_mode = 'Point Relais'">
+        <h3>Point Relais</h3>
+        <p class="price">{{costs['vinibar']['Point Relais'] }} € + {{details.credits.number * costs['refill']['Point Relais'] | number:2}} €</p>
+        <p class="help">Livré dans le point relais de votre choix</p>
+      </div>
+      <div class="gift-checkbox"
+          ng-class="{checked: gift.order.delivery_mode === 'Colissimo' }"
+          ng-click="gift.order.delivery_mode =  'Colissimo'">
+        <h3>Colissimo Suivi</h3>
+        <p class="price">{{costs['vinibar']['Colissimo'] }} € + {{details.credits.number * costs['refill']['Colissimo'] | number:2}} €</p>
+        <p class="help">Livré à domicile par la Poste</p>
+      </div>
+    </div>
+  </div>
+  <div class="row container-fluid row-totals">
+    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+      <div class="gift-checkbox">
+        <p class="col-subtitle">Total de crédits</p>
+        <p class="centered">{{gift.order.credits | number:2}} €</p>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="gift-checkbox centered">
+        <p>Total de la commande</p>
+        <p>{{details.total | number:2}} €</p>
+      </div>
+      <div class="btn_block_primary centered margin-top" ui-sref="gift.vinibar.infos"><p>Continuer</p></div>
+    </div>
+  </div>

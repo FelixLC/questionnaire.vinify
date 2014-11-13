@@ -105,8 +105,8 @@ html {
   transform: translateY(-50%);
 }
 
-.btn:focus, .btn:active:focus, .btn.active:focus {
-    outline: none;
+button {
+  outline: none;
 }
 @color-support-strong: #006DB2;
 .btn-cta {
@@ -146,6 +146,9 @@ html {
   padding: @u-padding;
 }
 
+hr.backgrounded {
+  border-color: @brand-primary;
+}
 .brand-vinify {
   color: #fff !important;
   font-family: 'quicksand', Helvetica;
@@ -196,7 +199,7 @@ html {
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
 }
 
-@import url(https://fonts.googleapis.com/css?family=Julius+Sans+One|Roboto:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Julius+Sans+One|Roboto:400,300,100,500,400italic);
 
 
 body {
@@ -238,6 +241,8 @@ h1, h2, h3 {
 @import '../app/pay_mobile/pay_mobile.less';
 @import '../app/questionnaire/questionnaire.less';
 @import '../app/preview/preview.less';
+@import '../app/gift/gift.less';
+@import '../app/gift/vinibar/vinibar.less';
 @import '../app/paiement/paiement.less';
 @import '../app/remerciement/remerciement.less';
 @import '../app/remerciement_order/remerciement_order.less';

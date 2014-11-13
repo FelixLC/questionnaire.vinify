@@ -1,10 +1,13 @@
 #preview {
-	background-color: #EFEEEB;
+	background-color: @background-color;
 	position: absolute;
 	top: 56px;
 	left: 0;
 	right: 0;
       padding-bottom: 56px;
+}
+#preview * {
+  outline: none;
 }
 #preview .container-preview {
 	// max-width: 600px;
@@ -29,7 +32,7 @@
 	text-transform: uppercase;
 }
 #preview span.highlight {
-  	font-family: 'Roboto';
+  	font-family: 'Roboto', Helvetica, Arial, sans-serif;
       font-weight: 400;
 }
 #preview div.btn-cta {
