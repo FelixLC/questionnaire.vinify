@@ -1,1 +1,97 @@
-<div><h1>hey</h1></div>
+<div class="gift-header">
+  <h1>offrir un vinibar</h1>
+  <h2>Je choisis la formule que j'offre</h2>
+</div>
+<div class="row container-fluid">
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <h2 class="col-title">Vinibar</h2>
+      <div class="col-container checked">
+        <h3>Vinibar</h3>
+        <p class="price">69 €</p>
+        <p class="help">(quiz Vinify sur ses goûts à l'étape suivante)</p>
+      </div>
+      <p class="details-helper">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter plusieurs recharges d'avance au Vinibar, qui seront prépayées avec leur livraison.</p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <h2 class="col-title">Crédits</h2>
+      <div class="col-container">
+        <div class="gift-checkbox" ng-click="details.credits = !details.credits " ng-class="{quizchecked: details.credits}">
+          <p>Ajoutez des crédits pour recharger son vinibar</p>
+        </div>
+        <div ng-show="details.credits" class="col-container-price-level">
+          <div ng-class="{checked: gift.order.credits === 40 }"
+                    class="no-border"
+                    ng-click="gift.order.credits = 40 ">
+            <p>40 €<p>
+          </div>
+          <div ng-class="{checked: gift.order.credits === 60 }"
+                    class="no-border"
+                    ng-click="gift.order.credits = 60 ">
+            <p>60 €<p>
+          </div>
+          <div ng-class="{checked: gift.order.credits === 100 }"
+                    ng-click="gift.order.credits = 100 ">
+            <p>100 €<p>
+          </div>
+        </div>
+        <div ng-show="details.credits" class="free-amount">
+          <div><p class="col-subtitle">Ou rentrez montant de votre choix</p></div>
+          <div><input type="number" class="form-control" ng-model="gift.order.credits"> <p>€</p></div>
+        </div>
+<!--         <p class="col-subtitle">Prix des recharges
+          <a href="#" tooltip="Le Vinibar est entièrement personnalisé, et le prix des recharges aussi"><i class="fa fa-info-circle"></i></a></p>
+        <div class="col-container-price-level">
+          <div ng-class="{checked: details.credits.price_level === 29.90 }"
+                    class="no-border"
+                    ng-click="details.credits.price_level = 29.90 ">
+            <p>29€90</p>
+          </div>
+          <div ng-class="{checked: details.credits.price_level === 39.90 }"
+                    class="no-border"
+                    ng-click="details.credits.price_level = 39.90 ">
+            <p>39€90</p>
+          </div>
+          <div ng-class="{checked: details.credits.price_level === 49.90 }"
+                    ng-click="details.credits.price_level = 49.90 ">
+            <p>49€90</p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <h2 class="col-title">Livraison</h2>
+      <div class="col-container">
+        <p class="col-subtitle">Comment voulez vous envoyer votre bon cadeau ?</p>
+          <div class="gift-checkbox" ng-click="gift.order.gift_type = 'Email' " ng-class="{quizchecked: gift.order.gift_type === 'Email'}">
+            <p>Par email</p>
+          </div>
+          <div class="gift-checkbox" ng-click="gift.order.gift_type = 'Print' " ng-class="{quizchecked: gift.order.gift_type === 'Print'}">
+            <p>Je l'imprime moi-même</p>
+          </div>
+          <div class="gift-checkbox" ng-click="gift.order.gift_type = 'Card' " ng-class="{quizchecked: gift.order.gift_type === 'Card'}">
+            <p>Par la Poste (+5€)</p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row container-fluid row-totals">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-container">
+        <p class="col-subtitle">Prix du bar</p>
+        <p class="centered">69 €</p>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-container">
+        <p class="col-subtitle">Total de crédits</p>
+        <p class="centered">{{gift.order.credits | number:2}} €</p>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-container centered">
+        <p>Total de la commande</p>
+        <p>{{details.total + gift.order.credits | number:2}} €</p>
+      </div>
+      <div class="btn_block_primary centered margin-top" ui-sref="gift.gift_card.infos"><p>Continuer</p></div>
+    </div>
+  </div>

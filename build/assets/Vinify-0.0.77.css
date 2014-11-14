@@ -7366,6 +7366,7 @@ footer p {
   border-color: #cb0001;
 }
 #gift .btn_square_o {
+  cursor: pointer;
   padding: 5px 10px;
   border: 1px solid #cb0001;
   color: #cb0001;
@@ -7383,6 +7384,9 @@ footer p {
   transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 #gift .btn_block_primary {
+  cursor: pointer;
+  border: none;
+  width: 100%;
   color: #fff;
   background-color: #cb0001;
   vertical-align: middle;
@@ -7410,6 +7414,14 @@ footer p {
 #gift textarea,
 #gift select {
   border: none;
+}
+.input-error {
+  border-color: 1px solid #a94442 !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 #gift {
   /* Small screens (default) */
@@ -7450,6 +7462,12 @@ footer p {
 #gift .details-helper {
   padding: 20px;
   font-size: 14px;
+}
+#gift .dotted-underline {
+  border-bottom: 1px dotted #000000;
+}
+#gift label {
+  font-weight: 300;
 }
 #gift .gift-container {
   background-color: #fff;
@@ -7552,6 +7570,21 @@ footer p {
   color: #FFF;
   background-color: #cb0001;
 }
+#gift .gift-choose .steps {
+  display: table;
+  width: 100%;
+}
+#gift .gift-choose .steps > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#gift .gift-choose .steps > div:first-child {
+  width: 80px;
+  text-align: center;
+}
+#gift .gift-choose .steps > div:last-child {
+  text-align: left;
+}
 #gift .col-title {
   text-align: center;
   color: #cb0001;
@@ -7560,20 +7593,20 @@ footer p {
   text-align: center;
   margin-top: 20px;
 }
-#gift .gift-checkbox {
+#gift .col-container {
   padding: 20px;
 }
-#gift .gift-checkbox h3,
-#gift .gift-checkbox p {
+#gift .col-container h3,
+#gift .col-container p {
   margin: 0;
 }
-#gift .gift-checkbox-price-level {
+#gift .col-container-price-level {
   margin-top: 20px;
   margin-bottom: 20px;
   display: table;
   width: 100%;
 }
-#gift .gift-checkbox-price-level > div {
+#gift .col-container-price-level > div {
   display: table-cell;
   width: 25%;
   text-align: center;
@@ -7581,31 +7614,49 @@ footer p {
 /*
 ** FORMULE
 */
-#gift .gift-checkbox {
+#gift .col-container {
   background-color: #efeeeb;
 }
 #gift .checked {
   background-color: #b2b2b2;
   color: #FFF;
 }
-#gift .gift-checkbox-price-level > div,
-#gift .gift-checkbox {
+#gift .col-container-price-level > div,
+#gift .col-container {
   cursor: pointer;
 }
-#gift .gift-checkbox-price-level > div {
+#gift .col-container-price-level > div {
   height: 56px;
   border: 1px solid #b2b2b2;
   padding: 10px;
   vertical-align: middle;
 }
-#gift .gift-checkbox-price-level .no-border {
+#gift .col-container-price-level .no-border {
   border-right: none;
 }
-#gift .gift-checkbox p.help {
+#gift .col-container p.help {
   font-size: 12px;
 }
 #gift .row-totals {
   padding-top: 28px;
+}
+#gift .free-amount {
+  margin-top: 56px;
+  display: table;
+  width: 100%;
+}
+#gift .free-amount > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#gift .free-amount > div:first-child {
+  width: 70%;
+}
+#gift .free-amount > div * {
+  display: inline-block;
+}
+#gift .free-amount > div input {
+  width: 60px;
 }
 /*
 ** INFOS
@@ -7621,7 +7672,7 @@ footer p {
 /*
 ** QUIZ
 */
-#gift .gift-quiz.quizchecked::before {
+#gift .gift-checkbox.quizchecked::before {
   position: absolute;
   left: 25px;
   font-family: FontAwesome;
@@ -7629,7 +7680,7 @@ footer p {
   content: "\f00c";
   color: #cb0001;
 }
-#gift .gift-quiz {
+#gift .gift-checkbox {
   padding-left: 10px;
 }
 #gift #quiz .col-subtitle {

@@ -21,44 +21,49 @@
   <h2>Vous pouvez lui offrir soit un Vinibar, soit une carte cadeau</h2>
 </div>
 <div class="gift-choose">
-  <div class="row">
-    <div  ng-mouseenter="toggle('vinibar')" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <p>Je connais ses goûts, je lui offre directement un bar personnalisé</p>
-      <button ng-class="{'btn_square': hover.view === 'vinibar', 'btn_square_o': hover.view === 'giftCard' }" ui-sref="gift.vinibar.details" class="button">Vinibar</button>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <h2 class="col-title">Vinibar</h2>
+    <div class="col-container">
+      <p>
+        <a href=""
+              class="dotted-underline"
+              popover-title="Que faut-il savoir ?"
+              popover="Est-ce qu'il prend du café ? Quel est son dessert préféré ? Quel couleur de vins boit-il ? ..."
+              popover-trigger="mouseenter"
+              popover-placement="bottom">Je connais ses goûts</a>, je lui offre directement un bar personnalisé
+      </p>
+      <div class="steps">
+        <div><span class="gift-step">1</span></div>
+        <div><p>Je choisis le destinataire <br> et le montant de son cadeau</p></div>
+      </div>
+      <div class="steps">
+        <div><span class="gift-step">2</span></div>
+        <div><p>Je remplis le quiz Vinify <br> sur ses goûts pour lui</p></div>
+      </div>
+      <div class="steps">
+        <div><span class="gift-step">3</span></div>
+        <div><p>J’envoie le vinibar  <br> à l’adresse de mon choix</p></div>
+      </div>
     </div>
-    <div ng-mouseenter="toggle('giftCard')" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <button class="btn_square margin-top" ui-sref="gift.vinibar.details">Vinibar</button>
+  </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <h2 class="col-title">Carte Cadeau</h2>
+    <div class="col-container">
       <p>Je ne connais pas ses goûts, je lui offre un bon cadeau pour commencer l’aventure</p>
-      <button ng-class="{'btn_square': hover.view === 'giftCard', 'btn_square_o': hover.view === 'vinibar' }" ui-sref="gift.gift_card.details" class="button">Carte Cadeau</button>
+      <div class="steps">
+        <div><span class="gift-step">1</span></div>
+        <div><p>Je choisis le destinataire <br> et le montant de son cadeau</p></div>
+      </div>
+      <div class="steps">
+        <div><span class="gift-step">2</span></div>
+        <div><p>J’écris mon message et Vinify l’envoie <br> par mail ou par la poste</p></div>
+      </div>
+      <div class="steps">
+        <div><span class="gift-step">3</span></div>
+        <div><p>Le destinataire recoit ma carte <br> et démarre l’aventure avec le quiz Vinify</p></div>
+      </div>
     </div>
-  </div>
-  <div ng-show="hover.view === 'vinibar' " class="row">
-    <h1>Vinibar</h1>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div><span class="gift-step">1</span></div>
-      <p>Je choisis le destinataire <br> et le montant de son cadeau</p>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div><span class="gift-step">2</span></div>
-      <p>Je remplis le quiz Vinify <br> sur ses goûts pour lui</p>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div><span class="gift-step">3</span></div>
-      <p>J’envoie le vinibar  <br> à l’adresse de mon choix</p>
-    </div>
-  </div>
-  <div ng-show="hover.view === 'giftCard' " class="row">
-    <h1>Carte Cadeau</h1>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div><span class="gift-step">1</span></div>
-      <p>Je choisis le destinataire <br> et le montant de son cadeau</p>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div><span class="gift-step">2</span></div>
-      <p>J’écris mon message et Vinify l’envoie <br> par mail ou par la poste</p>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div><span class="gift-step">3</span></div>
-      <p>Le destinataire recoit ma carte <br> et démarre l’aventure avec le quiz Vinify</p>
-    </div>
+    <button class="btn_square margin-top" ui-sref="gift.gift_card.details">Carte Cadeau</button>
   </div>
 </div>

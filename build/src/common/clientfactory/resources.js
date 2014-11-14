@@ -92,18 +92,16 @@ angular.module('Resources', [])
       };
       this.order = {
           "gift_type": type,
-          "credits": "39.90",
+          "credits": 40,
            "delivery_mode": "Point Relais",
-           "delivery_cost": ""
-      };
-      this.orderUpdate = {
-          "gift_uuid": "",
+           "delivery_cost": "1",
           "receiver_email": "",
           "receiver_first_name": "",
-           "send_date": "",
+          "receiver_last_name": "",
+           // "send_date": "",
            "message": "",
-           "comment": "",
-           "address": new Address()
+           // "comment": "",
+           "receiver_address": new Address()
       };
       this.receiver = {
         "receiver_email": "",
@@ -125,8 +123,8 @@ angular.module('Resources', [])
     Gift.prototype.updateGiftOrder = function() {
       return $http.post(API_ENDPOINT + '/orders/gift/update/', this.orderUpdate);
     };
-    Gift.prototype.receiverSurvey = function() {
-      return $http.post(API_ENDPOINT + '/users/receiver/survey/', this.receiver);
+    Gift.prototype.sendSurvey = function() {
+      return $http.post(API_ENDPOINT + '/orders/receiver/survey/', this.receiver);
     };
     Gift.prototype.chargeGiftOrder = function() {
       return $http.post(API_ENDPOINT + '/orders/gift/chargegiftorder/', {

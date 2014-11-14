@@ -5,7 +5,7 @@
 <div class="row container-fluid">
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <h2 class="col-title">Mon cadeau</h2>
-    <div class="gift-checkbox">
+    <div class="col-container">
       <table class="table-bill">
           <tr>
             <td><p>Vinibar </p></td>
@@ -30,7 +30,7 @@
       </table>
     </div>
     <h2 class="col-title">Paiement</h2>
-    <div class="gift-checkbox centered">
+    <div class="col-container centered">
        <form name="stripe-form" id="stripe-form" stripe-form="submit">
          <div class="row">
            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
@@ -97,10 +97,10 @@
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <h2 class="col-title">Envoyé à</h2>
-    <div class="gift-checkbox centered">
-      <p>{{gift.order.address.first_name}} {{gift.order.address.last_name}}</p>
-      <p>{{gift.order.address.street}}</p>
-      <p>{{gift.order.address.zipcode}} {{gift.order.address.city}}</p>
+    <div class="col-container centered">
+      <p>{{gift.order.receiver_address.first_name}} {{gift.order.receiver_address.last_name}}</p>
+      <p>{{gift.order.receiver_address.street}}</p>
+      <p>{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
     </div>
   </div>
 </div>
