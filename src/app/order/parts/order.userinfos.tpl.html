@@ -304,11 +304,13 @@
 					</div>
 
 					<div ng-show="client.userinfos.same_billing" class=" form-offer col-lg-4 col-md-4 col-sm-4">
-						<h4 class="centered">6 Bouteilles</h4>
+						<h4 ng-show="client.order_type === 'Vinibar' " class="centered">6 Bouteilles</h4>
+						<h4 ng-hide="client.order_type === 'Vinibar' " class="centered">3 Bouteilles</h4>
 						<hr>
 						<h4 class="centered">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>
 						<hr>
-						<h4 class="centered">69 €</h4>
+						<h4 ng-show="client.order_type === 'Vinibar' " class="centered">69 €</h4>
+						<h4 ng-hide="client.order_type === 'Vinibar' " class="centered">39 €</h4>
 					</div>
 
 				</form>

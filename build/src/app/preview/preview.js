@@ -1,6 +1,5 @@
 angular.module( 'vinibar.preview', [
   'ui.router',
-  'placeholders',
   'ui.bootstrap',
   'Resources',
   'clientFactory',
@@ -21,11 +20,15 @@ angular.module( 'vinibar.preview', [
     });
 })
 .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'previewCtrl', function previewCtrl( Recommender, $scope, $http, $location, currentClient, $state, $rootScope, API_ENDPOINT, toaster ) {
+.controller( 'previewCtrl', function previewCtrl( Recommender, $scope, $http, currentClient, $state, $rootScope, API_ENDPOINT, toaster) {
   $scope.hover = {
     wine_1: false,
     wine_2: false,
     wine_3: false
   };
   $scope.preview = Recommender.getPreview();
+  $scope.order = function(type) {
+    currentClient.currentClient.order_type = type;
+    $state.go('order.userinfos');
+  };
 });

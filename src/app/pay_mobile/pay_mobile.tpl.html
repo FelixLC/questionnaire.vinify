@@ -161,8 +161,8 @@
                        <h4 class="centered">Commande</h4>
                           <table class="table-bill">
                               <tr>
-                                <td><h4>Vinibar </h4></td>
-                                <td><h4>69&nbsp;€</h4></td>
+                                <td><h4>{{client.order_type}} </h4></td>
+                                <td><h4>{{client.order.amount}}&nbsp;€</h4></td>
                               </tr>
                               <tr>
                                 <td><h4>Livraison </h4></td>
@@ -178,7 +178,7 @@
                               </tr>
                               <tr  class="bill-total">
                                 <td><h4>Total </h4></td>
-                                <td><h4>{{69 + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>
+                                <td><h4>{{client.order.amount + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>
                               </tr>
                           </table>
                   </div>

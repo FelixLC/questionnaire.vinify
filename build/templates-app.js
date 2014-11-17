@@ -1677,11 +1677,13 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "					</div>\n" +
     "\n" +
     "					<div ng-show=\"client.userinfos.same_billing\" class=\" form-offer col-lg-4 col-md-4 col-sm-4\">\n" +
-    "						<h4 class=\"centered\">6 Bouteilles</h4>\n" +
+    "						<h4 ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">6 Bouteilles</h4>\n" +
+    "						<h4 ng-hide=\"client.order_type === 'Vinibar' \" class=\"centered\">3 Bouteilles</h4>\n" +
     "						<hr>\n" +
     "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>\n" +
     "						<hr>\n" +
-    "						<h4 class=\"centered\">69 €</h4>\n" +
+    "						<h4 ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
+    "						<h4 ng-hide=\"client.order_type === 'Vinibar' \" class=\"centered\">39 €</h4>\n" +
     "					</div>\n" +
     "\n" +
     "				</form>\n" +
@@ -1979,8 +1981,8 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                       <h4 class=\"centered\">Commande</h4>\n" +
     "                          <table class=\"table-bill\">\n" +
     "                              <tr>\n" +
-    "                                <td><h4>Vinibar </h4></td>\n" +
-    "                                <td><h4>69&nbsp;€</h4></td>\n" +
+    "                                <td><h4>{{client.order_type}} </h4></td>\n" +
+    "                                <td><h4>{{client.order.amount}}&nbsp;€</h4></td>\n" +
     "                              </tr>\n" +
     "                              <tr>\n" +
     "                                <td><h4>Livraison </h4></td>\n" +
@@ -1996,7 +1998,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                              </tr>\n" +
     "                              <tr  class=\"bill-total\">\n" +
     "                                <td><h4>Total </h4></td>\n" +
-    "                                <td><h4>{{69 + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>\n" +
+    "                                <td><h4>{{client.order.amount + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>\n" +
     "                              </tr>\n" +
     "                          </table>\n" +
     "                  </div>\n" +
@@ -2095,10 +2097,10 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "			<h3>Les 3 vins qui correspondent le plus à vos goûts</h3>\n" +
     "		</div>\n" +
     "		<div class=\"centered col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12\">\n" +
-    "			<div id=\"wines-preview\">\n" +
+    "			<div class=\"wines-preview\">\n" +
     "				<div>\n" +
-    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\">\n" +
-    "						<img src=\"assets/wines/13cbac7c677a48cc89a8f4f47381c1ac.jpg\" alt=\"\">\n" +
+    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\">\n" +
+    "						<img ng-src=\"assets/wines/{{preview[0].product_code}}.jpg\" alt=\"\">\n" +
     "						<div class=\"preview-overlay\" ng-show=\"wine_1\">\n" +
     "							<div>\n" +
     "								<h4>Cépages</h4>\n" +
@@ -2115,7 +2117,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "				</div>\n" +
     "				<div>\n" +
     "					<div class=\"bottle-row\" ng-mouseenter=\"wine_2 = !wine_2\" ng-mouseleave=\"wine_2 = !wine_2\">\n" +
-    "						<img src=\"assets/wines/c40e10a657fa40c1b1726b8d1246e87b.jpg\" alt=\"\">\n" +
+    "						<img ng-src=\"assets/wines/{{preview[1].product_code}}.jpg\" alt=\"\">\n" +
     "						<div class=\"preview-overlay\" ng-show=\"wine_2\">\n" +
     "							<div>\n" +
     "								<h4>Cépages</h4>\n" +
@@ -2132,7 +2134,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "				</div>\n" +
     "				<div>\n" +
     "					<div class=\"bottle-row\" ng-mouseenter=\"wine_3 = !wine_3\" ng-mouseleave=\"wine_3 = !wine_3\">\n" +
-    "						<img src=\"assets/wines/dbab75026cdc4480bafac802cb0e92ca.jpg\" alt=\"\">\n" +
+    "						<img ng-src=\"assets/wines/{{preview[2].product_code}}.jpg\" alt=\"\">\n" +
     "						<div class=\"preview-overlay\" ng-show=\"wine_3\">\n" +
     "							<div>\n" +
     "								<h4>Cépages</h4>\n" +
@@ -2148,25 +2150,38 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "			<div class=\"container container-hr\">\n" +
+    "			<div id=\"container-offers\">\n" +
+    "				<div class=\"col-lg-6 col-lg-push-6 col-md-6 col-md-push-6 col-sm-12  col-xs-12 \">\n" +
+    "					<button class=\"button btn-cta\" ng-click=\"order('Vinibar')\">Commander mon Vinibar</button>\n" +
+    "					<p class=\"centered\">Recevez une sélection de 6 bouteilles <br> revue par notre oenologue pour 69&nbsp;€</p>\n" +
+    "				</div>\n" +
+    "				<div class=\"col-lg-6 col-lg-pull-6 col-md-6 col-md-pull-6 col-sm-12  col-xs-12 \">\n" +
+    "					<button class=\"button btn-cta-outline\" ng-click=\"order('Découverte')\">Commander ces 3 bouteilles</button>\n" +
+    "					<p class=\"centered\">Entrez dans l'univers vinify a petit prix <br> avec ces 3 bouteilles pour 39&nbsp;€</p>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"wines-preview\">\n" +
+    "				<div>\n" +
+    "					<div class=\"bottle-row\">\n" +
+    "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "				<div>\n" +
+    "					<div class=\"bottle-row\">\n" +
+    "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "				<div>\n" +
+    "					<div class=\"bottle-row\">\n" +
+    "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "<!-- 			<div class=\"container container-hr\">\n" +
     "				<div><hr></div>\n" +
     "				<div><img alt=\"\" src=\"assets/logo_mini.png\" style=\"height:45px\"/></div>\n" +
     "				<div><hr></div>\n" +
-    "			</div>\n" +
-    "			<div id=\"container-offers\">\n" +
-    "				<div class=\"col-lg-6 col-lg-push-6 col-md-6 col-md-push-6 col-sm-12  col-xs-12 \">\n" +
-    "					<h4 class=\"u-left\">Je veux découvrir ma sélection personnalisée</h4>\n" +
-    "					<p>Dégustez 6 bouteilles sélectionnés parmi plus de 100 références par notre oenologue en fonction de vos réponses.</p>\n" +
-    "					<p>Accédez à notre application pour les noter et retrouver des informations sur vos vins et les conseils d'un oenologue.</p>\n" +
-    "					<button class=\"button btn-cta pull-right\">Commander mon Vinibar</button>\n" +
-    "				</div>\n" +
-    "				<div class=\"col-lg-6 col-lg-pull-6 col-md-6 col-md-pull-6 col-sm-12  col-xs-12 \">\n" +
-    "					<h4 class=\"u-left\">Je veux tester la sélection découverte</h4>\n" +
-    "					<p>Dégustez un avant gout de notre sélection avec les 3 bouteilles présentées ci-dessus.</p>\n" +
-    "					<p>Accédez à notre application pour les noter et retrouver des informations sur vos vins et les conseils d'un oenologue.</p>\n" +
-    "					<button class=\"button btn-cta-outline pull-right\">Commander 3 bouteilles</button>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
+    "			</div> -->\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</div>\n" +
@@ -2244,7 +2259,7 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "      <a ui-sref=\"questionnaire.starter\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks-right\">\n" +
-    "      <a class=\"validateBalanceAnswer()\" ng-click=\"validateBalanceAnswer()\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "      <a href ng-click=\"validateBalanceAnswer()\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>");

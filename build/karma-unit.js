@@ -1,6 +1,6 @@
 module.exports = function ( karma ) {
-  karma.configure({
-    /** 
+  karma.set({
+    /**
      * From where to look for files, starting with the location of this file.
      */
     basePath: '../',
@@ -9,18 +9,16 @@ module.exports = function ( karma ) {
      * This is the list of file patterns to load into the browser during testing.
      */
     files: [
-      'vendor/angular/angular.js',
-      'vendor/angular-animate/angular-animate.min.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-animate/angular-animate.min.js',
       'bower_components/angular-payments/lib/angular-payments.min.js',
       'bower_components/angular-cookies/angular-cookies.min.js',
-      'vendor/angular-toaster/angular-toaster.js',
-      'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-ui-utils/modules/route/route.js',
+      'bower_components/angular-toaster/angular-toaster.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
       'build/templates-app.js',
       'build/templates-common.js',
-      'vendor/angular-mocks/angular-mocks.js',
+      'bower_components/angular-mocks/angular-mocks.js',
       
       'src/**/*.js',
       'src/**/*.coffee',
@@ -47,7 +45,7 @@ module.exports = function ( karma ) {
     runnerPort: 9100,
     urlRoot: '/',
 
-    /** 
+    /**
      * Disable file watching by default.
      */
     autoWatch: false,

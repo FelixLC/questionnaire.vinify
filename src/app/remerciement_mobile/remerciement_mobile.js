@@ -1,6 +1,5 @@
 angular.module( 'vinibar.remerciement_mobile', [
   'ui.router',
-  'placeholders',
   'ui.bootstrap',
   'ngAutocomplete'
 ])

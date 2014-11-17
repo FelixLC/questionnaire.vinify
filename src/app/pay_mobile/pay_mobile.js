@@ -1,9 +1,10 @@
 angular.module( 'vinibar.pay_mobile', [
   'ui.router',
-  'placeholders',
   'angularPayments',
   'clientFactory',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'orderService',
+  'toaster'
 ])
 
 .config(function config( $stateProvider ) {
@@ -19,7 +20,7 @@ angular.module( 'vinibar.pay_mobile', [
   });
 })
 .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, $location, currentClient, $rootScope, API_ENDPOINT, $state ) {
+.controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, $location, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
     $scope.client = currentClient.currentClient;
     $scope.serializedOrder = $scope.client.order;
     $scope.delivery = {
@@ -27,6 +28,7 @@ angular.module( 'vinibar.pay_mobile', [
       cost: 11.90
     };
     $scope.updateOrder = function(num) {
+      $rootScope.loading = true;
       if (num === 1) {  $scope.delivery.cost = 8.9;
                         $scope.delivery.mode = 'Point Relais';}
 
@@ -35,20 +37,7 @@ angular.module( 'vinibar.pay_mobile', [
 
       if (num === 3) {  $scope.delivery.cost = 0;
                         $scope.delivery.mode = 'Vinify'; }
-      $scope.order_data = {
-        'order_uuid': $scope.client.order.uuid,
-        'delivery_cost': $scope.delivery.cost,
-        'delivery_mode': $scope.delivery.mode
-      };
-      $rootScope.loading = true;
-      $http({
-              url: API_ENDPOINT + '/orders/updateorder/',
-              method: 'POST',
-              data: $scope.order_data,
-              headers: {
-                'Content-Type': 'application/json; charset=UTF-8'
-              }
-            })
+    Order.update($scope.client.order.uuid, $scope.delivery.cost, $scope.delivery.mode)
             .success(function(data, status, headers, config) {
                   $scope.client.order = data;
                   console.log($scope.client.order.final_price);
@@ -95,7 +84,7 @@ angular.module( 'vinibar.pay_mobile', [
           })
           .error(function(data, status, headers, config) {
             $rootScope.loading = false;
-            //todo manage errors
+            toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
           });
         }
 

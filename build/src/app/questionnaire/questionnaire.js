@@ -1,6 +1,5 @@
 angular.module( 'vinibar.questionnaire', [
 	'ui.router',
-	'placeholders',
 	'ui.bootstrap',
 	'Resources',
 	'ngAutocomplete',

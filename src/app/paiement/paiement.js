@@ -1,6 +1,5 @@
 angular.module( 'vinibar.paiement', [
   'ui.router',
-  'placeholders',
   'ui.bootstrap',
   'stripe',
   'angularPayments',

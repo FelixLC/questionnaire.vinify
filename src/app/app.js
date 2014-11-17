@@ -13,11 +13,10 @@ angular.module( 'vinibar', [
   'vinibar.remerciement_order',
   'vinibar.remerciement_mobile',
   'ui.router',
-  'ui.route',
   'params',
-  'ngAnimate',
-  'clientFactory',
-  'ngCookies'
+  // 'ngAnimate',
+  'clientFactory'
+  // 'ngCookies'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

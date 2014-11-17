@@ -1,10 +1,10 @@
 angular.module( 'vinibar.order', [
   'ui.router',
-  'placeholders',
   'ui.bootstrap',
   'ngAutocomplete',
   'mondialRelay',
-  'toaster'
+  'toaster',
+  'orderService'
 ])
 
 .config(function config( $stateProvider ) {
@@ -37,7 +37,7 @@ angular.module( 'vinibar.order', [
     });
 })
 .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster ) {
+.controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster, Order ) {
   console.log(API_ENDPOINT);
   $scope.isState= function(state){ return $state.is(state);};
   $scope.client = currentClient.currentClient;
@@ -63,7 +63,13 @@ angular.module( 'vinibar.order', [
       $http.post(API_ENDPOINT +'/orders/testcoupon/', $scope.coupon)
         .success(function(data, status, headers, config) {
           $scope.coupon.isValid = true;
-          toaster.pop('success', 'Bravo !', ' Votre coupon est validé');
+          if (data.coupon_type === 'Referral') {
+            toaster.pop('success', 'Coupon validé !', 'Vous économisez 10€ !');
+          } else if (data.coupon_type === 'Percentage') {
+            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + data.value + ' % !');
+          } else if (data.coupon_type === 'Monetary') {
+            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' +data.value + ' € !');
+          }
           $scope.coupon.isChecked = true;
         })
         .error(function(data, status, headers, config) {
@@ -86,7 +92,6 @@ angular.module( 'vinibar.order', [
     if (form.$valid) {// IF THE FORM IS VALID
       console.log('form.valid');
       if($scope.coupon.coupon){
-        $scope.coupon.coupon = ($scope.coupon.coupon.toUpperCase() === 'MERCIALFRED') ? $scope.coupon.coupon.toUpperCase(): $scope.coupon.coupon;
         $http.post(API_ENDPOINT +'/orders/testcoupon/', $scope.coupon)
           .success(function(data, status, headers, config) {
             $scope.coupon.isValid = true;
@@ -102,14 +107,7 @@ angular.module( 'vinibar.order', [
               console.log($scope.client);
               $scope.client.addUserInfo()
                                   .success(function(data, status, headers, config) {//USER INFOS ADDED
-                                     $http({
-                                        url: API_ENDPOINT +'/orders/vinibarorder/',
-                                        method: 'POST',
-                                        data: {'coupon' : $scope.coupon.coupon},
-                                        headers: {
-                                          'Content-Type': 'application/json; charset=UTF-8'
-                                        }
-                                      })
+                                    Order.create($scope.client.order_typeient.order_type, $scope.coupon.coupon)
                                       .success(function(data, status, headers, config) {//ORDERCREATED
                                           $scope.client.order = data;
                                           console.log($scope.client.order.final_price);
@@ -119,7 +117,7 @@ angular.module( 'vinibar.order', [
                                           if ($scope.client.order.coupon)  {
                                             if ($scope.client.order.coupon.coupon_type === 'Gift') {
                                               $rootScope.loading = false;
-                                              $location.path('/remerciement_order');
+                                              $location.path('/remerciement_orde, Orderr');
                                             } else {
                                               $state.go('pay_mobile');
                                               $rootScope.loading = false;
@@ -164,14 +162,7 @@ angular.module( 'vinibar.order', [
               console.log($scope.client);
               $scope.client.addUserInfo()
                                   .success(function(data, status, headers, config) {//USER INFOS ADDED
-                                     $http({
-                                        url: API_ENDPOINT +'/orders/vinibarorder/',
-                                        method: 'POST',
-                                        data: {'coupon' : $scope.coupon.coupon},
-                                        headers: {
-                                          'Content-Type': 'application/json; charset=UTF-8'
-                                        }
-                                      })
+                                    Order.create($scope.client.order_type, $scope.coupon.coupon)
                                       .success(function(data, status, headers, config) {//ORDERCREATED
                                           $scope.client.order = data;
                                           console.log($scope.client.order.final_price);
@@ -209,131 +200,13 @@ angular.module( 'vinibar.order', [
                                         toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
                                   });
       }
-      // } else if ($scope.coupon.coupon && !$scope.coupon.isValid && $scope.coupon.isValid) { // IF THERE IS A COUPON BUT NOT VALID
-      //   // COUPON ERROR
-      //    toaster.pop('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');
-      // } else {
-      //   console.log('dead end');
-      // }
+
     } else {//THE FORM IS NOT VALID
       $rootScope.loading = false;
       toaster.pop('info', 'Oops', 'un ou plusieurs champs sont incomplets ou erronés.');
     }
 
   };
-
-  // TRIGGER MONDIAL RELAY
-  $scope.triggerMR = function() {
-                  $("#Zone_Widget").MR_ParcelShopPicker({
-                          CSS: 0,
-                          Target: "#Retour_Widget",  // selecteur jquery ou renvoyer l'ID du relais selectionné
-                          Brand: "BDTEST  ",  // votre code client
-                          Country: "FR"  /* pays*/  });
-
-  };
-
-  //  SEND ORDER REQUEST TO SERVER. IF SUCCESS UPDATE SCOPE WITH ORDER DATA AND TRANSITION TO CONFIRMATION
-  $scope.createOrder = function() {
-    $rootScope.loading = true;
-    var handler = StripeCheckout.configure({
-      // key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
-      key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
-      image: "assets/LogoVinifyMini2.png",
-      token: function(token, args) {
-        var data_order = token;
-        data_order.order_uuid = $scope.client.order.uuid;
-        data_order.delivery_cost = $scope.delivery_cost;
-        data_order.delivery_mode = $scope.delivery_mode;
-
-        var urlPOST = '/orders/chargevinibar/';
-
-        if ($scope.client.order.order_type === "Refill")
-          {urlPOST = '/orders/chargerefill/';}
-
-        $http({
-                          url: API_ENDPOINT + urlPOST,
-                          method: "POST",
-                          data: data_order
-                  })
-                  .success(function(data, status, headers, config) {
-                    if ($scope.client.order.delivery_mode === 'Point Relais') {
-                      $http({
-                        url: API_ENDPOINT + '/orders/pickmremail/',
-                        method: "POST",
-                        data: { 'order_id': $scope.client.order.uuid },
-                        headers: {
-                          'Content-Type': 'application/json; charset=UTF-8'
-                        }
-                      });
-                    }
-                    $location.path('/remerciement_order');
-                    // mixpanel.track('Sucessful payment');
-                  })
-                  .error(function(data, status, headers, config) {
-                    toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
-                    // mixpanel.track('Server Failed to proceed payment');
-
-                  });
-      }
-    });
-    handler.open({
-      name: "Vinify",
-      description: "Vinibar",
-      currency: "EUR",
-      panelLabel: "Payer",
-      opened: closeLoading(),
-      closed: closeLoading(),
-      amount: Math.round($scope.client.order.final_price * 100),
-      email: $scope.client.order.user.email
-    });
-  };
-
-  $scope.updateOrder = function(num) {
-    if (num === 1) {  $scope.delivery.cost = 8.9;
-                      $scope.delivery.mode = 'Point Relais';}
-
-    if (num === 2) {  $scope.delivery.cost = 11.9;
-                      $scope.delivery.mode = 'Colissimo'; }
-
-    if (num === 3) {  $scope.delivery.cost = 0;
-                      $scope.delivery.mode = 'Vinify'; }
-    $scope.order_data = {
-      'order_uuid': $scope.client.order.uuid,
-      'delivery_cost': $scope.delivery.cost,
-      'delivery_mode': $scope.delivery.mode
-    };
-    $rootScope.loading = true;
-    $http({
-            url: API_ENDPOINT + '/orders/updateorder/',
-            method: 'POST',
-            data: $scope.order_data,
-            headers: {
-              'Content-Type': 'application/json; charset=UTF-8'
-            }
-          })
-          .success(function(data, status, headers, config) {
-                $scope.client.order = data;
-                console.log($scope.client.order.final_price);
-                console.log(Math.round($scope.client.order.final_price * 100)/100);
-                $scope.client.order.final_price = Math.round($scope.client.order.final_price * 100)/100;
-                $rootScope.loading = false;
-            })
-          .error(function(data, status, headers, config) {
-                console.log('error @ createOrder');
-                $rootScope.loading = false;
-            });
-  };
-  var closeLoading = function() {
-                                  $rootScope.loading= false;
-                                };
-
-
-  // FORM VALIDATOR
- $scope.form_commander_validator = function (form) {
-  $scope.isFormValid = false;
-
-  return !(form.birthday.$valid && form.first_name.$valid && form.last_name.$valid);
- };
 
 })
 

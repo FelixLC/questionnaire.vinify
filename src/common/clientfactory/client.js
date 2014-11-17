@@ -114,9 +114,7 @@ angular.module('clientFactory', [])
 
 				if(this.userinfos.same_billing)
 					{ this.userinfos.billing_address = this.userinfos.delivery_address; }
-				console.log(this);
 				var data = this.userinfos;
-				console.log(data);
 				data.delivery_address.first_name =data.first_name;
 				data.delivery_address.last_name =data.last_name;
 				data.billing_address.first_name =data.first_name;

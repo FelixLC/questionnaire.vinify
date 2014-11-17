@@ -6173,7 +6173,10 @@ html {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-button {
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+button:active:focus {
   outline: none;
 }
 .btn-cta {
@@ -7224,9 +7227,6 @@ footer p {
 #preview > div > div:first-child {
   padding: 20px;
 }
-#preview > div > div:last-child img {
-  margin: 20px auto;
-}
 #preview p {
   font-size: 16px;
   font-family: 'Roboto';
@@ -7243,21 +7243,21 @@ footer p {
   max-width: 250px;
   margin: 20px auto;
 }
-#preview #wines-preview {
+#preview .wines-preview {
   display: table;
   width: 100%;
 }
-#preview #wines-preview > div {
+#preview .wines-preview > div {
   display: table-cell;
   width: 33.33%;
 }
-#preview #wines-preview .bottle-row {
+#preview .wines-preview .bottle-row {
   position: relative;
   height: 300px;
   width: 200px;
   margin: 0 auto;
 }
-#preview #wines-preview .bottle-row .preview-overlay {
+#preview .wines-preview .bottle-row .preview-overlay {
   position: absolute;
   display: table;
   height: 300px;
@@ -7267,11 +7267,11 @@ footer p {
   color: #FFF;
   background-color: rgba(0, 0, 0, 0.5);
 }
-#preview #wines-preview .bottle-row .preview-overlay > div {
+#preview .wines-preview .bottle-row .preview-overlay > div {
   display: table-cell;
   vertical-align: middle;
 }
-#preview #wines-preview .bottle-row .preview-overlay span {
+#preview .wines-preview .bottle-row .preview-overlay span {
   font-weight: 300;
   font-size: 16px;
   display: block;
@@ -7279,10 +7279,10 @@ footer p {
 #preview h4 {
   font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
 }
-#preview #wines-preview .bottle-row .preview-overlay h4:nth-child(even) {
+#preview .wines-preview .bottle-row .preview-overlay h4:nth-child(even) {
   margin-top: 40px;
 }
-#preview #wines-preview > div img {
+#preview .wines-preview > div img {
   margin: 0 auto;
 }
 #preview .container-hr {
@@ -7297,10 +7297,6 @@ footer p {
 }
 #preview .container-hr > div:nth-child(odd) {
   width: 30%;
-}
-#preview #container-offers h4,
-#preview #container-offers p {
-  text-align: left;
 }
 #preview button {
   margin-top: 40px;
@@ -7331,7 +7327,7 @@ footer p {
   #preview h3 {
     font-size: 16px;
   }
-  #preview #wines-preview > div {
+  #preview .wines-preview > div {
     display: block;
     width: 100%;
   }

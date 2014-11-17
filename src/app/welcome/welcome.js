@@ -1,6 +1,5 @@
 angular.module( 'vinibar.welcome', [
   'ui.router',
-  'placeholders',
   'ui.bootstrap',
   'ngAutocomplete',
   'mondialRelay',
