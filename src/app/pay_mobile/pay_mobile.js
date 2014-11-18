@@ -20,13 +20,14 @@ angular.module( 'vinibar.pay_mobile', [
   });
 })
 .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, $location, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
+.controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
     $scope.client = currentClient.currentClient;
     $scope.serializedOrder = $scope.client.order;
     $scope.delivery = {
       mode: 'Colissimo',
       cost: 11.90
     };
+
     $scope.updateOrder = function(num) {
       $rootScope.loading = true;
       if (num === 1) {  $scope.delivery.cost = 8.9;
@@ -37,19 +38,19 @@ angular.module( 'vinibar.pay_mobile', [
 
       if (num === 3) {  $scope.delivery.cost = 0;
                         $scope.delivery.mode = 'Vinify'; }
-    Order.update($scope.client.order.uuid, $scope.delivery.cost, $scope.delivery.mode)
-            .success(function(data, status, headers, config) {
+      Order.update($scope.client.order.uuid, $scope.delivery.cost, $scope.delivery.mode,
+            function(data) {
                   $scope.client.order = data;
                   console.log($scope.client.order.final_price);
                   console.log(Math.round($scope.client.order.final_price * 100)/100);
                   $scope.client.order.final_price = Math.round($scope.client.order.final_price * 100)/100;
                   $rootScope.loading = false;
-              })
-            .error(function(data, status, headers, config) {
+              }, function(data) {
                   console.log('error @ createOrder');
                   $rootScope.loading = false;
               });
       };
+
     var apiEndPoint =  'http://127.0.0.1:8000/api';
 
     Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
@@ -96,14 +97,10 @@ angular.module( 'vinibar.pay_mobile', [
         for (var i = SerializedOrder.refills.length - 1; i >= 0; i--) {
           price += SerializedOrder.refills[i].price_level;
         }
-        //return price.toString().substring(0, 2) + "." + price.toString().substring(2);
         return price;
     };
 
     $scope.displayPrice = function(price) {
       return price;
-      //var string = price.toString();
-      //var len = string.length - 2;
-      //return string.substring(0, len) + "." + string.substring(len);
     };
 });

@@ -46,17 +46,17 @@ describe( 'orderCtrl', function() {
     it( 'should call Order.testCoupon if there is a valid coupon', inject( function() {
       $scope.coupon.coupon = 1;
       $scope.blur();
-      expect(Order.testCoupon).toHaveBeenCalled();
-      expect($scope.coupon.isValid).toBeTruthy();
-      expect(toaster.pop).toHaveBeenCalledWith('success', 'Coupon validé !', 'Vous économisez 10€ !');
+      expect( Order.testCoupon ).toHaveBeenCalled();
+      expect( $scope.coupon.isValid ).toBeTruthy();
+      expect( toaster.pop ).toHaveBeenCalledWith('success', 'Coupon validé !', 'Vous économisez 10€ !');
     }));
 
     it( 'should call Order.testCoupon if there is a false coupon', inject( function() {
       $scope.coupon.coupon = 2;
       $scope.blur();
-      expect(Order.testCoupon).toHaveBeenCalled();
-      expect($scope.coupon.isValid).not.toBeTruthy();
-      expect(toaster.pop).toHaveBeenCalledWith('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');
+      expect( Order.testCoupon ).toHaveBeenCalled();
+      expect( $scope.coupon.isValid ).not.toBeTruthy();
+      expect( toaster.pop ).toHaveBeenCalledWith('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');
     }));
 
 });

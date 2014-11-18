@@ -36,12 +36,18 @@
                     return failure(data);
                 });
         }
-        function update( uuid, delivery_cost, delivery_mode ) {
-          return $http.post( API_ENDPOINT + '/orders/updateorder/',  {
-            'order_uuid': uuid,
-            'delivery_cost': delivery_cost,
-            'delivery_mode': delivery_mode
-          });
+        function update( uuid, delivery_cost, delivery_mode, success, failure ) {
+            $http.post( API_ENDPOINT + '/orders/updateorder/',  {
+                'order_uuid': uuid,
+                'delivery_cost': delivery_cost,
+                'delivery_mode': delivery_mode
+            })
+                .success(function(data, status, headers, config){
+                    return success(data);
+                })
+                .error(function(data, status, headers, config){
+                    return failure(data);
+                });
         }
     }
 })();
