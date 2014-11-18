@@ -9,6 +9,7 @@
     /* @ngInject */
     function Order($http, API_ENDPOINT) {
         var service = {
+            testCoupon: testCoupon,
             create: create,
             update: update
         };
@@ -16,11 +17,26 @@
 
         ////////////////
 
-        function create(type, coupon) {
-          var url = (type === 'Vinibar') ? API_ENDPOINT +'/orders/vinibarorder/' : API_ENDPOINT +'/orders/discovery/create/';
-          return $http.post( url,  {'coupon' : coupon} );
+        function testCoupon ( coupon, success, failure ) {
+            $http.post(API_ENDPOINT +'/orders/testcoupon/', coupon)
+                .success(function(data, status, headers, config){
+                    return success(data);
+                })
+                .error(function(data, status, headers, config){
+                    return failure(data);
+                });
         }
-        function update(uuid, delivery_cost, delivery_mode) {
+        function create( type, coupon, success, failure ) {
+          var url = ( type === 'Vinibar' ) ? API_ENDPOINT +'/orders/vinibarorder/' : API_ENDPOINT +'/orders/discovery/create/';
+          $http.post(  url,  {'coupon' : coupon} )
+                .success(function(data, status, headers, config){
+                    return success(data);
+                })
+                .error(function(data, status, headers, config){
+                    return failure(data);
+                });
+        }
+        function update( uuid, delivery_cost, delivery_mode ) {
           return $http.post( API_ENDPOINT + '/orders/updateorder/',  {
             'order_uuid': uuid,
             'delivery_cost': delivery_cost,

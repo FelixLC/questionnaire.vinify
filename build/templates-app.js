@@ -2094,7 +2094,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "<div id=\"preview\">\n" +
     "	<div class=\"container-preview\">\n" +
     "		<div class=\"centered\">\n" +
-    "			<h3>Les 3 vins qui correspondent le plus à vos goûts</h3>\n" +
+    "			<h3>Un apercu de votre Vinibar</h3>\n" +
     "		</div>\n" +
     "		<div class=\"centered col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12\">\n" +
     "			<div class=\"wines-preview\">\n" +
@@ -2160,7 +2160,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "					<p class=\"centered\">Entrez dans l'univers vinify a petit prix <br> avec ces 3 bouteilles pour 39&nbsp;€</p>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "			<div class=\"wines-preview\">\n" +
+    "<!-- 			<div class=\"wines-preview\">\n" +
     "				<div>\n" +
     "					<div class=\"bottle-row\">\n" +
     "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
@@ -2176,7 +2176,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
     "					</div>\n" +
     "				</div>\n" +
-    "			</div>\n" +
+    "			</div> -->\n" +
     "<!-- 			<div class=\"container container-hr\">\n" +
     "				<div><hr></div>\n" +
     "				<div><img alt=\"\" src=\"assets/logo_mini.png\" style=\"height:45px\"/></div>\n" +
@@ -2256,10 +2256,10 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
-    "      <a ui-sref=\"questionnaire.starter\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.starter\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks-right\">\n" +
-    "      <a href ng-click=\"validateBalanceAnswer()\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "      <a href ng-click=\"validateBalanceAnswer()\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>");
@@ -2301,7 +2301,7 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
     "      </div>\n" +
     "    </div>\n" +
     "<!--     <div class=\"navlinks-right\">\n" +
-    "      <a ui-sref=\"questionnaire.juice\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.juice\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
     "    </div> -->\n" +
     "  </div>\n" +
     "</div>");
@@ -2402,7 +2402,7 @@ angular.module("questionnaire/parts/questionnaire.comments.tpl.html", []).run(["
     "\n" +
     "      </div>\n" +
     "      <div class=\"navlinks\">\n" +
-    "        <a ui-sref=\"questionnaire.balance\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
+    "        <a ui-sref=\"questionnaire.balance\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -2454,10 +2454,10 @@ angular.module("questionnaire/parts/questionnaire.cuisine.tpl.html", []).run(["$
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
-    "      <a ui-sref=\"questionnaire.juice\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.juice\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks-right\">\n" +
-    "      <a href ng-click=\"validateCuisineAnswer()\" ><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "      <a href ng-click=\"validateCuisineAnswer()\" ><i class=\"fa fa-chevron-right\"></i></a>\n" +
     "    </div>\n" +
     "\n" +
     "  </div>\n" +
@@ -2540,10 +2540,10 @@ angular.module("questionnaire/parts/questionnaire.juice.tpl.html", []).run(["$te
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
-    "      <a ui-sref=\"questionnaire.coffee\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.coffee\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "<!--     <div class=\"navlinks-right\">\n" +
-    "      <a ui-sref=\"questionnaire.cuisine\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.cuisine\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
     "    </div> -->\n" +
     "  </div>\n" +
     "</div>");
@@ -2601,10 +2601,10 @@ angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"navlinks\">\n" +
-    "          <a ui-sref=\"questionnaire.cuisine\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
+    "          <a ui-sref=\"questionnaire.cuisine\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
     "        </div>\n" +
     "        <div class=\"navlinks-right\">\n" +
-    "          <a ui-sref=\"questionnaire.balance\"><i class=\"glyphicon glyphicon-chevron-right\"></i></a>\n" +
+    "          <a ui-sref=\"questionnaire.balance\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -2906,7 +2906,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			</div>\n" +
     "		</div>\n" +
     "	    <div class=\"navlinks\">\n" +
-    "	      <a ui-sref=\"questionnaire.balance\"><i class=\"glyphicon glyphicon-chevron-left\"></i></a>\n" +
+    "	      <a ui-sref=\"questionnaire.balance\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
     "	    </div>\n" +
     "	</div>\n" +
     "\n" +

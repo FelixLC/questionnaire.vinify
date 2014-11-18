@@ -37,78 +37,75 @@ angular.module( 'vinibar.order', [
     });
 })
 .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'orderCtrl', function orderCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster, Order ) {
-  console.log(API_ENDPOINT);
-  $scope.isState= function(state){ return $state.is(state);};
-  $scope.client = currentClient.currentClient;
-  $scope.coupon = {
-    coupon: "",
-    isValid: false,
-    isChecked: false
-  };
-  $scope.b = {};
-  $scope.delivery = {
-    mode: 'Colissimo',
-    cost: 11.90
+.controller( 'orderCtrl', function orderCtrl( $scope, $location, currentClient, $state, $rootScope, API_ENDPOINT, toaster, Order ) {
+  var init = function(){
+    $scope.isState= function(state){ return $state.is(state);};
+    $scope.client = currentClient.currentClient;
+    $scope.b = {};
+
+    $scope.coupon = {
+      coupon: "",
+      isValid: false,
+      isChecked: false
+    };
+    $scope.delivery = {
+      mode: 'Colissimo',
+      cost: 11.90
+    };
+
+    $scope.$on('$stateChangeSuccess', function() {
+      $scope.state = $state.current.name;
+    });
   };
 
-  $scope.$on('$stateChangeSuccess', function() {
-    $scope.state = $state.current.name;
-    console.log($scope.state );
-  });
+  init();
 
   $scope.blur = function() {
     if($scope.coupon.coupon){
-      $scope.coupon.coupon = ($scope.coupon.coupon.toUpperCase() === 'MERCIALFRED') ? $scope.coupon.coupon.toUpperCase(): $scope.coupon.coupon;
-      $http.post(API_ENDPOINT +'/orders/testcoupon/', $scope.coupon)
-        .success(function(data, status, headers, config) {
+      Order.testCoupon($scope.coupon,
+        // coupon validated
+        function(response){
           $scope.coupon.isValid = true;
-          if (data.coupon_type === 'Referral') {
+          if (response.coupon_type === 'Referral') {
             toaster.pop('success', 'Coupon validé !', 'Vous économisez 10€ !');
-          } else if (data.coupon_type === 'Percentage') {
-            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + data.value + ' % !');
-          } else if (data.coupon_type === 'Monetary') {
-            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' +data.value + ' € !');
+          } else if (response.coupon_type === 'Percentage') {
+            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' % !');
+          } else if (response.coupon_type === 'Monetary') {
+            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' +response.value + ' € !');
           }
           $scope.coupon.isChecked = true;
-        })
-        .error(function(data, status, headers, config) {
-          if (data === 'This code is not valid')
+        // false coupon
+        }, function(response){
+          if (response === 'This code is not valid')
             { toaster.pop('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');}
 
-          else if (data === 'This coupon has been redeemed')
+          else if (response === 'This coupon has been redeemed')
             {toaster.pop('info', 'Malheureusement, Ce code est expiré !');}
           $scope.coupon.isChecked = true;
         });
     }
-
   };
-
-  $scope.updatedBirthday = $scope.b.birthdate + "-" + $scope.b.birthmonth + "-" + $scope.b.birthday;
 
 //  ADD SCOPE INFO TO FACTORY THEN TRIGGER ORDER IF SUCCESS
   $scope.addUserInfo = function(form) {
-
-    if (form.$valid) {// IF THE FORM IS VALID
+    // FORM IS VALID
+    if (form.$valid) {
       console.log('form.valid');
       if($scope.coupon.coupon){
-        $http.post(API_ENDPOINT +'/orders/testcoupon/', $scope.coupon)
-          .success(function(data, status, headers, config) {
-            $scope.coupon.isValid = true;
-            toaster.pop('success', 'Bravo !', ' Votre coupon est validé');
-            $scope.coupon.isChecked = true;
-            // if(!$scope.coupon.coupon || ($scope.coupon.coupon && $scope.coupon.isValid) ) {      //IF THERE IS NO COUPON OR A VALID COUPON
-                    console.log('$scope.coupon.coupon || $scope.coupon.coupon && !$scope.coupon.isValid');
+        Order.testCoupon($scope.coupon,
+          // COUPON VALIDATED
+          function(data, status, headers, config) {
+              $scope.coupon.isValid = true;
+              $scope.coupon.isChecked = true;
               $rootScope.loading = true;
-              console.log($scope.client);
               $scope.client.userinfos.birthday = $scope.b.birthyear + "-" + $scope.b.birthmonth + "-" + $scope.b.birthday;
               currentClient.currentClient = $scope.client;
-              // mixpanel.track('UserInfo Added');
-              console.log($scope.client);
               $scope.client.addUserInfo()
-                                  .success(function(data, status, headers, config) {//USER INFOS ADDED
-                                    Order.create($scope.client.order_typeient.order_type, $scope.coupon.coupon)
-                                      .success(function(data, status, headers, config) {//ORDERCREATED
+                                  //USER INFOS ADDED
+                                  .success(function(data, status, headers, config) {
+                                    Order.create($scope.client.order_type, $scope.coupon.coupon,
+                                      // ORDER CREATED
+                                      function(data) {
                                           $scope.client.order = data;
                                           console.log($scope.client.order.final_price);
                                           console.log(Math.round($scope.client.order.final_price * 100)/100);
@@ -128,8 +125,8 @@ angular.module( 'vinibar.order', [
                                               $rootScope.loading = false;
                                               // $scope.createOrder();
                                           }
-                                        })
-                                      .error(function(data, status, headers, config) {//ORDER FAILED
+                                      //ORDER FAILED
+                                      }, function(data) {
                                           $rootScope.loading = false;
                                          toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
                                           // IF THE COUPON IS NOT VALID WE TELL THE USER DEPENDING ON THE ERROR
@@ -140,12 +137,14 @@ angular.module( 'vinibar.order', [
                                             {toaster.pop('info', 'Malheureusement, Tous les vinibar ont été vendus !', ' Pas de panique, nous reviendrons vers vous dès qu\'ils seront de nouveaux disponibles.');}
                                         });
                                   })
-                                  .error(function(data, status, headers, config) {//USERINFOS FAILED
+                                  //USERINFOS FAILED
+                                  .error(function(data, status, headers, config) {
                                         $rootScope.loading = false;
                                         toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
                                   });
-          })
-          .error(function(data, status, headers, config) {
+
+          // COUPON FALSE
+          }, function(data, status, headers, config) {
             if (data === 'This code is not valid')
               { toaster.pop('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');}
 
@@ -153,17 +152,19 @@ angular.module( 'vinibar.order', [
               {toaster.pop('info', 'Malheureusement, Ce code est expiré !');}
             $scope.coupon.isChecked = true;
           });
-      } else {//THERE IS NO COUPON
+      //THERE IS NO COUPON
+      } else {
               $rootScope.loading = true;
-              console.log($scope.client);
               $scope.client.userinfos.birthday = $scope.b.birthyear + "-" + $scope.b.birthmonth + "-" + $scope.b.birthday;
               currentClient.currentClient = $scope.client;
               // // mixpanel.track('UserInfo Added');
               console.log($scope.client);
               $scope.client.addUserInfo()
-                                  .success(function(data, status, headers, config) {//USER INFOS ADDED
-                                    Order.create($scope.client.order_type, $scope.coupon.coupon)
-                                      .success(function(data, status, headers, config) {//ORDERCREATED
+                                  //USER INFOS ADDED
+                                  .success(function(data, status, headers, config) {
+                                    Order.create($scope.client.order_type, $scope.coupon.coupon,
+                                      // ORDER CREATED
+                                      function(data) {
                                           $scope.client.order = data;
                                           console.log($scope.client.order.final_price);
                                            console.log(Math.round($scope.client.order.final_price * 100)/100);
@@ -183,8 +184,8 @@ angular.module( 'vinibar.order', [
                                               $rootScope.loading = false;
                                               // $scope.createOrder();
                                           }
-                                        })
-                                      .error(function(data, status, headers, config) {//ORDER FAILED
+                                      //ORDER FAILED
+                                      }, function(data) {
                                           $rootScope.loading = false;
                                          toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
                                           // IF THE COUPON IS NOT VALID WE TELL THE USER DEPENDING ON THE ERROR
@@ -195,13 +196,14 @@ angular.module( 'vinibar.order', [
                                             {toaster.pop('info', 'Malheureusement, Tous les vinibar ont été vendus !', ' Pas de panique, nous reviendrons vers vous dès qu\'ils seront de nouveaux disponibles.');}
                                         });
                                   })
-                                  .error(function(data, status, headers, config) {//USERINFOS FAILED
+                                  // USER INFOS FAILED
+                                  .error(function(data, status, headers, config) {
                                         $rootScope.loading = false;
                                         toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
                                   });
       }
-
-    } else {//THE FORM IS NOT VALID
+    // THE FORM IS NOT VALID
+    } else {
       $rootScope.loading = false;
       toaster.pop('info', 'Oops', 'un ou plusieurs champs sont incomplets ou erronés.');
     }
