@@ -21,6 +21,7 @@ module.exports = function ( karma ) {
       'bower_components/angular-mocks/angular-mocks.js',
       
       'src/**/*.js',
+
       'src/**/*.coffee',
     ],
     exclude: [
@@ -64,7 +65,7 @@ module.exports = function ( karma ) {
      * the aesthetic advantage of not launching a browser every time you save.
      */
     browsers: [
-      'Firefox'
+      'PhantomJS'
     ]
   });
 };

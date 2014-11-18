@@ -21,12 +21,16 @@ angular.module( 'vinibar.pay_mobile', [
 })
 .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
 .controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
-    $scope.client = currentClient.currentClient;
-    $scope.serializedOrder = $scope.client.order;
-    $scope.delivery = {
-      mode: 'Colissimo',
-      cost: 11.90
+    var init = function (argument) {
+      $scope.client = currentClient.currentClient;
+      $scope.serializedOrder = $scope.client.order;
+      $scope.delivery = {
+        mode: 'Colissimo',
+        cost: 11.90
+      };
     };
+
+    init();
 
     $scope.updateOrder = function(num) {
       $rootScope.loading = true;
@@ -51,7 +55,6 @@ angular.module( 'vinibar.pay_mobile', [
               });
       };
 
-    var apiEndPoint =  'http://127.0.0.1:8000/api';
 
     Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
     $scope.submit = function(status, response) {
@@ -65,7 +68,7 @@ angular.module( 'vinibar.pay_mobile', [
             order_uuid: $scope.client.order.uuid
           };
           $http({
-            url: apiEndPoint + '/orders/chargevinibar/',
+            url: ( $scope.client.order_type === 'Vinibar' ) ? API_ENDPOINT +'/orders/chargevinibar/' : API_ENDPOINT +'/orders/discovery/charge/',
             method: "POST",
             data: data
           })
