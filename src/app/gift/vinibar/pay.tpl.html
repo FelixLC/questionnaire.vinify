@@ -29,6 +29,22 @@
           </tr>
       </table>
     </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <h2 class="col-title">Envoyé à</h2>
+    <div class="col-container centered">
+      <p>{{gift.order.receiver_address.first_name}} {{gift.order.receiver_address.last_name}}</p>
+      <p>{{gift.order.receiver_email}}</p>
+      <p ng-hide="gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  ">{{gift.order.receiver_address.street}}</p>
+      <p ng-hide="gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  ">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
+    </div>
+  </div>
+</div>
+<div class="row container-fluid">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-container img-payment"></div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <h2 class="col-title">Paiement</h2>
     <div class="col-container centered">
        <form name="stripe-form" id="stripe-form" stripe-form="submit">
@@ -93,14 +109,6 @@
     </div>
     <div class="centered">
        <img src="assets/credit_cards.png" alt=""> <i class="fa fa-lock"></i> <p>SSL Secure</p>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <h2 class="col-title">Envoyé à</h2>
-    <div class="col-container centered">
-      <p>{{gift.order.receiver_address.first_name}} {{gift.order.receiver_address.last_name}}</p>
-      <p>{{gift.order.receiver_address.street}}</p>
-      <p>{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
     </div>
   </div>
 </div>

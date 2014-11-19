@@ -17,13 +17,14 @@
   border: none;
 }
 .input-error {
-  border-color: 1px solid #a94442 !important;
+  border: 1px solid @brand-color !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   -webkit-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
+
 #gift {
   /* Small screens (default) */
   p { font-size: 14px; }
@@ -60,6 +61,16 @@
   .make-lg-column(10);
   .make-lg-column-offset(1);
   padding: @navheight @navheight/2;
+}
+#gift .offset-2 {
+  .make-lg-column-offset(2);
+  .make-md-column-offset(2);
+  .make-sm-column-offset(2);
+}
+#gift .offset-4 {
+  .make-lg-column-offset(4);
+  .make-md-column-offset(4);
+  .make-sm-column-offset(4);
 }
 #gift .gift-container > div {
   padding-right: @navheight;
@@ -253,4 +264,15 @@
       max-width: 100px;
       margin-right: auto;
       margin-left: auto;
+}
+
+/*
+** PAYMENT
+*/
+
+#gift .img-payment {
+  height: 236px;
+  margin-top: 56px;
+  .prefix-background;
+  background-image: url(wines-blurred-background.jpg);
 }

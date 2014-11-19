@@ -7633,7 +7633,7 @@ footer p {
   border: none;
 }
 .input-error {
-  border-color: 1px solid #a94442 !important;
+  border: 1px solid #cb0001 !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: all 0.4s ease-in-out;
@@ -7717,6 +7717,36 @@ footer p {
 @media (min-width: 1200px) {
   #gift .gift-container {
     margin-left: 8.33333333%;
+  }
+}
+@media (min-width: 1200px) {
+  #gift .offset-2 {
+    margin-left: 16.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  #gift .offset-2 {
+    margin-left: 16.66666667%;
+  }
+}
+@media (min-width: 768px) {
+  #gift .offset-2 {
+    margin-left: 16.66666667%;
+  }
+}
+@media (min-width: 1200px) {
+  #gift .offset-4 {
+    margin-left: 33.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  #gift .offset-4 {
+    margin-left: 33.33333333%;
+  }
+}
+@media (min-width: 768px) {
+  #gift .offset-4 {
+    margin-left: 33.33333333%;
   }
 }
 #gift .gift-container > div {
@@ -7907,6 +7937,18 @@ footer p {
   max-width: 100px;
   margin-right: auto;
   margin-left: auto;
+}
+/*
+** PAYMENT
+*/
+#gift .img-payment {
+  height: 236px;
+  margin-top: 56px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: url(wines-blurred-background.jpg);
 }
 .page-wrap {
   min-height: 100%;

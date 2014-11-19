@@ -12,8 +12,8 @@
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
               <p class="">Civilité</p>
-              <select name="" id="" ng-model="gift.order.sex" class="form-control input-error"
-                            ng-class="{'input-error' : infos.submitted && gift.order.sex.$invalid}"
+              <select name="sex" id="" ng-model="gift.order.sex" class="form-control"
+                            ng-class="{'input-error' : infos.submitted && infos.sex.$invalid}"
                             required>
                 <option value="m">M.</option>
                 <option value="f">Mme</option>
@@ -21,16 +21,16 @@
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
               <p class="">Prénom</p>
-              <input type="text" class="form-control" ng-model="gift.order.receiver_first_name"
-                            ng-class="{'input-error' : infos.submitted && gift.order.receiver_first_name.$invalid}"
+              <input name="receiver_first_name" type="text" class="form-control" ng-model="gift.order.receiver_first_name"
+                            ng-class="{'input-error' : infos.submitted && infos.receiver_first_name.$invalid}"
                             required>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="">Email</p>
-              <input type="text" class="form-control" ng-model="gift.order.receiver_email"
-                            ng-class="{'input-error' : infos.submitted && gift.order.receiver_email.$invalid}"
+              <input name="receiver_email" type="text" class="form-control" ng-model="gift.order.receiver_email"
+                            ng-class="{'input-error' : infos.submitted && infos.receiver_email.$invalid}"
                             required>
             </div>
           </div>
@@ -46,19 +46,21 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Livraison</h2>
       <div class="col-container">
-        <p class="col-subtitle">Vous pouvez vous faire livrer le premier bar si vous voulez l'offrir vous même</p>
+        <p class="col-subtitle">Vinify poste ma carte postale</p>
         <div class="gift-receiver">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Prénom</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.first_name"
-                            ng-class="{'input-error' : infos.submitted && gift.order.receiver_address.first_name.$invalid}"
+                            autocomplete="first_name" name="first_name"
+                            ng-class="{'input-error' : infos.submitted && infos.first_name.$invalid}"
                             required>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Nom</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.last_name"
-                            ng-class="{'input-error' : infos.submitted && gift.order.receiver_address.last_name.$invalid}"
+                            autocomplete="last_name" name="last_name"
+                            ng-class="{'input-error' : infos.submitted && infos.last_name.$invalid}"
                             required>
             </div>
           </div>
@@ -66,7 +68,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="">Rue</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.street"
-                            ng-class="{'input-error' : infos.submitted && gift.order.receiver_address.street.$invalid}"
+                            autocomplete="street" name="street"
+                            ng-class="{'input-error' : infos.submitted && infos.street.$invalid}"
                             required>
             </div>
           </div>
@@ -74,30 +77,36 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Code Postal</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.zipcode"
-                            ng-class="{'input-error' : infos.submitted && gift.order.receiver_address.zipcode.$invalid}"
+                            autocomplete="zipcode" name="zipcode"
+                            ng-class="{'input-error' : infos.submitted && infos.zipcode.$invalid}"
                             required>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Ville</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.city"
-                            ng-class="{'input-error' : infos.submitted && gift.order.receiver_address.city.$invalid}"
+                            autocomplete="city" name="city"
+                            ng-class="{'input-error' : infos.submitted && infos.city.$invalid}"
                             required>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Code</p>
-              <input type="text" class="form-control" ng-model="gift.order.receiver_address.digicode">
+              <input type="text" class="form-control" ng-model="gift.order.receiver_address.digicode"
+                            autocomplete="digicode" name="digicode">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Interphone</p>
-              <input type="text" class="form-control" ng-model="gift.order.receiver_address.intercom">
+              <input type="text" class="form-control" ng-model="gift.order.receiver_address.intercom"
+                            autocomplete="intercom" name="intercom">
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="">Informations Complémentaires</p>
-                <textarea class="form-control" rows="2" ng-model="gift.order.receiver_address.other_info" placeholder="Société, Bâtiment, Escalier, Etage ..." id="gift.order.receiver_address.other_info"></textarea>
+                <textarea class="form-control" rows="2" ng-model="gift.order.receiver_address.other_info"
+                                      placeholder="Société, Bâtiment, Escalier, Etage ..."  name="other_info"
+                                      id="other_info"></textarea>
             </div>
           </div>
         </div>
@@ -112,21 +121,25 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Prénom</p>
-                  <input type="text" class="form-control" ng-model="gift.giver.first_name">
+                  <input type="text" class="form-control" ng-model="gift.giver.first_name"
+                                name="giver.first_name">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Nom</p>
-                  <input type="text" class="form-control" ng-model="gift.giver.last_name">
+                  <input type="text" class="form-control" ng-model="gift.giver.last_name"
+                                name="giver.last_name">
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Email</p>
-                  <input type="text" class="form-control" ng-model="gift.giver.email">
+                  <input type="text" class="form-control" ng-model="gift.giver.email"
+                                name="giver.email">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Mot de Passe</p>
-                  <input type="password" class="form-control" ng-model="gift.giver.password">
+                  <input type="password" class="form-control" ng-model="gift.giver.password"
+                                name="giver.password">
                 </div>
               </div>
           </div>
@@ -137,11 +150,13 @@
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <p class="">Email</p>
-                <input type="text" class="form-control" ng-model="gift.client.username">
+                <input type="text" class="form-control" ng-model="gift.client.username"
+                              name="client.username">
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <p class="">Mot de Passe</p>
-                <input type="password" class="form-control" ng-model="gift.client.password">
+                <input type="password" class="form-control" ng-model="gift.client.password"
+                              name="client.password">
               </div>
             </div>
           </div>
@@ -150,7 +165,8 @@
   </div>
   <div class="row container-fluid">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
-        <button type="submit" class="btn-block-primary centered margin-top"><p>Continuer</p></button>
+        <button type="submit" class="btn-block-primary centered margin-top"><p>Continuer <i ng-show="load" class="fa fa-spinner fa-spin"></i></p></button>
     </div>
+<!--     <iframe src="http://gfycat.com/ifr/WholeSelfreliantCreature" frameborder="0" scrolling="no" width="918" height="612" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(0.3);" ></iframe> -->
   </div>
 </form>

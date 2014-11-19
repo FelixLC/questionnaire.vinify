@@ -79,38 +79,52 @@ angular.module( 'vinibar.gift.vinibar', [
 
   $scope.toSurvey = function(form){
     form.submitted = true;
-    if($scope.gift.giver.first_name) {
-      $scope.gift.createGiver().then(function(response){
-            toaster.pop('success', 'Bravo !', ' Votre compte a été créé');
+    // if the form is valid
+    if( form.$valid ) {
+      // if it's a new prospect
+      if($scope.gift.giver.first_name) {
+        $scope.load = true;
+        $scope.gift.createGiver().then(function(response){
+              toaster.pop('success', 'Bravo !', ' Votre compte a été créé');
+              $window.sessionStorage.token = response.data.token;
+              $scope.logged = true;
+
+              $scope.gift.createGiftOrder().then(function(response){
+                $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
+                $scope.gift.receiver.gift_uuid = response.data.uuid;
+                console.log($scope.gift.receiver);
+                $scope.load = false;
+                $state.go('gift.vinibar.quiz');
+              });
+        });
+      // if it's a client
+      } else if($scope.gift.client.username) {
+        $scope.load = true;
+        $scope.gift.logGiver().then(function(response){
+            toaster.pop('success', 'Bravo !', ' Vous êtes bien loggué');
             $window.sessionStorage.token = response.data.token;
+            $scope.gift.giver.first_name =response.data.first_name;
+            $scope.gift.giver.last_name =response.data.last_name;
             $scope.logged = true;
+
             $scope.gift.createGiftOrder().then(function(response){
               $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
-              console.log(response.data.receiver_email);
-              console.log(response.data.uuid);
               $scope.gift.receiver.gift_uuid = response.data.uuid;
-                    $state.go('gift.vinibar.quiz');
+              console.log($scope.gift.receiver);
+              $scope.load = false;
+              $state.go('gift.vinibar.quiz');
             });
-      });
-
-    } else if($scope.gift.client.username) {
-      $scope.gift.logGiver().then(function(response){
-          toaster.pop('success', 'Bravo !', ' Vous êtes bien loggué');
-          $window.sessionStorage.token = response.data.token;
-          $scope.gift.giver.first_name =response.data.first_name;
-          $scope.gift.giver.last_name =response.data.last_name;
-          $scope.logged = true;
-          $scope.gift.createGiftOrder().then(function(response){
-          console.log(response.data.receiver_email);
-          console.log(response.data.uuid);
-            $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
-            $scope.gift.receiver.gift_uuid = response.data.uuid;
-                    $state.go('gift.vinibar.quiz');
-          });
-      });
+        });
+      // if there is no login credentials
+      } else {
+        toaster.pop('infos', 'Oops !', 'Merci de vous connecter ou de créer un compte');
+      }
+    // if the form is not valid
+    } else {
+      toaster.pop('infos', 'Oops !', ' Vous avez oublié des champs');
     }
-
   };
+
   $scope.sendSurvey = function() {
     $scope.gift.sendSurvey().then(function(response){
       $state.go('gift.vinibar.pay');
