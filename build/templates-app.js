@@ -17,9 +17,6 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "  </div>\n" +
     "  <div><img src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar-showcase\"></div>\n" +
     "</div>\n" +
-    "<div class=\"gift-spacer\">\n" +
-    "\n" +
-    "</div>\n" +
     "<div class=\"gift-header gift-second-header\">\n" +
     "  <h1>Choix du cadeau</h1>\n" +
     "  <h2>Vous pouvez lui offrir soit un Vinibar, soit une carte cadeau</h2>\n" +
@@ -49,7 +46,7 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "        <div><p>J’envoie le vinibar  <br> à l’adresse de mon choix</p></div>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "    <button class=\"btn_square margin-top\" ui-sref=\"gift.vinibar.details\">Vinibar</button>\n" +
+    "    <button class=\"btn-square margin-top\" ui-sref=\"gift.vinibar.details\">Vinibar</button>\n" +
     "  </div>\n" +
     "    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "    <h2 class=\"col-title\">Carte Cadeau</h2>\n" +
@@ -68,7 +65,7 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "        <div><p>Le destinataire recoit ma carte <br> et démarre l’aventure avec le quiz Vinify</p></div>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "    <button class=\"btn_square margin-top\" ui-sref=\"gift.gift_card.details\">Carte Cadeau</button>\n" +
+    "    <button class=\"btn-square margin-top\" ui-sref=\"gift.gift_card.details\">Carte Cadeau</button>\n" +
     "  </div>\n" +
     "</div>");
 }]);
@@ -200,7 +197,7 @@ angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", fun
     "        <p>Total de la commande</p>\n" +
     "        <p>{{details.total + gift.order.credits | number:2}} €</p>\n" +
     "      </div>\n" +
-    "      <div class=\"btn_block_primary centered margin-top\" ui-sref=\"gift.gift_card.infos\"><p>Continuer</p></div>\n" +
+    "      <div class=\"btn-block-primary centered margin-top\" ui-sref=\"gift.gift_card.infos\"><p>Continuer</p></div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "");
@@ -370,7 +367,7 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "  </div>\n" +
     "  <div class=\"row container-fluid\">\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right\">\n" +
-    "        <button type=\"submit\" class=\"btn_block_primary centered margin-top\"><p>Continuer</p></button>\n" +
+    "        <button type=\"submit\" class=\"btn-block-primary centered margin-top\"><p>Continuer</p></button>\n" +
     "    </div>\n" +
     "<!--     <iframe src=\"http://gfycat.com/ifr/WholeSelfreliantCreature\" frameborder=\"0\" scrolling=\"no\" width=\"918\" height=\"612\" style=\"-webkit-backface-visibility: hidden;-webkit-transform: scale(0.3);\" ></iframe> -->\n" +
     "  </div>\n" +
@@ -515,7 +512,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <p>Total de la commande</p>\n" +
     "        <p>{{details.total + gift.order.credits | number:2}} €</p>\n" +
     "      </div>\n" +
-    "      <div class=\"btn_block_primary centered margin-top\" ui-sref=\"gift.vinibar.infos\"><p>Continuer</p></div>\n" +
+    "      <div class=\"btn-block-primary centered margin-top\" ui-sref=\"gift.vinibar.infos\"><p>Continuer</p></div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "");
@@ -675,7 +672,7 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "  </div>\n" +
     "  <div class=\"row container-fluid\">\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right\">\n" +
-    "        <button type=\"submit\" class=\"btn_block_primary centered margin-top\"><p>Continuer</p></button>\n" +
+    "        <button type=\"submit\" class=\"btn-block-primary centered margin-top\"><p>Continuer</p></button>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</form>");
@@ -771,7 +768,7 @@ angular.module("gift/vinibar/pay.tpl.html", []).run(["$templateCache", function(
     "         <div class=\"row row-submit centered\">\n" +
     "         <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "            <div><input type=\"hidden\" name=\"name\" ng-model=\"gift.giver.last_name\"/></div>\n" +
-    "            <div class=\"btn_block_primary centered margin-top\"  ng-click=\"updateSurvey(gift)\" ><button class=\"btn btn_square\" value=\"submit\"><p>Offrir mon cadeau</p></button></div>\n" +
+    "            <div class=\"btn-block-primary centered margin-top\"  ng-click=\"updateSurvey(gift)\" ><button class=\"btn btn-square\" value=\"submit\"><p>Offrir mon cadeau</p></button></div>\n" +
     "         </div>\n" +
     "         </div>\n" +
     "       </form>\n" +
@@ -910,7 +907,7 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
     "        <p class=\"col-subtitle\">Quelle est sa région préférée&nbsp;?</p>\n" +
     "        <select class=\"form-control\" ng-model=\"gift.receiver.survey.quest_7.answ\" ng-options=\"region for region in regions\"></select>\n" +
     "      </div>\n" +
-    "      <div class=\"btn_block_primary centered margin-top\" ng-click=\"sendSurvey()\" >Continuer</div>\n" +
+    "      <div class=\"btn-block-primary centered margin-top\" ng-click=\"sendSurvey()\" >Continuer</div>\n" +
     "    </div>\n" +
     "</div>");
 }]);
@@ -1711,7 +1708,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "					</div>\n" +
     "				</div>\n" +
     "				<div class=\"col-lg-4 col-md-4 centered\">\n" +
-    "					<button class=\"btn button-white\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
+    "					<button class=\"btn-block-primary\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
     "				</div>\n" +
     "				</form>\n" +
     "			</div>\n" +
@@ -1877,7 +1874,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
     "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
     "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#CB0001\"></path>\n" +
     "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
     "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
     "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
@@ -1896,7 +1893,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
     "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
     "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#CB0001\" fill=\"#FFF\"></path>\n" +
     "                                    </g>\n" +
     "                                </g>\n" +
     "                            </g>\n" +
@@ -1916,7 +1913,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
     "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
     "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#CB0001\"></path>\n" +
     "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
     "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
     "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
@@ -1935,7 +1932,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
     "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
     "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#CB0001\" fill=\"#FFF\"></path>\n" +
     "                                    </g>\n" +
     "                                </g>\n" +
     "                            </g>\n" +
@@ -1957,7 +1954,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
     "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
     "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#006DB2\"></path>\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#CB0001\"></path>\n" +
     "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
     "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
     "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
@@ -1976,7 +1973,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
     "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
     "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#006DB2\" fill=\"#FFF\"></path>\n" +
+    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#CB0001\" fill=\"#FFF\"></path>\n" +
     "                                    </g>\n" +
     "                                </g>\n" +
     "                            </g>\n" +
@@ -2076,7 +2073,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                <hr>\n" +
     "               <div class=\"row row-submit centered\">\n" +
     "                <div><input type=\"hidden\" name=\"name\" ng-model=\"client.userinfos.last_name\"/></div>\n" +
-    "                <button class=\"btn button-white\" value=\"submit\">Commander mes vins</button>\n" +
+    "                <button class=\"btn-square\" value=\"submit\">Commander mes vins</button>\n" +
     "                <div><a href ui-sref=\"order.userinfos\">Modifier</a></div>\n" +
     "               </div>\n" +
     "             </form>\n" +
@@ -2163,11 +2160,11 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "			</div>\n" +
     "			<div id=\"container-offers\">\n" +
     "				<div class=\"col-lg-6 col-lg-push-6 col-md-6 col-md-push-6 col-sm-12  col-xs-12 \">\n" +
-    "					<button class=\"button btn-cta\" ng-click=\"order('Vinibar')\">Commander mon Vinibar</button>\n" +
+    "					<button class=\"button btn-square\" ng-click=\"order('Vinibar')\">Commander mon Vinibar</button>\n" +
     "					<p class=\"centered\">Recevez une sélection de 6 bouteilles <br> revue par notre oenologue pour 69&nbsp;€</p>\n" +
     "				</div>\n" +
     "				<div class=\"col-lg-6 col-lg-pull-6 col-md-6 col-md-pull-6 col-sm-12  col-xs-12 \">\n" +
-    "					<button class=\"button btn-cta-outline\" ng-click=\"order('Découverte')\">Commander ces 3 bouteilles</button>\n" +
+    "					<button class=\"button btn-square-o\" ng-click=\"order('Découverte')\">Commander ces 3 bouteilles</button>\n" +
     "					<p class=\"centered\">Entrez dans l'univers vinify a petit prix <br> avec ces 3 bouteilles pour 39&nbsp;€</p>\n" +
     "				</div>\n" +
     "			</div>\n" +
@@ -2959,6 +2956,13 @@ angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", 
 
 angular.module("remerciement_mobile/remerciement_mobile.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("remerciement_mobile/remerciement_mobile.tpl.html",
+    "<nav class=\"navbar\" role=\"navigation\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</nav>\n" +
     "<div class=\"remerciement-container\">\n" +
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +
@@ -3014,7 +3018,7 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "		<div class=\"centered\">\n" +
     "			<img src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
     "			<p>Ces quelques questions permettront à notre oenologue de sélectionner <span class=\"highlight\">spécialement pour vous 6 bouteilles</span> parmi notre gamme de plus de 100 références.</p>\n" +
-    "			<div ui-sref=\"questionnaire.coffee\" class=\"button btn-cta\">Démarrer</div>\n" +
+    "			<button ui-sref=\"questionnaire.coffee\" class=\"button btn-square margin-top\">Démarrer</button>\n" +
     "			<p>En continuant, je certifie avoir plus de 18 ans et j'accepte les <a href=\"https://vinify.co/docs/cgv.pdf\">CGV</a> de Vinify</p>\n" +
     "		</div>\n" +
     "	</div>\n" +

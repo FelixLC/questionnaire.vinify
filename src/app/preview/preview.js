@@ -9,7 +9,7 @@ angular.module( 'vinibar.preview', [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'preview', {
-      url: '/preview',
+      url: '/apercu',
       views: {
         "main": {
           controller: 'previewCtrl',
