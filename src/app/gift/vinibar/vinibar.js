@@ -67,7 +67,7 @@ angular.module( 'vinibar.gift.vinibar', [
       updateCosts();
     });
     $scope.$watch('details.credits', function(newVal, OldVal){
-      $scope.gift.order.credits = (newVal) ? $scope.gift.order.credits : 60;
+      $scope.gift.order.credits = (newVal) ? 60 : 0;
     });
 
     var updateCosts = function() {

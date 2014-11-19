@@ -7659,7 +7659,7 @@ footer p {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding: 56px 0;
+  padding: 56px 28px;
 }
 @media (min-width: 992px) {
   #gift .gift-container {
@@ -7800,7 +7800,7 @@ footer p {
   background-color: #efeeeb;
 }
 #gift .checked {
-  background-color: #b2b2b2;
+  background-color: #58585b;
   color: #FFF;
 }
 #gift .col-container-price-level > div,
@@ -7809,7 +7809,7 @@ footer p {
 }
 #gift .col-container-price-level > div {
   height: 56px;
-  border: 1px solid #b2b2b2;
+  border: 1px solid #58585b;
   padding: 10px;
   vertical-align: middle;
 }

@@ -26,9 +26,9 @@
                     return failure(data);
                 });
         }
-        function create( type, coupon, success, failure ) {
+        function create( type, uuid, coupon, success, failure ) {
           var url = ( type === 'Vinibar' ) ? API_ENDPOINT +'/orders/vinibarorder/' : API_ENDPOINT +'/orders/discovery/create/';
-          $http.post(  url,  {'coupon' : coupon} )
+          $http.post(  url,  { 'coupon' : coupon, 'order_uuid': uuid } )
                 .success(function(data, status, headers, config){
                     return success(data);
                 })

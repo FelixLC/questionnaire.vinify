@@ -10,7 +10,7 @@ angular.module( 'vinibar.welcome', [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'welcome', {
-      url: '/welcome?r',
+      url: '/demarrer?r',
       views: {
         "main": {
           controller: 'welcomeCtrl',

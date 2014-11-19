@@ -34,8 +34,8 @@ angular.module( 'vinibar.gift.gift_card', [
 .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
 .controller( 'giftCardCtrl', function giftCardCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
   var init = function(){
-    $scope.gift = new Gift('Card');
 
+    $scope.gift = new Gift('Card');
     $scope.costs = params;
 
     $scope.details = {
@@ -62,7 +62,7 @@ angular.module( 'vinibar.gift.gift_card', [
       updateCosts();
     });
     $scope.$watch('details.credits', function(newVal, OldVal){
-      $scope.gift.order.credits = (newVal) ? $scope.gift.order.credits : 60;
+      $scope.gift.order.credits = (newVal) ? 60 : 0;
     });
 
     var updateCosts = function() {

@@ -20,7 +20,7 @@ angular.module( 'vinibar', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/welcome' );
+  $urlRouterProvider.otherwise( '/demarrer' );
 })
 
 // We'll intercept all request and put the token in it

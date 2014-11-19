@@ -223,16 +223,17 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "            <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
     "              <p class=\"\">Civilité</p>\n" +
     "              <select name=\"\" id=\"\" ng-model=\"gift.order.sex\" class=\"form-control input-error\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.sex.$invalid}\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && infos.sex.$invalid}\"\n" +
     "                            required>\n" +
     "                <option value=\"m\">M.</option>\n" +
     "                <option value=\"f\">Mme</option>\n" +
     "              </select>\n" +
+    "              <pre>{{infos.submitted}}</pre>\n" +
     "            </div>\n" +
     "            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
     "              <p class=\"\">Prénom</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_first_name\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.receiver_first_name.$invalid}\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_first_name.$invalid}\"\n" +
     "                            required>\n" +
     "            </div>\n" +
     "          </div>\n" +
@@ -240,7 +241,7 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "              <p class=\"\">Email</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_email\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.receiver_email.$invalid}\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_email.$invalid}\"\n" +
     "                            required>\n" +
     "            </div>\n" +
     "          </div>\n" +
@@ -256,58 +257,67 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "    <div ng-show=\"gift.order.gift_type === 'Card' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Livraison</h2>\n" +
     "      <div class=\"col-container\">\n" +
-    "        <p class=\"col-subtitle\">Vous pouvez vous faire livrer le premier bar si vous voulez l'offrir vous même</p>\n" +
+    "        <p class=\"col-subtitle\">Vinify poste ma carte postale</p>\n" +
     "        <div class=\"gift-receiver\">\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Prénom</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.first_name\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.receiver_address.first_name.$invalid}\"\n" +
-    "                            required>\n" +
+    "                            autocomplete=\"first_name\" name=\"first_name\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && gift.infos.first_name.$invalid}\"\n" +
+    "                            ng-required=\"gift.order.gift_type === 'Card' \">\n" +
     "            </div>\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Nom</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.last_name\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.receiver_address.last_name.$invalid}\"\n" +
-    "                            required>\n" +
+    "                            autocomplete=\"last_name\" name=\"last_name\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && gift.infos.last_name.$invalid}\"\n" +
+    "                            ng-required=\"gift.order.gift_type === 'Card' \">\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "              <p class=\"\">Rue</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.street\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.receiver_address.street.$invalid}\"\n" +
-    "                            required>\n" +
+    "                            autocomplete=\"street\" name=\"street\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && gift.infos.street.$invalid}\"\n" +
+    "                            ng-required=\"gift.order.gift_type === 'Card' \">\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Code Postal</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.zipcode\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.receiver_address.zipcode.$invalid}\"\n" +
-    "                            required>\n" +
+    "                            autocomplete=\"zipcode\" name=\"zipcode\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && gift.infos.zipcode.$invalid}\"\n" +
+    "                            ng-required=\"gift.order.gift_type === 'Card' \">\n" +
     "            </div>\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Ville</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.city\"\n" +
-    "                            ng-class=\"{'input-error' : infos.submitted && gift.order.receiver_address.city.$invalid}\"\n" +
-    "                            required>\n" +
+    "                            autocomplete=\"city\" name=\"city\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && gift.infos.city.$invalid}\"\n" +
+    "                            ng-required=\"gift.order.gift_type === 'Card' \">\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Code</p>\n" +
-    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.digicode\">\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.digicode\"\n" +
+    "                            autocomplete=\"digicode\" name=\"digicode\">\n" +
     "            </div>\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Interphone</p>\n" +
-    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.intercom\">\n" +
+    "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.intercom\"\n" +
+    "                            autocomplete=\"intercom\" name=\"intercom\">\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "              <p class=\"\">Informations Complémentaires</p>\n" +
-    "                <textarea class=\"form-control\" rows=\"2\" ng-model=\"gift.order.receiver_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"gift.order.receiver_address.other_info\"></textarea>\n" +
+    "                <textarea class=\"form-control\" rows=\"2\" ng-model=\"gift.order.receiver_address.other_info\"\n" +
+    "                                      placeholder=\"Société, Bâtiment, Escalier, Etage ...\"  name=\"other_info\"\n" +
+    "                                      id=\"other_info\"></textarea>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -360,8 +370,9 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "  </div>\n" +
     "  <div class=\"row container-fluid\">\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right\">\n" +
-    "        <button type=\"submit\" class=\"btn_block_primary centered margin-top\">Continuer</button>\n" +
+    "        <button type=\"submit\" class=\"btn_block_primary centered margin-top\"><p>Continuer</p></button>\n" +
     "    </div>\n" +
+    "<!--     <iframe src=\"http://gfycat.com/ifr/WholeSelfreliantCreature\" frameborder=\"0\" scrolling=\"no\" width=\"918\" height=\"612\" style=\"-webkit-backface-visibility: hidden;-webkit-transform: scale(0.3);\" ></iframe> -->\n" +
     "  </div>\n" +
     "</form>");
 }]);
@@ -490,7 +501,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Prix du bar</p>\n" +
-    "        <p class=\"centered\">69 €</p>\n" +
+    "        <p class=\"centered\">69.00 €</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
@@ -664,7 +675,7 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "  </div>\n" +
     "  <div class=\"row container-fluid\">\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right\">\n" +
-    "        <button type=\"submit\" class=\"btn_block_primary centered margin-top\">Continuer</button>\n" +
+    "        <button type=\"submit\" class=\"btn_block_primary centered margin-top\"><p>Continuer</p></button>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</form>");
@@ -760,7 +771,7 @@ angular.module("gift/vinibar/pay.tpl.html", []).run(["$templateCache", function(
     "         <div class=\"row row-submit centered\">\n" +
     "         <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "            <div><input type=\"hidden\" name=\"name\" ng-model=\"gift.giver.last_name\"/></div>\n" +
-    "            <div class=\"btn_block_primary centered margin-top\"  ng-click=\"updateSurvey(gift)\" ><button class=\"btn btn_square\" value=\"submit\">Offrir mon cadeau</button></div>\n" +
+    "            <div class=\"btn_block_primary centered margin-top\"  ng-click=\"updateSurvey(gift)\" ><button class=\"btn btn_square\" value=\"submit\"><p>Offrir mon cadeau</p></button></div>\n" +
     "         </div>\n" +
     "         </div>\n" +
     "       </form>\n" +

@@ -103,7 +103,7 @@ angular.module( 'vinibar.order', [
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function(data, status, headers, config) {
-                                    Order.create($scope.client.order_type, $scope.coupon.coupon,
+                                    Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function(data) {
                                           $scope.client.order = data;
@@ -162,7 +162,7 @@ angular.module( 'vinibar.order', [
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function(data, status, headers, config) {
-                                    Order.create($scope.client.order_type, $scope.coupon.coupon,
+                                    Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function(data) {
                                           $scope.client.order = data;

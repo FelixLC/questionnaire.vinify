@@ -5,15 +5,20 @@ angular.module('Resources', [])
   //  The Recommender is used to get a preview of bottles
   .factory('Recommender', ['$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT, $q) {
     var _preview = null;
+    var _uuid = null;
     return {
       calcPreview: function(user) {
          return $http.post(API_ENDPOINT + '/backoffice/recommender/preview3/', {'user_uuid': user.uuid})
           .success(function(data, status, headers, config) {
-            _preview = data;
+            _preview = data.wines;
+            _uuid = data.order_uuid;
           });
       },
       getPreview: function() {
         return _preview;
+      },
+      getUuid: function() {
+        return _uuid;
       }
     };
   }])
