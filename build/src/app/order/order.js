@@ -66,21 +66,26 @@ angular.module( 'vinibar.order', [
         // coupon validated
         function(response){
           $scope.coupon.isValid = true;
-          if (response.coupon_type === 'Referral') {
+          if ( response.coupon_type === 'Referral' && $scope.client.order_type === 'Vinibar' ) {
             toaster.pop('success', 'Coupon validé !', 'Vous économisez 10€ !');
-          } else if (response.coupon_type === 'Percentage') {
+          } else if ( response.coupon_type === 'Referral' && $scope.client.order_type != 'Vinibar' ) {
+            toaster.pop('info', 'Vous ne pouvez pas utiliser un code parrainnage', 'avec l\'offre découverte. Vous pouvez cependant acquérir un Vinibar à 59€ !');
+            $scope.coupon.coupon = "";
+          } else if ( response.coupon_type === 'Percentage' ) {
             toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' % !');
-          } else if (response.coupon_type === 'Monetary') {
+          } else if ( response.coupon_type === 'Monetary' ) {
             toaster.pop('success', 'Coupon validé !', 'Vous économisez ' +response.value + ' € !');
           }
           $scope.coupon.isChecked = true;
         // false coupon
         }, function(response){
-          if (response === 'This code is not valid')
-            { toaster.pop('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');}
-
-          else if (response === 'This coupon has been redeemed')
-            {toaster.pop('info', 'Malheureusement, Ce code est expiré !');}
+          if (response === 'This code is not valid') {
+            toaster.pop('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');
+          } else if (response === 'This coupon has been redeemed') {
+            toaster.pop('info', 'Malheureusement, Ce code est expiré !');
+          } else if (response === 'Referrals may not be used on Discovery orders') {
+             toaster.pop('info', 'Malheureusement', 'Vous ne pouvez pas utiliser un code parrainnage avec l\'offre découverte');
+          }
           $scope.coupon.isChecked = true;
         });
     }

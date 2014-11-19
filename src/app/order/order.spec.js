@@ -43,12 +43,23 @@ describe( 'orderCtrl', function() {
       expect( $scope.addUserInfo ).toBeTruthy();
     }));
 
-    it( 'should call Order.testCoupon if there is a valid coupon', inject( function() {
+    it( 'should call Order.testCoupon if there is a valid coupon for a Vinibar', inject( function() {
       $scope.coupon.coupon = 1;
+      $scope.client.order_type = 'Vinibar';
       $scope.blur();
       expect( Order.testCoupon ).toHaveBeenCalled();
       expect( $scope.coupon.isValid ).toBeTruthy();
       expect( toaster.pop ).toHaveBeenCalledWith('success', 'Coupon validé !', 'Vous économisez 10€ !');
+    }));
+
+    it( 'should reject coupon if there is a Referral coupon for a Discovery', inject( function() {
+      $scope.coupon.coupon = 1;
+      $scope.client.order_type = 'Découverte';
+      $scope.blur();
+      expect( Order.testCoupon ).toHaveBeenCalled();
+      expect( $scope.coupon.isValid ).toBeTruthy();
+      expect( toaster.pop ).toHaveBeenCalledWith('info', 'Vous ne pouvez pas utiliser un code parrainnage', 'avec l\'offre découverte. Vous pouvez cependant acquérir un Vinibar à 59€ !');
+      expect( $scope.coupon.coupon ).toBe("");
     }));
 
     it( 'should call Order.testCoupon if there is a false coupon', inject( function() {

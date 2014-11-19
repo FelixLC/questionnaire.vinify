@@ -26,7 +26,7 @@ angular.module( 'vinibar.pay_mobile', [
       $scope.serializedOrder = $scope.client.order;
       $scope.delivery = {
         mode: 'Colissimo',
-        cost: 11.90
+        cost: ($scope.client.order_type === 'Vinibar') ? 11.9 : 8.90
       };
     };
 
@@ -34,14 +34,16 @@ angular.module( 'vinibar.pay_mobile', [
 
     $scope.updateOrder = function(num) {
       $rootScope.loading = true;
-      if (num === 1) {  $scope.delivery.cost = 8.9;
-                        $scope.delivery.mode = 'Point Relais';}
-
-      if (num === 2) {  $scope.delivery.cost = 11.9;
-                        $scope.delivery.mode = 'Colissimo'; }
-
-      if (num === 3) {  $scope.delivery.cost = 0;
-                        $scope.delivery.mode = 'Vinify'; }
+      if (num === 1) {
+        $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 8.9 : 4.90;
+        $scope.delivery.mode = 'Point Relais';
+      } else if (num === 2) {
+        $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 11.9 : 8.90;
+        $scope.delivery.mode = 'Colissimo';
+      } else if (num === 3) {
+        $scope.delivery.cost = 0;
+        $scope.delivery.mode = 'Vinify';
+      }
       Order.update($scope.client.order.uuid, $scope.delivery.cost, $scope.delivery.mode,
             function(data) {
                   $scope.client.order = data;

@@ -2940,7 +2940,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			</div>\n" +
     "			<div class=\"row\">\n" +
     "				<div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
-    "					<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">Créer mon compte</button>\n" +
+    "					<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">Découvrir ma sélection</button>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
