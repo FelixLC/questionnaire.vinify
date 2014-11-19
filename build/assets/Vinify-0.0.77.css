@@ -8067,24 +8067,7 @@ footer p {
   left: 0;
   margin: 0;
   padding: 0;
-}
-.waitlist_pos {
-  font-size: 2rem;
-  color: #800;
-  font-weight: 600;
-}
-.remerciement {
-  text-align: center;
-}
-.remerciement-container {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 0;
-  padding: 0;
+  top: 56px;
 }
 .waitlist_pos {
   font-size: 2rem;

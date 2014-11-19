@@ -78,7 +78,7 @@ angular.module( 'vinibar.pay_mobile', [
             $rootScope.loading = false;
             if ($scope.client.order.delivery_mode === 'Point Relais') {
               $http({
-                url: apiEndPoint + '/orders/pickmremail/',
+                url: API_ENDPOINT + '/orders/pickmremail/',
                 method: "POST",
                 data: { 'order_id': $scope.client.order.uuid },
                 headers: {
