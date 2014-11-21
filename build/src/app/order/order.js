@@ -7,7 +7,7 @@ angular.module( 'vinibar.order', [
   'orderService'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'order', {
       url: '/order',
@@ -35,9 +35,9 @@ angular.module( 'vinibar.order', [
       url: '/confirmation',
       templateUrl: 'order/parts/order.confirmation.tpl.html'
     });
-}])
+})
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'orderCtrl', ["$scope", "$location", "currentClient", "$state", "$rootScope", "API_ENDPOINT", "toaster", "Order", function orderCtrl( $scope, $location, currentClient, $state, $rootScope, API_ENDPOINT, toaster, Order ) {
+.controller( 'orderCtrl', function orderCtrl( $scope, $location, currentClient, $state, $rootScope, API_ENDPOINT, toaster, Order ) {
   var init = function(){
     $scope.isState= function(state){ return $state.is(state);};
     $scope.client = currentClient.currentClient;
@@ -108,6 +108,7 @@ angular.module( 'vinibar.order', [
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function(data, status, headers, config) {
+                                    mixpanel.track('UserInfo Added');
                                     Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function(data) {
@@ -162,11 +163,11 @@ angular.module( 'vinibar.order', [
               $rootScope.loading = true;
               $scope.client.userinfos.birthday = $scope.b.birthyear + "-" + $scope.b.birthmonth + "-" + $scope.b.birthday;
               currentClient.currentClient = $scope.client;
-              // // mixpanel.track('UserInfo Added');
               console.log($scope.client);
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function(data, status, headers, config) {
+                                    mixpanel.track('UserInfo Added');
                                     Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function(data) {
@@ -215,7 +216,7 @@ angular.module( 'vinibar.order', [
 
   };
 
-}])
+})
 
 .filter('characters', function () {
           return function (input, chars, breakOnWord) {

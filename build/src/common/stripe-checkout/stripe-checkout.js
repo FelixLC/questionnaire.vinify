@@ -2,7 +2,7 @@ angular.module('stripe', [])
   .directive('stripeCheckout', function() {
     return {
       restrict: 'A',
-      controller: ["$scope", "$http", "$location", function($scope, $http, $location) {
+      controller: function($scope, $http, $location) {
         $scope.handler = StripeCheckout.configure({
           key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
           // key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
@@ -25,16 +25,16 @@ angular.module('stripe', [])
                       })
                       .success(function(data, status, headers, config) {
                         $location.path('/remerciement_order');
-                        // mixpanel.track('Sucessful payment');
+                        mixpanel.track('Sucessful payment');
                       })
                       .error(function(data, status, headers, config) {
                         alert('Il y a eu une erreur avec votre commande, merci de réessayer');
-                        // mixpanel.track('Server Failed to proceed payment');
+                        mixpanel.track('Server Failed to proceed payment');
 
                       });
           }
         });
-      }],
+      },
       link: function(scope, element, attrs) {
 
 

@@ -87,10 +87,12 @@ angular.module( 'vinibar.pay_mobile', [
               });
             }
             $state.go('remerciement_mobile');
+            mixpanel.track('Sucessful payment');
           })
           .error(function(data, status, headers, config) {
             $rootScope.loading = false;
             toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
+            mixpanel.track('Server failed to proceed payment');
           });
         }
 

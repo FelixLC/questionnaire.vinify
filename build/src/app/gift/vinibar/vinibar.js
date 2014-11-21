@@ -7,7 +7,7 @@ angular.module( 'vinibar.gift.vinibar', [
   'toaster'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'gift.vinibar', {
       url: '/vinibar',
@@ -35,9 +35,9 @@ angular.module( 'vinibar.gift.vinibar', [
       templateUrl: 'gift/vinibar/pay.tpl.html',
       data:{ pageTitle: 'Cadeau' }
     });
-}])
+})
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'giftVinibarCtrl', ["$scope", "$http", "API_ENDPOINT", "$state", "Gift", "params", "toaster", "$window", function giftVinibarCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
+.controller( 'giftVinibarCtrl', function giftVinibarCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
   var init = function(){
     $scope.gift = new Gift('Vinibar');
     $scope.gift.order.delivery_mode = 'Point Relais';
@@ -132,4 +132,4 @@ angular.module( 'vinibar.gift.vinibar', [
     });
   };
 
-}]);
+});

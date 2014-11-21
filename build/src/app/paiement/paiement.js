@@ -7,7 +7,7 @@ angular.module( 'vinibar.paiement', [
   'toaster'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'paiement', {
       url: '/paiement',
@@ -27,9 +27,9 @@ angular.module( 'vinibar.paiement', [
       url: '/confirmation',
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
-}])
+})
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'paiementCtrl', ["$scope", "$http", "$state", "API_ENDPOINT", "toaster", "$window", "$rootScope", "$location", "currentClient", "Client", function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
+.controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
   $scope.delivery = {
     mode: 'Colissimo',
     cost: 11.90
@@ -137,11 +137,11 @@ angular.module( 'vinibar.paiement', [
                       });
                     }
                     $location.path('/remerciement_order');
-                    // mixpanel.track('Sucessful payment');
+                    mixpanel.track('Sucessful payment');
                   })
                   .error(function(data, status, headers, config) {
                     toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
-                    // mixpanel.track('Server Failed to proceed payment');
+                    mixpanel.track('Server Failed to proceed payment');
 
                   });
       }
@@ -188,4 +188,4 @@ angular.module( 'vinibar.paiement', [
         return request;
   };
 
-}]);
+});

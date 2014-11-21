@@ -7,7 +7,7 @@ angular.module( 'vinibar.gift.gift_card', [
   'toaster'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'gift.gift_card', {
       url: '/carte_cadeau',
@@ -30,9 +30,9 @@ angular.module( 'vinibar.gift.gift_card', [
       templateUrl: 'gift/gift_card/pay.tpl.html',
       data:{ pageTitle: 'Cadeau' }
     });
-}])
+})
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'giftCardCtrl', ["$scope", "$http", "API_ENDPOINT", "$state", "Gift", "params", "toaster", "$window", function giftCardCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
+.controller( 'giftCardCtrl', function giftCardCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
   var init = function(){
 
     $scope.gift = new Gift('Card');
@@ -121,4 +121,4 @@ angular.module( 'vinibar.gift.gift_card', [
     }
   };
 
-}]);
+});

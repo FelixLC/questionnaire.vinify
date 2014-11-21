@@ -28,6 +28,7 @@ angular.module( 'vinibar.preview', [
   };
   $scope.preview = Recommender.getPreview();
   $scope.order = function(type) {
+    mixpanel.track('Chose ' + type);
     currentClient.currentClient.order_type = type;
     currentClient.currentClient.order_uuid = Recommender.getUuid();
     $state.go('order.userinfos');

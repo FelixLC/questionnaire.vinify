@@ -6,7 +6,7 @@ angular.module( 'vinibar.gift', [
   'ui.bootstrap'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'gift', {
       url: '/cadeau',
@@ -23,13 +23,13 @@ angular.module( 'vinibar.gift', [
       controller: 'giftChooseCtrl',
       data:{ pageTitle: 'Cadeau' }
     });
-}])
+})
 
-.controller( 'giftChooseCtrl', ["$scope", "$state", function giftChooseCtrl( $scope, $state ) {
+.controller( 'giftChooseCtrl', function giftChooseCtrl( $scope, $state ) {
   $scope.hover = {
     view: 'vinibar'
   };
   $scope.toggle = function(type) {
     $scope.hover.view = type;
   };
-}]);
+});

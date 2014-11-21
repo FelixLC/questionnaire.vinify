@@ -6,7 +6,7 @@ angular.module( 'vinibar.preview', [
   'toaster'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider
     .state( 'preview', {
       url: '/apercu',
@@ -18,9 +18,9 @@ angular.module( 'vinibar.preview', [
       },
       data:{ pageTitle: 'Ma sélection personnalisée' }
     });
-}])
+})
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'previewCtrl', ["Recommender", "$scope", "$http", "currentClient", "$state", "$rootScope", "API_ENDPOINT", "toaster", function previewCtrl( Recommender, $scope, $http, currentClient, $state, $rootScope, API_ENDPOINT, toaster) {
+.controller( 'previewCtrl', function previewCtrl( Recommender, $scope, $http, currentClient, $state, $rootScope, API_ENDPOINT, toaster) {
   $scope.hover = {
     wine_1: false,
     wine_2: false,
@@ -28,8 +28,9 @@ angular.module( 'vinibar.preview', [
   };
   $scope.preview = Recommender.getPreview();
   $scope.order = function(type) {
+    mixpanel.track('Chose ' + type);
     currentClient.currentClient.order_type = type;
     currentClient.currentClient.order_uuid = Recommender.getUuid();
     $state.go('order.userinfos');
   };
-}]);
+});

@@ -50,5 +50,4 @@
                 });
         }
     }
-    Order.$inject = ["$http", "API_ENDPOINT"];
 })();

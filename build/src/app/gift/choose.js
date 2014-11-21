@@ -5,9 +5,9 @@ angular.module( 'vinibar.gift.choose', [
 ])
 
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'giftChooseCtrl', ["$scope", "$http", "$location", "currentClient", "$rootScope", "API_ENDPOINT", "$state", function giftChooseCtrl( $scope, $http, $location, currentClient, $rootScope, API_ENDPOINT, $state ) {
+.controller( 'giftChooseCtrl', function giftChooseCtrl( $scope, $http, $location, currentClient, $rootScope, API_ENDPOINT, $state ) {
   $scope.state = {
     main : 'overview',
     hover: null
   };
-}]);
+});

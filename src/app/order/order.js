@@ -108,6 +108,7 @@ angular.module( 'vinibar.order', [
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function(data, status, headers, config) {
+                                    mixpanel.track('UserInfo Added');
                                     Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function(data) {
@@ -162,11 +163,11 @@ angular.module( 'vinibar.order', [
               $rootScope.loading = true;
               $scope.client.userinfos.birthday = $scope.b.birthyear + "-" + $scope.b.birthmonth + "-" + $scope.b.birthday;
               currentClient.currentClient = $scope.client;
-              // // mixpanel.track('UserInfo Added');
               console.log($scope.client);
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function(data, status, headers, config) {
+                                    mixpanel.track('UserInfo Added');
                                     Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function(data) {

@@ -6,7 +6,7 @@ angular.module( 'vinibar.questionnaire', [
 	'toaster'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
 	$stateProvider
 		.state( 'questionnaire', {
 			url: '/questionnaire',
@@ -17,11 +17,11 @@ angular.module( 'vinibar.questionnaire', [
 				}
 			},
 			resolve: {
-					promiseObj:  ["$http", "$templateCache", function($http, $templateCache){
+					promiseObj:  function($http, $templateCache){
 						// $http returns a promise for the url data
 						return $http.get('assets/fruits.jpg', {cache:$templateCache});
 
-				}]
+				}
 			},
 			data:{ pageTitle: 'questionnaire' }
 		})
@@ -57,9 +57,9 @@ angular.module( 'vinibar.questionnaire', [
 			url: '/starter',
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
-}])
+})
 .constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'questionnaireCtrl', ["Recommender", "$scope", "$http", "$location", "Client", "currentClient", "$state", "$rootScope", "$modal", "$log", "$timeout", "API_ENDPOINT", "toaster", "$window", "$stateParams", function questionnaireCtrl( Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
+.controller( 'questionnaireCtrl', function questionnaireCtrl( Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
 	console.log(API_ENDPOINT);
 	// modal
 	$scope.open = function (size) {
@@ -96,7 +96,7 @@ angular.module( 'vinibar.questionnaire', [
 	// Please note that $modalInstance represents a modal window (instance) dependency.
 	// It is not the same as the $modal service used above.
 
-	var ModalInstanceCtrl = ["$scope", "$modalInstance", "$http", function ($scope, $modalInstance, $http) {
+	var ModalInstanceCtrl = function ($scope, $modalInstance, $http) {
 
 		$scope.selectedEmail = {
 			email: null
@@ -109,13 +109,13 @@ angular.module( 'vinibar.questionnaire', [
 		$scope.cancel = function () {
 			$modalInstance.dismiss('cancel');
 		};
-	}];
+	};
 	//! modal
 
 	// opening the modal when loading
 	$scope.open('lg');
 
-	// mixpanel.track('Questionnaire Ouvert');
+	mixpanel.track('Questionnaire Ouvert');
 	$scope.form_print = function (form) {
 		$scope.output = form;
 	};
@@ -160,7 +160,7 @@ angular.module( 'vinibar.questionnaire', [
 
 	// $scope.trackLink = function(n) {
 	//   $scope.newuser.survey.balance.red = 2;
-	//   // mixpanel.track('clicked on your face');
+	//   mixpanel.track('clicked on your face');
 	// };
 
 	$scope.newuser = new Client();
@@ -200,6 +200,7 @@ angular.module( 'vinibar.questionnaire', [
 																Recommender.calcPreview(data)
 																	.then(function(response) {
 																		$state.go('preview');
+																		mixpanel.track('User Created');
 																		$rootScope.loading = false;
 																	});
 																// $state.go('remerciement');
@@ -210,7 +211,7 @@ angular.module( 'vinibar.questionnaire', [
 																toaster.pop('info', 'Oops, cet email est déjà associé à un compte');
 																console.log('error @ createOrder');
 														});
-				// mixpanel.track('User Created');
+				mixpanel.track('User Created');
 
 		}
 
@@ -230,4 +231,4 @@ angular.module( 'vinibar.questionnaire', [
 		}
 	};
 
-}]);
+});

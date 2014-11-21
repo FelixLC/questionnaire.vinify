@@ -4,7 +4,7 @@ angular.module( 'vinibar.remerciement', [
   'ngAutocomplete'
 ])
 
-.config(["$stateProvider", function config( $stateProvider ) {
+.config(function config( $stateProvider ) {
   $stateProvider.state( 'remerciement', {
     url: '/remerciement',
     views: {
@@ -15,11 +15,11 @@ angular.module( 'vinibar.remerciement', [
     },
     data:{ pageTitle: 'remerciement' }
   });
-}])
+})
 
-.controller( 'remerciementCtrl', ["$timeout", "$window", "$scope", "$http", "$location", "User", function remerciementCtrl( $timeout, $window, $scope, $http, $location, User ) {
+.controller( 'remerciementCtrl', function remerciementCtrl( $timeout, $window, $scope, $http, $location, User ) {
 
   $scope.user = {};
   $timeout(function () { $window.location.href = 'http://facebook.com/vinify.co';}, 10000);
 
-}]);
+});
