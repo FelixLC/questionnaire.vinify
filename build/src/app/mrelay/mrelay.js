@@ -4,7 +4,7 @@ angular.module( 'mondialrelay', [
 	'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
 	$stateProvider
 		.state( 'mondialrelay', {
 			url: '/mondialrelay/:orderid/:zipcode',
@@ -16,10 +16,10 @@ angular.module( 'mondialrelay', [
 			},
 			data:{ pageTitle: 'Mondial Relay' }
 		});
-})
+}])
 
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'mondialrelayCtrl', function mondialrelayCtrl( $scope, $stateParams, $http, $state, API_ENDPOINT, toaster, $timeout) {
+.constant('API_ENDPOINT','https://api.vinify.co/api')
+.controller( 'mondialrelayCtrl', ["$scope", "$stateParams", "$http", "$state", "API_ENDPOINT", "toaster", "$timeout", function mondialrelayCtrl( $scope, $stateParams, $http, $state, API_ENDPOINT, toaster, $timeout) {
 
 	var order_id = $stateParams.orderid;
 	var zipcode = $stateParams.zipcode;
@@ -96,4 +96,4 @@ angular.module( 'mondialrelay', [
 
 
 
-});
+}]);

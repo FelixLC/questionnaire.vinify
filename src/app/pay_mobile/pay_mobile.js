@@ -19,7 +19,7 @@ angular.module( 'vinibar.pay_mobile', [
     data:{ pageTitle: 'Commander' }
   });
 })
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
     var init = function (argument) {
       $scope.client = currentClient.currentClient;
@@ -78,7 +78,7 @@ angular.module( 'vinibar.pay_mobile', [
             $rootScope.loading = false;
             if ($scope.client.order.delivery_mode === 'Point Relais') {
               $http({
-                url: apiEndPoint + '/orders/pickmremail/',
+                url: API_ENDPOINT + '/orders/pickmremail/',
                 method: "POST",
                 data: { 'order_id': $scope.client.order.uuid },
                 headers: {

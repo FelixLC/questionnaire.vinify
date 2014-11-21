@@ -17,6 +17,11 @@
               'Point Relais': 4.90,
               'Colissimo' : 8.90,
               'Vinify': 0
+            },
+            'card': {
+              'Card': 5,
+              'Print' : 0,
+              'Email': 0
             }
         };
         return service;

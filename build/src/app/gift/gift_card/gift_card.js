@@ -7,7 +7,7 @@ angular.module( 'vinibar.gift.gift_card', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider
     .state( 'gift.gift_card', {
       url: '/carte_cadeau',
@@ -30,12 +30,13 @@ angular.module( 'vinibar.gift.gift_card', [
       templateUrl: 'gift/gift_card/pay.tpl.html',
       data:{ pageTitle: 'Cadeau' }
     });
-})
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'giftCardCtrl', function giftCardCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
+}])
+.constant('API_ENDPOINT','https://api.vinify.co/api')
+.controller( 'giftCardCtrl', ["$scope", "$http", "API_ENDPOINT", "$state", "Gift", "params", "toaster", "$window", function giftCardCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
   var init = function(){
 
     $scope.gift = new Gift('Card');
+    $scope.gift.order.delivery_mode = 'Email';
     $scope.costs = params;
 
     $scope.details = {
@@ -66,7 +67,7 @@ angular.module( 'vinibar.gift.gift_card', [
     });
 
     var updateCosts = function() {
-      $scope.details.total = 69 + params.vinibar[$scope.gift.order.delivery_mode];
+      $scope.details.total = 69 + params.card[$scope.gift.order.delivery_mode];
     };
   };
 
@@ -87,9 +88,9 @@ angular.module( 'vinibar.gift.gift_card', [
               $scope.gift.createGiftOrder().then(function(response){
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
-                console.log($scope.gift.receiver);
+                $scope.gift.order.delivery_cost =params.card[$scope.gift.order.delivery_mode];
                 $scope.load = false;
-                $state.go('gift.vinibar.quiz');
+                $state.go('gift.gift_card.pay');
               });
         });
       // if it's a client
@@ -105,9 +106,9 @@ angular.module( 'vinibar.gift.gift_card', [
             $scope.gift.createGiftOrder().then(function(response){
               $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
               $scope.gift.receiver.gift_uuid = response.data.uuid;
-              console.log($scope.gift.receiver);
+              $scope.gift.order.delivery_cost =params.card[$scope.gift.order.delivery_mode];
               $scope.load = false;
-              $state.go('gift.vinibar.quiz');
+              $state.go('gift.gift_card.pay');
             });
         });
       // if there is no login credentials
@@ -119,9 +120,5 @@ angular.module( 'vinibar.gift.gift_card', [
       toaster.pop('infos', 'Oops !', ' Vous avez oublié des champs');
     }
   };
-  $scope.sendSurvey = function() {
-    $scope.gift.sendSurvey().then(function(response){
-      $state.go('gift.vinibar.pay');
-    });
-  };
-});
+
+}]);

@@ -7,7 +7,7 @@ angular.module( 'vinibar.gift.vinibar', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider
     .state( 'gift.vinibar', {
       url: '/vinibar',
@@ -35,11 +35,12 @@ angular.module( 'vinibar.gift.vinibar', [
       templateUrl: 'gift/vinibar/pay.tpl.html',
       data:{ pageTitle: 'Cadeau' }
     });
-})
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'giftVinibarCtrl', function giftVinibarCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
+}])
+.constant('API_ENDPOINT','https://api.vinify.co/api')
+.controller( 'giftVinibarCtrl', ["$scope", "$http", "API_ENDPOINT", "$state", "Gift", "params", "toaster", "$window", function giftVinibarCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
   var init = function(){
     $scope.gift = new Gift('Vinibar');
+    $scope.gift.order.delivery_mode = 'Point Relais';
 
     $scope.costs = params;
 
@@ -92,7 +93,7 @@ angular.module( 'vinibar.gift.vinibar', [
               $scope.gift.createGiftOrder().then(function(response){
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
-                console.log($scope.gift.receiver);
+                $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
                 $scope.load = false;
                 $state.go('gift.vinibar.quiz');
               });
@@ -110,7 +111,7 @@ angular.module( 'vinibar.gift.vinibar', [
             $scope.gift.createGiftOrder().then(function(response){
               $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
               $scope.gift.receiver.gift_uuid = response.data.uuid;
-              console.log($scope.gift.receiver);
+              $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
               $scope.load = false;
               $state.go('gift.vinibar.quiz');
             });
@@ -131,4 +132,4 @@ angular.module( 'vinibar.gift.vinibar', [
     });
   };
 
-});
+}]);

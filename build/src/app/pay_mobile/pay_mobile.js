@@ -7,7 +7,7 @@ angular.module( 'vinibar.pay_mobile', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider.state( 'pay_mobile', {
     url: '/pay_mobile',
     views: {
@@ -18,9 +18,9 @@ angular.module( 'vinibar.pay_mobile', [
     },
     data:{ pageTitle: 'Commander' }
   });
-})
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
+}])
+.constant('API_ENDPOINT','https://api.vinify.co/api')
+.controller( 'pay_mobileCtrl', ["$scope", "$http", "currentClient", "$rootScope", "API_ENDPOINT", "$state", "Order", "toaster", function pay_mobileCtrl( $scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
     var init = function (argument) {
       $scope.client = currentClient.currentClient;
       $scope.serializedOrder = $scope.client.order;
@@ -108,4 +108,4 @@ angular.module( 'vinibar.pay_mobile', [
     $scope.displayPrice = function(price) {
       return price;
     };
-});
+}]);

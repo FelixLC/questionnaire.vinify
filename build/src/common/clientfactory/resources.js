@@ -1,6 +1,6 @@
 
 angular.module('Resources', [])
-  .constant('API_ENDPOINT','http://127.0.0.1:8000/api')
+  .constant('API_ENDPOINT','https://api.vinify.co/api')
 
   //  The Recommender is used to get a preview of bottles
   .factory('Recommender', ['$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT, $q) {
@@ -98,8 +98,8 @@ angular.module('Resources', [])
       this.order = {
           "gift_type": type,
           "credits": 40,
-           "delivery_mode": "Point Relais",
-           "delivery_cost": "1",
+          "delivery_mode": "",
+          "delivery_cost": "",
           "receiver_email": "",
           "receiver_first_name": "",
           "receiver_last_name": "",

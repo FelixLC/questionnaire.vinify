@@ -7,7 +7,7 @@ angular.module( 'vinibar.welcome', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider
     .state( 'welcome', {
       url: '/demarrer?r',
@@ -19,10 +19,10 @@ angular.module( 'vinibar.welcome', [
       },
       data:{ pageTitle: 'Démarrer l\'aventure' }
     });
-})
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'welcomeCtrl', function welcomeCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster, $stateParams ) {
+}])
+.constant('API_ENDPOINT','https://api.vinify.co/api')
+.controller( 'welcomeCtrl', ["$scope", "$http", "$location", "currentClient", "$state", "$filter", "$rootScope", "API_ENDPOINT", "toaster", "$stateParams", function welcomeCtrl( $scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster, $stateParams ) {
   console.log($stateParams);
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
   console.log(currentClient);
-});
+}]);

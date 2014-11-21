@@ -4,7 +4,7 @@
 </div>
 <form novalidate name="infos" ng-submit="toSurvey(infos)">
   <div class="row container-fluid">
-    <div ng-class="{ 'offset-2' : gift.order.gift_type != 'Card' }"
+    <div ng-class="{ 'offset-2' : gift.order.delivery_mode != 'Card' }"
               class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">L'heureux élu</h2>
       <div class="col-container">
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div ng-show="gift.order.gift_type === 'Card' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <div ng-show="gift.order.delivery_mode === 'Card' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Livraison</h2>
       <div class="col-container">
         <p class="col-subtitle">Vinify poste ma carte postale</p>
@@ -55,14 +55,14 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.first_name"
                             autocomplete="first_name" name="first_name"
                             ng-class="{'input-error' : infos.submitted && infos.first_name.$invalid}"
-                            ng-required="gift.order.gift_type === 'Card' ">
+                            ng-required="gift.order.delivery_mode === 'Card' ">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Nom</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.last_name"
                             autocomplete="last_name" name="last_name"
                             ng-class="{'input-error' : infos.submitted && infos.last_name.$invalid}"
-                            ng-required="gift.order.gift_type === 'Card' ">
+                            ng-required="gift.order.delivery_mode === 'Card' ">
             </div>
           </div>
           <div class="row">
@@ -71,7 +71,7 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.street"
                             autocomplete="street" name="street"
                             ng-class="{'input-error' : infos.submitted && infos.street.$invalid}"
-                            ng-required="gift.order.gift_type === 'Card' ">
+                            ng-required="gift.order.delivery_mode === 'Card' ">
             </div>
           </div>
           <div class="row">
@@ -80,14 +80,14 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.zipcode"
                             autocomplete="zipcode" name="zipcode"
                             ng-class="{'input-error' : infos.submitted && infos.zipcode.$invalid}"
-                            ng-required="gift.order.gift_type === 'Card' ">
+                            ng-required="gift.order.delivery_mode === 'Card' ">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Ville</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.city"
                             autocomplete="city" name="city"
                             ng-class="{'input-error' : infos.submitted && infos.city.$invalid}"
-                            ng-required="gift.order.gift_type === 'Card' ">
+                            ng-required="gift.order.delivery_mode === 'Card' ">
             </div>
           </div>
           <div class="row">
@@ -165,7 +165,7 @@
       </div>
   </div>
   <div class="row container-fluid">
-    <div ng-class="{ 'offset-4' : gift.order.gift_type != 'Card', 'pull-right' : gift.order.gift_type === 'Card'}"
+    <div ng-class="{ 'offset-4' : gift.order.delivery_mode != 'Card', 'pull-right' : gift.order.delivery_mode === 'Card'}"
               class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <button type="submit" class="btn-block-primary centered margin-top"><p>Continuer <i ng-show="load" class="fa fa-spinner fa-spin"></i></p></button>
     </div>

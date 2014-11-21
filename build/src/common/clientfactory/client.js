@@ -1,6 +1,6 @@
 
 angular.module('clientFactory', [])
-	.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
+	.constant('API_ENDPOINT','https://api.vinify.co/api')
 
 	//  The Client Factory is used to instantiate a new client
 	.factory('Client', ['$http' , '$state', 'API_ENDPOINT',  function ($http, $state, API_ENDPOINT) {

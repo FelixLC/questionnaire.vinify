@@ -7,7 +7,7 @@ angular.module( 'vinibar.paiement', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider
     .state( 'paiement', {
       url: '/paiement',
@@ -27,9 +27,9 @@ angular.module( 'vinibar.paiement', [
       url: '/confirmation',
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
-})
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
+}])
+.constant('API_ENDPOINT','https://api.vinify.co/api')
+.controller( 'paiementCtrl', ["$scope", "$http", "$state", "API_ENDPOINT", "toaster", "$window", "$rootScope", "$location", "currentClient", "Client", function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
   $scope.delivery = {
     mode: 'Colissimo',
     cost: 11.90
@@ -188,4 +188,4 @@ angular.module( 'vinibar.paiement', [
         return request;
   };
 
-});
+}]);

@@ -62,13 +62,13 @@
       <h2 class="col-title">Livraison</h2>
       <div class="col-container">
         <p class="col-subtitle">Comment voulez vous envoyer votre bon cadeau ?</p>
-          <div class="gift-checkbox" ng-click="gift.order.gift_type = 'Email' " ng-class="{quizchecked: gift.order.gift_type === 'Email'}">
+          <div class="gift-checkbox" ng-click="gift.order.delivery_mode = 'Email' " ng-class="{quizchecked: gift.order.delivery_mode === 'Email'}">
             <p>Par email</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.order.gift_type = 'Print' " ng-class="{quizchecked: gift.order.gift_type === 'Print'}">
+          <div class="gift-checkbox" ng-click="gift.order.delivery_mode = 'Print' " ng-class="{quizchecked: gift.order.delivery_mode === 'Print'}">
             <p>Je l'imprime moi-même</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.order.gift_type = 'Card' " ng-class="{quizchecked: gift.order.gift_type === 'Card'}">
+          <div class="gift-checkbox" ng-click="gift.order.delivery_mode = 'Card' " ng-class="{quizchecked: gift.order.delivery_mode === 'Card'}">
             <p>Par la Poste (+5€)</p>
           </div>
       </div>

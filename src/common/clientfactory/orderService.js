@@ -4,7 +4,7 @@
     angular
         .module('orderService', [])
         .factory('Order', Order)
-        .constant('API_ENDPOINT','http://127.0.0.1:8000/api');
+        .constant('API_ENDPOINT','https://api.vinify.co/api');
 
     /* @ngInject */
     function Order($http, API_ENDPOINT) {

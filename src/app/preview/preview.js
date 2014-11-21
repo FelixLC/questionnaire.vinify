@@ -19,7 +19,7 @@ angular.module( 'vinibar.preview', [
       data:{ pageTitle: 'Ma sélection personnalisée' }
     });
 })
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
+.constant('API_ENDPOINT','https://api.vinify.co/api')
 .controller( 'previewCtrl', function previewCtrl( Recommender, $scope, $http, currentClient, $state, $rootScope, API_ENDPOINT, toaster) {
   $scope.hover = {
     wine_1: false,

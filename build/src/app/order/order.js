@@ -7,7 +7,7 @@ angular.module( 'vinibar.order', [
   'orderService'
 ])
 
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider
     .state( 'order', {
       url: '/order',
@@ -35,9 +35,9 @@ angular.module( 'vinibar.order', [
       url: '/confirmation',
       templateUrl: 'order/parts/order.confirmation.tpl.html'
     });
-})
-.constant('API_ENDPOINT','http://127.0.0.1:8000/api')
-.controller( 'orderCtrl', function orderCtrl( $scope, $location, currentClient, $state, $rootScope, API_ENDPOINT, toaster, Order ) {
+}])
+.constant('API_ENDPOINT','https://api.vinify.co/api')
+.controller( 'orderCtrl', ["$scope", "$location", "currentClient", "$state", "$rootScope", "API_ENDPOINT", "toaster", "Order", function orderCtrl( $scope, $location, currentClient, $state, $rootScope, API_ENDPOINT, toaster, Order ) {
   var init = function(){
     $scope.isState= function(state){ return $state.is(state);};
     $scope.client = currentClient.currentClient;
@@ -215,7 +215,7 @@ angular.module( 'vinibar.order', [
 
   };
 
-})
+}])
 
 .filter('characters', function () {
           return function (input, chars, breakOnWord) {
