@@ -1,7 +1,8 @@
 angular.module('mondialrelay', [
 	'ui.router',
 	'ui.bootstrap',
-	'toaster'
+	'toaster',
+	'settings'
 ])
 
 .config(function config ($stateProvider) {
@@ -18,8 +19,8 @@ angular.module('mondialrelay', [
 		});
 })
 
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('mondialrelayCtrl', function mondialrelayCtrl ($scope, $stateParams, $http, $state, API_ENDPOINT, toaster, $timeout) {
+
+.controller('mondialrelayCtrl', function mondialrelayCtrl ($scope, $stateParams, $http, $state, settings, toaster, $timeout) {
 
 	var order_id = $stateParams.orderid;
 	var zipcode = $stateParams.zipcode;
@@ -49,7 +50,7 @@ angular.module('mondialrelay', [
 				};
 
 				var request = $http({
-												url: API_ENDPOINT + '/orders/pickmrshop/',
+												url: settings.apiEndPoint + '/orders/pickmrshop/',
 												method: 'POST',
 												data: data,
 												headers: {
@@ -77,7 +78,7 @@ angular.module('mondialrelay', [
 			};
 
 			var request = $http({
-											url: API_ENDPOINT + 'orders/changedeliverymode/',
+											url: settings.apiEndPoint + 'orders/changedeliverymode/',
 											method: 'POST',
 											data: data,
 											headers: {

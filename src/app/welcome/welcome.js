@@ -20,8 +20,8 @@ angular.module('vinibar.welcome', [
       data: { pageTitle: 'Démarrer l\'aventure' }
     });
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('welcomeCtrl', function welcomeCtrl ($scope, $http, $location, currentClient, $state, $filter, $rootScope, API_ENDPOINT, toaster, $stateParams) {
+
+.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams) {
   console.log($stateParams);
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
   console.log(currentClient);

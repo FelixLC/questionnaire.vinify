@@ -32,8 +32,8 @@ angular.module('vinibar.gift.gift_card', [
       data: { pageTitle: 'Cadeau' }
     });
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('giftCardCtrl', function giftCardCtrl ($scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window) {
+
+.controller('giftCardCtrl', function giftCardCtrl ($scope, $state, Gift, params, toaster, $window) {
   var init = function () {
 
     $scope.gift = new Gift('Card');

@@ -8,9 +8,8 @@
       <div class="col-container checked">
         <h3>Vinibar</h3>
         <p class="price">69 €</p>
-        <p class="help">(quiz Vinify sur ses goûts à l'étape suivante)</p>
       </div>
-      <p class="details-helper">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter plusieurs recharges d'avance au Vinibar, qui seront prépayées avec leur livraison.</p>
+      <p class="details-helper">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter des crédits à votre cadeau pour permettre de recharger le Vinibar.</p>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Crédits</h2>
@@ -60,17 +59,23 @@
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Livraison</h2>
-      <div class="col-container">
-        <p class="col-subtitle">Comment voulez vous envoyer votre bon cadeau ?</p>
-          <div class="gift-checkbox" ng-click="gift.order.delivery_mode = 'Email' " ng-class="{quizchecked: gift.order.delivery_mode === 'Email'}">
-            <p>Par email</p>
-          </div>
-          <div class="gift-checkbox" ng-click="gift.order.delivery_mode = 'Print' " ng-class="{quizchecked: gift.order.delivery_mode === 'Print'}">
-            <p>Je l'imprime moi-même</p>
-          </div>
-          <div class="gift-checkbox" ng-click="gift.order.delivery_mode = 'Card' " ng-class="{quizchecked: gift.order.delivery_mode === 'Card'}">
-            <p>Par la Poste (+5€)</p>
-          </div>
+      <div class="col-container"
+          ng-class="{checked: gift.order.delivery_mode === 'Email' }"
+          ng-click="gift.order.delivery_mode = 'Email' ">
+        <h3>Par Email</h3>
+        <p class="help">Un email sera envoyé à la fin de votre commande à l'heureux destinataire</p>
+      </div>
+      <div class="col-container"
+          ng-class="{checked: gift.order.delivery_mode === 'Print' }"
+          ng-click="gift.order.delivery_mode = 'Print'">
+        <h3>Bon Cadeau</h3>
+        <p class="help">Je imprime le bon cadeau moi-même</p>
+      </div>
+      <div class="col-container"
+          ng-class="{checked: gift.order.delivery_mode === 'Card' }"
+          ng-click="gift.order.delivery_mode = 'Card' ">
+        <h3>Par la Poste (+5€)</h3>
+        <p class="help">Vinify enverra une carte postale manuscrite avec votre mot pour le prévenir de votre intention</p>
       </div>
     </div>
   </div>

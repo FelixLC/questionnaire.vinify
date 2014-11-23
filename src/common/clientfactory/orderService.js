@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-      .module('orderService', [])
+      .module('orderService', [ 'settings' ])
       .factory('Order', Order)
-      .constant('API_ENDPOINT', 'http://127.0.0.1:8000/api');
+       ;
 
   /* @ngInject */
-  function Order ($http, API_ENDPOINT) {
+  function Order ($http, settings) {
     var service = {
         testCoupon: testCoupon,
         create: create,
@@ -18,7 +18,7 @@
     // //////////////
 
     function testCoupon (coupon, success, failure) {
-      $http.post(API_ENDPOINT + '/orders/testcoupon/', coupon)
+      $http.post(settings.apiEndPoint + '/orders/testcoupon/', coupon)
           .success(function (data, status, headers, config) {
             return success(data);
           })
@@ -27,8 +27,8 @@
           });
     }
     function create (type, uuid, coupon, success, failure) {
-      var url = (type === 'Vinibar') ? API_ENDPOINT + '/orders/vinibarorder/' :
-                                                                   API_ENDPOINT + '/orders/discovery/create/';
+      var url = (type === 'Vinibar') ? settings.apiEndPoint + '/orders/vinibarorder/' :
+                                                                   settings.apiEndPoint + '/orders/discovery/create/';
 
       $http.post(url,  { coupon: coupon, order_uuid: uuid })
             .success(function (data, status, headers, config) {
@@ -39,7 +39,7 @@
             });
     }
     function update (uuid, deliveryCost, deliveryMode, success, failure) {
-      $http.post(API_ENDPOINT + '/orders/updateorder/',  {
+      $http.post(settings.apiEndPoint + '/orders/updateorder/',  {
         order_uuid: uuid,
         delivery_cost: deliveryCost,
         delivery_mode: deliveryMode

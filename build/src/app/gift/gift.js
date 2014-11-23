@@ -3,7 +3,8 @@ angular.module('vinibar.gift', [
   'clientFactory',
   'vinibar.gift.vinibar',
   'vinibar.gift.gift_card',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'settings'
 ])
 
 .config(function config ($stateProvider) {
@@ -23,8 +24,8 @@ angular.module('vinibar.gift', [
       data: { pageTitle: 'Cadeau' }
     });
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('giftPayCtrl', function giftPayCtrl ($scope, Gift, params, toaster, API_ENDPOINT) {
+
+.controller('giftPayCtrl', function giftPayCtrl ($scope, Gift, params, toaster, settings) {
    // Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
  console.log($scope.$parent.gift.receiver.gift_uuid);
   $scope.submit = function (status, response) {
@@ -37,7 +38,7 @@ angular.module('vinibar.gift', [
         .success(function (data, status, headers, config) {
           if ($scope.$parent.gift.order.delivery_mode === 'Point Relais') {
             $http({
-              url: API_ENDPOINT + '/orders/pickmremail/',
+              url: settings.apiEndPoint + '/orders/pickmremail/',
               method: "POST",
               data: { 'order_id': $scope.$parent.gift.order.uuid },
               headers: {

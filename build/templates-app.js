@@ -131,9 +131,8 @@ angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", fun
     "      <div class=\"col-container checked\">\n" +
     "        <h3>Vinibar</h3>\n" +
     "        <p class=\"price\">69 €</p>\n" +
-    "        <p class=\"help\">(quiz Vinify sur ses goûts à l'étape suivante)</p>\n" +
     "      </div>\n" +
-    "      <p class=\"details-helper\">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter plusieurs recharges d'avance au Vinibar, qui seront prépayées avec leur livraison.</p>\n" +
+    "      <p class=\"details-helper\">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter des crédits à votre cadeau pour permettre de recharger le Vinibar.</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Crédits</h2>\n" +
@@ -183,17 +182,23 @@ angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", fun
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Livraison</h2>\n" +
-    "      <div class=\"col-container\">\n" +
-    "        <p class=\"col-subtitle\">Comment voulez vous envoyer votre bon cadeau ?</p>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.order.delivery_mode = 'Email' \" ng-class=\"{quizchecked: gift.order.delivery_mode === 'Email'}\">\n" +
-    "            <p>Par email</p>\n" +
-    "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.order.delivery_mode = 'Print' \" ng-class=\"{quizchecked: gift.order.delivery_mode === 'Print'}\">\n" +
-    "            <p>Je l'imprime moi-même</p>\n" +
-    "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.order.delivery_mode = 'Card' \" ng-class=\"{quizchecked: gift.order.delivery_mode === 'Card'}\">\n" +
-    "            <p>Par la Poste (+5€)</p>\n" +
-    "          </div>\n" +
+    "      <div class=\"col-container\"\n" +
+    "          ng-class=\"{checked: gift.order.delivery_mode === 'Email' }\"\n" +
+    "          ng-click=\"gift.order.delivery_mode = 'Email' \">\n" +
+    "        <h3>Par Email</h3>\n" +
+    "        <p class=\"help\">Un email sera envoyé à la fin de votre commande à l'heureux destinataire</p>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-container\"\n" +
+    "          ng-class=\"{checked: gift.order.delivery_mode === 'Print' }\"\n" +
+    "          ng-click=\"gift.order.delivery_mode = 'Print'\">\n" +
+    "        <h3>Bon Cadeau</h3>\n" +
+    "        <p class=\"help\">Je imprime le bon cadeau moi-même</p>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-container\"\n" +
+    "          ng-class=\"{checked: gift.order.delivery_mode === 'Card' }\"\n" +
+    "          ng-click=\"gift.order.delivery_mode = 'Card' \">\n" +
+    "        <h3>Par la Poste (+5€)</h3>\n" +
+    "        <p class=\"help\">Vinify enverra une carte postale manuscrite avec votre mot pour le prévenir de votre intention</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -570,7 +575,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <p class=\"price\">69 €</p>\n" +
     "        <p class=\"help\">(quiz Vinify sur ses goûts à l'étape suivante)</p>\n" +
     "      </div>\n" +
-    "      <p class=\"details-helper\">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter plusieurs recharges d'avance au Vinibar, qui seront prépayées avec leur livraison.</p>\n" +
+    "      <p class=\"details-helper\">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter des crédits à votre cadeau pour permettre de recharger le Vinibar.</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Crédits</h2>\n" +

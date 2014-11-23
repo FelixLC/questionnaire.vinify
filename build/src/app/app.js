@@ -14,6 +14,8 @@ angular.module('vinibar', [
   'vinibar.remerciement_mobile',
   'ui.router',
   'params',
+  'settings',
+  'Mixpanel',
   'ngAnimate',
   'clientFactory',
   'ngCookies'
@@ -45,26 +47,23 @@ angular.module('vinibar', [
   $httpProvider.interceptors.push('authInterceptor');
 })
 
-.config(['$httpProvider', function ($httpProvider) {
-        $httpProvider.defaults.useXDomain = true;
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
-        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-    }
-])
+.config([ '$httpProvider', function ($httpProvider) {
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+  $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+} ])
 
-.run(function run () {
-})
-
-.controller('AppCtrl', function AppCtrl ($scope, $location) {
+.controller('AppCtrl', function AppCtrl ($scope, $location, settings) {
   $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
     if (angular.isDefined(toState.data.pageTitle)) {
       $scope.pageTitle = toState.data.pageTitle + ' | vinibar' ;
     }
   });
+  console.log(settings.apiEndPoint);
 })
 
-.factory('User', [function () {
+.factory('User', [ function () {
 
   return {
     currentUser: {},

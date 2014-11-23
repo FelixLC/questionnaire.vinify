@@ -58,9 +58,8 @@ angular.module('vinibar.questionnaire', [
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('questionnaireCtrl', function questionnaireCtrl (Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
-	console.log(API_ENDPOINT);
+
+.controller('questionnaireCtrl', function questionnaireCtrl (Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
 	// modal
 	$scope.open = function (size) {
 

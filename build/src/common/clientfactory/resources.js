@@ -1,14 +1,13 @@
 
-angular.module('Resources', [])
-  .constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
+angular.module('Resources', [ 'settings' ])
 
   //  The Recommender is used to get a preview of bottles
-  .factory('Recommender', [ '$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT, $q) {
+  .factory('Recommender', [ '$http', 'settings',  function ($http, settings, $q) {
     var _preview = null;
     var _uuid = null;
     return {
       calcPreview: function (user) {
-        return $http.post(API_ENDPOINT + '/backoffice/recommender/preview3/', { user_uuid: user.uuid })
+        return $http.post(settings.apiEndPoint + '/backoffice/recommender/preview3/', { user_uuid: user.uuid })
           .success(function (data, status, headers, config) {
             _preview = data.wines;
             _uuid = data.order_uuid;
@@ -24,7 +23,7 @@ angular.module('Resources', [])
   } ])
 
   //  The Api manages user/givers creation
-  .factory('Gift', [ '$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT) {
+  .factory('Gift', [ '$http', 'settings',  function ($http, settings) {
     var Survey = function () {
 
       this.quest_1 = {  // Coffee
@@ -117,22 +116,22 @@ angular.module('Resources', [])
     };
 
     Gift.prototype.createGiver = function () {
-      return $http.post(API_ENDPOINT + '/users/giver/create/', this.giver);
+      return $http.post(settings.apiEndPoint + '/users/giver/create/', this.giver);
     };
     Gift.prototype.logGiver = function () {
-      return $http.post(API_ENDPOINT + '/users/login/', this.client);
+      return $http.post(settings.apiEndPoint + '/users/login/', this.client);
     };
     Gift.prototype.createGiftOrder = function () {
-      return $http.post(API_ENDPOINT + '/orders/gift/create/', this.order);
+      return $http.post(settings.apiEndPoint + '/orders/gift/create/', this.order);
     };
     Gift.prototype.updateGiftOrder = function () {
-      return $http.post(API_ENDPOINT + '/orders/gift/update/', this.orderUpdate);
+      return $http.post(settings.apiEndPoint + '/orders/gift/update/', this.orderUpdate);
     };
     Gift.prototype.sendSurvey = function () {
-      return $http.post(API_ENDPOINT + '/orders/receiver/survey/', this.receiver);
+      return $http.post(settings.apiEndPoint + '/orders/receiver/survey/', this.receiver);
     };
     Gift.prototype.chargeGiftOrder = function (_id, _giftUuid) {
-      return $http.post(API_ENDPOINT + '/orders/gift/chargegiftorder/', {
+      return $http.post(settings.apiEndPoint + '/orders/gift/chargegiftorder/', {
         id: _id,
         gift_uuid: _giftUuid
       });

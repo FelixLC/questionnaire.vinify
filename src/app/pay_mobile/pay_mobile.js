@@ -4,6 +4,7 @@ angular.module('vinibar.pay_mobile', [
   'clientFactory',
   'ui.bootstrap',
   'orderService',
+  'settings',
   'toaster'
 ])
 
@@ -19,8 +20,8 @@ angular.module('vinibar.pay_mobile', [
     data: { pageTitle: 'Commander' }
   });
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('pay_mobileCtrl', function pay_mobileCtrl ($scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster) {
+
+.controller('pay_mobileCtrl', function pay_mobileCtrl ($scope, $http, currentClient, $rootScope, settings, $state, Order, toaster) {
     var init = function (argument) {
       $scope.client = currentClient.currentClient;
       $scope.serializedOrder = $scope.client.order;
@@ -70,7 +71,7 @@ angular.module('vinibar.pay_mobile', [
             order_uuid: $scope.client.order.uuid
           };
           $http({
-            url: ($scope.client.order_type === 'Vinibar') ? API_ENDPOINT +'/orders/chargevinibar/' : API_ENDPOINT +'/orders/discovery/charge/',
+            url: ($scope.client.order_type === 'Vinibar') ? settings.apiEndPoint +'/orders/chargevinibar/' : settings.apiEndPoint +'/orders/discovery/charge/',
             method: "POST",
             data: data
           })
@@ -78,7 +79,7 @@ angular.module('vinibar.pay_mobile', [
             $rootScope.loading = false;
             if ($scope.client.order.delivery_mode === 'Point Relais') {
               $http({
-                url: API_ENDPOINT + '/orders/pickmremail/',
+                url: settings.apiEndPoint + '/orders/pickmremail/',
                 method: "POST",
                 data: { 'order_id': $scope.client.order.uuid },
                 headers: {

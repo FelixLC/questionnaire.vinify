@@ -4,7 +4,8 @@ angular.module('vinibar.paiement', [
   'stripe',
   'angularPayments',
   'ngAutocomplete',
-  'toaster'
+  'toaster',
+  'settings'
 ])
 
 .config(function config ($stateProvider) {
@@ -28,8 +29,8 @@ angular.module('vinibar.paiement', [
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('paiementCtrl', function paiementCtrl ($scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
+
+.controller('paiementCtrl', function paiementCtrl ($scope, $http, $state, settings, toaster, $window, $rootScope, $location, currentClient, Client) {
   $scope.delivery = {
     mode: 'Colissimo',
     cost: 11.90
@@ -61,7 +62,7 @@ angular.module('vinibar.paiement', [
     //                       });
 
       var request = $http({
-                            url: API_ENDPOINT + '/users/login/',
+                            url: settings.apiEndPoint + '/users/login/',
                             method: "POST",
                             data: {'username' : email, 'password' : password},
                             headers: {
@@ -79,7 +80,7 @@ angular.module('vinibar.paiement', [
                       currentClient.currentClient.userinfos.last_name = $scope.client.last_name;
                         if(data.status == 2.5) {
                           $http({
-                                  url: API_ENDPOINT + '/orders/unfinishedorder/',
+                                  url: settings.apiEndPoint + '/orders/unfinishedorder/',
                                   method: "GET"
                                 })
                                 .success(function (data, status, headers, config) {
@@ -121,14 +122,14 @@ angular.module('vinibar.paiement', [
           {urlPOST = '/orders/chargerefill/';}
 
         $http({
-                          url: API_ENDPOINT + urlPOST,
+                          url: settings.apiEndPoint + urlPOST,
                           method: "POST",
                           data: data_order
                   })
                   .success(function (data, status, headers, config) {
                     if ($scope.client.order.delivery_mode === 'Point Relais') {
                       $http({
-                        url: API_ENDPOINT + '/orders/pickmremail/',
+                        url: settings.apiEndPoint + '/orders/pickmremail/',
                         method: "POST",
                         data: { 'order_id': $scope.client.order.uuid },
                         headers: {
@@ -155,7 +156,7 @@ angular.module('vinibar.paiement', [
 
 
     var request = $http({
-                          url: API_ENDPOINT + '/orders/updateorder/',
+                          url: settings.apiEndPoint + '/orders/updateorder/',
                           method: 'POST',
                           data: $scope.order_data,
                           headers: {

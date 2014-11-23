@@ -2,8 +2,7 @@ angular.module('vinibar.preview', [
   'ui.router',
   'ui.bootstrap',
   'Resources',
-  'clientFactory',
-  'toaster'
+  'clientFactory'
 ])
 
 .config(function config ($stateProvider) {
@@ -19,8 +18,8 @@ angular.module('vinibar.preview', [
       data: { pageTitle: 'Ma sélection personnalisée' }
     });
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('previewCtrl', function previewCtrl (Recommender, $scope, $http, currentClient, $state, $rootScope, API_ENDPOINT, toaster) {
+
+.controller('previewCtrl', function previewCtrl (Recommender, $scope, currentClient, $state) {
   $scope.hover = {
     wine_1: false,
     wine_2: false,

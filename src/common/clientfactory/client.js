@@ -1,9 +1,9 @@
 
-angular.module('clientFactory', [])
-	.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
+angular.module('clientFactory', ['settings'])
+
 
 	//  The Client Factory is used to instantiate a new client
-	.factory('Client', [ '$http' , '$state', 'API_ENDPOINT',  function ($http, $state, API_ENDPOINT) {
+	.factory('Client', [ '$http' , '$state', 'settings',  function ($http, $state, settings) {
 
 		// Survey constructor
 		var Survey = function () {
@@ -96,7 +96,7 @@ angular.module('clientFactory', [])
 			data.first_name = this.first_name;
 			data.last_name = this.last_name;
 			var request = $http({
-													url: API_ENDPOINT + '/users/createuser/',
+													url: settings.apiEndPoint + '/users/createuser/',
 													method: 'POST',
 													data: data,
 													headers: {
@@ -123,7 +123,7 @@ angular.module('clientFactory', [])
 			data.billing_address.user = this.uuid;
 
 			var request = $http({
-				url: API_ENDPOINT + '/users/adduserinfo/',
+				url: settings.apiEndPoint + '/users/adduserinfo/',
 				method: 'POST',
 				data: data,
 				headers: {

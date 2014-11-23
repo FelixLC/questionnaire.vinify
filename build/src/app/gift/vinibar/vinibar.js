@@ -37,8 +37,8 @@ angular.module('vinibar.gift.vinibar', [
       data: { pageTitle: 'Cadeau' }
     });
 })
-.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
-.controller('giftVinibarCtrl', function giftVinibarCtrl ($scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window) {
+
+.controller('giftVinibarCtrl', function giftVinibarCtrl ($scope, $state, Gift, params, toaster, $window) {
   var init = function () {
     $scope.gift = new Gift('Vinibar');
     $scope.gift.order.delivery_mode = 'Point Relais';
