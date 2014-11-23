@@ -1,4 +1,4 @@
-angular.module( 'vinibar.gift.gift_card', [
+angular.module('vinibar.gift.gift_card', [
   'ui.router',
   'clientFactory',
   'ui.bootstrap',
@@ -7,37 +7,42 @@ angular.module( 'vinibar.gift.gift_card', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(function config ($stateProvider) {
   $stateProvider
-    .state( 'gift.gift_card', {
+    .state('gift.gift_card', {
       url: '/carte_cadeau',
       controller: 'giftCardCtrl',
       abstract: true,
       template: '<ui-view/>'
     })
-    .state( 'gift.gift_card.details', {
+    .state('gift.gift_card.details', {
       url: '/formule',
       templateUrl: 'gift/gift_card/details.tpl.html',
-      data:{ pageTitle: 'Cadeau' }
+      data: { pageTitle: 'Cadeau' }
     })
-    .state( 'gift.gift_card.infos', {
+    .state('gift.gift_card.infos', {
       url: '/infos',
       templateUrl: 'gift/gift_card/infos.tpl.html',
-      data:{ pageTitle: 'Cadeau' }
+      data: { pageTitle: 'Cadeau' }
     })
-    .state( 'gift.gift_card.pay', {
+    .state('gift.gift_card.pay', {
       url: '/paiement',
-      templateUrl: 'gift/gift_card/pay.tpl.html',
-      data:{ pageTitle: 'Cadeau' }
+      templateUrl: 'gift/pay.tpl.html',
+      controller: 'giftPayCtrl',
+      data: { pageTitle: 'Cadeau' }
     });
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'giftCardCtrl', function giftCardCtrl( $scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window ) {
-  var init = function(){
+.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
+.controller('giftCardCtrl', function giftCardCtrl ($scope, $http, API_ENDPOINT, $state, Gift, params, toaster, $window) {
+  var init = function () {
 
     $scope.gift = new Gift('Card');
     $scope.gift.order.delivery_mode = 'Email';
     $scope.costs = params;
+
+    $scope.is = {
+      client: true
+    };
 
     $scope.details = {
       total: "",
@@ -59,63 +64,89 @@ angular.module( 'vinibar.gift.gift_card', [
     $scope.vinibar = {
       refill: 59.80
     };
-    $scope.$watch('gift.order.delivery_mode', function(newObj, OldObj){
+    $scope.$watch('gift.order.delivery_mode', function (newObj, OldObj) {
       updateCosts();
     });
-    $scope.$watch('details.credits', function(newVal, OldVal){
+    $scope.$watch('details.credits', function (newVal, OldVal) {
       $scope.gift.order.credits = (newVal) ? 60 : 0;
     });
 
-    var updateCosts = function() {
+    var updateCosts = function () {
       $scope.details.total = 69 + params.card[$scope.gift.order.delivery_mode];
     };
   };
 
   init();
 
-  $scope.toSurvey = function(form){
+  $scope.toSurvey = function (form) {
     form.submitted = true;
-    // if the form is valid
-    if( form.$valid ) {
-      // if it's a new prospect
-      if($scope.gift.giver.first_name) {
-        $scope.load = true;
-        $scope.gift.createGiver().then(function(response){
-              toaster.pop('success', 'Bravo !', ' Votre compte a été créé');
-              $window.sessionStorage.token = response.data.token;
-              $scope.logged = true;
 
-              $scope.gift.createGiftOrder().then(function(response){
-                $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
-                $scope.gift.receiver.gift_uuid = response.data.uuid;
-                $scope.gift.order.delivery_cost =params.card[$scope.gift.order.delivery_mode];
-                $scope.load = false;
-                $state.go('gift.gift_card.pay');
-              });
-        });
-      // if it's a client
-      } else if($scope.gift.client.username) {
+    /*****************
+      the form is valid
+    *****************/
+    if (form.$valid) {
+      // if it's a new prospect
+      if (!$scope.is.client) {
         $scope.load = true;
-        $scope.gift.logGiver().then(function(response){
-            toaster.pop('success', 'Bravo !', ' Vous êtes bien loggué');
+
+        $scope.gift.createGiver()
+          .then(function (response) { // account creation success
+            toaster.pop('success', 'Bravo !', ' Votre compte a été créé');
             $window.sessionStorage.token = response.data.token;
-            $scope.gift.giver.first_name =response.data.first_name;
-            $scope.gift.giver.last_name =response.data.last_name;
             $scope.logged = true;
 
-            $scope.gift.createGiftOrder().then(function(response){
-              $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
-              $scope.gift.receiver.gift_uuid = response.data.uuid;
-              $scope.gift.order.delivery_cost =params.card[$scope.gift.order.delivery_mode];
-              $scope.load = false;
-              $state.go('gift.gift_card.pay');
-            });
-        });
-      // if there is no login credentials
-      } else {
+            $scope.gift.createGiftOrder()
+              .then(function (response) { // order creation success
+                $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
+                $scope.gift.receiver.gift_uuid = response.data.uuid;
+                $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
+                $scope.load = false;
+                $state.go('gift.gift_card.pay');
+
+              }, function (error) { // order creation error
+                toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+              });
+
+          }, function (error) {// account creation error
+            toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+          });
+
+      // if it's a client
+      } else if ($scope.is.client) {
+        $scope.load = true;
+
+        $scope.gift.logGiver().then(
+
+          function (response) { // login success
+            toaster.pop('success', 'Bravo !', ' Vous êtes bien loggué');
+            $window.sessionStorage.token = response.data.token;
+            $scope.gift.giver.first_name = response.data.first_name;
+            $scope.gift.giver.last_name = response.data.last_name;
+            $scope.logged = true;
+
+            $scope.gift.createGiftOrder()
+              .then(function (response) { // order creation success
+                $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
+                $scope.gift.receiver.gift_uuid = response.data.uuid;
+                $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
+                $scope.load = false;
+                $state.go('gift.gift_card.pay');
+
+              }, function (error) { // order creation error
+                toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+              });
+
+          }, function (error) { // login error
+            toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+          });
+
+      } else { // if there are no login credentials
         toaster.pop('infos', 'Oops !', 'Merci de vous connecter ou de créer un compte');
       }
-    // if the form is not valid
+
+    /********************
+      the form is not valid
+    *********************/
     } else {
       toaster.pop('infos', 'Oops !', ' Vous avez oublié des champs');
     }

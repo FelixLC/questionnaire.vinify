@@ -42,7 +42,7 @@ submodules that need them to ensure proper dependency handling. These are
 app-wide dependencies that are required to assemble your app.
 
 ```js
-angular.module( 'ngBoilerplate', [
+angular.module('ngBoilerplate', [
   'templates-app',
   'templates-common',
   'ngBoilerplate.home',
@@ -60,8 +60,8 @@ is where we want to start, which has a defined route for `/home` in
 `src/app/home/home.js`.
 
 ```js
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+.config (function myAppConfig ($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/home');
 })
 ```
 
@@ -69,7 +69,7 @@ Use the main applications run method to execute any code after services
 have been instantiated.
 
 ```js
-.run( function run () {
+.run(function run () {
 })
 ```
 
@@ -77,9 +77,9 @@ And then we define our main application controller. This is a good place for log
 not specific to the template or route, such as menu logic or page title wiring.
 
 ```js
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    if ( angular.isDefined( toState.data.pageTitle ) ) {
+.controller('AppCtrl', function AppCtrl ($scope, $location) {
+  $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    if (angular.isDefined(toState.data.pageTitle)) {
       $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate' ;
     }
   });

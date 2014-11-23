@@ -114,49 +114,64 @@
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <h2 class="col-title">Moi</h2>
+        <div class="col-tab">
+          <div ng-click="is.client = false" ng-class="{'background': !is.client}">
+            <p class="col-subtitle">Je ne suis pas <br> client Vinify</p>
+          </div>
+          <div ng-click="is.client = true" ng-class="{'background': is.client}">
+            <p class="col-subtitle">Je suis <br> client Vinify</p>
+          </div>
+        </div>
         <div class="col-container">
-          <p class="col-subtitle">Je ne suis pas encore client Vinify</p>
-          <div class="gift-giver gift-giver-new">
-            <form action="">
+          <div ng-show="!is.client" class="gift-giver gift-giver-new">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Prénom</p>
                   <input type="text" class="form-control" ng-model="gift.giver.first_name"
-                                name="giver.first_name">
+                                name="giver_first_name"
+                                ng-class="{'input-error' : infos.submitted && infos.giver_first_name.$invalid}"
+                                ng-required="!is.client">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Nom</p>
                   <input type="text" class="form-control" ng-model="gift.giver.last_name"
-                                name="giver.last_name">
+                                name="giver_last_name"
+                                ng-class="{'input-error' : infos.submitted && infos.giver_last_name.$invalid}"
+                                ng-required="!is.client">
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Email</p>
                   <input type="text" class="form-control" ng-model="gift.giver.email"
-                                name="giver.email">
+                                name="giver_email"
+                                ng-class="{'input-error' : infos.submitted && infos.giver_email.$invalid}"
+                                ng-required="!is.client">
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <p class="">Mot de Passe</p>
                   <input type="password" class="form-control" ng-model="gift.giver.password"
-                                name="giver.password">
+                                name="giver_password"
+                              ng-class="{'input-error' : infos.submitted && infos.giver_password.$invalid}"
+                                ng-required="!is.client">
                 </div>
               </div>
           </div>
-        </div>
-        <div class="col-container margin-top" >
-          <p class="col-subtitle">Je ne suis pas déja client Vinify</p>
-          <div class="gift-giver">
+          <div ng-show="is.client" class="gift-giver">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <p class="">Email</p>
                 <input type="text" class="form-control" ng-model="gift.client.username"
-                              name="client.username">
+                              name="client_username"
+                              ng-class="{'input-error' : infos.submitted && infos.client_username.$invalid}"
+                              ng-required="is.client">
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <p class="">Mot de Passe</p>
                 <input type="password" class="form-control" ng-model="gift.client.password"
-                              name="client.password">
+                              name="client_password"
+                              ng-class="{'input-error' : infos.submitted && infos.client_password.$invalid}"
+                              ng-required="is.client">
               </div>
             </div>
           </div>

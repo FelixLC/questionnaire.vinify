@@ -1,33 +1,33 @@
 
 angular.module('Resources', [])
-  .constant('API_ENDPOINT','https://api.vinify.co/api')
+  .constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
 
   //  The Recommender is used to get a preview of bottles
-  .factory('Recommender', ['$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT, $q) {
+  .factory('Recommender', [ '$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT, $q) {
     var _preview = null;
     var _uuid = null;
     return {
-      calcPreview: function(user) {
-         return $http.post(API_ENDPOINT + '/backoffice/recommender/preview3/', {'user_uuid': user.uuid})
-          .success(function(data, status, headers, config) {
+      calcPreview: function (user) {
+        return $http.post(API_ENDPOINT + '/backoffice/recommender/preview3/', { user_uuid: user.uuid })
+          .success(function (data, status, headers, config) {
             _preview = data.wines;
             _uuid = data.order_uuid;
           });
       },
-      getPreview: function() {
+      getPreview: function () {
         return _preview;
       },
-      getUuid: function() {
+      getUuid: function () {
         return _uuid;
       }
     };
-  }])
+  } ])
 
   //  The Api manages user/givers creation
-  .factory('Gift', ['$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT) {
-    var Survey = function() {
+  .factory('Gift', [ '$http', 'API_ENDPOINT',  function ($http, API_ENDPOINT) {
+    var Survey = function () {
 
-      this.quest_1 = { //Coffee
+      this.quest_1 = {  // Coffee
         answ: 0  // 1,1,Coffee - Black  // 1,2,Coffee - Sugar  // 1,3,Coffee - Cream // 1,4,Coffee - No
       };
       this.quest_2 = { // Drink
@@ -64,12 +64,12 @@ angular.module('Resources', [])
         answ: null
       };
       this.quest_9 = { // Price
-        answ: null //2,1,Price - 5-10€ // 2,2,Price - 10-15€ // 2,3,Price - 15-20€ // 2,4,Price - 20 & +
+        answ: null // 2,1,Price - 5-10€ // 2,2,Price - 10-15€ // 2,3,Price - 15-20€ // 2,4,Price - 20 & +
       };
 
     };
 
-    var Address = function() {
+    var Address = function () {
       this.company = "";
       this.first_name = "";
       this.last_name = "";
@@ -84,58 +84,58 @@ angular.module('Resources', [])
       this.country = "";
     };
 
-    var Gift = function(type){
+    var Gift = function (type) {
       this.giver = {
-          "email": "",
-          "first_name": "",
-           "last_name": "",
-           "password": ""
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: ""
       };
       this.client = {
-          "username": "",
-           "password": ""
+        username: "",
+        password: ""
       };
       this.order = {
-          "gift_type": type,
-          "credits": 40,
-          "delivery_mode": "",
-          "delivery_cost": "",
-          "receiver_email": "",
-          "receiver_first_name": "",
-          "receiver_last_name": "",
+        gift_type: type,
+        credits: 40,
+        delivery_mode: "",
+        delivery_cost: "",
+        receiver_email: "",
+        receiver_first_name: "",
+        receiver_last_name: "",
            // "send_date": "",
-           "message": "",
+        message: "",
            // "comment": "",
-           "receiver_address": new Address()
+        receiver_address: new Address()
       };
       this.receiver = {
-        "receiver_email": "",
-        "receiver_first_name": "",
-        "survey": new Survey(),
-        "gift_uuid": ""
+        receiver_email: "",
+        receiver_first_name: "",
+        survey: new Survey(),
+        gift_uuid: ""
       };
     };
 
-    Gift.prototype.createGiver = function() {
+    Gift.prototype.createGiver = function () {
       return $http.post(API_ENDPOINT + '/users/giver/create/', this.giver);
     };
-    Gift.prototype.logGiver = function() {
+    Gift.prototype.logGiver = function () {
       return $http.post(API_ENDPOINT + '/users/login/', this.client);
     };
-    Gift.prototype.createGiftOrder = function() {
+    Gift.prototype.createGiftOrder = function () {
       return $http.post(API_ENDPOINT + '/orders/gift/create/', this.order);
     };
-    Gift.prototype.updateGiftOrder = function() {
+    Gift.prototype.updateGiftOrder = function () {
       return $http.post(API_ENDPOINT + '/orders/gift/update/', this.orderUpdate);
     };
-    Gift.prototype.sendSurvey = function() {
+    Gift.prototype.sendSurvey = function () {
       return $http.post(API_ENDPOINT + '/orders/receiver/survey/', this.receiver);
     };
-    Gift.prototype.chargeGiftOrder = function() {
+    Gift.prototype.chargeGiftOrder = function (_id, _giftUuid) {
       return $http.post(API_ENDPOINT + '/orders/gift/chargegiftorder/', {
-        "id": _id,
-        "gift_uuid": _gift_uuid
+        id: _id,
+        gift_uuid: _giftUuid
       });
     };
     return Gift;
-  }]);
+  } ]);

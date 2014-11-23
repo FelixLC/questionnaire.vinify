@@ -1,4 +1,4 @@
-angular.module( 'vinibar.paiement', [
+angular.module('vinibar.paiement', [
   'ui.router',
   'ui.bootstrap',
   'stripe',
@@ -7,34 +7,34 @@ angular.module( 'vinibar.paiement', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(function config ($stateProvider) {
   $stateProvider
-    .state( 'paiement', {
+    .state('paiement', {
       url: '/paiement',
       views: {
-        "main": {
+        main: {
           controller: 'paiementCtrl',
           templateUrl: 'paiement/paiement.tpl.html'
         }
       },
-      data:{ pageTitle: 'Paiement' }
+      data: { pageTitle: 'Paiement' }
     })
-    .state( 'paiement.login', {
+    .state('paiement.login', {
       url: '/login',
       templateUrl: 'paiement/parts/paiement.login.tpl.html'
     })
-    .state( 'paiement.confirmation', {
+    .state('paiement.confirmation', {
       url: '/confirmation',
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'paiementCtrl', function paiementCtrl( $scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
+.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
+.controller('paiementCtrl', function paiementCtrl ($scope, $http, $state, API_ENDPOINT, toaster, $window, $rootScope, $location, currentClient, Client) {
   $scope.delivery = {
     mode: 'Colissimo',
     cost: 11.90
   };
-  $scope.deliveryMethod = function(num) {
+  $scope.deliveryMethod = function (num) {
 
     if (num === 1) {  $scope.delivery.cost = 8.90;
                       $scope.delivery.mode = 'Point Relais';}
@@ -45,18 +45,18 @@ angular.module( 'vinibar.paiement', [
     if (num === 3) {  $scope.delivery.cost = 0;
                       $scope.delivery.mode = 'Vinify'; }
   };
-  var closeLoading = function() {
+  var closeLoading = function () {
                                   $rootScope.loading= false;
   };
-  $scope.login = function(email, password) {
+  $scope.login = function (email, password) {
 
     // var unfinishedOrder = $http({
     //                               url: '/unfinishedorder/',
     //                               method: "GET"
-    //                       }).success(function(data, status, headers, config) {
+    //                       }).success(function (data, status, headers, config) {
     //                           $scope.currentUser = data;
     //                           $state.go('paiement.confirmation');
-    //                       }).error(function(data, status, headers, config) {
+    //                       }).error(function (data, status, headers, config) {
     //                          alert('Vous n\'avez pas de commande en cours');
     //                       });
 
@@ -67,7 +67,7 @@ angular.module( 'vinibar.paiement', [
                             headers: {
                                      'Content-Type': 'application/json; charset=UTF-8'
                             }
-                    }).success(function(data, status, headers, config) {
+                    }).success(function (data, status, headers, config) {
                       $window.sessionStorage.token = data.token;
                       $scope.client = new Client();
                       $scope.client.uuid = data.uuid;
@@ -82,11 +82,11 @@ angular.module( 'vinibar.paiement', [
                                   url: API_ENDPOINT + '/orders/unfinishedorder/',
                                   method: "GET"
                                 })
-                                .success(function(data, status, headers, config) {
+                                .success(function (data, status, headers, config) {
                                     $scope.client.order = data;
                                     $state.go('pay_mobile');
                                 })
-                                .error(function(data, status, headers, config) {
+                                .error(function (data, status, headers, config) {
                                   alert('Vous n\'avez pas de commande en cours');
                                 });
                         } else if (data.status == 2) {
@@ -97,19 +97,19 @@ angular.module( 'vinibar.paiement', [
                           toaster.pop('infos', 'Vous n\'avez pas de commande de Vinibar en cours');
                         }
                       })
-                    .error(function(data, status, headers, config) {
+                    .error(function (data, status, headers, config) {
                         toaster.pop('infos', 'Erreur', 'Combinaison Email / Mot de passe érronée');
                       });
 
   };
 //  SEND ORDER REQUEST TO SERVER. IF SUCCESS UPDATE SCOPE WITH ORDER DATA AND TRANSITION TO CONFIRMATION
-  $scope.createOrder = function() {
+  $scope.createOrder = function () {
     $rootScope.loading = true;
     var handler = StripeCheckout.configure({
       // key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
       key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
       image: "assets/LogoVinifyMini2.png",
-      token: function(token, args) {
+      token: function (token, args) {
         var data_order = token;
         data_order.order_uuid = $scope.client.order.uuid;
         data_order.delivery_cost = $scope.delivery_cost;
@@ -125,7 +125,7 @@ angular.module( 'vinibar.paiement', [
                           method: "POST",
                           data: data_order
                   })
-                  .success(function(data, status, headers, config) {
+                  .success(function (data, status, headers, config) {
                     if ($scope.client.order.delivery_mode === 'Point Relais') {
                       $http({
                         url: API_ENDPOINT + '/orders/pickmremail/',
@@ -139,7 +139,7 @@ angular.module( 'vinibar.paiement', [
                     $location.path('/remerciement_order');
                     mixpanel.track('Sucessful payment');
                   })
-                  .error(function(data, status, headers, config) {
+                  .error(function (data, status, headers, config) {
                     toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
                     mixpanel.track('Server Failed to proceed payment');
 
@@ -163,7 +163,7 @@ angular.module( 'vinibar.paiement', [
                           }
                         })
 
-                        .success(function(data, status, headers, config) {
+                        .success(function (data, status, headers, config) {
                               $scope.order = data;
                               console.log($scope.order.final_price * 100);
                               console.log($scope.order.final_price);
@@ -180,7 +180,7 @@ angular.module( 'vinibar.paiement', [
                               });
                           })
 
-                        .error(function(data, status, headers, config) {
+                        .error(function (data, status, headers, config) {
                               console.log('error @ createOrder');
                               $rootScope.loading = false;
                           });

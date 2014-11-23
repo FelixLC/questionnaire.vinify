@@ -1,4 +1,4 @@
-angular.module( 'vinibar.questionnaire', [
+angular.module('vinibar.questionnaire', [
 	'ui.router',
 	'ui.bootstrap',
 	'Resources',
@@ -6,9 +6,9 @@ angular.module( 'vinibar.questionnaire', [
 	'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(function config ($stateProvider) {
 	$stateProvider
-		.state( 'questionnaire', {
+		.state('questionnaire', {
 			url: '/questionnaire',
 			views: {
 				"main": {
@@ -17,49 +17,49 @@ angular.module( 'vinibar.questionnaire', [
 				}
 			},
 			resolve: {
-					promiseObj:  function($http, $templateCache){
+					promiseObj:  function ($http, $templateCache) {
 						// $http returns a promise for the url data
-						return $http.get('assets/fruits.jpg', {cache:$templateCache});
+						return $http.get('assets/fruits.jpg', { cache: $templateCache });
 
 				}
 			},
-			data:{ pageTitle: 'questionnaire' }
+			data: { pageTitle: 'questionnaire' }
 		})
-		.state( 'questionnaire.coffee', {
+		.state('questionnaire.coffee', {
 			url: '/coffee',
 			templateUrl: 'questionnaire/parts/questionnaire.coffee.tpl.html'
 		})
-		.state( 'questionnaire.balance', {
+		.state('questionnaire.balance', {
 			url: '/balance',
 			templateUrl: 'questionnaire/parts/questionnaire.balance.tpl.html'
 		})
-		.state( 'questionnaire.comments', {
+		.state('questionnaire.comments', {
 			url: '/comments',
 			templateUrl: 'questionnaire/parts/questionnaire.comments.tpl.html'
 		})
-		.state( 'questionnaire.cuisine', {
+		.state('questionnaire.cuisine', {
 			url: '/cuisine',
 			templateUrl: 'questionnaire/parts/questionnaire.cuisine.tpl.html'
 		})
-		.state( 'questionnaire.winemap', {
+		.state('questionnaire.winemap', {
 			url: '/winemap',
 			templateUrl: 'questionnaire/parts/questionnaire.winemap.tpl.html'
 		})
-		.state( 'questionnaire.juice', {
+		.state('questionnaire.juice', {
 			url: '/juice',
 			templateUrl: 'questionnaire/parts/questionnaire.juice.tpl.html'
 		})
-		.state( 'questionnaire.profile', {
+		.state('questionnaire.profile', {
 			url: '/profile',
 			templateUrl: 'questionnaire/parts/questionnaire.profile.tpl.html'
 		})
-		.state( 'questionnaire.starter', {
+		.state('questionnaire.starter', {
 			url: '/starter',
 			templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
 		});
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'questionnaireCtrl', function questionnaireCtrl( Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
+.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
+.controller('questionnaireCtrl', function questionnaireCtrl (Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, API_ENDPOINT, toaster, $window, $stateParams) {
 	console.log(API_ENDPOINT);
 	// modal
 	$scope.open = function (size) {
@@ -80,15 +80,15 @@ angular.module( 'vinibar.questionnaire', [
 	};
 
 	$scope.region= {selected : null, hover: null};
-	$scope.enter= function(region) {
+	$scope.enter= function (region) {
 			$scope.region.hover = region;
 	};
 
-	$scope.leave= function(region) {
+	$scope.leave= function (region) {
 			$scope.region.hover = null;
 	};
 
-	$scope.select= function(region) {
+	$scope.select= function (region) {
 		$scope.newuser.survey.quest_7.answ = region;
 	};
 
@@ -120,13 +120,13 @@ angular.module( 'vinibar.questionnaire', [
 		$scope.output = form;
 	};
 
-	$scope.validateBalanceAnswer = function() {
+	$scope.validateBalanceAnswer = function () {
 
 		//  CHECK IF ALL BALANCE ARE NOT SET TO 4 (DEFAULT VALUE)
-		if ( $scope.newuser.survey.quest_6.answ_1 === 4 ||  $scope.newuser.survey.quest_6.answ_2 === 4 ||  $scope.newuser.survey.quest_6.answ_3 === 4) {
+		if ($scope.newuser.survey.quest_6.answ_1 === 4 ||  $scope.newuser.survey.quest_6.answ_2 === 4 ||  $scope.newuser.survey.quest_6.answ_3 === 4) {
 			toaster.pop('info', 'Merci de choisir une préférence pour chaque type de vin', ' puis valider avec la flèche');
 			console.log('error');
-		} else if ( $scope.newuser.survey.quest_6.answ_1 === 0 &&  $scope.newuser.survey.quest_6.answ_2 === 0 &&  $scope.newuser.survey.quest_6.answ_3 === 0) {
+		} else if ($scope.newuser.survey.quest_6.answ_1 === 0 &&  $scope.newuser.survey.quest_6.answ_2 === 0 &&  $scope.newuser.survey.quest_6.answ_3 === 0) {
 			toaster.pop('info', 'Vous ne voulez pas de vins dans votre Vinibar ?');
 		} else {
 			$state.go('questionnaire.winemap');
@@ -134,10 +134,10 @@ angular.module( 'vinibar.questionnaire', [
 
 	};
 
-	$scope.validateCuisineAnswer = function() {
+	$scope.validateCuisineAnswer = function () {
 
 		//  CHECK IF ALL cuisines ARE NOT SET TO false (DEFAULT VALUE)
-		if ( $scope.newuser.survey.quest_3.answ_1 === false &&  $scope.newuser.survey.quest_3.answ_2 === false &&  $scope.newuser.survey.quest_3.answ_3 === false &&  $scope.newuser.survey.quest_3.answ_4 === false &&  $scope.newuser.survey.quest_3.answ_5 === false) {
+		if ($scope.newuser.survey.quest_3.answ_1 === false &&  $scope.newuser.survey.quest_3.answ_2 === false &&  $scope.newuser.survey.quest_3.answ_3 === false &&  $scope.newuser.survey.quest_3.answ_4 === false &&  $scope.newuser.survey.quest_3.answ_5 === false) {
 			toaster.pop('info', 'Merci de choisir au moins une cuisine', ' puis valider avec la flèche');
 		} else {
 			$scope.answerOne = false;
@@ -158,7 +158,7 @@ angular.module( 'vinibar.questionnaire', [
 		'Bordeaux'
 	];
 
-	// $scope.trackLink = function(n) {
+	// $scope.trackLink = function (n) {
 	//   $scope.newuser.survey.balance.red = 2;
 	//   mixpanel.track('clicked on your face');
 	// };
@@ -181,7 +181,7 @@ angular.module( 'vinibar.questionnaire', [
 
 
 
-	$scope.createUser = function(name, user, tastes) {
+	$scope.createUser = function (name, user, tastes) {
 		console.log(name);
 		console.log(user);
 		console.log(tastes);
@@ -195,10 +195,10 @@ angular.module( 'vinibar.questionnaire', [
 				currentClient.currentClient.userinfos.first_name = $scope.newuser.first_name;
 				currentClient.currentClient.userinfos.last_name = $scope.newuser.last_name;
 
-				$scope.newuser.createUser().success(function(data, status, headers, config) {
+				$scope.newuser.createUser().success(function (data, status, headers, config) {
 																$window.sessionStorage.token = data.token;
 																Recommender.calcPreview(data)
-																	.then(function(response) {
+																	.then(function (response) {
 																		$state.go('preview');
 																		mixpanel.track('User Created');
 																		$rootScope.loading = false;
@@ -206,12 +206,12 @@ angular.module( 'vinibar.questionnaire', [
 																// $state.go('remerciement');
 														})
 
-													.error(function(data, status, headers, config) {
+													.error(function (data, status, headers, config) {
 																$rootScope.loading = false;
 																toaster.pop('info', 'Oops, cet email est déjà associé à un compte');
 																console.log('error @ createOrder');
 														});
-				mixpanel.track('User Created');
+
 
 		}
 

@@ -1,4 +1,4 @@
-angular.module( 'vinibar.pay_mobile', [
+angular.module('vinibar.pay_mobile', [
   'ui.router',
   'angularPayments',
   'clientFactory',
@@ -7,20 +7,20 @@ angular.module( 'vinibar.pay_mobile', [
   'toaster'
 ])
 
-.config(function config( $stateProvider ) {
-  $stateProvider.state( 'pay_mobile', {
+.config(function config ($stateProvider) {
+  $stateProvider.state('pay_mobile', {
     url: '/pay_mobile',
     views: {
-      "main": {
+      main: {
         controller: 'pay_mobileCtrl',
         templateUrl: 'pay_mobile/pay_mobile.tpl.html'
       }
     },
-    data:{ pageTitle: 'Commander' }
+    data: { pageTitle: 'Commander' }
   });
 })
-.constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'pay_mobileCtrl', function pay_mobileCtrl( $scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster ) {
+.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
+.controller('pay_mobileCtrl', function pay_mobileCtrl ($scope, $http, currentClient, $rootScope, API_ENDPOINT, $state, Order, toaster) {
     var init = function (argument) {
       $scope.client = currentClient.currentClient;
       $scope.serializedOrder = $scope.client.order;
@@ -32,7 +32,7 @@ angular.module( 'vinibar.pay_mobile', [
 
     init();
 
-    $scope.updateOrder = function(num) {
+    $scope.updateOrder = function (num) {
       $rootScope.loading = true;
       if (num === 1) {
         $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 8.9 : 4.90;
@@ -45,13 +45,13 @@ angular.module( 'vinibar.pay_mobile', [
         $scope.delivery.mode = 'Vinify';
       }
       Order.update($scope.client.order.uuid, $scope.delivery.cost, $scope.delivery.mode,
-            function(data) {
+            function (data) {
                   $scope.client.order = data;
                   console.log($scope.client.order.final_price);
                   console.log(Math.round($scope.client.order.final_price * 100)/100);
                   $scope.client.order.final_price = Math.round($scope.client.order.final_price * 100)/100;
                   $rootScope.loading = false;
-              }, function(data) {
+              }, function (data) {
                   console.log('error @ createOrder');
                   $rootScope.loading = false;
               });
@@ -59,7 +59,7 @@ angular.module( 'vinibar.pay_mobile', [
 
 
     Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
-    $scope.submit = function(status, response) {
+    $scope.submit = function (status, response) {
 
         if (response.error) {
           console.log(response);
@@ -70,11 +70,11 @@ angular.module( 'vinibar.pay_mobile', [
             order_uuid: $scope.client.order.uuid
           };
           $http({
-            url: ( $scope.client.order_type === 'Vinibar' ) ? API_ENDPOINT +'/orders/chargevinibar/' : API_ENDPOINT +'/orders/discovery/charge/',
+            url: ($scope.client.order_type === 'Vinibar') ? API_ENDPOINT +'/orders/chargevinibar/' : API_ENDPOINT +'/orders/discovery/charge/',
             method: "POST",
             data: data
           })
-          .success(function(data, status, headers, config) {
+          .success(function (data, status, headers, config) {
             $rootScope.loading = false;
             if ($scope.client.order.delivery_mode === 'Point Relais') {
               $http({
@@ -89,7 +89,7 @@ angular.module( 'vinibar.pay_mobile', [
             $state.go('remerciement_mobile');
             mixpanel.track('Sucessful payment');
           })
-          .error(function(data, status, headers, config) {
+          .error(function (data, status, headers, config) {
             $rootScope.loading = false;
             toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
             mixpanel.track('Server failed to proceed payment');
@@ -99,7 +99,7 @@ angular.module( 'vinibar.pay_mobile', [
     };
 
 
-    $scope.calcPrice = function() {
+    $scope.calcPrice = function () {
         var price = 0;
         for (var i = SerializedOrder.refills.length - 1; i >= 0; i--) {
           price += SerializedOrder.refills[i].price_level;
@@ -107,7 +107,7 @@ angular.module( 'vinibar.pay_mobile', [
         return price;
     };
 
-    $scope.displayPrice = function(price) {
+    $scope.displayPrice = function (price) {
       return price;
     };
 });

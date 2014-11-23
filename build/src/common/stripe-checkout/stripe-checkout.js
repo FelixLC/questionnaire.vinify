@@ -1,13 +1,13 @@
 angular.module('stripe', [])
-  .directive('stripeCheckout', function() {
+  .directive('stripeCheckout', function () {
     return {
       restrict: 'A',
-      controller: function($scope, $http, $location) {
+      controller: function ($scope, $http, $location) {
         $scope.handler = StripeCheckout.configure({
           key: "pk_test_sK21onMmCuKNuoY7pbml8z3Q",
           // key: "pk_live_gNv4cCe8tsZpettPUsdQj25F",
           image: "assets/LogoVinifyMini2.png",
-          token: function(token, args) {
+          token: function (token, args) {
             var data_order = token;
             data_order.order_id = $scope.currentClient.order.id;
             data_order.delivery_cost = $scope.delivery_cost;
@@ -23,11 +23,11 @@ angular.module('stripe', [])
                               method: "POST",
                               data: data_order
                       })
-                      .success(function(data, status, headers, config) {
+                      .success(function (data, status, headers, config) {
                         $location.path('/remerciement_order');
                         mixpanel.track('Sucessful payment');
                       })
-                      .error(function(data, status, headers, config) {
+                      .error(function (data, status, headers, config) {
                         alert('Il y a eu une erreur avec votre commande, merci de réessayer');
                         mixpanel.track('Server Failed to proceed payment');
 
@@ -35,10 +35,10 @@ angular.module('stripe', [])
           }
         });
       },
-      link: function(scope, element, attrs) {
+      link: function (scope, element, attrs) {
 
 
-        element.bind('click',function(e) {
+        element.bind('click',function (e) {
           // Open Checkout with further options
           scope.handler.open({
             name: "Vinify",

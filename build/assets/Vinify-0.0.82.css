@@ -7627,15 +7627,18 @@ footer p {
   right: 0;
   padding-bottom: 56px;
 }
+#gift .background {
+  background-color: #efeeeb;
+}
 #gift input,
 #gift textarea,
 #gift select {
   border: none;
 }
 .input-error {
-  border: 1px solid #cb0001 !important;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border: 1px solid rgba(203, 0, 1, 0.2) !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(203, 0, 1, 0.2);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(203, 0, 1, 0.2);
   -webkit-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
@@ -7915,6 +7918,17 @@ footer p {
 #gift .gift-giver > .row,
 #gift .gift-receiver > .row {
   margin-top: 10px;
+}
+#gift .col-tab {
+  display: table;
+  width: 100%;
+}
+#gift .col-tab > div {
+  padding: 5px;
+  display: table-cell;
+  width: 50%;
+  cursor: pointer;
+  vertical-align: middle;
 }
 /*
 ** QUIZ

@@ -1,12 +1,12 @@
-angular.module( 'mondialrelay', [
+angular.module('mondialrelay', [
 	'ui.router',
 	'ui.bootstrap',
 	'toaster'
 ])
 
-.config(function config( $stateProvider ) {
+.config(function config ($stateProvider) {
 	$stateProvider
-		.state( 'mondialrelay', {
+		.state('mondialrelay', {
 			url: '/mondialrelay/:orderid/:zipcode',
 			views: {
 				"main": {
@@ -14,12 +14,12 @@ angular.module( 'mondialrelay', [
 					templateUrl: 'mrelay/mrelay.tpl.html'
 				}
 			},
-			data:{ pageTitle: 'Mondial Relay' }
+			data: { pageTitle: 'Mondial Relay' }
 		});
 })
 
-.constant('API_ENDPOINT','https://api.vinify.co/api')
-.controller( 'mondialrelayCtrl', function mondialrelayCtrl( $scope, $stateParams, $http, $state, API_ENDPOINT, toaster, $timeout) {
+.constant('API_ENDPOINT', 'http://127.0.0.1:8000/api')
+.controller('mondialrelayCtrl', function mondialrelayCtrl ($scope, $stateParams, $http, $state, API_ENDPOINT, toaster, $timeout) {
 
 	var order_id = $stateParams.orderid;
 	var zipcode = $stateParams.zipcode;
@@ -31,7 +31,7 @@ angular.module( 'mondialrelay', [
 	$("#Zone_Widget").MR_ParcelShopPicker({
 		PostCode: zipcode,
 		Target: "#Retour_Widget",  // selecteur jquery ou renvoyer l'ID du relais selectionné
-		OnParcelShopSelected: function(Data){
+		OnParcelShopSelected: function (Data) {
 			shop = Data;
 			shop.concat_ID = Data.Pays + '-' + Data.ID; // Build shop ID with the callback function
 		},
@@ -39,7 +39,7 @@ angular.module( 'mondialrelay', [
 		Country: "FR"  /* pays*/
 	});
 
-	$scope.sendMR = function()  {
+	$scope.sendMR = function ()  {
 
 			// LET'S CHECK IF THE USER CLICKED ON SOME SHOP
 			if(shop) {
@@ -56,11 +56,11 @@ angular.module( 'mondialrelay', [
 													'Content-Type': 'application/json; charset=UTF-8'
 												}
 				})
-				.success(function(data, status, headers, config) {
+				.success(function (data, status, headers, config) {
 					toaster.pop('success', 'Votre point de réservation a été enregistré', 'A bientôt');
 					$timeout(function () { $window.location.href = 'http://facebook.com/vinify.co';}, 40000);
 				})
-				.error(function(data, status, headers, config) {
+				.error(function (data, status, headers, config) {
 					toaster.pop('error', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
 				});
 
@@ -70,7 +70,7 @@ angular.module( 'mondialrelay', [
 			else {alert('Merci de sélectionner un magasin');}
 	};
 
-	$scope.changeDelivery = function()  {
+	$scope.changeDelivery = function ()  {
 
 			var data = {
 				'order_id': order_id
@@ -84,10 +84,10 @@ angular.module( 'mondialrelay', [
 												'Content-Type': 'application/json; charset=UTF-8'
 											}
 			})
-			.success(function(data, status, headers, config) {
+			.success(function (data, status, headers, config) {
 				$state.go('paiement.login');
 			})
-			.error(function(data, status, headers, config) {
+			.error(function (data, status, headers, config) {
 				alert('Une erreur est survenue, merci de réessayer');
 			});
 

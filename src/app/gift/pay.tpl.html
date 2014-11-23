@@ -11,7 +11,7 @@
             <td><p>Vinibar </p></td>
             <td><p>69&nbsp;€</p></td>
           </tr>
-          <tr>
+          <tr ng-show="gift.order.delivery_cost">
             <td><p>Livraison </p></td>
             <td>
               <p>
@@ -25,7 +25,7 @@
           </tr>
           <tr  class="">
             <td><h4>Total </h4></td>
-            <td><h4>{{69 + gift.order.delivery_cost + gift.order.credits | number:1}}&nbsp;€</h4></td>
+            <td><h4>{{69 + gift.order.delivery_cost + gift.order.credits| number:1}}&nbsp;€</h4></td>
           </tr>
       </table>
     </div>
@@ -35,8 +35,8 @@
     <div class="col-container centered">
       <p>{{gift.order.receiver_address.first_name}} {{gift.order.receiver_address.last_name}}</p>
       <p>{{gift.order.receiver_email}}</p>
-      <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode === 'Print'  ">{{gift.order.receiver_address.street}}</p>
-      <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode === 'Print'  ">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
+      <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  ">{{gift.order.receiver_address.street}}</p>
+      <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  ">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
     </div>
   </div>
 </div>

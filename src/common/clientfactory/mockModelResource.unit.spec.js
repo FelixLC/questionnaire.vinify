@@ -15,7 +15,7 @@
 
     mockResource.testCoupon = function (coupon, success, failure) {
       if (success && angular.isFunction(success) && coupon.coupon === 1) {
-        success({coupon_type: 'Referral'});
+        success({ coupon_type: 'Referral' });
       } else if (failure && angular.isFunction(failure) && coupon.coupon === 2) {
         failure('This code is not valid');
       } else {
@@ -23,7 +23,7 @@
       }
     };
 
-    mockResource.update = function ( uuid, delivery_cost, delivery_mode, success, failure ) {
+    mockResource.update = function (uuid, deliveryCost, deliveryMode, success, failure) {
       if (success && angular.isFunction(success) && uuid === 1) {
         success(mockResource.data);
       } else if (failure && angular.isFunction(failure) && uuid === 2) {

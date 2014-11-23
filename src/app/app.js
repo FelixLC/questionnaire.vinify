@@ -1,4 +1,4 @@
-angular.module( 'vinibar', [
+angular.module('vinibar', [
   'templates-app',
   'templates-common',
   'vinibar.pay_mobile',
@@ -19,8 +19,8 @@ angular.module( 'vinibar', [
   'ngCookies'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/demarrer' );
+.config(function myAppConfig ($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/demarrer');
 })
 
 // We'll intercept all request and put the token in it
@@ -45,7 +45,7 @@ angular.module( 'vinibar', [
   $httpProvider.interceptors.push('authInterceptor');
 })
 
-.config(['$httpProvider', function($httpProvider) {
+.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -53,12 +53,12 @@ angular.module( 'vinibar', [
     }
 ])
 
-.run( function run () {
+.run(function run () {
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    if ( angular.isDefined( toState.data.pageTitle ) ) {
+.controller('AppCtrl', function AppCtrl ($scope, $location) {
+  $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    if (angular.isDefined(toState.data.pageTitle)) {
       $scope.pageTitle = toState.data.pageTitle + ' | vinibar' ;
     }
   });
