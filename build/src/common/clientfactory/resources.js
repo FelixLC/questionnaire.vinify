@@ -104,9 +104,10 @@ angular.module('Resources', [ 'settings' ])
         receiver_last_name: "",
            // "send_date": "",
         message: "",
-           // "comment": "",
+        comment: "",
         receiver_address: new Address()
       };
+
       this.receiver = {
         receiver_email: "",
         receiver_first_name: "",
@@ -133,7 +134,9 @@ angular.module('Resources', [ 'settings' ])
     Gift.prototype.chargeGiftOrder = function (_id, _giftUuid) {
       return $http.post(settings.apiEndPoint + '/orders/gift/charge/', {
         id: _id,
-        gift_uuid: _giftUuid
+        gift_uuid: _giftUuid,
+        billing: false,
+        billing_address: {}
       });
     };
     return Gift;

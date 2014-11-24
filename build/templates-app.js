@@ -41,7 +41,7 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "        <div><span class=\"gift-step\">2</span></div>\n" +
     "        <div>\n" +
     "          <p>\n" +
-    "            Je remplis le quiz Vinify <br> sur ses goûts pour lui\n" +
+    "            Je remplis le questionnaire Vinify <br> sur ses goûts pour lui\n" +
     "            <a href=\"\"\n" +
     "                  class=\"dotted-underline\"\n" +
     "                  popover-title=\"Que faut-il savoir ?\"\n" +
@@ -72,7 +72,7 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "      </div>\n" +
     "      <div class=\"steps\">\n" +
     "        <div><span class=\"gift-step\">3</span></div>\n" +
-    "        <div><p>Le destinataire recoit ma carte <br> et démarre l’aventure avec le quiz Vinify</p></div>\n" +
+    "        <div><p>Le destinataire recoit ma carte <br> et démarre l’aventure avec le questionnaire Vinify</p></div>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <button class=\"btn-block-primary margin-top\" ui-sref=\"gift.gift_card.details\">Carte Cadeau</button>\n" +
@@ -269,6 +269,12 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "              <p class=\"\">Message</p>\n" +
     "              <textarea ng-model=\"gift.order.message\" class=\"form-control\" rows=\"6\"></textarea>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "            <p>Un commentaire&nbsp;?</p>\n" +
+    "            <textarea class=\"form-control\" ng-model=\"gift.order.comment\" rows=\"2\" placeholder=\"Une attention particulière ? Des informations sur ses goûts ?\"></textarea>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -483,6 +489,7 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "      <p>{{gift.order.receiver_email}}</p>\n" +
     "      <p ng-hide=\"gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  \">{{gift.order.receiver_address.street}}</p>\n" +
     "      <p ng-hide=\"gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  \">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>\n" +
+    "      <p><a href>Ajouter une adresse de facturation</a></p>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -980,6 +987,8 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
     "        <hr class=\"backgrounded\">\n" +
     "        <p class=\"col-subtitle\">Quelle est sa région préférée&nbsp;?</p>\n" +
     "        <select class=\"form-control\" ng-model=\"gift.receiver.survey.quest_7.answ\" ng-options=\"region for region in regions\"></select>\n" +
+    "        <p class=\"col-subtitle\">Un commentaire&nbsp;?</p>\n" +
+    "        <textarea class=\"form-control\" ng-model=\"gift.order.comment\" rows=\"2\" placeholder=\"Une attention particulière ? D'autres infos sur ses goûts ?\"></textarea>\n" +
     "      </div>\n" +
     "      <div class=\"btn-block-primary centered margin-top\" ng-click=\"sendSurvey()\" >Continuer</div>\n" +
     "    </div>\n" +
