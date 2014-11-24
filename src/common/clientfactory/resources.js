@@ -105,12 +105,12 @@ angular.module('Resources', [ 'settings' ])
            // "send_date": "",
         message: "",
         comment: "",
-        receiver_address: new Address()
+        receiver_address: new Address(),
+        send_to_receiver: true
       };
 
       this.receiver = {
         receiver_email: "",
-        receiver_first_name: "",
         survey: new Survey(),
         gift_uuid: ""
       };

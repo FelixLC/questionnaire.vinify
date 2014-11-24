@@ -243,17 +243,25 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
     "              <p class=\"\">Civilité</p>\n" +
-    "              <select name=\"sex\" id=\"\" ng-model=\"gift.order.sex\" class=\"form-control\"\n" +
+    "              <select name=\"sex\" id=\"\" ng-model=\"gift.order.receiver_sex\" class=\"form-control\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.sex.$invalid}\"\n" +
     "                            required>\n" +
-    "                <option value=\"m\">M.</option>\n" +
-    "                <option value=\"f\">Mme</option>\n" +
+    "                <option value=\"M\">M.</option>\n" +
+    "                <option value=\"F\">Mme</option>\n" +
     "              </select>\n" +
     "            </div>\n" +
-    "            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
     "              <p class=\"\">Prénom</p>\n" +
     "              <input name=\"receiver_first_name\" type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_first_name\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_first_name.$invalid}\"\n" +
+    "                            required>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
+    "              <p class=\"\">Nom</p>\n" +
+    "              <input name=\"receiver_last_name\" type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_last_name\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_last_name.$invalid}\"\n" +
     "                            required>\n" +
     "            </div>\n" +
     "          </div>\n" +
@@ -352,11 +360,11 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "        <h2 class=\"col-title\">Moi</h2>\n" +
     "        <div class=\"col-tab\">\n" +
-    "          <div ng-click=\"is.client = false\" ng-class=\"{'background': !is.client}\">\n" +
-    "            <p class=\"col-subtitle\">Je ne suis pas <br> client Vinify</p>\n" +
-    "          </div>\n" +
     "          <div ng-click=\"is.client = true\" ng-class=\"{'background': is.client}\">\n" +
     "            <p class=\"col-subtitle\">Je suis <br> client Vinify</p>\n" +
+    "          </div>\n" +
+    "          <div ng-click=\"is.client = false\" ng-class=\"{'background': !is.client}\">\n" +
+    "            <p class=\"col-subtitle\">Je ne suis pas <br> client Vinify</p>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "        <div class=\"col-container\">\n" +
@@ -695,17 +703,25 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
     "              <p class=\"\">Civilité</p>\n" +
-    "              <select name=\"sex\" id=\"\" ng-model=\"gift.order.sex\" class=\"form-control\"\n" +
+    "              <select name=\"sex\" id=\"\" ng-model=\"gift.order.receiver_sex\" class=\"form-control\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.sex.$invalid}\"\n" +
     "                            required>\n" +
-    "                <option value=\"m\">M.</option>\n" +
-    "                <option value=\"f\">Mme</option>\n" +
+    "                <option value=\"M\">M.</option>\n" +
+    "                <option value=\"F\">Mme</option>\n" +
     "              </select>\n" +
     "            </div>\n" +
-    "            <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\">\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
     "              <p class=\"\">Prénom</p>\n" +
     "              <input name=\"receiver_first_name\" type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_first_name\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_first_name.$invalid}\"\n" +
+    "                            required>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n" +
+    "              <p class=\"\">Nom</p>\n" +
+    "              <input name=\"receiver_last_name\" type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_last_name\"\n" +
+    "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_last_name.$invalid}\"\n" +
     "                            required>\n" +
     "            </div>\n" +
     "          </div>\n" +
@@ -798,11 +814,11 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "        <h2 class=\"col-title\">Moi</h2>\n" +
     "        <div class=\"col-tab\">\n" +
-    "          <div ng-click=\"is.client = false\" ng-class=\"{'background': !is.client}\">\n" +
-    "            <p class=\"col-subtitle\">Je ne suis pas <br> client Vinify</p>\n" +
-    "          </div>\n" +
     "          <div ng-click=\"is.client = true\" ng-class=\"{'background': is.client}\">\n" +
     "            <p class=\"col-subtitle\">Je suis <br> client Vinify</p>\n" +
+    "          </div>\n" +
+    "          <div ng-click=\"is.client = false\" ng-class=\"{'background': !is.client}\">\n" +
+    "            <p class=\"col-subtitle\">Je ne suis pas <br> client Vinify</p>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "        <div class=\"col-container\">\n" +
