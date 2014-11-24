@@ -26,32 +26,32 @@ angular.module('vinibar.gift', [
 })
 
 .controller('giftPayCtrl', function giftPayCtrl ($scope, Gift, params, toaster, settings) {
-   // Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
- console.log($scope.$parent.gift.receiver.gift_uuid);
+   Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
+ $scope.gift = $scope.$parent.gift;
+  console.log(Gift.chargeGiftOrder);
   $scope.submit = function (status, response) {
 
       if (response.error) {
         toaster.pop('infos', 'Erreur', 'Merci de vérifier vos coordonnées bancaires.');
       } else {
-        $rootScope.loading = true;
-        Gift.chargeGiftOrder(response.id, $scope.$parent.gift.receiver.gift_uuid)
+        $scope.gift.chargeGiftOrder(response.id, $scope.gift.receiver.gift_uuid)
         .success(function (data, status, headers, config) {
-          if ($scope.$parent.gift.order.delivery_mode === 'Point Relais') {
+          if ($scope.gift.order.delivery_mode === 'Point Relais') {
             $http({
               url: settings.apiEndPoint + '/orders/pickmremail/',
               method: "POST",
-              data: { 'order_id': $scope.$parent.gift.order.uuid },
+              data: { 'order_id': $scope.gift.order.uuid },
               headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
               }
             });
           }
           $state.go('remerciement_mobile');
-          mixpanel.track('Sucessful payment');
+          // mixpanel.track('Sucessful payment');
         })
         .error(function (data, status, headers, config) {
           toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
-          mixpanel.track('Server failed to proceed payment');
+          // mixpanel.track('Server failed to proceed payment');
         });
       }
 

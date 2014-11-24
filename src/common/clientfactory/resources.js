@@ -131,7 +131,7 @@ angular.module('Resources', [ 'settings' ])
       return $http.post(settings.apiEndPoint + '/orders/receiver/survey/', this.receiver);
     };
     Gift.prototype.chargeGiftOrder = function (_id, _giftUuid) {
-      return $http.post(settings.apiEndPoint + '/orders/gift/chargegiftorder/', {
+      return $http.post(settings.apiEndPoint + '/orders/gift/charge/', {
         id: _id,
         gift_uuid: _giftUuid
       });
