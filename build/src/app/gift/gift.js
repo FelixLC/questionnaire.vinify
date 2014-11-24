@@ -26,7 +26,8 @@ angular.module('vinibar.gift', [
 })
 
 .controller('giftPayCtrl', function giftPayCtrl ($scope, Gift, params, toaster, settings) {
-   Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
+   // Stripe.setPublishableKey('pk_live_gNv4cCe8tsZpettPUsdQj25F');
+   Stripe.setPublishableKey('pk_test_sK21onMmCuKNuoY7pbml8z3Q');
  $scope.gift = $scope.$parent.gift;
   console.log(Gift.chargeGiftOrder);
   $scope.submit = function (status, response) {
