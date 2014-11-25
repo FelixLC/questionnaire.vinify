@@ -12,10 +12,11 @@
     /* @ngInject */
   function settings () {
     var service = {
-      production: false,
+      production: true,
       test: false,
-      apiEndPoint: 'http://127.0.0.1:8000/api'
+      // apiEndPoint: 'http://127.0.0.1:8000/api'
       // apiEndPoint: 'https://api.vinify.co'
+      apiEndPoint: 'https://backoffice.vinify.co'
     };
     return service;
   }
