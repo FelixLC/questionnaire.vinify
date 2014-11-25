@@ -13,6 +13,7 @@
   function settings () {
     var service = {
       production: false,
+      test: false,
       apiEndPoint: 'http://127.0.0.1:8000/api'
       // apiEndPoint: 'https://api.vinify.co'
     };

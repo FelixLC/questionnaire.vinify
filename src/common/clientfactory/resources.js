@@ -106,7 +106,8 @@ angular.module('Resources', [ 'settings' ])
         message: "",
         comment: "",
         receiver_address: new Address(),
-        send_to_receiver: true
+        send_to_receiver: true,
+        billing: false
       };
 
       this.receiver = {
@@ -131,12 +132,13 @@ angular.module('Resources', [ 'settings' ])
     Gift.prototype.sendSurvey = function () {
       return $http.post(settings.apiEndPoint + '/orders/receiver/survey/', this.receiver);
     };
-    Gift.prototype.chargeGiftOrder = function (_id, _giftUuid) {
+    Gift.prototype.chargeGiftOrder = function (_id, _giftUuid, isTest, hasBilling, _billingAddress) {
       return $http.post(settings.apiEndPoint + '/orders/gift/charge/', {
         id: _id,
         gift_uuid: _giftUuid,
-        billing: false,
-        billing_address: {}
+        test: isTest,
+        billing: hasBilling,
+        billing_address: (hasBilling) ? _billingAddress : {}
       });
     };
     return Gift;
