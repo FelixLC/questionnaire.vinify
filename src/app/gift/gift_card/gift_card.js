@@ -39,6 +39,7 @@ angular.module('vinibar.gift.gift_card', [
     $scope.gift = new Gift('Card');
     $scope.gift.order.delivery_mode = 'Email';
     $scope.costs = params;
+    $scope.sendDate = {};
 
     $scope.is = {
       client: true
@@ -73,6 +74,7 @@ angular.module('vinibar.gift.gift_card', [
 
     var updateCosts = function () {
       $scope.details.total = 69 + params.card[$scope.gift.order.delivery_mode];
+      $scope.gift.order.delivery_cost = params.card[$scope.gift.order.delivery_mode];
     };
   };
 
@@ -94,12 +96,13 @@ angular.module('vinibar.gift.gift_card', [
             toaster.pop('success', 'Bravo !', ' Votre compte a été créé');
             $window.sessionStorage.token = response.data.token;
             $scope.logged = true;
+            $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
+                                $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
 
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
-                $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
                 $scope.load = false;
                 $state.go('gift.gift_card.pay');
 
@@ -123,12 +126,13 @@ angular.module('vinibar.gift.gift_card', [
             $scope.gift.giver.first_name = response.data.first_name;
             $scope.gift.giver.last_name = response.data.last_name;
             $scope.logged = true;
+            $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
+                                    $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
 
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
-                $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
                 $scope.load = false;
                 $state.go('gift.gift_card.pay');
 

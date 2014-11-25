@@ -77,6 +77,7 @@ angular.module('vinibar.gift.vinibar', [
 
     var updateCosts = function () {
       $scope.details.total = 69 + params.vinibar[$scope.gift.order.delivery_mode];
+      console.log($scope.gift.order.delivery_cost);
     };
   };
 
@@ -103,7 +104,6 @@ angular.module('vinibar.gift.vinibar', [
               .then(function (response) { // order creation success
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
-                $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
                 $scope.load = false;
                 $state.go('gift.vinibar.quiz');
 
@@ -132,7 +132,6 @@ angular.module('vinibar.gift.vinibar', [
               .then(function (response) { // order creation success
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
-                $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
                 $scope.load = false;
                 $state.go('gift.vinibar.quiz');
 

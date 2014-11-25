@@ -248,19 +248,81 @@ angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", fun
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Email' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode = 'Email' \">\n" +
     "        <h3>Par Email</h3>\n" +
-    "        <p class=\"help\">Un email sera envoyé à la fin de votre commande à l'heureux destinataire</p>\n" +
+    "        <p class=\"help\">Un email sera envoyé à la date suivante pour le prévenir de votre cadeau: (à la fin de la commande si vide)</p>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "            <select class=\"form-control\" ng-model=\"sendDate.day\" name=\"day\">\n" +
+    "            <option value=\"\">JJ</option>\n" +
+    "            <option value=\"1\">1</option>\n" +
+    "            <option value=\"2\">2</option>\n" +
+    "            <option value=\"3\">3</option>\n" +
+    "            <option value=\"4\">4</option>\n" +
+    "            <option value=\"5\">5</option>\n" +
+    "            <option value=\"6\">6</option>\n" +
+    "            <option value=\"7\">7</option>\n" +
+    "            <option value=\"8\">8</option>\n" +
+    "            <option value=\"9\">9</option>\n" +
+    "            <option value=\"10\">10</option>\n" +
+    "            <option value=\"11\">11</option>\n" +
+    "            <option value=\"12\">12</option>\n" +
+    "            <option value=\"13\">13</option>\n" +
+    "            <option value=\"14\">14</option>\n" +
+    "            <option value=\"15\">15</option>\n" +
+    "            <option value=\"16\">16</option>\n" +
+    "            <option value=\"17\">17</option>\n" +
+    "            <option value=\"18\">18</option>\n" +
+    "            <option value=\"19\">19</option>\n" +
+    "            <option value=\"20\">20</option>\n" +
+    "            <option value=\"21\">21</option>\n" +
+    "            <option value=\"22\">22</option>\n" +
+    "            <option value=\"23\">23</option>\n" +
+    "            <option value=\"24\">24</option>\n" +
+    "            <option value=\"25\">25</option>\n" +
+    "            <option value=\"26\">26</option>\n" +
+    "            <option value=\"27\">27</option>\n" +
+    "            <option value=\"28\">28</option>\n" +
+    "            <option value=\"29\">29</option>\n" +
+    "            <option value=\"30\">30</option>\n" +
+    "            <option value=\"31\">31</option>\n" +
+    "            </select>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "            <select class=\"form-control\" ng-model=\"sendDate.month\" name=\"month\">\n" +
+    "            <option value=\"\">MM</option>\n" +
+    "            <option value=\"1\">Janvier</option>\n" +
+    "            <option value=\"2\">Février</option>\n" +
+    "            <option value=\"3\">Mars</option>\n" +
+    "            <option value=\"4\">Avril</option>\n" +
+    "            <option value=\"5\">Mai</option>\n" +
+    "            <option value=\"6\">Juin</option>\n" +
+    "            <option value=\"7\">Juillet</option>\n" +
+    "            <option value=\"8\">Aout</option>\n" +
+    "            <option value=\"9\">Septembre</option>\n" +
+    "            <option value=\"10\">Octobre</option>\n" +
+    "            <option value=\"11\">Novembre</option>\n" +
+    "            <option value=\"12\">Décembre</option>\n" +
+    "            </select>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
+    "            <select class=\"form-control\" ng-model=\"sendDate.year\" name=\"month\">\n" +
+    "            <option value=\"\">AAAA</option>\n" +
+    "            <option value=\"2014\">2014</option>\n" +
+    "            <option value=\"2015\">2015</option>\n" +
+    "            </select>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Print' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode = 'Print'\">\n" +
     "        <h3>Bon Cadeau</h3>\n" +
-    "        <p class=\"help\">Je imprime le bon cadeau moi-même, et j'offre le cadeau quand j'en ai envie</p>\n" +
+    "        <p class=\"help\">Imprimez le bon cadeau et offrez le quand vous le voulez.</p>\n" +
     "      </div>\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Card' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode = 'Card' \">\n" +
     "        <h3>Par la Poste (+5€)</h3>\n" +
-    "        <p class=\"help\">Vinify enverra une carte postale manuscrite avec votre mot pour le prévenir de votre intention</p>\n" +
+    "        <p class=\"help\">Vinify enverra une carte postale manuscrite avec votre mot à l'addresse de votre choix.</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -354,6 +416,22 @@ angular.module("gift/gift_card/infos.tpl.html", []).run(["$templateCache", funct
     "      <h2 class=\"col-title\">Livraison</h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Vinify poste ma carte postale</p>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "            <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = false\" ng-class=\"{infochecked: !gift.order.send_to_receiver}\">\n" +
+    "              <p>Chez moi</p>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = true\" ng-class=\"{infochecked: gift.order.send_to_receiver}\">\n" +
+    "            <p>Chez\n" +
+    "                    <span ng-show=\"gift.order.receiver_sex != 'F' && gift.order.receiver_sex != 'M' \">lui / elle</span>\n" +
+    "                    <span ng-show=\"gift.order.receiver_sex === 'F' \">elle</span>\n" +
+    "                    <span ng-show=\"gift.order.receiver_sex === 'M' \">lui</span>\n" +
+    "            </p>\n" +
+    "          </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
     "        <div class=\"gift-receiver\">\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
@@ -625,7 +703,7 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "         <div class=\"row row-submit centered\">\n" +
     "         <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "            <div><input type=\"hidden\" name=\"name\" ng-model=\"gift.giver.last_name\"/></div>\n" +
-    "           <div class=\"margin-top\"><button class=\"btn-block-primary\" value=\"submit\"><p>Offrir mon cadeau</p></button></div>\n" +
+    "           <div class=\"margin-top\"><button class=\"btn-block-primary\" value=\"submit\"><p>Offrir mon cadeau  <i ng-show=\"load.spin\" class=\"fa fa-spinner fa-spin\"></i></p></button></div>\n" +
     "         </div>\n" +
     "         </div>\n" +
     "       </form>\n" +
@@ -807,7 +885,23 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Livraison</h2>\n" +
     "      <div class=\"col-container\">\n" +
-    "        <p class=\"col-subtitle\">Vinify poste ma carte postale</p>\n" +
+    "        <p class=\"col-subtitle\">Vinify envoie le bar</p>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "            <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = false\" ng-class=\"{infochecked: !gift.order.send_to_receiver}\">\n" +
+    "              <p>Chez moi</p>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = true\" ng-class=\"{infochecked: gift.order.send_to_receiver}\">\n" +
+    "            <p>Chez\n" +
+    "                    <span ng-show=\"gift.order.receiver_sex != 'F' && gift.order.receiver_sex != 'M' \">lui / elle</span>\n" +
+    "                    <span ng-show=\"gift.order.receiver_sex === 'F' \">elle</span>\n" +
+    "                    <span ng-show=\"gift.order.receiver_sex === 'M' \">lui</span>\n" +
+    "            </p>\n" +
+    "          </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
     "        <div class=\"gift-receiver\">\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
@@ -1636,6 +1730,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							</div>\n" +
     "							<div class=\"\">\n" +
     "							  <select class=\"form-control\" ng-model=\"b.birthyear\" name=\"birthmonth\" required>\n" +
+    "								<option value=\"\">AAAA</option>\n" +
     "								<option value=\"1997\">1997</option>\n" +
     "								<option value=\"1996\">1996</option>\n" +
     "								<option value=\"1995\">1995</option>\n" +
@@ -1714,7 +1809,6 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "								<option value=\"1922\">1922</option>\n" +
     "								<option value=\"1921\">1921</option>\n" +
     "								<option value=\"1920\">1920</option>\n" +
-    "								<option value=\"\">AAAA</option>\n" +
     "							  </select>\n" +
     "							</div>\n" +
     "						  </div>\n" +

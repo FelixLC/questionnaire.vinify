@@ -7920,6 +7920,14 @@ footer p {
   cursor: pointer;
   vertical-align: middle;
 }
+#gift .gift-checkbox.infochecked::before {
+  position: absolute;
+  left: 6px;
+  font-family: FontAwesome;
+  font-size: 14px;
+  content: "\f00c";
+  color: #cb0001;
+}
 /*
 ** QUIZ
 */

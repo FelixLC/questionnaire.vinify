@@ -107,6 +107,7 @@ angular.module('Resources', [ 'settings' ])
         comment: "",
         receiver_address: new Address(),
         send_to_receiver: true,
+        send_date: "",
         billing: false
       };
 

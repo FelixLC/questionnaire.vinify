@@ -37,7 +37,9 @@ angular.module('vinibar.gift', [
   $scope.test = settings.test;
 
   $scope.submit = function (status, response) {
+    $scope.load = { spin: true };
     if (response.error) {
+      $scope.load = { spin: false };
       toaster.pop('infos', 'Erreur', 'Merci de vérifier vos coordonnées bancaires.');
     } else {
       $scope.gift.chargeGiftOrder(response.id, $scope.gift.receiver.gift_uuid, settings.test, $scope.gift.order.billing, $scope.gift.order.billing_address)
@@ -52,11 +54,13 @@ angular.module('vinibar.gift', [
               }
             });
           }
+          $scope.load = { spin: false };
           $state.go('remerciement_mobile');
           // mixpanel.track('Sucessful payment');
         })
         .error(function (data, status, headers, config) {
-          toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
+          $scope.load = { spin: false };
+          toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturé. Merci de réessayer');
           // mixpanel.track('Server failed to proceed payment');
         });
     }
