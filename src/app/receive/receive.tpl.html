@@ -1,0 +1,24 @@
+<div class="background-receive">
+  <toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
+  <div class="overlay-receive">
+    <div class="centered">
+          <h3>Bienvenue chez Vinify !</h3>
+          <h4>Merci de rentrer votre code cadeau</h4>
+          <form role="form" name="form_login" class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="password">Mot de Passe</label>
+              <input type="text"
+                  placeholder="VINICHOUETTE"
+                  name="code"
+                  ng-model="code"
+                  required
+                  class="form-control"
+                  ng-minlength="5"
+                  id="code"/>
+            </div>
+            <button class="btn btn-outline-white" ng-click="activate(code)">Valider</button>
+          </form>
+    </div>
+
+  </div>
+</div>

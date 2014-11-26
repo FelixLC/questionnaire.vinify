@@ -8524,6 +8524,42 @@ footer p {
     font-size: 16px;
   }
 }
+.background-receive {
+  background-image: url(background-tonio-carafe.JPG);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+.overlay-receive {
+  color: #fff;
+  padding: 100px;
+  background: rgba(0, 0, 0, 0.3);
+  overflow: auto;
+  height: 100%;
+  z-index: 2;
+  padding: 30px;
+  display: table;
+  width: 100%;
+}
+.overlay-receive .caret {
+  color: #fff;
+}
+.overlay-receive p {
+  font-size: 16px;
+}
+.overlay-receive > div {
+  display: table-cell;
+  vertical-align: middle;
+}
 #mondialrelay {
   padding-top: 50px;
 }

@@ -4,6 +4,7 @@ angular.module('vinibar.questionnaire', [
 	'Resources',
 	'ngAutocomplete',
 	'Mixpanel',
+	'receiverService',
 	'toaster'
 ])
 
@@ -60,7 +61,7 @@ angular.module('vinibar.questionnaire', [
 		});
 })
 
-.controller('questionnaireCtrl', function questionnaireCtrl (Mixpanel, Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
+.controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receiver, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
 	// modal
 	$scope.open = function (size) {
 
@@ -196,27 +197,33 @@ angular.module('vinibar.questionnaire', [
 				currentClient.currentClient.userinfos.last_name = $scope.newuser.last_name;
 
 				$scope.newuser.createUser().success(function (data, status, headers, config) {
-																$window.sessionStorage.token = data.token;
-																Mixpanel.alias(data.uuid);
-																Mixpanel.people.set({
-																	"First Name": data.first_name,
-																	"Email ": data.email,
-																	"Last Name": data.last_name
-																});
-																Recommender.calcPreview(data)
-																	.then(function (response) {
-																		$state.go('preview');
-																		Mixpanel.track('User Created');
-																		$rootScope.loading = false;
-																	});
-																// $state.go('remerciement');
-														})
+					$window.sessionStorage.token = data.token;
+					Mixpanel.alias(data.uuid);
+					Mixpanel.people.set({
+						"First Name": data.first_name,
+						"Email ": data.email,
+						"Last Name": data.last_name
+					});
+					Mixpanel.track('User Created', {referrer: (currentClient.isGift) ? 'Gift' : $document.referrer});
+					if (!currentClient.isGift) {
+						Recommender.calcPreview(data)
+							.then(function (response) {
+								$state.go('preview');
+								$rootScope.loading = false;
+							});
+					} else {
+						Receiver.update();
+						$state.go('order.userinfos');
+						$rootScope.loading = false;
+					}
+					// $state.go('remerciement');
+				})
 
-													.error(function (data, status, headers, config) {
-																$rootScope.loading = false;
-																toaster.pop('info', 'Oops, cet email est déjà associé à un compte');
-																console.log('error @ createOrder');
-														});
+				.error(function (data, status, headers, config) {
+					$rootScope.loading = false;
+					toaster.pop('info', 'Oops, cet email est déjà associé à un compte');
+					console.log('error @ createOrder');
+				});
 
 
 		}

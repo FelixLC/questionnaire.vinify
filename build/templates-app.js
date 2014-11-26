@@ -3195,7 +3195,30 @@ angular.module("questionnaire/questionnaire.tpl.html", []).run(["$templateCache"
 
 angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("receive/receive.tpl.html",
-    "");
+    "<div class=\"background-receive\">\n" +
+    "  <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "  <div class=\"overlay-receive\">\n" +
+    "    <div class=\"centered\">\n" +
+    "          <h3>Bienvenue chez Vinify !</h3>\n" +
+    "          <h4>Merci de rentrer votre code cadeau</h4>\n" +
+    "          <form role=\"form\" name=\"form_login\" class=\"form-inline\">\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label class=\"sr-only\" for=\"password\">Mot de Passe</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                  placeholder=\"VINICHOUETTE\"\n" +
+    "                  name=\"code\"\n" +
+    "                  ng-model=\"code\"\n" +
+    "                  required\n" +
+    "                  class=\"form-control\"\n" +
+    "                  ng-minlength=\"5\"\n" +
+    "                  id=\"code\"/>\n" +
+    "            </div>\n" +
+    "            <button class=\"btn btn-outline-white\" ng-click=\"activate(code)\">Valider</button>\n" +
+    "          </form>\n" +
+    "    </div>\n" +
+    "\n" +
+    "  </div>\n" +
+    "</div>");
 }]);
 
 angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", function($templateCache) {
