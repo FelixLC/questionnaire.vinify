@@ -1,4 +1,4 @@
-angular.module('templates-app', ['gift/address.tpl.html', 'gift/choose.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card/details.tpl.html', 'gift/gift_card/infos.tpl.html', 'gift/overview.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['gift/address.tpl.html', 'gift/choose.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card/details.tpl.html', 'gift/gift_card/infos.tpl.html', 'gift/overview.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
 
 angular.module("gift/address.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("gift/address.tpl.html",
@@ -74,7 +74,7 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "  <div>\n" +
     "    <h2 class=\"col-title\">Un Vinibar</h2>\n" +
     "    <p>6 bouteilles sélectionnés en fonction de ses goûts. L’accès à notre application pour noter les vins et retrouver les conseils d’un  oenologue</p>\n" +
-    "    <p class=\"price\">69€ (+ 10€ livraison France)</p>\n" +
+    "    <p class=\"price\">69€</p>\n" +
     "    <h2 class=\"col-title\">Les recharges</h2>\n" +
     "    <p>Offrez-lui la possibilité de recharger son vinibar avec des vins choisis en fonction des notes qu’il à données au 6 premières bouteilles !</p>\n" +
     "    <p class=\"price\">à partir de 29€ (3 bouteilles)</p>\n" +
@@ -118,7 +118,7 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "        <div><p>J’envoie le vinibar  <br> à l’adresse de mon choix</p></div>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "    <button class=\"btn-block-primary margin-top\" ui-sref=\"gift.vinibar.details\">Vinibar</button>\n" +
+    "    <button class=\"btn-block-primary margin-top\" ng-click=\"goTo('gift.vinibar.details')\">Vinibar</button>\n" +
     "  </div>\n" +
     "    <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "    <h2 class=\"col-title\">Carte Cadeau</h2>\n" +
@@ -137,7 +137,7 @@ angular.module("gift/choose.tpl.html", []).run(["$templateCache", function($temp
     "        <div><p>Le destinataire recoit ma carte <br> et démarre l’aventure</p></div>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "    <button class=\"btn-block-primary margin-top\" ui-sref=\"gift.gift_card.details\">Carte Cadeau</button>\n" +
+    "    <button class=\"btn-block-primary margin-top\" ng-click=\"goTo('gift.gift_card.details')\">Carte Cadeau</button>\n" +
     "  </div>\n" +
     "</div>");
 }]);
@@ -192,7 +192,7 @@ angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", fun
     "      <h2 class=\"col-title\">Vinibar</h2>\n" +
     "      <div class=\"col-container checked\">\n" +
     "        <h3>Vinibar</h3>\n" +
-    "        <p class=\"price\">69 €</p>\n" +
+    "        <p class=\"price\">69 € + 11,90 € de livraison (France)</p>\n" +
     "      </div>\n" +
     "      <p class=\"details-helper\">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter des crédits à votre cadeau pour permettre de recharger le Vinibar.</p>\n" +
     "    </div>\n" +
@@ -329,8 +329,8 @@ angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", fun
     "  <div class=\"row container-fluid row-totals\">\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <div class=\"col-container\">\n" +
-    "        <p class=\"col-subtitle\">Prix du bar</p>\n" +
-    "        <p class=\"centered\">69 €</p>\n" +
+    "        <p class=\"col-subtitle\">Prix du bar + livraison</p>\n" +
+    "        <p class=\"centered\">80.90 €</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
@@ -611,6 +611,10 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "            <td><p>Vinibar </p></td>\n" +
     "            <td><p>69&nbsp;€</p></td>\n" +
     "          </tr>\n" +
+    "          <tr ng-show=\"gift.order.credits\">\n" +
+    "            <td><p>Recharges </p></td>\n" +
+    "            <td><p>{{gift.order.credits}}&nbsp;€</p></td>\n" +
+    "          </tr>\n" +
     "          <tr ng-show=\"gift.order.delivery_cost\">\n" +
     "            <td><p>Livraison </p></td>\n" +
     "            <td>\n" +
@@ -618,10 +622,6 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "                {{gift.order.delivery_cost}}&nbsp;€\n" +
     "              </p>\n" +
     "            </td>\n" +
-    "          </tr>\n" +
-    "          <tr ng-show=\"gift.order.credits\">\n" +
-    "            <td><p>Recharges </p></td>\n" +
-    "            <td><p>{{gift.order.credits}}&nbsp;€</p></td>\n" +
     "          </tr>\n" +
     "          <tr  class=\"\">\n" +
     "            <td><h4>Total </h4></td>\n" +
@@ -637,7 +637,8 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "      <p>{{gift.order.receiver_email}}</p>\n" +
     "      <p ng-hide=\"gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  \">{{gift.order.receiver_address.street}}</p>\n" +
     "      <p ng-hide=\"gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  \">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>\n" +
-    "      <p><a href ng-click=\"open('sm')\">Ajouter une adresse de facturation</a></p>\n" +
+    "      <p><br></p>\n" +
+    "      <p><a href class=\"dotted-underline margin-top\" ng-click=\"open('sm')\">Ajouter une adresse de facturation</a></p>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -821,7 +822,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <p>Total de la commande</p>\n" +
     "        <p>{{details.total + gift.order.credits | number:2}} €</p>\n" +
     "      </div>\n" +
-    "      <div class=\"btn-block-primary centered margin-top\" ui-sref=\"gift.vinibar.infos\"><p>Continuer</p></div>\n" +
+    "      <div class=\"btn-block-primary centered margin-top\" ng-click=\"goTo('gift.vinibar.infos')\"><p>Continuer</p></div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "");
@@ -1122,7 +1123,12 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Il/elle est plutôt</h2>\n" +
+    "      <h2 class=\"col-title\">\n" +
+    "      <span ng-show=\"gift.order.receiver_sex != 'F' && gift.order.receiver_sex != 'M' \">Il / elle</span>\n" +
+    "      <span ng-show=\"gift.order.receiver_sex === 'F' \">Elle</span>\n" +
+    "      <span ng-show=\"gift.order.receiver_sex === 'M' \">Il</span>\n" +
+    "        est plutôt\n" +
+    "      </h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Du rouge</p>\n" +
     "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_1 === 2}\">\n" +
@@ -1160,7 +1166,7 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
     "        <p class=\"col-subtitle\">Quelle est sa région préférée&nbsp;?</p>\n" +
     "        <select class=\"form-control\" ng-model=\"gift.receiver.survey.quest_7.answ\" ng-options=\"region for region in regions\"></select>\n" +
     "        <p class=\"col-subtitle\">Un commentaire&nbsp;?</p>\n" +
-    "        <textarea class=\"form-control\" ng-model=\"gift.order.comment\" rows=\"2\" placeholder=\"Une attention particulière ? D'autres infos sur ses goûts ?\"></textarea>\n" +
+    "        <textarea class=\"form-control\" ng-model=\"gift.receiver.comment\" rows=\"2\" placeholder=\"Une attention particulière ? D'autres infos sur ses goûts ?\"></textarea>\n" +
     "      </div>\n" +
     "      <div class=\"btn-block-primary centered margin-top\" ng-click=\"sendSurvey()\" >Continuer</div>\n" +
     "    </div>\n" +
@@ -3184,6 +3190,11 @@ angular.module("questionnaire/questionnaire.tpl.html", []).run(["$templateCache"
     "</div>\n" +
     "\n" +
     "\n" +
+    "");
+}]);
+
+angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("receive/receive.tpl.html",
     "");
 }]);
 

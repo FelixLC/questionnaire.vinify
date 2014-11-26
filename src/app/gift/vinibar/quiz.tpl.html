@@ -76,7 +76,12 @@
       </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Il/elle est plutôt</h2>
+      <h2 class="col-title">
+      <span ng-show="gift.order.receiver_sex != 'F' && gift.order.receiver_sex != 'M' ">Il / elle</span>
+      <span ng-show="gift.order.receiver_sex === 'F' ">Elle</span>
+      <span ng-show="gift.order.receiver_sex === 'M' ">Il</span>
+        est plutôt
+      </h2>
       <div class="col-container">
         <p class="col-subtitle">Du rouge</p>
           <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_1 = 2" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_1 === 2}">
@@ -114,7 +119,7 @@
         <p class="col-subtitle">Quelle est sa région préférée&nbsp;?</p>
         <select class="form-control" ng-model="gift.receiver.survey.quest_7.answ" ng-options="region for region in regions"></select>
         <p class="col-subtitle">Un commentaire&nbsp;?</p>
-        <textarea class="form-control" ng-model="gift.order.comment" rows="2" placeholder="Une attention particulière ? D'autres infos sur ses goûts ?"></textarea>
+        <textarea class="form-control" ng-model="gift.receiver.comment" rows="2" placeholder="Une attention particulière ? D'autres infos sur ses goûts ?"></textarea>
       </div>
       <div class="btn-block-primary centered margin-top" ng-click="sendSurvey()" >Continuer</div>
     </div>

@@ -4,6 +4,7 @@ angular.module('vinibar.gift', [
   'vinibar.gift.vinibar',
   'vinibar.gift.gift_card',
   'ui.bootstrap',
+  'Mixpanel',
   'settings'
 ])
 
@@ -21,16 +22,22 @@ angular.module('vinibar.gift', [
     .state('gift.choose', {
       url: '/type?test',
       templateUrl: 'gift/choose.tpl.html',
-      controller: function ($stateParams, settings) {
-        if ($stateParams.test) {
-          settings.test = true;
-        }
-      },
+      controller: 'chooseGiftCtrl',
       data: { pageTitle: 'Cadeau' }
     });
 })
+.controller('chooseGiftCtrl', function ($stateParams, settings, Mixpanel, $rootScope, $scope, $state) {
+  if ($stateParams.test) {
+    settings.test = true;
+  }
+  Mixpanel.track('viewed cadeau/type');
+  $scope.goTo = function (state) {
+    Mixpanel.track('Selected: ' + state);
+    $state.go(state);
+  };
+})
 
-.controller('giftPayCtrl', function giftPayCtrl ($scope, $http, $state, Gift, params, toaster, settings, $modal) {
+.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, Gift, params, toaster, settings, $modal) {
 
   Stripe.setPublishableKey((settings.test) ? 'pk_test_sK21onMmCuKNuoY7pbml8z3Q' : 'pk_live_gNv4cCe8tsZpettPUsdQj25F');
   $scope.gift = $scope.$parent.gift;
@@ -45,23 +52,16 @@ angular.module('vinibar.gift', [
       $scope.gift.chargeGiftOrder(response.id, $scope.gift.receiver.gift_uuid, settings.test, $scope.gift.order.billing, $scope.gift.order.billing_address)
         .success(function (data, status, headers, config) {
           if ($scope.gift.order.delivery_mode === 'Point Relais') {
-            $http({
-              url: settings.apiEndPoint + '/orders/pickmremail/',
-              method: "POST",
-              data: { order_id: $scope.gift.order.uuid },
-              headers: {
-                'Content-Type': 'application/json; charset=UTF-8'
-              }
-            });
+            $http.post(settings.apiEndPoint + '/orders/pickmremail/', { order_id: data.uuid });
           }
           $scope.load = { spin: false };
           $state.go('remerciement_mobile');
-          // mixpanel.track('Sucessful payment');
+          Mixpanel.track('Sucessful payment');
         })
         .error(function (data, status, headers, config) {
           $scope.load = { spin: false };
           toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturé. Merci de réessayer');
-          // mixpanel.track('Server failed to proceed payment');
+          Mixpanel.track('Server failed to proceed payment');
         });
     }
   };

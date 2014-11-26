@@ -4,6 +4,7 @@ angular.module('vinibar.pay_mobile', [
   'clientFactory',
   'ui.bootstrap',
   'orderService',
+  'Mixpanel',
   'settings',
   'toaster'
 ])
@@ -21,7 +22,7 @@ angular.module('vinibar.pay_mobile', [
   });
 })
 
-.controller('pay_mobileCtrl', function pay_mobileCtrl ($scope, $http, currentClient, $rootScope, settings, $state, Order, toaster) {
+.controller('pay_mobileCtrl', function pay_mobileCtrl (Mixpanel, $scope, $http, currentClient, $rootScope, settings, $state, Order, toaster) {
     var init = function (argument) {
       $scope.client = currentClient.currentClient;
       $scope.serializedOrder = $scope.client.order;
@@ -88,12 +89,12 @@ angular.module('vinibar.pay_mobile', [
               });
             }
             $state.go('remerciement_mobile');
-            mixpanel.track('Sucessful payment');
+            Mixpanel.track('Sucessful payment');
           })
           .error(function (data, status, headers, config) {
             $rootScope.loading = false;
             toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
-            mixpanel.track('Server failed to proceed payment');
+            Mixpanel.track('Server failed to proceed payment');
           });
         }
 

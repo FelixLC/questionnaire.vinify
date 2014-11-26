@@ -4,6 +4,7 @@ angular.module('vinibar.gift.gift_card', [
   'ui.bootstrap',
   'Resources',
   'params',
+  'Mixpanel',
   'toaster'
 ])
 
@@ -33,7 +34,7 @@ angular.module('vinibar.gift.gift_card', [
     });
 })
 
-.controller('giftCardCtrl', function giftCardCtrl ($scope, $state, Gift, params, toaster, $window) {
+.controller('giftCardCtrl', function giftCardCtrl (Mixpanel, $scope, $state, Gift, params, toaster, $window) {
   var init = function () {
 
     $scope.gift = new Gift('Card');
@@ -95,19 +96,29 @@ angular.module('vinibar.gift.gift_card', [
           .then(function (response) { // account creation success
             toaster.pop('success', 'Bravo !', ' Votre compte a été créé');
             $window.sessionStorage.token = response.data.token;
+            Mixpanel.people.set({
+              "First Name": response.data.first_name,
+              "Email ": response.data.email,
+              "Last Name": response.data.last_name
+             });
             $scope.logged = true;
             $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
                                 $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
 
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
+                Mixpanel.track('New prospect created a ' + $scope.gift.order.gift_type + 'gift order');
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
                 $scope.load = false;
                 $state.go('gift.gift_card.pay');
 
               }, function (error) { // order creation error
-                toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+                if (error.data === 'User with this email is already a client') {
+                  toaster.pop('info', 'Oops !', 'Cet utilisateur est déjà un de nos clients');
+                } else {
+                  toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+                }
               });
 
           }, function (error) {// account creation error
@@ -131,13 +142,18 @@ angular.module('vinibar.gift.gift_card', [
 
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
+                Mixpanel.track('Client created a ' + $scope.gift.order.gift_type + 'gift order');
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
                 $scope.load = false;
                 $state.go('gift.gift_card.pay');
 
               }, function (error) { // order creation error
-                toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+                if (error.data === 'User with this email is already a client') {
+                  toaster.pop('info', 'Oops !', 'Cet utilisateur est déjà un de nos clients');
+                } else {
+                  toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+                }
               });
 
           }, function (error) { // login error

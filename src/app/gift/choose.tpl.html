@@ -6,7 +6,7 @@
   <div>
     <h2 class="col-title">Un Vinibar</h2>
     <p>6 bouteilles sélectionnés en fonction de ses goûts. L’accès à notre application pour noter les vins et retrouver les conseils d’un  oenologue</p>
-    <p class="price">69€ (+ 10€ livraison France)</p>
+    <p class="price">69€</p>
     <h2 class="col-title">Les recharges</h2>
     <p>Offrez-lui la possibilité de recharger son vinibar avec des vins choisis en fonction des notes qu’il à données au 6 premières bouteilles !</p>
     <p class="price">à partir de 29€ (3 bouteilles)</p>
@@ -50,7 +50,7 @@
         <div><p>J’envoie le vinibar  <br> à l’adresse de mon choix</p></div>
       </div>
     </div>
-    <button class="btn-block-primary margin-top" ui-sref="gift.vinibar.details">Vinibar</button>
+    <button class="btn-block-primary margin-top" ng-click="goTo('gift.vinibar.details')">Vinibar</button>
   </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <h2 class="col-title">Carte Cadeau</h2>
@@ -69,6 +69,6 @@
         <div><p>Le destinataire recoit ma carte <br> et démarre l’aventure</p></div>
       </div>
     </div>
-    <button class="btn-block-primary margin-top" ui-sref="gift.gift_card.details">Carte Cadeau</button>
+    <button class="btn-block-primary margin-top" ng-click="goTo('gift.gift_card.details')">Carte Cadeau</button>
   </div>
 </div>

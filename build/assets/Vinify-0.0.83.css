@@ -7962,6 +7962,9 @@ footer p {
   background-size: cover;
   background-image: url(wines-blurred-background.jpg);
 }
+a.margin-top {
+  margin-top: 28px;
+}
 #gift .test-overlay {
   position: fixed;
   left: 10px;

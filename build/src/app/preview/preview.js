@@ -2,7 +2,8 @@ angular.module('vinibar.preview', [
   'ui.router',
   'ui.bootstrap',
   'Resources',
-  'clientFactory'
+  'clientFactory',
+  'Mixpanel'
 ])
 
 .config(function config ($stateProvider) {
@@ -19,7 +20,7 @@ angular.module('vinibar.preview', [
     });
 })
 
-.controller('previewCtrl', function previewCtrl (Recommender, $scope, currentClient, $state) {
+.controller('previewCtrl', function previewCtrl (Mixpanel, Recommender, $scope, currentClient, $state) {
   $scope.hover = {
     wine_1: false,
     wine_2: false,
@@ -27,7 +28,7 @@ angular.module('vinibar.preview', [
   };
   $scope.preview = Recommender.getPreview();
   $scope.order = function (type) {
-    mixpanel.track('Chose ' + type);
+    Mixpanel.track('Selected ' + type);
     currentClient.currentClient.order_type = type;
     currentClient.currentClient.order_uuid = Recommender.getUuid();
     $state.go('order.userinfos');

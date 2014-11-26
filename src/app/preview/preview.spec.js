@@ -1,6 +1,6 @@
 describe('previewCtrl', function () {
   describe('works as intended', function () {
-    var previewCtrl, $location, $scope, currentClient, mixpanel;
+    var previewCtrl, $location, $scope, currentClient, Mixpanel;
 
     beforeEach(module('vinibar.preview'));
 
@@ -8,11 +8,11 @@ describe('previewCtrl', function () {
       $state = _$state_;
       $scope = $rootScope.$new();
       currentClient = { currentClient: {} };
-      mixpanel = {
+      Mixpanel = {
         track: function () {}
       };
       spyOn($state, 'go');
-      previewCtrl = $controller('previewCtrl', { $state: $state, $scope: $scope, currentClient: currentClient, mixpanel: mixpanel });
+      previewCtrl = $controller('previewCtrl', { $state: $state, $scope: $scope, currentClient: currentClient, Mixpanel: Mixpanel });
     }));
 
     it('should pass a dummy test', inject(function () {

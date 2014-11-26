@@ -19,9 +19,9 @@
           Vinify: 0
         },
         card: {
-          Card: 5,
-          Print: 0,
-          Email: 0
+          Card: 16.90,
+          Print: 11.90,
+          Email: 11.90
         }
       };
     return service;

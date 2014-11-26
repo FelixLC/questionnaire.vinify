@@ -114,7 +114,8 @@ angular.module('Resources', [ 'settings' ])
       this.receiver = {
         receiver_email: "",
         survey: new Survey(),
-        gift_uuid: ""
+        gift_uuid: "",
+        comment: ""
       };
     };
 

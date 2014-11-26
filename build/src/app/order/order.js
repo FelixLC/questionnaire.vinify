@@ -4,6 +4,7 @@ angular.module('vinibar.order', [
   'ngAutocomplete',
   'mondialRelay',
   'toaster',
+  'Mixpanel',
   'orderService'
 ])
 
@@ -37,7 +38,7 @@ angular.module('vinibar.order', [
     });
 })
 
-.controller('orderCtrl', function orderCtrl ($scope, $location, currentClient, $state, $rootScope, toaster, Order) {
+.controller('orderCtrl', function orderCtrl (Mixpanel, $scope, $location, currentClient, $state, $rootScope, toaster, Order) {
   var init = function () {
     $scope.isState= function (state) { return $state.is(state);};
     $scope.client = currentClient.currentClient;
@@ -108,7 +109,7 @@ angular.module('vinibar.order', [
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function (data, status, headers, config) {
-                                    mixpanel.track('UserInfo Added');
+                                    Mixpanel.track('UserInfo Added');
                                     Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function (data) {
@@ -167,7 +168,7 @@ angular.module('vinibar.order', [
               $scope.client.addUserInfo()
                                   //USER INFOS ADDED
                                   .success(function (data, status, headers, config) {
-                                    mixpanel.track('UserInfo Added');
+                                    Mixpanel.track('UserInfo Added');
                                     Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
                                       // ORDER CREATED
                                       function (data) {

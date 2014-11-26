@@ -3,6 +3,7 @@ angular.module('vinibar.questionnaire', [
 	'ui.bootstrap',
 	'Resources',
 	'ngAutocomplete',
+	'Mixpanel',
 	'toaster'
 ])
 
@@ -59,7 +60,7 @@ angular.module('vinibar.questionnaire', [
 		});
 })
 
-.controller('questionnaireCtrl', function questionnaireCtrl (Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
+.controller('questionnaireCtrl', function questionnaireCtrl (Mixpanel, Recommender, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
 	// modal
 	$scope.open = function (size) {
 
@@ -114,7 +115,7 @@ angular.module('vinibar.questionnaire', [
 	// opening the modal when loading
 	$scope.open('lg');
 
-	mixpanel.track('Questionnaire Ouvert');
+	Mixpanel.track('Questionnaire Ouvert');
 	$scope.form_print = function (form) {
 		$scope.output = form;
 	};
@@ -159,7 +160,7 @@ angular.module('vinibar.questionnaire', [
 
 	// $scope.trackLink = function (n) {
 	//   $scope.newuser.survey.balance.red = 2;
-	//   mixpanel.track('clicked on your face');
+	//   Mixpanel.track('clicked on your face');
 	// };
 
 	$scope.newuser = new Client();
@@ -196,10 +197,16 @@ angular.module('vinibar.questionnaire', [
 
 				$scope.newuser.createUser().success(function (data, status, headers, config) {
 																$window.sessionStorage.token = data.token;
+																Mixpanel.alias(data.uuid);
+																Mixpanel.people.set({
+																	"First Name": data.first_name,
+																	"Email ": data.email,
+																	"Last Name": data.last_name
+																});
 																Recommender.calcPreview(data)
 																	.then(function (response) {
 																		$state.go('preview');
-																		mixpanel.track('User Created');
+																		Mixpanel.track('User Created');
 																		$rootScope.loading = false;
 																	});
 																// $state.go('remerciement');

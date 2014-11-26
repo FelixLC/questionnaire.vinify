@@ -11,6 +11,10 @@
             <td><p>Vinibar </p></td>
             <td><p>69&nbsp;€</p></td>
           </tr>
+          <tr ng-show="gift.order.credits">
+            <td><p>Recharges </p></td>
+            <td><p>{{gift.order.credits}}&nbsp;€</p></td>
+          </tr>
           <tr ng-show="gift.order.delivery_cost">
             <td><p>Livraison </p></td>
             <td>
@@ -18,10 +22,6 @@
                 {{gift.order.delivery_cost}}&nbsp;€
               </p>
             </td>
-          </tr>
-          <tr ng-show="gift.order.credits">
-            <td><p>Recharges </p></td>
-            <td><p>{{gift.order.credits}}&nbsp;€</p></td>
           </tr>
           <tr  class="">
             <td><h4>Total </h4></td>
@@ -37,7 +37,8 @@
       <p>{{gift.order.receiver_email}}</p>
       <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  ">{{gift.order.receiver_address.street}}</p>
       <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  ">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
-      <p><a href ng-click="open('sm')">Ajouter une adresse de facturation</a></p>
+      <p><br></p>
+      <p><a href class="dotted-underline margin-top" ng-click="open('sm')">Ajouter une adresse de facturation</a></p>
     </div>
   </div>
 </div>

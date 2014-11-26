@@ -3,6 +3,7 @@ angular.module('vinibar.paiement', [
   'ui.bootstrap',
   'stripe',
   'angularPayments',
+  'Mixpanel',
   'ngAutocomplete',
   'toaster',
   'settings'
@@ -30,7 +31,7 @@ angular.module('vinibar.paiement', [
     });
 })
 
-.controller('paiementCtrl', function paiementCtrl ($scope, $http, $state, settings, toaster, $window, $rootScope, $location, currentClient, Client) {
+.controller('paiementCtrl', function paiementCtrl (Mixpanel, $scope, $http, $state, settings, toaster, $window, $rootScope, $location, currentClient, Client) {
   $scope.delivery = {
     mode: 'Colissimo',
     cost: 11.90
@@ -138,11 +139,11 @@ angular.module('vinibar.paiement', [
                       });
                     }
                     $location.path('/remerciement_order');
-                    mixpanel.track('Sucessful payment');
+                    Mixpanel.track('Sucessful payment');
                   })
                   .error(function (data, status, headers, config) {
                     toaster.pop('info', 'Oops, Il y a eu une erreur avec votre commande', ' Veuillez réessayer ou contacter charlotte@vinify.co');
-                    mixpanel.track('Server Failed to proceed payment');
+                    Mixpanel.track('Server Failed to proceed payment');
 
                   });
       }

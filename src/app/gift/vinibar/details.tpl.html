@@ -101,6 +101,6 @@
         <p>Total de la commande</p>
         <p>{{details.total + gift.order.credits | number:2}} €</p>
       </div>
-      <div class="btn-block-primary centered margin-top" ui-sref="gift.vinibar.infos"><p>Continuer</p></div>
+      <div class="btn-block-primary centered margin-top" ng-click="goTo('gift.vinibar.infos')"><p>Continuer</p></div>
     </div>
   </div>
