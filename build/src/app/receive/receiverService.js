@@ -26,7 +26,7 @@
       }
       function update () {
         if (service.coupon.uuid) {
-          return $http.post(settings.apiEndPoint + '/orders/gift/update/',  {
+          return $http.post(settings.apiEndPoint + '/users/receiver/update/',  {
             coupon_uuid: service.coupon.uuid
           });
         } else {

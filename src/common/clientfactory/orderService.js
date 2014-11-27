@@ -39,7 +39,7 @@
             });
     }
     function update (uuid, deliveryCost, deliveryMode, success, failure) {
-      $http.post(settings.apiEndPoint + '/orders/updateorder/',  {
+      $http.post(settings.apiEndPoint + '/receiver/updateorder/',  {
         order_uuid: uuid,
         delivery_cost: deliveryCost,
         delivery_mode: deliveryMode

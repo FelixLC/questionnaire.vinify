@@ -17,7 +17,7 @@ angular.module('vinibar.gift.vinibar', [
       template: '<ui-view/>'
     })
     .state('gift.vinibar.details', {
-      url: '/formule',
+      url: '/formule?test',
       templateUrl: 'gift/vinibar/details.tpl.html',
       data: { pageTitle: 'Cadeau' }
     })
@@ -39,7 +39,7 @@ angular.module('vinibar.gift.vinibar', [
     });
 })
 
-.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, params, toaster, $window) {
+.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, toaster, $window) {
   var init = function () {
     $scope.costs = params;
     $scope.is = {
@@ -66,7 +66,9 @@ angular.module('vinibar.gift.vinibar', [
     $scope.vinibar = {
       refill: 59.80
     };
-
+    if ($stateParams.test) {
+      settings.test = true;
+    }
 
     $scope.$watch('gift.order.delivery_mode', function (newObj, OldObj) {
       $scope.gift.order.delivery_cost = ($scope.gift.order.gift_type === 'Vinibar') ? params.vinibar[$scope.gift.order.delivery_mode] : params.card[$scope.gift.order.gift_type];
@@ -78,12 +80,6 @@ angular.module('vinibar.gift.vinibar', [
       $scope.gift.order.credits = (newVal) ? 60 : 0;
     });
 
-  };
-
-  $scope.initVB = function () {
-    $scope.gift = new Gift('Vinibar');
-    $scope.gift.order.delivery_mode = 'Point Relais';
-
     $scope.goTo = function (state) {
       Mixpanel.track('Selected gift_card options', {
         credits: $scope.gift.order.credits,
@@ -91,6 +87,12 @@ angular.module('vinibar.gift.vinibar', [
       });
       $state.go(state);
     };
+  };
+
+  $scope.initVB = function () {
+    $scope.gift = new Gift('Vinibar');
+    $scope.gift.order.delivery_mode = 'Point Relais';
+
   };
 
   $scope.initCard = function () {
