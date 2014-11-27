@@ -2,9 +2,10 @@
   <h1>offrir un vinibar</h1>
   <h2>Je remplis ses coordonnées</h2>
 </div>
-<form novalidate name="infos" ng-submit="toSurvey(infos)">
+<form novalidate name="infos" ng-submit="submit(infos)">
   <div class="row container-fluid">
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <div ng-class="{ 'offset-2' : gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' }"
+              class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">L'heureux élu</h2>
       <div class="col-container">
         <p class="col-subtitle">Glissez un mot doux dans son Vinibar</p>
@@ -51,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <div ng-show="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Livraison</h2>
       <div class="col-container">
         <p class="col-subtitle">Vinify envoie le bar</p>
@@ -78,14 +79,14 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.first_name"
                             autocomplete="first_name" name="first_name"
                             ng-class="{'input-error' : infos.submitted && infos.first_name.$invalid}"
-                            required>
+                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Nom</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.last_name"
                             autocomplete="last_name" name="last_name"
                             ng-class="{'input-error' : infos.submitted && infos.last_name.$invalid}"
-                            required>
+                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
             </div>
           </div>
           <div class="row">
@@ -94,7 +95,7 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.street"
                             autocomplete="street" name="street"
                             ng-class="{'input-error' : infos.submitted && infos.street.$invalid}"
-                            required>
+                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
             </div>
           </div>
           <div class="row">
@@ -103,14 +104,14 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.zipcode"
                             autocomplete="zipcode" name="zipcode"
                             ng-class="{'input-error' : infos.submitted && infos.zipcode.$invalid}"
-                            required>
+                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Ville</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.city"
                             autocomplete="city" name="city"
                             ng-class="{'input-error' : infos.submitted && infos.city.$invalid}"
-                            required>
+                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
             </div>
           </div>
           <div class="row">

@@ -144,4 +144,10 @@ angular.module('Resources', [ 'settings' ])
       });
     };
     return Gift;
-  } ]);
+  } ])
+// the currentGift Factory gives the current Gift we're working with
+.factory('currentGift', [function () {
+  return {
+    current: null
+  };
+} ]);

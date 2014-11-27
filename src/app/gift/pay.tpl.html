@@ -35,8 +35,8 @@
     <div class="col-container centered">
       <p>{{gift.order.receiver_address.first_name}} {{gift.order.receiver_address.last_name}}</p>
       <p>{{gift.order.receiver_email}}</p>
-      <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  ">{{gift.order.receiver_address.street}}</p>
-      <p ng-hide="gift.order.delivery_mode === 'Email' || gift.order.delivery_mode != 'Print'  ">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
+      <p ng-hide="gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  ">{{gift.order.receiver_address.street}}</p>
+      <p ng-hide="gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  ">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
       <p><br></p>
       <p><a href class="dotted-underline margin-top" ng-click="open('sm')">Ajouter une adresse de facturation</a></p>
     </div>

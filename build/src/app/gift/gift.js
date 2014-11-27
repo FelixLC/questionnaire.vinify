@@ -4,6 +4,7 @@ angular.module('vinibar.gift', [
   'vinibar.gift.vinibar',
   'vinibar.gift.gift_card',
   'ui.bootstrap',
+  'Resources',
   'Mixpanel',
   'settings'
 ])
@@ -24,6 +25,12 @@ angular.module('vinibar.gift', [
       templateUrl: 'gift/choose.tpl.html',
       controller: 'chooseGiftCtrl',
       data: { pageTitle: 'Cadeau' }
+    })
+    .state('gift.pay', {
+      url: '/paiement',
+      templateUrl: 'gift/pay.tpl.html',
+      controller: 'giftPayCtrl',
+      data: { pageTitle: 'Cadeau' }
     });
 })
 .controller('chooseGiftCtrl', function ($stateParams, settings, Mixpanel, $rootScope, $scope, $state) {
@@ -37,10 +44,11 @@ angular.module('vinibar.gift', [
   };
 })
 
-.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, Gift, params, toaster, settings, $modal) {
+.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, currentGift, params, toaster, settings, $modal) {
 
   Stripe.setPublishableKey((settings.test) ? 'pk_test_sK21onMmCuKNuoY7pbml8z3Q' : 'pk_live_gNv4cCe8tsZpettPUsdQj25F');
-  $scope.gift = $scope.$parent.gift;
+  $scope.gift = currentGift.current;
+  console.log($scope.gift);
   $scope.test = settings.test;
 
   $scope.submit = function (status, response) {
@@ -77,7 +85,7 @@ angular.module('vinibar.gift', [
     modalInstance.result.then(function (address) {
       $scope.gift.order.billing = true;
       $scope.gift.order.billing_address = address;
-      console.log($scope.gift.order.billing_address);
+      toaster.pop('success', 'Votre adresse a été ajoutée', 'Vous recevrez la facture par mail');
     }, function () {
 
     });

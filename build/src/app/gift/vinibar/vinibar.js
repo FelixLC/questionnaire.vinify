@@ -39,20 +39,9 @@ angular.module('vinibar.gift.vinibar', [
     });
 })
 
-.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, params, toaster, $window) {
+.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, params, toaster, $window) {
   var init = function () {
-    $scope.gift = new Gift('Vinibar');
-    $scope.gift.order.delivery_mode = 'Point Relais';
     $scope.costs = params;
-
-    $scope.goTo = function (state) {
-      Mixpanel.track('Selected gift_card options', {
-        credits: $scope.gift.order.credits,
-        delivery_mode: $scope.gift.order.delivery_mode
-      });
-      $state.go(state);
-    };
-
     $scope.is = {
       client: true
     };
@@ -77,22 +66,51 @@ angular.module('vinibar.gift.vinibar', [
     $scope.vinibar = {
       refill: 59.80
     };
+
+
     $scope.$watch('gift.order.delivery_mode', function (newObj, OldObj) {
-      updateCosts();
+      $scope.gift.order.delivery_cost = ($scope.gift.order.gift_type === 'Vinibar') ? params.vinibar[$scope.gift.order.delivery_mode] : params.card[$scope.gift.order.gift_type];
+    });
+    $scope.$watch('gift.order.gift_type', function (newObj, OldObj) {
+      $scope.gift.order.delivery_cost = ($scope.gift.order.gift_type === 'Vinibar') ? params.vinibar[$scope.gift.order.delivery_mode] : params.card[$scope.gift.order.gift_type];
     });
     $scope.$watch('details.credits', function (newVal, OldVal) {
       $scope.gift.order.credits = (newVal) ? 60 : 0;
     });
 
-    var updateCosts = function () {
-      $scope.details.total = 69 + params.vinibar[$scope.gift.order.delivery_mode];
-      $scope.gift.order.delivery_cost = params.vinibar[$scope.gift.order.delivery_mode];
+  };
+
+  $scope.initVB = function () {
+    $scope.gift = new Gift('Vinibar');
+    $scope.gift.order.delivery_mode = 'Point Relais';
+
+    $scope.goTo = function (state) {
+      Mixpanel.track('Selected gift_card options', {
+        credits: $scope.gift.order.credits,
+        gift_type: $scope.gift.order.gift_type
+      });
+      $state.go(state);
     };
   };
 
+  $scope.initCard = function () {
+
+    $scope.gift = new Gift('Email');
+
+    $scope.sendDate = {};
+    var date = new Date();
+
+    $scope.sendDate = {
+      day: date.getDate(),
+      month: date.getMonth() + 1,
+      year: date.getFullYear()
+    };
+  };
+
+  $scope.initVB();
   init();
 
-  $scope.toSurvey = function (form) {
+  $scope.submit = function (form) {
     form.submitted = true;
 
     /*****************
@@ -114,6 +132,8 @@ angular.module('vinibar.gift.vinibar', [
               "Email ": response.data.email,
               "Last Name": response.data.last_name
            });
+            $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
+                                $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
 
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
@@ -121,8 +141,13 @@ angular.module('vinibar.gift.vinibar', [
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
                 $scope.load = false;
-                $state.go('gift.vinibar.quiz');
-
+                if ($scope.gift.order.order_type === 'Vinibar') {
+                  $state.go('gift.vinibar.quiz');
+                } else {
+                  currentGift.current = $scope.gift;
+                  console.log(currentGift.current);
+                  $state.go('gift.pay');
+                }
               }, function (error) { // order creation error
                 if (error.data === 'User with this email is already a client') {
                   toaster.pop('info', 'Oops !', 'Cet utilisateur est déjà un de nos clients');
@@ -154,7 +179,13 @@ angular.module('vinibar.gift.vinibar', [
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
                 $scope.load = false;
-                $state.go('gift.vinibar.quiz');
+                if ($scope.gift.order.order_type === 'Vinibar') {
+                  $state.go('gift.vinibar.quiz');
+                } else {
+                  currentGift.current = $scope.gift;
+                  console.log(currentGift.current);
+                  $state.go('gift.pay');
+                }
 
               }, function (error) { // order creation error
                 if (error.data === 'User with this email is already a client') {
@@ -183,7 +214,9 @@ angular.module('vinibar.gift.vinibar', [
   $scope.sendSurvey = function () {
     $scope.gift.sendSurvey().then(function (response) {
       Mixpanel.track('Filled gift survey');
-      $state.go('gift.vinibar.pay');
+      currentGift = $scope.gift;
+      console.log(currentGift);
+      $state.go('gift.pay');
     });
   };
 
