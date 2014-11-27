@@ -32,6 +32,16 @@
         throw 'Resource.query must be passed a callback';
       }
     };
+    mockResource.create = function (orderType, orderUuid, coupon, success, failure) {
+      if (success && angular.isFunction(success) && orderUuid === 1) {
+        success(mockResource.data);
+        console.log(mockResource.data);
+      } else if (failure && angular.isFunction(failure) && orderUuid === 2) {
+        failure();
+      } else {
+        throw 'Resource.query must be passed a callback';
+      }
+    };
 
     return mockResource;
 

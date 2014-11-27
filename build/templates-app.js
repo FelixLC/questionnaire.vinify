@@ -1,4 +1,4 @@
-angular.module('templates-app', ['gift/address.tpl.html', 'gift/choose.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card/details.tpl.html', 'gift/gift_card/infos.tpl.html', 'gift/overview.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['gift/address.tpl.html', 'gift/choose.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card/details.tpl.html', 'gift/gift_card/infos.tpl.html', 'gift/overview.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
 
 angular.module("gift/address.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("gift/address.tpl.html",
@@ -1963,13 +1963,13 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "			<div class=\"col-lg-12 col-md-12\">\n" +
     "				<form role=\"form\">\n" +
     "				<div class=\"col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4\">\n" +
-    "					<div class=\"form-group\">\n" +
+    "					<div class=\"form-group\" ng-hide=\"isGift\">\n" +
     "						<label class=\"sr-only\" for=\"exampleInputEmail2\">Email address</label>\n" +
     "						<input type=\"text\" ng-blur=\"blur()\" class=\"form-control\" ng-model=\"coupon.coupon\" placeholder=\"Code Promo / Parrainage\">\n" +
     "					</div>\n" +
     "				</div>\n" +
     "				<div class=\"col-lg-4 col-md-4 centered\">\n" +
-    "					<button class=\"btn-block-primary\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
+    "					<button class=\"btn-block-primary\" ng-disabled=\"coupon.coupon && !coupon.isValid\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
     "				</div>\n" +
     "				</form>\n" +
     "			</div>\n" +
@@ -3193,6 +3193,24 @@ angular.module("questionnaire/questionnaire.tpl.html", []).run(["$templateCache"
     "");
 }]);
 
+angular.module("receive/congratulation.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("receive/congratulation.tpl.html",
+    "<div class=\"background-receive\">\n" +
+    "  <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "  <div class=\"overlay-receive\">\n" +
+    "    <div class=\"centered\">\n" +
+    "          <h3>Bienvenue chez Vinify !</h3>\n" +
+    "          <h4>Pour profiter au mieux de notre aventure, téléchargez notre appli !</h4>\n" +
+    "          <div class=\"brand-logos\">\n" +
+    "            <div><a href=\"https://play.google.com/store/apps/details?id=com.vinify.viniapp.android\" ><img src=\"assets/utils/android.png\" ></a></div>\n" +
+    "            <div><a href=\"https://itunes.apple.com/us/app/vinify/id912757586?mt=8\"><img src=\"assets/utils/apple.png\"></a></div>\n" +
+    "          </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
 angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("receive/receive.tpl.html",
     "<div class=\"background-receive\">\n" +
@@ -3203,7 +3221,7 @@ angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($
     "          <h4>Merci de rentrer votre code cadeau</h4>\n" +
     "          <form role=\"form\" name=\"form_login\" class=\"form-inline\">\n" +
     "            <div class=\"form-group\">\n" +
-    "              <label class=\"sr-only\" for=\"password\">Mot de Passe</label>\n" +
+    "              <label class=\"sr-only\" for=\"password\">Code</label>\n" +
     "              <input type=\"text\"\n" +
     "                  placeholder=\"VINICHOUETTE\"\n" +
     "                  name=\"code\"\n" +
@@ -3213,7 +3231,7 @@ angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($
     "                  ng-minlength=\"5\"\n" +
     "                  id=\"code\"/>\n" +
     "            </div>\n" +
-    "            <button class=\"btn btn-outline-white\" ng-click=\"activate(code)\">Valider</button>\n" +
+    "            <button class=\"btn btn-outline-white\" ng-click=\"sendTo(code)\">Valider</button>\n" +
     "          </form>\n" +
     "    </div>\n" +
     "\n" +

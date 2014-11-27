@@ -110,7 +110,7 @@ angular.module('clientFactory', ['settings'])
 							});
 		};
 
-		Client.prototype.addUserInfo = function () {
+		Client.prototype.addUserInfo = function (success, failure) {
 
 			if(this.userinfos.same_billing)
 				{ this.userinfos.billing_address = this.userinfos.delivery_address; }
@@ -122,13 +122,17 @@ angular.module('clientFactory', ['settings'])
 			data.delivery_address.user = this.uuid;
 			data.billing_address.user = this.uuid;
 
-			var request = $http({
+			request = $http({
 				url: settings.apiEndPoint + '/users/adduserinfo/',
 				method: 'POST',
 				data: data,
 				headers: {
 					'Content-Type': 'application/json; charset=UTF-8'
 				}
+			}).success(function (data, status, headers, config) {
+				success(data);
+			}).error(function (data, status, headers, config) {
+				failure(data);
 			});
 
 			return request;

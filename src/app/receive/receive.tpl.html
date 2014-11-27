@@ -6,7 +6,7 @@
           <h4>Merci de rentrer votre code cadeau</h4>
           <form role="form" name="form_login" class="form-inline">
             <div class="form-group">
-              <label class="sr-only" for="password">Mot de Passe</label>
+              <label class="sr-only" for="password">Code</label>
               <input type="text"
                   placeholder="VINICHOUETTE"
                   name="code"
@@ -16,7 +16,7 @@
                   ng-minlength="5"
                   id="code"/>
             </div>
-            <button class="btn btn-outline-white" ng-click="activate(code)">Valider</button>
+            <button class="btn btn-outline-white" ng-click="sendTo(code)">Valider</button>
           </form>
     </div>
 

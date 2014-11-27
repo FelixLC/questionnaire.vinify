@@ -9,36 +9,44 @@
     'receiverService',
     'toaster'
   ])
-  .controller('ReceiveCtrl', ReceiveCtrl)
   .config(function config ($stateProvider) {
     $stateProvider
       .state('receive', {
         url: '/recevoir',
-        controller: 'ReceiveCtrl',
         views: {
           main: {
-            templateUrl: 'receive/receive.tpl.html'
+            templateUrl: 'receive/receive.tpl.html',
+            controller: 'receiveCtrl'
+          }
+        },
+        data: { pageTitle: 'Cadeau' }
+      })
+      .state('congratulation', {
+        url: '/bravo',
+        views: {
+          main: {
+            templateUrl: 'receive/congratulation.tpl.html'
           }
         },
         data: { pageTitle: 'Cadeau' }
       });
-  });
+  })
+  .controller('receiveCtrl', function receiveCtrl ($stateParams, settings, Mixpanel, Receive, $rootScope, $scope, $state, toaster) {
 
-  function ReceiveCtrl ($stateParams, settings, Mixpanel, Receive, $rootScope, $scope, $state, toaster) {
-    $scope.activate = function (code) {
+    $scope.sendTo = function (code) {
+      console.log('send');
       Receive.activate(code)
-        .success(function (response) {
+        .then(function (response) {
           if (response.data.coupon_type === 'Gift') {
             Mixpanel.track("activated gift", { type: 'gift' });
-            $state.go('welcome', {r: 'gift'});
+            $state.go('welcome', { r: 'gift' });
           } else {
             Mixpanel.track("activated gift", { type: 'activation' });
-            $state.go('gift.congratulation', {r: 'gift'});
+            $state.go('congratulation', { r: 'gift' });
           }
-        })
-        .error(function (response) {
+        }, function (response) {
           toaster.pop('error', 'Oops !', "Le coupon n'existe pas ou a déjà été utilisé");
         });
     };
-  }
+  });
 })();

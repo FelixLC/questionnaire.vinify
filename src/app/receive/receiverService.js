@@ -21,6 +21,7 @@
           code: _code
         }).then(function (response) {
           service.coupon = response.data;
+          return response;
         });
       }
       function update () {

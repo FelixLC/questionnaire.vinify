@@ -61,7 +61,7 @@ angular.module('vinibar.questionnaire', [
 		});
 })
 
-.controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receiver, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
+.controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receive, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
 	// modal
 	$scope.open = function (size) {
 
@@ -165,6 +165,9 @@ angular.module('vinibar.questionnaire', [
 	// };
 
 	$scope.newuser = new Client();
+	$scope.newuser.first_name = (currentClient.isGift && Receive.coupon.user.first_name) ? Receive.coupon.user.first_name : "";
+	$scope.newuser.last_name	= (currentClient.isGift && Receive.coupon.user.last_name) ? Receive.coupon.user.last_name : "";
+	$scope.newuser.email = (currentClient.isGift && Receive.coupon.user.email) ? Receive.coupon.user.email: "";
 	$scope.newuser.coupon = $stateParams.p ? $stateParams.p : "";
 	console.log($stateParams);
 	var juice_bckg = new Image ();
@@ -205,14 +208,14 @@ angular.module('vinibar.questionnaire', [
 						"Last Name": data.last_name
 					});
 					Mixpanel.track('User Created', {referrer: (currentClient.isGift) ? 'Gift' : $document.referrer});
-					if (!currentClient.isGift) {
+					if (!currentClient.isGift) { // if we don't have a gift activation
 						Recommender.calcPreview(data)
 							.then(function (response) {
 								$state.go('preview');
 								$rootScope.loading = false;
 							});
-					} else {
-						Receiver.update();
+					} else {// if we have a gift activation
+						Receive.update();
 						$state.go('order.userinfos');
 						$rootScope.loading = false;
 					}
