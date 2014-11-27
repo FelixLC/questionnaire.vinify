@@ -2,7 +2,6 @@ angular.module('vinibar.gift', [
   'ui.router',
   'clientFactory',
   'vinibar.gift.vinibar',
-  'vinibar.gift.gift_card',
   'ui.bootstrap',
   'Resources',
   'Mixpanel',

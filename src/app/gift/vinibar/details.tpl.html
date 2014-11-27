@@ -15,7 +15,17 @@
         <h3>Carte Cadeau</h3>
         <!-- <p class="help">(L'heureux élu remplira lui même ses goûts)</p> -->
       </div>
-      <p class="details-helper">Choisissez ici la formule que vous souhaitez offir. Vous pouvez ajouter des crédits à votre cadeau pour permettre de recharger le Vinibar.</p>
+      <p ng-show="gift.order.gift_type === 'Vinibar' " class="details-helper">
+        Je connais ces goûts, et je remplis
+          <a href=""
+              popover-title="Que faut-il savoir ?"
+              popover="Est-ce qu'il prend du café ? Quel est son dessert préféré ? Quelle couleur de vins boit-il ? ..."
+              popover-trigger="mouseenter"
+              popover-placement="bottom">le questionnaire Vinify à sa place (<i class="fa fa-info-circle">)</i></a>, pour qu'il ou elle reçoive directement le bar personnalisé.
+      </p>
+      <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' " class="details-helper">
+        Je ne connais pas ses goûts, il ou elle démarrera l'aventure avec le questionnaire Vinify quand j'offrirai le cadeau.
+      </p>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Crédits</h2>
