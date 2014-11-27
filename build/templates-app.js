@@ -222,24 +222,6 @@ angular.module("gift/gift_card/details.tpl.html", []).run(["$templateCache", fun
     "          <div><p class=\"col-subtitle\">Ou rentrez montant de votre choix</p></div>\n" +
     "          <div><input type=\"number\" class=\"form-control\" ng-model=\"gift.order.credits\"> <p>€</p></div>\n" +
     "        </div>\n" +
-    "<!--         <p class=\"col-subtitle\">Prix des recharges\n" +
-    "          <a href=\"#\" tooltip=\"Le Vinibar est entièrement personnalisé, et le prix des recharges aussi\"><i class=\"fa fa-info-circle\"></i></a></p>\n" +
-    "        <div class=\"col-container-price-level\">\n" +
-    "          <div ng-class=\"{checked: details.credits.price_level === 29.90 }\"\n" +
-    "                    class=\"no-border\"\n" +
-    "                    ng-click=\"details.credits.price_level = 29.90 \">\n" +
-    "            <p>29€90</p>\n" +
-    "          </div>\n" +
-    "          <div ng-class=\"{checked: details.credits.price_level === 39.90 }\"\n" +
-    "                    class=\"no-border\"\n" +
-    "                    ng-click=\"details.credits.price_level = 39.90 \">\n" +
-    "            <p>39€90</p>\n" +
-    "          </div>\n" +
-    "          <div ng-class=\"{checked: details.credits.price_level === 49.90 }\"\n" +
-    "                    ng-click=\"details.credits.price_level = 49.90 \">\n" +
-    "            <p>49€90</p>\n" +
-    "          </div>\n" +
-    "        </div> -->\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
@@ -759,24 +741,6 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          <div><p class=\"col-subtitle\">Ou rentrez montant de votre choix</p></div>\n" +
     "          <div><input type=\"number\" class=\"form-control\" ng-model=\"gift.order.credits\"> <p>€</p></div>\n" +
     "        </div>\n" +
-    "<!--         <p class=\"col-subtitle\">Prix des recharges\n" +
-    "          <a href=\"#\" tooltip=\"Le Vinibar est entièrement personnalisé, et le prix des recharges aussi\"><i class=\"fa fa-info-circle\"></i></a></p>\n" +
-    "        <div class=\"col-container-price-level\">\n" +
-    "          <div ng-class=\"{checked: details.credits.price_level === 29.90 }\"\n" +
-    "                    class=\"no-border\"\n" +
-    "                    ng-click=\"details.credits.price_level = 29.90 \">\n" +
-    "            <p>29€90</p>\n" +
-    "          </div>\n" +
-    "          <div ng-class=\"{checked: details.credits.price_level === 39.90 }\"\n" +
-    "                    class=\"no-border\"\n" +
-    "                    ng-click=\"details.credits.price_level = 39.90 \">\n" +
-    "            <p>39€90</p>\n" +
-    "          </div>\n" +
-    "          <div ng-class=\"{checked: details.credits.price_level === 49.90 }\"\n" +
-    "                    ng-click=\"details.credits.price_level = 49.90 \">\n" +
-    "            <p>49€90</p>\n" +
-    "          </div>\n" +
-    "        </div> -->\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
