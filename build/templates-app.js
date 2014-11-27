@@ -403,7 +403,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"centered\">80.90 € *</p>\n" +
     "      </div>\n" +
     "      <div>\n" +
-    "              <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'\" class=\"help centered\">* le prix comprend la livraison en France métropolitaine</p>\n" +
+    "              <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'\" class=\"help centered\">* le prix comprend la livraison <br> à domicilie en France métropolitaine</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
@@ -1498,7 +1498,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "							  <textarea class=\"form-control\" rows=\"2\" ng-model=\"client.userinfos.delivery_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"delivery_address.other_info\"></textarea>\n" +
     "							</div>\n" +
     "\n" +
-    "						<div class=\"checkbox\">\n" +
+    "						<div ng-hide=\"isGift\"  class=\"checkbox\">\n" +
     "							<label>\n" +
     "							  <input type=\"checkbox\" ng-model=\"client.userinfos.same_billing\"> Facturation identique\n" +
     "							</label>\n" +
@@ -1574,8 +1574,8 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "						<hr>\n" +
     "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>\n" +
     "						<hr>\n" +
-    "						<h4 ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
-    "						<h4 ng-hide=\"client.order_type === 'Vinibar' \" class=\"centered\">39 €</h4>\n" +
+    "						<h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
+    "						<h4 ng-hide=\"isGift\" ng-hide=\"client.order_type === 'Vinibar' \" class=\"centered\">39 €</h4>\n" +
     "					</div>\n" +
     "\n" +
     "				</form>\n" +

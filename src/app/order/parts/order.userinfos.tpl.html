@@ -233,7 +233,7 @@
 							  <textarea class="form-control" rows="2" ng-model="client.userinfos.delivery_address.other_info" placeholder="Société, Bâtiment, Escalier, Etage ..." id="delivery_address.other_info"></textarea>
 							</div>
 
-						<div class="checkbox">
+						<div ng-hide="isGift"  class="checkbox">
 							<label>
 							  <input type="checkbox" ng-model="client.userinfos.same_billing"> Facturation identique
 							</label>
@@ -309,8 +309,8 @@
 						<hr>
 						<h4 class="centered">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>
 						<hr>
-						<h4 ng-show="client.order_type === 'Vinibar' " class="centered">69 €</h4>
-						<h4 ng-hide="client.order_type === 'Vinibar' " class="centered">39 €</h4>
+						<h4 ng-hide="isGift" ng-show="client.order_type === 'Vinibar' " class="centered">69 €</h4>
+						<h4 ng-hide="isGift" ng-hide="client.order_type === 'Vinibar' " class="centered">39 €</h4>
 					</div>
 
 				</form>
