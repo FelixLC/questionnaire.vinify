@@ -7,27 +7,34 @@
       <h2 class="col-title">Au petit déjeuner</h2>
       <div class="col-container">
         <p class="col-subtitle">Il / elle préfère son café</p>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 1" ng-class="{quizchecked: gift.receiver.survey.quest_1.answ === 1}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 1"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 1, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 1}">
             <p>Noir</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 2" ng-class="{quizchecked: gift.receiver.survey.quest_1.answ === 2}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 2"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 2, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 2}">
             <p>Sucre</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 3" ng-class="{quizchecked: gift.receiver.survey.quest_1.answ === 3}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 3"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 3, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 3}">
             <p>Crème</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 4" ng-class="{quizchecked: gift.receiver.survey.quest_1.answ === 4}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_1.answ = 4"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 4, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 4}">
             <p>Pas de café</p>
           </div>
         <hr class="backgrounded">
         <p class="col-subtitle">Pour se désalterer</p>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_2.answ = 1" ng-class="{quizchecked: gift.receiver.survey.quest_2.answ === 1}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_2.answ = 1"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_2.answ === 1, 'quiz-radio-off': gift.receiver.survey.quest_2.answ != 1}">
             <p>Un jus de pamplemousse</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_2.answ = 2" ng-class="{quizchecked: gift.receiver.survey.quest_2.answ === 2}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_2.answ = 2"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_2.answ === 2, 'quiz-radio-off': gift.receiver.survey.quest_2.answ != 2}">
             <p>Un jus de pomme</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_2.answ = 3" ng-class="{quizchecked: gift.receiver.survey.quest_2.answ === 3}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_2.answ = 3"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_2.answ === 3, 'quiz-radio-off': gift.receiver.survey.quest_2.answ != 3}">
             <p>Un jus de fruits exotiques</p>
           </div>
       </div>
@@ -36,41 +43,52 @@
       <h2 class="col-title">Ensuite</h2>
       <div class="col-container">
         <p class="col-subtitle">Quelle cuisine préfère-t-il/elle&nbsp;?</p>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_1 = !gift.receiver.survey.quest_3.answ_1" ng-class="{quizchecked: gift.receiver.survey.quest_3.answ_1 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_1 = !gift.receiver.survey.quest_3.answ_1"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_3.answ_1 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_1 != true}">
           <p>Française</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_2 = !gift.receiver.survey.quest_3.answ_2" ng-class="{quizchecked: gift.receiver.survey.quest_3.answ_2 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_2 = !gift.receiver.survey.quest_3.answ_2"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_3.answ_2 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_2 != true}">
           <p>Italienne</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_3 = !gift.receiver.survey.quest_3.answ_3" ng-class="{quizchecked: gift.receiver.survey.quest_3.answ_3 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_3 = !gift.receiver.survey.quest_3.answ_3"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_3.answ_3 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_3 != true}">
           <p>Asiatique</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_4 = !gift.receiver.survey.quest_3.answ_4" ng-class="{quizchecked: gift.receiver.survey.quest_3.answ_4 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_4 = !gift.receiver.survey.quest_3.answ_4"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_3.answ_4 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_4 != true}">
           <p>Américaine</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_5 = !gift.receiver.survey.quest_3.answ_5" ng-class="{quizchecked: gift.receiver.survey.quest_3.answ_5 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_3.answ_5 = !gift.receiver.survey.quest_3.answ_5"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_3.answ_5 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_5 != true}">
           <p>Végétarienne</p>
         </div>
         <hr class="backgrounded">
         <p class="col-subtitle">Quelles entrées lui feraient envie&nbsp;?</p>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_4.answ_1 = !gift.receiver.survey.quest_4.answ_1" ng-class="{quizchecked: gift.receiver.survey.quest_4.answ_1 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_4.answ_1 = !gift.receiver.survey.quest_4.answ_1"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_4.answ_1 === true, 'quiz-check-off': gift.receiver.survey.quest_4.answ_1 != true}">
           <p>Une assiette d'huîtres</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_4.answ_2 = !gift.receiver.survey.quest_4.answ_2" ng-class="{quizchecked: gift.receiver.survey.quest_4.answ_2 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_4.answ_2 = !gift.receiver.survey.quest_4.answ_2"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_4.answ_2 === true, 'quiz-check-off': gift.receiver.survey.quest_4.answ_2 != true}">
           <p>Pain toasté et tapenade d'olives</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_4.answ_3 = !gift.receiver.survey.quest_4.answ_3" ng-class="{quizchecked: gift.receiver.survey.quest_4.answ_3 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_4.answ_3 = !gift.receiver.survey.quest_4.answ_3"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_4.answ_3 === true, 'quiz-check-off': gift.receiver.survey.quest_4.answ_3 != true}">
           <p>Foie gras et pain d'épices</p>
         </div>
         <hr class="backgrounded">
         <p class="col-subtitle">Quels desserts lui feraient envie&nbsp;?</p>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_5.answ_1 = !gift.receiver.survey.quest_5.answ_1" ng-class="{quizchecked: gift.receiver.survey.quest_5.answ_1 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_5.answ_1 = !gift.receiver.survey.quest_5.answ_1"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_5.answ_1 === true, 'quiz-check-off': gift.receiver.survey.quest_5.answ_1 != true}">
           <p>Millefeuille à la vanille</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_5.answ_2 = !gift.receiver.survey.quest_5.answ_2" ng-class="{quizchecked: gift.receiver.survey.quest_5.answ_2 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_5.answ_2 = !gift.receiver.survey.quest_5.answ_2"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_5.answ_2 === true, 'quiz-check-off': gift.receiver.survey.quest_5.answ_2 != true}">
           <p>Ganache au chocolat & canelle</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_5.answ_3 = !gift.receiver.survey.quest_5.answ_3" ng-class="{quizchecked: gift.receiver.survey.quest_5.answ_3 === true}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_5.answ_3 = !gift.receiver.survey.quest_5.answ_3"
+                  ng-class="{'quiz-check-on': gift.receiver.survey.quest_5.answ_3 === true, 'quiz-check-off': gift.receiver.survey.quest_5.answ_3 != true}">
           <p>Carpaccio de fruits & sorbet</p>
         </div>
       </div>
@@ -84,35 +102,44 @@
       </h2>
       <div class="col-container">
         <p class="col-subtitle">Du rouge</p>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_1 = 2" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_1 === 2}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_1 = 2"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_1 === 2, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_1 != 2}">
             <p>Beaucoup</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_1 = 1" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_1 === 1}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_1 = 1"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_1 === 1, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_1 != 1}">
             <p>Un peu</p>
           </div>
-          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_1 = 0" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_1 === 0}">
+          <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_1 = 0"
+                    ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_1 === 0, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_1 != 0}">
             <p>Pas du tout</p>
           </div>
         <hr class="backgrounded">
         <p class="col-subtitle">Du blanc</p>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_2 = 2" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_2 === 2}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_2 = 2"
+                  ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_2 === 2, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_2 != 2}">
           <p>Beaucoup</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_2 = 1" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_2 === 1}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_2 = 1"
+                  ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_2 === 1, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_2 != 1}">
           <p>Un peu</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_2 = 0" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_2 === 0}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_2 = 0"
+                  ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_2 === 0, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_2 != 0}">
           <p>Pas du tout</p>
         </div>
         <hr class="backgrounded">
         <p class="col-subtitle">Du rosé</p>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_3 = 2" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_3 === 2}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_3 = 2"
+                  ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_3 === 2, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_3 != 2}">
           <p>Beaucoup</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_3 = 1" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_3 === 1}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_3 = 1"
+                  ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_3 === 1, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_3 != 1}">
           <p>Un peu</p>
         </div>
-        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_3 = 0" ng-class="{quizchecked: gift.receiver.survey.quest_6.answ_3 === 0}">
+        <div class="gift-checkbox" ng-click="gift.receiver.survey.quest_6.answ_3 = 0"
+                  ng-class="{'quiz-radio-on': gift.receiver.survey.quest_6.answ_3 === 0, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_3 != 0}">
           <p>Pas du tout</p>
         </div>
         <hr class="backgrounded">

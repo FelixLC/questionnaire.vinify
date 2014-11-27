@@ -258,7 +258,8 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Crédits</h2>\n" +
     "      <div class=\"col-container\">\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"details.credits = !details.credits \" ng-class=\"{quizchecked: details.credits}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"details.credits = !details.credits \"\n" +
+    "                  ng-class=\"{'quiz-check-on': details.credits, 'quiz-check-off': !details.credits}\">\n" +
     "          <p>Ajoutez des crédits pour recharger son vinibar</p>\n" +
     "        </div>\n" +
     "        <div ng-show=\"details.credits\" class=\"col-container-price-level\">\n" +
@@ -649,27 +650,34 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
     "      <h2 class=\"col-title\">Au petit déjeuner</h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Il / elle préfère son café</p>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 1}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 1\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 1, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 1}\">\n" +
     "            <p>Noir</p>\n" +
     "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 2}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 2\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 2, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 2}\">\n" +
     "            <p>Sucre</p>\n" +
     "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 3}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 3\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 3, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 3}\">\n" +
     "            <p>Crème</p>\n" +
     "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 4\" ng-class=\"{quizchecked: gift.receiver.survey.quest_1.answ === 4}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_1.answ = 4\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_1.answ === 4, 'quiz-radio-off': gift.receiver.survey.quest_1.answ != 4}\">\n" +
     "            <p>Pas de café</p>\n" +
     "          </div>\n" +
     "        <hr class=\"backgrounded\">\n" +
     "        <p class=\"col-subtitle\">Pour se désalterer</p>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_2.answ = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_2.answ === 1}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_2.answ = 1\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_2.answ === 1, 'quiz-radio-off': gift.receiver.survey.quest_2.answ != 1}\">\n" +
     "            <p>Un jus de pamplemousse</p>\n" +
     "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_2.answ = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_2.answ === 2}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_2.answ = 2\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_2.answ === 2, 'quiz-radio-off': gift.receiver.survey.quest_2.answ != 2}\">\n" +
     "            <p>Un jus de pomme</p>\n" +
     "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_2.answ = 3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_2.answ === 3}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_2.answ = 3\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_2.answ === 3, 'quiz-radio-off': gift.receiver.survey.quest_2.answ != 3}\">\n" +
     "            <p>Un jus de fruits exotiques</p>\n" +
     "          </div>\n" +
     "      </div>\n" +
@@ -678,41 +686,52 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
     "      <h2 class=\"col-title\">Ensuite</h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Quelle cuisine préfère-t-il/elle&nbsp;?</p>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_1 = !gift.receiver.survey.quest_3.answ_1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_1 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_1 = !gift.receiver.survey.quest_3.answ_1\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_3.answ_1 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_1 != true}\">\n" +
     "          <p>Française</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_2 = !gift.receiver.survey.quest_3.answ_2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_2 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_2 = !gift.receiver.survey.quest_3.answ_2\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_3.answ_2 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_2 != true}\">\n" +
     "          <p>Italienne</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_3 = !gift.receiver.survey.quest_3.answ_3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_3 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_3 = !gift.receiver.survey.quest_3.answ_3\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_3.answ_3 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_3 != true}\">\n" +
     "          <p>Asiatique</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_4 = !gift.receiver.survey.quest_3.answ_4\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_4 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_4 = !gift.receiver.survey.quest_3.answ_4\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_3.answ_4 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_4 != true}\">\n" +
     "          <p>Américaine</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_5 = !gift.receiver.survey.quest_3.answ_5\" ng-class=\"{quizchecked: gift.receiver.survey.quest_3.answ_5 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_3.answ_5 = !gift.receiver.survey.quest_3.answ_5\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_3.answ_5 === true, 'quiz-check-off': gift.receiver.survey.quest_3.answ_5 != true}\">\n" +
     "          <p>Végétarienne</p>\n" +
     "        </div>\n" +
     "        <hr class=\"backgrounded\">\n" +
     "        <p class=\"col-subtitle\">Quelles entrées lui feraient envie&nbsp;?</p>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_4.answ_1 = !gift.receiver.survey.quest_4.answ_1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_4.answ_1 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_4.answ_1 = !gift.receiver.survey.quest_4.answ_1\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_4.answ_1 === true, 'quiz-check-off': gift.receiver.survey.quest_4.answ_1 != true}\">\n" +
     "          <p>Une assiette d'huîtres</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_4.answ_2 = !gift.receiver.survey.quest_4.answ_2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_4.answ_2 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_4.answ_2 = !gift.receiver.survey.quest_4.answ_2\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_4.answ_2 === true, 'quiz-check-off': gift.receiver.survey.quest_4.answ_2 != true}\">\n" +
     "          <p>Pain toasté et tapenade d'olives</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_4.answ_3 = !gift.receiver.survey.quest_4.answ_3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_4.answ_3 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_4.answ_3 = !gift.receiver.survey.quest_4.answ_3\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_4.answ_3 === true, 'quiz-check-off': gift.receiver.survey.quest_4.answ_3 != true}\">\n" +
     "          <p>Foie gras et pain d'épices</p>\n" +
     "        </div>\n" +
     "        <hr class=\"backgrounded\">\n" +
     "        <p class=\"col-subtitle\">Quels desserts lui feraient envie&nbsp;?</p>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_5.answ_1 = !gift.receiver.survey.quest_5.answ_1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_5.answ_1 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_5.answ_1 = !gift.receiver.survey.quest_5.answ_1\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_5.answ_1 === true, 'quiz-check-off': gift.receiver.survey.quest_5.answ_1 != true}\">\n" +
     "          <p>Millefeuille à la vanille</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_5.answ_2 = !gift.receiver.survey.quest_5.answ_2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_5.answ_2 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_5.answ_2 = !gift.receiver.survey.quest_5.answ_2\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_5.answ_2 === true, 'quiz-check-off': gift.receiver.survey.quest_5.answ_2 != true}\">\n" +
     "          <p>Ganache au chocolat & canelle</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_5.answ_3 = !gift.receiver.survey.quest_5.answ_3\" ng-class=\"{quizchecked: gift.receiver.survey.quest_5.answ_3 === true}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_5.answ_3 = !gift.receiver.survey.quest_5.answ_3\"\n" +
+    "                  ng-class=\"{'quiz-check-on': gift.receiver.survey.quest_5.answ_3 === true, 'quiz-check-off': gift.receiver.survey.quest_5.answ_3 != true}\">\n" +
     "          <p>Carpaccio de fruits & sorbet</p>\n" +
     "        </div>\n" +
     "      </div>\n" +
@@ -726,35 +745,44 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
     "      </h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Du rouge</p>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_1 === 2}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 2\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_1 === 2, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_1 != 2}\">\n" +
     "            <p>Beaucoup</p>\n" +
     "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_1 === 1}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 1\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_1 === 1, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_1 != 1}\">\n" +
     "            <p>Un peu</p>\n" +
     "          </div>\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 0\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_1 === 0}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_1 = 0\"\n" +
+    "                    ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_1 === 0, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_1 != 0}\">\n" +
     "            <p>Pas du tout</p>\n" +
     "          </div>\n" +
     "        <hr class=\"backgrounded\">\n" +
     "        <p class=\"col-subtitle\">Du blanc</p>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_2 === 2}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 2\"\n" +
+    "                  ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_2 === 2, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_2 != 2}\">\n" +
     "          <p>Beaucoup</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_2 === 1}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 1\"\n" +
+    "                  ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_2 === 1, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_2 != 1}\">\n" +
     "          <p>Un peu</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 0\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_2 === 0}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_2 = 0\"\n" +
+    "                  ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_2 === 0, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_2 != 0}\">\n" +
     "          <p>Pas du tout</p>\n" +
     "        </div>\n" +
     "        <hr class=\"backgrounded\">\n" +
     "        <p class=\"col-subtitle\">Du rosé</p>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 2\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_3 === 2}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 2\"\n" +
+    "                  ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_3 === 2, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_3 != 2}\">\n" +
     "          <p>Beaucoup</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 1\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_3 === 1}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 1\"\n" +
+    "                  ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_3 === 1, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_3 != 1}\">\n" +
     "          <p>Un peu</p>\n" +
     "        </div>\n" +
-    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 0\" ng-class=\"{quizchecked: gift.receiver.survey.quest_6.answ_3 === 0}\">\n" +
+    "        <div class=\"gift-checkbox\" ng-click=\"gift.receiver.survey.quest_6.answ_3 = 0\"\n" +
+    "                  ng-class=\"{'quiz-radio-on': gift.receiver.survey.quest_6.answ_3 === 0, 'quiz-radio-off': gift.receiver.survey.quest_6.answ_3 != 0}\">\n" +
     "          <p>Pas du tout</p>\n" +
     "        </div>\n" +
     "        <hr class=\"backgrounded\">\n" +

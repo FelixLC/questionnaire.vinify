@@ -30,7 +30,8 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Crédits</h2>
       <div class="col-container">
-        <div class="gift-checkbox" ng-click="details.credits = !details.credits " ng-class="{quizchecked: details.credits}">
+        <div class="gift-checkbox" ng-click="details.credits = !details.credits "
+                  ng-class="{'quiz-check-on': details.credits, 'quiz-check-off': !details.credits}">
           <p>Ajoutez des crédits pour recharger son vinibar</p>
         </div>
         <div ng-show="details.credits" class="col-container-price-level">
