@@ -5,7 +5,7 @@ angular.module('mondialrelay', [
 	'settings'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
 	$stateProvider
 		.state('mondialrelay', {
 			url: '/mondialrelay/:orderid/:zipcode',
@@ -17,10 +17,10 @@ angular.module('mondialrelay', [
 			},
 			data: { pageTitle: 'Mondial Relay' }
 		});
-}])
+})
 
 
-.controller('mondialrelayCtrl', ["$scope", "$stateParams", "$http", "$state", "settings", "toaster", "$timeout", function mondialrelayCtrl ($scope, $stateParams, $http, $state, settings, toaster, $timeout) {
+.controller('mondialrelayCtrl', function mondialrelayCtrl ($scope, $stateParams, $http, $state, settings, toaster, $timeout) {
 
 	var order_id = $stateParams.orderid;
 	var zipcode = $stateParams.zipcode;
@@ -97,4 +97,4 @@ angular.module('mondialrelay', [
 
 
 
-}]);
+});

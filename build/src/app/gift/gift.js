@@ -8,7 +8,7 @@ angular.module('vinibar.gift', [
   'settings'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider
     .state('gift', {
       url: '/cadeau',
@@ -31,8 +31,8 @@ angular.module('vinibar.gift', [
       controller: 'giftPayCtrl',
       data: { pageTitle: 'Cadeau' }
     });
-}])
-.controller('chooseGiftCtrl', ["$stateParams", "settings", "Mixpanel", "$rootScope", "$scope", "$state", function ($stateParams, settings, Mixpanel, $rootScope, $scope, $state) {
+})
+.controller('chooseGiftCtrl', function ($stateParams, settings, Mixpanel, $rootScope, $scope, $state) {
   if ($stateParams.test) {
     settings.test = true;
   }
@@ -41,9 +41,9 @@ angular.module('vinibar.gift', [
     Mixpanel.track('Selected: ' + state);
     $state.go(state);
   };
-}])
+})
 
-.controller('giftPayCtrl', ["Mixpanel", "$scope", "$http", "$state", "currentGift", "params", "toaster", "settings", "$modal", function giftPayCtrl (Mixpanel, $scope, $http, $state, currentGift, params, toaster, settings, $modal) {
+.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, currentGift, params, toaster, settings, $modal) {
 
   Stripe.setPublishableKey((settings.test) ? 'pk_test_sK21onMmCuKNuoY7pbml8z3Q' : 'pk_live_gNv4cCe8tsZpettPUsdQj25F');
   $scope.gift = currentGift.current;
@@ -90,8 +90,8 @@ angular.module('vinibar.gift', [
     });
   };
 
-}])
-.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+})
+.controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
 
   $scope.ok = function () {
     $modalInstance.close($scope.address);
@@ -100,4 +100,4 @@ angular.module('vinibar.gift', [
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-}]);
+});

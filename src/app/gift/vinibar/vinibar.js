@@ -143,7 +143,7 @@ angular.module('vinibar.gift.vinibar', [
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
                 $scope.load = false;
-                if ($scope.gift.order.order_type === 'Vinibar') {
+                if ($scope.gift.order.gift_type === 'Vinibar') {
                   $state.go('gift.vinibar.quiz');
                 } else {
                   currentGift.current = $scope.gift;
@@ -177,11 +177,11 @@ angular.module('vinibar.gift.vinibar', [
 
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
-                Mixpanel.track('Client created a ' + $scope.gift.order.gift_type + 'gift order');
+                Mixpanel.track('Client created a ' + $scope.gift.order.gift_type + ' gift order');
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
                 $scope.load = false;
-                if ($scope.gift.order.order_type === 'Vinibar') {
+                if ($scope.gift.order.gift_type === 'Vinibar') {
                   $state.go('gift.vinibar.quiz');
                 } else {
                   currentGift.current = $scope.gift;
@@ -216,7 +216,7 @@ angular.module('vinibar.gift.vinibar', [
   $scope.sendSurvey = function () {
     $scope.gift.sendSurvey().then(function (response) {
       Mixpanel.track('Filled gift survey');
-      currentGift = $scope.gift;
+       currentGift.current = $scope.gift;
       console.log(currentGift);
       $state.go('gift.pay');
     });
