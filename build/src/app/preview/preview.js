@@ -6,7 +6,7 @@ angular.module('vinibar.preview', [
   'Mixpanel'
 ])
 
-.config(function config ($stateProvider) {
+.config(["$stateProvider", function config ($stateProvider) {
   $stateProvider
     .state('preview', {
       url: '/apercu',
@@ -18,9 +18,9 @@ angular.module('vinibar.preview', [
       },
       data: { pageTitle: 'Ma sélection personnalisée' }
     });
-})
+}])
 
-.controller('previewCtrl', function previewCtrl (Mixpanel, Recommender, $scope, currentClient, $state) {
+.controller('previewCtrl', ["Mixpanel", "Recommender", "$scope", "currentClient", "$state", function previewCtrl (Mixpanel, Recommender, $scope, currentClient, $state) {
   $scope.hover = {
     wine_1: false,
     wine_2: false,
@@ -33,4 +33,4 @@ angular.module('vinibar.preview', [
     currentClient.currentClient.order_uuid = Recommender.getUuid();
     $state.go('order.userinfos');
   };
-});
+}]);

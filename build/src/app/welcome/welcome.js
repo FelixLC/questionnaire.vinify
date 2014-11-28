@@ -7,7 +7,7 @@ angular.module('vinibar.welcome', [
   'toaster'
 ])
 
-.config(function config ($stateProvider) {
+.config(["$stateProvider", function config ($stateProvider) {
   $stateProvider
     .state('welcome', {
       url: '/demarrer?r',
@@ -19,11 +19,11 @@ angular.module('vinibar.welcome', [
       },
       data: { pageTitle: 'Démarrer l\'aventure' }
     });
-})
+}])
 
-.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams) {
+.controller('welcomeCtrl', ["$scope", "currentClient", "$state", "toaster", "$stateParams", function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams) {
   console.log($stateParams);
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
   currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
   console.log(currentClient);
-});
+}]);

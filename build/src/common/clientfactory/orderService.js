@@ -52,4 +52,5 @@
           });
     }
   }
+  Order.$inject = ["$http", "settings"];
 })();

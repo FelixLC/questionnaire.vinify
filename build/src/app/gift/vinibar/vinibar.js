@@ -8,7 +8,7 @@ angular.module('vinibar.gift.vinibar', [
   'Mixpanel'
 ])
 
-.config(function config ($stateProvider) {
+.config(["$stateProvider", function config ($stateProvider) {
   $stateProvider
     .state('gift.vinibar', {
       url: '/vinibar',
@@ -37,9 +37,9 @@ angular.module('vinibar.gift.vinibar', [
       controller: 'giftPayCtrl',
       data: { pageTitle: 'Cadeau' }
     });
-})
+}])
 
-.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, toaster, $window) {
+.controller('giftVinibarCtrl', ["Mixpanel", "$scope", "$rootScope", "$state", "Gift", "currentGift", "$stateParams", "params", "toaster", "$window", function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, toaster, $window) {
   var init = function () {
     $scope.costs = params;
     $scope.is = {
@@ -222,4 +222,4 @@ angular.module('vinibar.gift.vinibar', [
     });
   };
 
-});
+}]);

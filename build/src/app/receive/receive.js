@@ -9,7 +9,7 @@
     'receiverService',
     'toaster'
   ])
-  .config(function config ($stateProvider) {
+  .config(["$stateProvider", function config ($stateProvider) {
     $stateProvider
       .state('receive', {
         url: '/recevoir',
@@ -30,8 +30,8 @@
         },
         data: { pageTitle: 'Cadeau' }
       });
-  })
-  .controller('receiveCtrl', function receiveCtrl ($stateParams, settings, Mixpanel, Receive, $rootScope, $scope, $state, toaster) {
+  }])
+  .controller('receiveCtrl', ["$stateParams", "settings", "Mixpanel", "Receive", "$rootScope", "$scope", "$state", "toaster", function receiveCtrl ($stateParams, settings, Mixpanel, Receive, $rootScope, $scope, $state, toaster) {
 
     $scope.sendTo = function (code) {
       console.log('send');
@@ -48,5 +48,5 @@
           toaster.pop('error', 'Oops !', "Le coupon n'existe pas ou a déjà été utilisé");
         });
     };
-  });
+  }]);
 })();

@@ -59,7 +59,7 @@ angular.module('vinibar.gift', [
       $scope.gift.chargeGiftOrder(response.id, $scope.gift.receiver.gift_uuid, settings.test, $scope.gift.order.billing, $scope.gift.order.billing_address)
         .success(function (data, status, headers, config) {
           if ($scope.gift.order.delivery_mode === 'Point Relais') {
-            $http.post(settings.apiEndPoint + '/orders/pickmremail/', { order_id: data.uuid });
+            $http.post(settings.apiEndPoint + '/orders/pickmremail/', { order_id: data.order });
           }
           $scope.load = { spin: false };
           $state.go('remerciement_mobile');
