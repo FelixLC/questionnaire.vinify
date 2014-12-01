@@ -1,4 +1,50 @@
-angular.module('templates-app', ['gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+
+angular.module("contest/congratulation.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("contest/congratulation.tpl.html",
+    "<div class=\"background-receive\">\n" +
+    "  <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "  <div class=\"overlay-receive\">\n" +
+    "    <div class=\"centered\">\n" +
+    "          <h3>Bienvenue chez Vinify !</h3>\n" +
+    "          <h4>Vous serez contactés dès la fin du concours</h4>\n" +
+    "          <div class=\"brand-logos\">\n" +
+    "            <div><a href=\"https://play.google.com/store/apps/details?id=com.vinify.viniapp.android\" ><img src=\"assets/utils/android.png\" ></a></div>\n" +
+    "            <div><a href=\"https://itunes.apple.com/us/app/vinify/id912757586?mt=8\"><img src=\"assets/utils/apple.png\"></a></div>\n" +
+    "          </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
+angular.module("contest/contest.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("contest/contest.tpl.html",
+    "<div class=\"background-receive\">\n" +
+    "  <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "  <div class=\"overlay-receive\">\n" +
+    "    <div class=\"centered\">\n" +
+    "          <h3>Bienvenue chez Vinify !</h3>\n" +
+    "          <h4>Merci de rentrer votre code concours</h4>\n" +
+    "          <form role=\"form\" name=\"form_login\" class=\"form-inline\">\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label class=\"sr-only\" for=\"password\">Code</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                  placeholder=\"VINICHOUETTE\"\n" +
+    "                  name=\"code\"\n" +
+    "                  ng-model=\"code\"\n" +
+    "                  required\n" +
+    "                  class=\"form-control\"\n" +
+    "                  ng-minlength=\"5\"\n" +
+    "                  id=\"code\"/>\n" +
+    "            </div>\n" +
+    "            <button class=\"btn btn-outline-white\" ng-click=\"sendTo(code)\">Valider</button>\n" +
+    "          </form>\n" +
+    "    </div>\n" +
+    "\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
 
 angular.module("gift/address.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("gift/address.tpl.html",
@@ -377,12 +423,11 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "      <div class=\"col-container\"\n" +
+    "<!--       <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Print' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Print'\">\n" +
     "        <h3>À imprimer</h3>\n" +
-    "        <!-- <p class=\"help\">Imprimez-le et offrez le cadeau quand vous voulez.</p> -->\n" +
-    "      </div>\n" +
+    "      </div> -->\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Card' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Card' \">\n" +
@@ -473,7 +518,7 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "              <p class=\"\">Message</p>\n" +
-    "              <textarea ng-model=\"gift.order.message\" class=\"form-control\" rows=\"6\"></textarea>\n" +
+    "              <textarea ng-model=\"gift.order.message\" class=\"form-control\" rows=\"6\"  maxlength=\"180\" placeholder=\"max.180 char\"></textarea>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -622,6 +667,7 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "                <p class=\"\">Mot de Passe</p>\n" +
     "                <input type=\"password\" class=\"form-control\" ng-model=\"gift.client.password\"\n" +
     "                              name=\"client_password\"\n" +
+    "                              placeholder=\"min. 5 charactères\"\n" +
     "                              ng-class=\"{'input-error' : infos.submitted && infos.client_password.$invalid}\"\n" +
     "                              ng-required=\"is.client\">\n" +
     "              </div>\n" +
@@ -643,7 +689,7 @@ angular.module("gift/vinibar/quiz.tpl.html", []).run(["$templateCache", function
   $templateCache.put("gift/vinibar/quiz.tpl.html",
     "<div class=\"gift-header\">\n" +
     "  <h1>offrir un vinibar</h1>\n" +
-    "  <h2>Je réponds au quiz vinify</h2>\n" +
+    "  <h2>Je réponds au questionnaire vinify</h2>\n" +
     "</div>\n" +
     "<div id=\"quiz\" class=\"row container-fluid\">\n" +
     "  <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
@@ -1574,8 +1620,8 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "						<hr>\n" +
     "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>\n" +
     "						<hr>\n" +
-    "						<h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
-    "						<h4 ng-hide=\"isGift\" ng-hide=\"client.order_type === 'Vinibar' \" class=\"centered\">39 €</h4>\n" +
+    "<!-- 						<h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
+    "						<h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Découverte' \" class=\"centered\">39 €</h4> -->\n" +
     "					</div>\n" +
     "\n" +
     "				</form>\n" +
@@ -1884,7 +1930,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                                  </h4>\n" +
     "                                </td>\n" +
     "                              </tr>\n" +
-    "                              <tr ng-show=\"client.order.coupon.value\">\n" +
+    "                              <tr ng-show=\"client.order.coupon.value && client.order.coupon.coupon_type != 'Percentage' \">\n" +
     "                                <td><h4>Promo </h4></td>\n" +
     "                                <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>\n" +
     "                              </tr>\n" +
@@ -2793,7 +2839,10 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			</div>\n" +
     "			<div class=\"row\">\n" +
     "				<div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
-    "					<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">Découvrir ma sélection</button>\n" +
+    "					<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">\n" +
+    "						<span ng-show=\"is.contest\">Valider ma participation</span>\n" +
+    "						<span ng-show=\"is.contest\">Découvrir ma sélection</span>\n" +
+    "					</button>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
@@ -2862,8 +2911,15 @@ angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($
     "</div>");
 }]);
 
-angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("remerciement/remerciement.tpl.html",
+angular.module("remerciement/remerciement.3.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("remerciement/remerciement.3.tpl.html",
+    "<nav class=\"navbar\" role=\"navigation\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</nav>\n" +
     "<div class=\"remerciement-container\">\n" +
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +
@@ -2881,7 +2937,90 @@ angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", 
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "");
+    "<iframe src=\"https://lb.affilae.com/?key=546b6fc823b944df498b4e25-546b6ea723b944df498b4e23&id={{order.uuid}}&amount={{amount}}&payment=online\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+}]);
+
+angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("remerciement/remerciement.6.tpl.html",
+    "<nav class=\"navbar\" role=\"navigation\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</nav>\n" +
+    "<div class=\"remerciement-container\">\n" +
+    "  <div class=\"vertical-align centered\">\n" +
+    "      <div class=\"container row-fluid\">\n" +
+    "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
+    "        <p>Merci d'avoir créé votre profil de goûts, nous préparons votre sélection personnalisée !</p>\n" +
+    "<!--         <h2>Merci pour votre commande</h2>\n" +
+    "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
+    "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->\n" +
+    "        <div class=\"remerciement\">\n" +
+    "          <img src=\"assets/vinifytailleur.png\" style=\"width:300px;\">\n" +
+    "        <!-- Col -->\n" +
+    "        </div>\n" +
+    "        <p>A très vite pour la suite de l'aventure Vinify !</p>\n" +
+    "      <!-- ROW -->\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "<iframe src=\"https://lb.affilae.com/?key=546b74af23b944e0498b4c0a-546b6ea723b944df498b4e23&id={{order.uuid}}&amount={{amount}}&payment=online\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+}]);
+
+angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("remerciement/remerciement.gift.tpl.html",
+    "<nav class=\"navbar\" role=\"navigation\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</nav>\n" +
+    "<div class=\"remerciement-container\">\n" +
+    "  <div class=\"vertical-align centered\">\n" +
+    "      <div class=\"container row-fluid\">\n" +
+    "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
+    "        <p>Merci d'avoir créé votre profil de goûts, nous préparons votre sélection personnalisée !</p>\n" +
+    "<!--         <h2>Merci pour votre commande</h2>\n" +
+    "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
+    "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->\n" +
+    "        <div class=\"remerciement\">\n" +
+    "          <img src=\"assets/vinifytailleur.png\" style=\"width:300px;\">\n" +
+    "        <!-- Col -->\n" +
+    "        </div>\n" +
+    "        <p>A très vite pour la suite de l'aventure Vinify !</p>\n" +
+    "      <!-- ROW -->\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "<iframe src=\"https://lb.affilae.com/?key=546b74af23b944e0498b4c0a-546b6ea723b944df498b4e23&id={{order.uuid}}&amount={{amount}}&payment=online\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+}]);
+
+angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("remerciement/remerciement.tpl.html",
+    "<nav class=\"navbar\" role=\"navigation\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</nav>\n" +
+    "<div class=\"remerciement-container\">\n" +
+    "  <div class=\"vertical-align centered\">\n" +
+    "      <div class=\"container row-fluid\">\n" +
+    "        <h2>Merci pour votre commande</h2>\n" +
+    "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
+    "        <div class=\"remerciement\">\n" +
+    "          <img src=\"assets/vinifytailleur.png\" style=\"width:300px;\">\n" +
+    "        <!-- Col -->\n" +
+    "        </div>\n" +
+    "        <p>A très vite pour la suite de l'aventure Vinify !</p>\n" +
+    "      <!-- ROW -->\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "</div>");
 }]);
 
 angular.module("remerciement_mobile/remerciement_mobile.tpl.html", []).run(["$templateCache", function($templateCache) {

@@ -172,7 +172,7 @@
                                   </h4>
                                 </td>
                               </tr>
-                              <tr ng-show="client.order.coupon.value">
+                              <tr ng-show="client.order.coupon.value && client.order.coupon.coupon_type != 'Percentage' ">
                                 <td><h4>Promo </h4></td>
                                 <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>
                               </tr>

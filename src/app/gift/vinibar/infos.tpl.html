@@ -46,7 +46,7 @@
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="">Message</p>
-              <textarea ng-model="gift.order.message" class="form-control" rows="6"></textarea>
+              <textarea ng-model="gift.order.message" class="form-control" rows="6"  maxlength="180" placeholder="max.180 char"></textarea>
             </div>
           </div>
         </div>
@@ -195,6 +195,7 @@
                 <p class="">Mot de Passe</p>
                 <input type="password" class="form-control" ng-model="gift.client.password"
                               name="client_password"
+                              placeholder="min. 5 charactères"
                               ng-class="{'input-error' : infos.submitted && infos.client_password.$invalid}"
                               ng-required="is.client">
               </div>

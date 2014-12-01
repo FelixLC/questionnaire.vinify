@@ -282,7 +282,10 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
-					<button class="btn button-createuser" ng-click="createUser(form_name, form_user, form_tastes)">Découvrir ma sélection</button>
+					<button class="btn button-createuser" ng-click="createUser(form_name, form_user, form_tastes)">
+						<span ng-show="is.contest">Valider ma participation</span>
+						<span ng-show="is.contest">Découvrir ma sélection</span>
+					</button>
 				</div>
 			</div>
 		</div>

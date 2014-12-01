@@ -62,6 +62,9 @@ angular.module('vinibar.questionnaire', [
 })
 
 .controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receive, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
+
+	$scope.is = { contest: currentClient.isContest };
+
 	// modal
 	$scope.open = function (size) {
 
@@ -195,11 +198,12 @@ angular.module('vinibar.questionnaire', [
 				$rootScope.loading = true;
 				$scope.showFormEmailError = false;
 				$scope.showFormErrors = false;
+				var referrer = currentClient.initial_referrer;
 				currentClient.currentClient = $scope.newuser;
 				currentClient.currentClient.userinfos.first_name = $scope.newuser.first_name;
 				currentClient.currentClient.userinfos.last_name = $scope.newuser.last_name;
 
-				$scope.newuser.createUser().success(function (data, status, headers, config) {
+				$scope.newuser.createUser(referrer).success(function (data, status, headers, config) {
 					$window.sessionStorage.token = data.token;
 					Mixpanel.alias(data.uuid);
 					Mixpanel.people.set({
@@ -208,16 +212,19 @@ angular.module('vinibar.questionnaire', [
 						"Last Name": data.last_name
 					});
 					Mixpanel.track('User Created', {referrer: (currentClient.isGift) ? 'Gift' : $document.referrer});
-					if (!currentClient.isGift) { // if we don't have a gift activation
+					if (currentClient.isGift) {// if we have a gift activation
+						Receive.update();
+						$state.go('order.userinfos');
+						$rootScope.loading = false;
+					} else if ($scope.is.contest) {
+						$state.go('contest_congratulation');
+						$rootScope.loading = false;
+					} else { // if we don't have a gift activation
 						Recommender.calcPreview(data)
 							.then(function (response) {
 								$state.go('preview');
 								$rootScope.loading = false;
 							});
-					} else {// if we have a gift activation
-						Receive.update();
-						$state.go('order.userinfos');
-						$rootScope.loading = false;
 					}
 					// $state.go('remerciement');
 				})

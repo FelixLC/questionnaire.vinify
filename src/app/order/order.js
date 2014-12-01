@@ -86,7 +86,7 @@ angular.module('vinibar.order', [
             toaster.pop('info', 'Vous ne pouvez pas utiliser un code parrainnage', 'avec l\'offre découverte. Vous pouvez cependant acquérir un Vinibar à 59€ !');
             $scope.coupon.coupon = "";
           } else if (response.coupon_type === 'Percentage') {
-            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' % !');
+            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value * 100 + ' % !');
           } else if (response.coupon_type === 'Monetary') {
             toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' € !');
           }

@@ -86,7 +86,7 @@ angular.module('clientFactory', ['settings'])
 				this.order = {};
 		};
 
-		Client.prototype.createUser = function () {
+		Client.prototype.createUser = function (referrer) {
 
 			var self = this;
 			var data = {};
@@ -95,6 +95,7 @@ angular.module('clientFactory', ['settings'])
 			data.password = this.password;
 			data.first_name = this.first_name;
 			data.last_name = this.last_name;
+			data.initial_referrer = (referrer) ? referrer : "";
 			var request = $http({
 													url: settings.apiEndPoint + '/users/createuser/',
 													method: 'POST',

@@ -21,9 +21,10 @@ angular.module('vinibar.welcome', [
     });
 })
 
-.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams) {
+.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams, $window) {
   console.log($stateParams);
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
   currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
+  currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
   console.log(currentClient);
 });

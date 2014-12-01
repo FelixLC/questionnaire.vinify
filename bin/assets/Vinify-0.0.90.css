@@ -7858,7 +7858,7 @@ footer p {
   background-color: #efeeeb;
 }
 #gift .checked {
-  background-color: #58585b;
+  background-color: #0367a3;
   color: #FFF;
 }
 #gift .col-container-price-level > div,
@@ -7867,7 +7867,7 @@ footer p {
 }
 #gift .col-container-price-level > div {
   height: 56px;
-  border: 1px solid #58585b;
+  border: 1px solid #0367a3;
   padding: 10px;
   vertical-align: middle;
 }

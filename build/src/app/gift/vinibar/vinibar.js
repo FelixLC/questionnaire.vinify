@@ -4,6 +4,7 @@ angular.module('vinibar.gift.vinibar', [
   'ui.bootstrap',
   'Resources',
   'params',
+  'settings',
   'toaster',
   'Mixpanel'
 ])
@@ -11,13 +12,13 @@ angular.module('vinibar.gift.vinibar', [
 .config(function config ($stateProvider) {
   $stateProvider
     .state('gift.vinibar', {
-      url: '/vinibar',
+      url: '/vinibar?test',
       abstract: true,
       controller: 'giftVinibarCtrl',
       template: '<ui-view/>'
     })
     .state('gift.vinibar.details', {
-      url: '/formule?test',
+      url: '/formule',
       templateUrl: 'gift/vinibar/details.tpl.html',
       data: { pageTitle: 'Cadeau' }
     })
@@ -39,7 +40,8 @@ angular.module('vinibar.gift.vinibar', [
     });
 })
 
-.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, toaster, $window) {
+.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window) {
+
   var init = function () {
     $scope.costs = params;
     $scope.is = {
@@ -114,7 +116,7 @@ angular.module('vinibar.gift.vinibar', [
 
   $scope.submit = function (form) {
     form.submitted = true;
-
+    $scope.gift.giver.initial_referrer = $window.document.referrer;
     /*****************
       the form is valid
     *****************/
@@ -134,8 +136,11 @@ angular.module('vinibar.gift.vinibar', [
               "Email ": response.data.email,
               "Last Name": response.data.last_name
            });
-            $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
+
+            if ($scope.gift.order.gift_type === 'Email') {
+              $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
                                 $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
+            }
 
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
