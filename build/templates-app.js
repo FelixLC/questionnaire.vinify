@@ -2841,7 +2841,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "				<div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
     "					<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">\n" +
     "						<span ng-show=\"is.contest\">Valider ma participation</span>\n" +
-    "						<span ng-show=\"is.contest\">Découvrir ma sélection</span>\n" +
+    "						<span ng-show=\"!is.contest\">Découvrir ma sélection</span>\n" +
     "					</button>\n" +
     "				</div>\n" +
     "			</div>\n" +
@@ -2850,7 +2850,10 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "	      <a ui-sref=\"questionnaire.balance\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
     "	    </div>\n" +
     "	</div>\n" +
-    "\n" +
+    "</div>\n" +
+    "<div class=\"wait-for-preview\" ng-show=\"loading\">\n" +
+    "	<h2>Merci de patienter</h2>\n" +
+    "	<h3>Nous trouvons les vins qui vous correspondent le mieux</h3>\n" +
     "</div>");
 }]);
 
