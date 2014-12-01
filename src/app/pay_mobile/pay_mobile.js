@@ -64,7 +64,7 @@ angular.module('vinibar.pay_mobile', [
     $scope.submit = function (status, response) {
 
         if (response.error) {
-          console.log(response);
+            toaster.pop('error', 'Une erreur est survenue', 'Merci de vérifier vos coordonnées bancaires');
         } else {
           $rootScope.loading = true;
           var data = {

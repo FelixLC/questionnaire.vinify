@@ -2851,10 +2851,10 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "	    </div>\n" +
     "	</div>\n" +
     "</div>\n" +
-    "<div class=\"wait-for-preview\" ng-show=\"loading\">\n" +
+    "<!-- <div class=\"waitPreview centered\">\n" +
     "	<h2>Merci de patienter</h2>\n" +
     "	<h3>Nous trouvons les vins qui vous correspondent le mieux</h3>\n" +
-    "</div>");
+    "</div> -->");
 }]);
 
 angular.module("questionnaire/questionnaire.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2985,7 +2985,7 @@ angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCac
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +
     "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
-    "        <p>Merci d'avoir créé votre profil de goûts, nous préparons votre sélection personnalisée !</p>\n" +
+    "        <p>Merci pour votre cadeau !</p>\n" +
     "<!--         <h2>Merci pour votre commande</h2>\n" +
     "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
     "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->\n" +

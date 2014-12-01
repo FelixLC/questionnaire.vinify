@@ -14,21 +14,23 @@ angular.module('vinibar.gift.vinibar', [
     .state('gift.vinibar', {
       url: '/vinibar?test',
       abstract: true,
-      controller: 'giftVinibarCtrl',
       template: '<ui-view/>'
     })
     .state('gift.vinibar.details', {
       url: '/formule',
+      controller: 'giftVinibarCtrl',
       templateUrl: 'gift/vinibar/details.tpl.html',
       data: { pageTitle: 'Cadeau' }
     })
     .state('gift.vinibar.infos', {
       url: '/infos',
+      controller: 'giftInfosVinibarCtrl',
       templateUrl: 'gift/vinibar/infos.tpl.html',
       data: { pageTitle: 'Cadeau' }
     })
     .state('gift.vinibar.quiz', {
       url: '/quiz',
+      controller: 'giftQuizVinibarCtrl',
       templateUrl: 'gift/vinibar/quiz.tpl.html',
       data: { pageTitle: 'Cadeau' }
     })
@@ -44,26 +46,12 @@ angular.module('vinibar.gift.vinibar', [
 
   var init = function () {
     $scope.costs = params;
-    $scope.is = {
-      client: true
-    };
 
     $scope.details = {
       total: "",
       product: 69,
       credits: true
     };
-
-    $scope.regions = [
-      'Loire',
-      'Languedoc Roussillon',
-      'Champagne',
-      'Bourgogne',
-      'Provence',
-      'Rhône',
-      'Alsace',
-      'Bordeaux'
-    ];
 
     $scope.vinibar = {
       refill: 59.80
@@ -81,38 +69,57 @@ angular.module('vinibar.gift.vinibar', [
     $scope.$watch('details.credits', function (newVal, OldVal) {
       $scope.gift.order.credits = (newVal) ? 60 : 0;
     });
-
-    $scope.goTo = function (state) {
-      Mixpanel.track('Selected gift_card options', {
-        credits: $scope.gift.order.credits,
-        gift_type: $scope.gift.order.gift_type
-      });
-      $state.go(state);
-    };
   };
 
   $scope.initVB = function () {
-    $scope.gift = new Gift('Vinibar');
-    $scope.gift.order.delivery_mode = 'Point Relais';
-
+    if ($scope.gift) {
+      if ($scope.gift.order.gift_type != 'Vinibar') {
+        $scope.gift = new Gift('Vinibar');
+        $scope.gift.order.delivery_mode = 'Point Relais';
+      }
+    } else {
+        $scope.gift = new Gift('Vinibar');
+        $scope.gift.order.delivery_mode = 'Point Relais';
+    }
   };
 
   $scope.initCard = function () {
+    if ($scope.gift.order.gift_type === 'Vinibar') {
+      $scope.gift = new Gift('Email');
+      console.log($scope.gift);
 
-    $scope.gift = new Gift('Email');
+      $scope.sendDate = {};
+      var date = new Date();
 
-    $scope.sendDate = {};
-    var date = new Date();
-
-    $scope.sendDate = {
-      day: date.getDate(),
-      month: date.getMonth() + 1,
-      year: date.getFullYear()
-    };
+      $scope.sendDate = {
+        day: date.getDate(),
+        month: date.getMonth() + 1,
+        year: date.getFullYear()
+      };
+    }
   };
 
   $scope.initVB();
   init();
+
+  $scope.goTo = function (state) {
+    if ($scope.gift.order.gift_type === 'Email') {
+      $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
+                        $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
+    }
+    currentGift.current = $scope.gift;
+    Mixpanel.track('Selected gift_card options', {
+      credits: $scope.gift.order.credits,
+      gift_type: $scope.gift.order.gift_type
+    });
+    $state.go(state);
+  };
+})
+.controller('giftInfosVinibarCtrl', function giftInfosVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window) {
+  $scope.gift = currentGift.current;
+  $scope.is = {
+    client: true
+  };
 
   $scope.submit = function (form) {
     form.submitted = true;
@@ -137,18 +144,15 @@ angular.module('vinibar.gift.vinibar', [
               "Last Name": response.data.last_name
            });
 
-            if ($scope.gift.order.gift_type === 'Email') {
-              $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
-                                $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
-            }
-
             $scope.gift.createGiftOrder()
               .then(function (response) { // order creation success
                 Mixpanel.track('New prospect created a ' + $scope.gift.order.gift_type + 'gift order');
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
+                console.log($scope.gift);
                 $scope.load = false;
                 if ($scope.gift.order.gift_type === 'Vinibar') {
+                  currentGift.current = $scope.gift;
                   $state.go('gift.vinibar.quiz');
                 } else {
                   currentGift.current = $scope.gift;
@@ -185,8 +189,10 @@ angular.module('vinibar.gift.vinibar', [
                 Mixpanel.track('Client created a ' + $scope.gift.order.gift_type + ' gift order');
                 $scope.gift.receiver.receiver_email = $scope.gift.order.receiver_email;
                 $scope.gift.receiver.gift_uuid = response.data.uuid;
+                console.log($scope.gift);
                 $scope.load = false;
                 if ($scope.gift.order.gift_type === 'Vinibar') {
+                  currentGift.current = $scope.gift;
                   $state.go('gift.vinibar.quiz');
                 } else {
                   currentGift.current = $scope.gift;
@@ -217,14 +223,25 @@ angular.module('vinibar.gift.vinibar', [
       toaster.pop('infos', 'Oops !', ' Vous avez oublié des champs');
     }
   };
-
+})
+.controller('giftQuizVinibarCtrl', function giftQuizVinibarCtrl (Mixpanel, $scope, $state, currentGift) {
+  $scope.regions = [
+    'Loire',
+    'Languedoc Roussillon',
+    'Champagne',
+    'Bourgogne',
+    'Provence',
+    'Rhône',
+    'Alsace',
+    'Bordeaux'
+  ];
+  $scope.gift = currentGift.current;
   $scope.sendSurvey = function () {
     $scope.gift.sendSurvey().then(function (response) {
       Mixpanel.track('Filled gift survey');
-       currentGift.current = $scope.gift;
+      currentGift.current = $scope.gift;
       console.log(currentGift);
       $state.go('gift.pay');
     });
   };
-
 });

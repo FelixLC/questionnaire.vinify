@@ -6985,24 +6985,13 @@ footer p {
   left: 0;
   right: 0;
 }
-.progressbar {
-  z-index: 300;
+.waitPreview {
+  color: #fff;
   position: fixed;
-  top: 50px;
   left: 0;
   right: 0;
-  text-align: center;
-}
-.progressbar > div {
-  height: 14px;
-  width: 14px;
-  border-radius: 7px;
-  border: 1px solid #FFF;
-  display: inline-block;
-  margin: 10px;
-}
-.progressbar .progress-whole {
-  background-color: #FFF;
+  top: 5px;
+  z-index: 9999;
 }
 .btn.button-overlay:hover,
 .btn.button-overlay:focus {
@@ -7051,9 +7040,6 @@ footer p {
 .questionnaire .btn-quest-radio:active {
   color: #000 !important;
   background-color: #fff;
-}
-.questionnaire .wait-for-preview {
-  color: #fff;
 }
 .questionnaire .button-overlay-reverse {
   text-align: center;
