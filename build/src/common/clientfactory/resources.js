@@ -7,7 +7,7 @@ angular.module('Resources', [ 'settings' ])
     var _uuid = null;
     return {
       calcPreview: function (user) {
-        return $http.post(settings.apiEndPoint + '/backoffice/recommender/preview3/', { user_uuid: user.uuid })
+        return $http.post(settings.backendEndPoint + '/backoffice/recommender/preview3/', { user_uuid: user.uuid })
           .success(function (data, status, headers, config) {
             _preview = data.wines;
             _uuid = data.order_uuid;
@@ -96,6 +96,7 @@ angular.module('Resources', [ 'settings' ])
       };
       this.order = {
         gift_type: type,
+        coupon: "",
         credits: 40,
         delivery_mode: "",
         delivery_cost: "",
@@ -126,6 +127,15 @@ angular.module('Resources', [ 'settings' ])
     Gift.prototype.createGiftOrder = function () {
       return $http.post(settings.apiEndPoint + '/orders/gift/create/', this.order);
     };
+    Gift.prototype.testCoupon = function (_coupon, success, failure) {
+      $http.post(settings.apiEndPoint + '/orders/testcoupon/', { coupon: _coupon })
+          .success(function (data, status, headers, config) {
+            return success(data);
+          })
+          .error(function (data, status, headers, config) {
+            return failure(data);
+          });
+    };
     Gift.prototype.updateGiftOrder = function () {
       return $http.post(settings.apiEndPoint + '/orders/gift/update/', this.orderUpdate);
     };
@@ -144,7 +154,7 @@ angular.module('Resources', [ 'settings' ])
     return Gift;
   } ])
 // the currentGift Factory gives the current Gift we're working with
-.factory('currentGift', [function () {
+.factory('currentGift', [ function () {
   return {
     current: null
   };

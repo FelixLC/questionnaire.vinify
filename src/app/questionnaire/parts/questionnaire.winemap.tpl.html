@@ -8,6 +8,7 @@
 	    <div class="progress-whole"></div>
 	  </div>
 	<div class="overlay">
+		<div ng-show="loading" class="centered"><h4>Merci de patienter, nous cherchons les bouteilles qui vous correspondent le mieux</h4></div>
 		<div class="form-errors fader" ng-show="showFormErrors">
 			<span ng-hide="form_name.$valid && form_user.$valid" >Le(s) champ(s) suivant(s) sont requis:</span>
 			<span ng-show="form_name.first_name.$invalid">Prénom, </span>

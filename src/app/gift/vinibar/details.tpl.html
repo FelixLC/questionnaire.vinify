@@ -16,7 +16,7 @@
         <!-- <p class="help">(L'heureux élu remplira lui même ses goûts)</p> -->
       </div>
       <p ng-show="gift.order.gift_type === 'Vinibar' " class="details-helper">
-        Je connais ces goûts, et je remplis
+        Je connais ses goûts, et je remplis
           <a href=""
               popover-title="Que faut-il savoir ?"
               popover="Est-ce qu'il prend du café ? Quel est son dessert préféré ? Quelle couleur de vins boit-il ? ..."
@@ -174,7 +174,7 @@
         <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' " class="centered">80.90 € *</p>
       </div>
       <div>
-              <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'" class="help centered">* le prix comprend la livraison <br> à domicilie en France métropolitaine</p>
+              <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'" class="help centered">* le prix comprend la livraison <br> à domicile en France métropolitaine</p>
       </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -182,12 +182,22 @@
         <p class="col-subtitle">Total de crédits</p>
         <p class="centered">{{gift.order.credits | number:2}} €</p>
       </div>
+      <div id="got-a-coupon" class="col-container margin-top got-a-coupon">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <p class="col-subtitle">J'ai un coupon !</p>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <input type="text" ng-model="gift.order.coupon" class="form-control" ng-blur="blur()" placeholder="VINICHOUETTE">
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <div class="col-container centered">
         <p>Total de la commande</p>
-        <p>{{69 + gift.order.delivery_cost + gift.order.credits | number:2}} €</p>
+        <p>{{69 + gift.order.delivery_cost + gift.order.credits - coupon.value | number:2}} €</p>
       </div>
-      <div class="btn-block-primary centered margin-top" ng-click="goTo('gift.vinibar.infos')"><p>Continuer</p></div>
+      <div class="btn-block-primary centered margin-top" ng-class="{'disabled-block': gift.order.coupon && !coupon.isChecked}" ng-click="goTo('gift.vinibar.infos')"><p>Continuer</p></div>
     </div>
   </div>

@@ -42,7 +42,7 @@ angular.module('vinibar.gift.vinibar', [
     });
 })
 
-.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window) {
+.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window, $q) {
 
   var init = function () {
     $scope.costs = params;
@@ -53,9 +53,15 @@ angular.module('vinibar.gift.vinibar', [
       credits: true
     };
 
+    $scope.coupon = {
+      isChecked: false,
+      value: 0
+    };
+
     $scope.vinibar = {
       refill: 59.80
     };
+
     if ($stateParams.test) {
       settings.test = true;
     }
@@ -102,17 +108,54 @@ angular.module('vinibar.gift.vinibar', [
   $scope.initVB();
   init();
 
-  $scope.goTo = function (state) {
-    if ($scope.gift.order.gift_type === 'Email') {
-      $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
-                        $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
+
+  var couponCheckerFail = function (response) {
+    if (response === 'This code is not valid') {
+      toaster.pop('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');
+    } else if (response === 'This coupon has been redeemed') {
+      toaster.pop('info', 'Malheureusement, Ce code est expiré !');
+    } else if (response === 'Referrals may not be used on Discovery orders') {
+      toaster.pop('info', 'Malheureusement', 'Vous ne pouvez pas utiliser un code parrainnage avec l\'offre découverte');
     }
-    currentGift.current = $scope.gift;
-    Mixpanel.track('Selected gift_card options', {
-      credits: $scope.gift.order.credits,
-      gift_type: $scope.gift.order.gift_type
-    });
-    $state.go(state);
+  };
+
+  $scope.blur = function () {
+    if ($scope.gift.order.coupon) {
+      $scope.gift.testCoupon($scope.gift.order.coupon,
+        // coupon validated
+        function (response) {
+          if (response.coupon_type === 'Referral') {
+            toaster.pop('info', 'Vous ne pouvez pas utiliser un code parrainnage', 'avec un cadeau.');
+            $scope.coupon.coupon = "";
+          } else if (response.coupon_type === 'Percentage') {
+            $scope.gift.order.coupon = "";
+            toaster.pop('error', 'Vous ne pouvez pas utiliser ce coupon pour un cadeu !');
+          } else if (response.coupon_type === 'Monetary') {
+            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' € !');
+            $scope.coupon.isChecked = true;
+            $scope.coupon.value = response.value;
+          }
+        // false coupon
+        }, function (response) {
+          couponCheckerFail(response);
+          $scope.gift.order.coupon = "";
+        });
+    }
+  };
+  $scope.goTo = function (state) {
+    if (($scope.gift.order.coupon && $scope.coupon.isChecked) || !$scope.gift.order.coupon) {
+      if ($scope.gift.order.gift_type === 'Email') {
+        $scope.gift.order.send_date = ($scope.sendDate.day && $scope.sendDate.month && $scope.sendDate.year) ?
+                          $scope.sendDate.year + "-" + $scope.sendDate.month + "-" + $scope.sendDate.day : "";
+      }
+      $scope.gift.order.coupon_value = $scope.coupon.value;
+      currentGift.current = $scope.gift;
+      Mixpanel.track('Selected gift_card options', {
+        credits: $scope.gift.order.credits,
+        gift_type: $scope.gift.order.gift_type
+      });
+      $state.go(state);
+    }
   };
 })
 .controller('giftInfosVinibarCtrl', function giftInfosVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window) {
@@ -224,7 +267,7 @@ angular.module('vinibar.gift.vinibar', [
     }
   };
 })
-.controller('giftQuizVinibarCtrl', function giftQuizVinibarCtrl (Mixpanel, $scope, $state, currentGift) {
+.controller('giftQuizVinibarCtrl', function giftQuizVinibarCtrl (Mixpanel, $scope, $state, currentGift, toaster) {
   $scope.regions = [
     'Loire',
     'Languedoc Roussillon',
@@ -237,11 +280,27 @@ angular.module('vinibar.gift.vinibar', [
   ];
   $scope.gift = currentGift.current;
   $scope.sendSurvey = function () {
-    $scope.gift.sendSurvey().then(function (response) {
-      Mixpanel.track('Filled gift survey');
-      currentGift.current = $scope.gift;
-      console.log(currentGift);
-      $state.go('gift.pay');
-    });
+    if ($scope.gift.receiver.survey.quest_6.answ_1 === 4 ||
+          $scope.gift.receiver.survey.quest_6.answ_2 === 4 ||
+          $scope.gift.receiver.survey.quest_6.answ_3 === 4) {
+      toaster.pop('info', 'Oops !', 'Merci de choisir une préférence pour chaque type de vin');
+    } else if ($scope.gift.receiver.survey.quest_1.answ === 0) {
+      toaster.pop('info', 'Oops !', 'Merci de choisir une préférence pour le café');
+    } else if ($scope.gift.receiver.survey.quest_2.answ === 0) {
+      toaster.pop('info', 'Oops !', 'Merci de choisir une préférence pour les jus');
+    } else if (!$scope.gift.receiver.survey.quest_3.answ_1 &&
+                      !$scope.gift.receiver.survey.quest_3.answ_2 &&
+                      !$scope.gift.receiver.survey.quest_3.answ_3 &&
+                      !$scope.gift.receiver.survey.quest_3.answ_4 &&
+                      !$scope.gift.receiver.survey.quest_3.answ_5) {
+      toaster.pop('info', 'Oops !', 'Merci de choisir au moins une cuisine');
+    } else {
+      $scope.gift.sendSurvey().then(function (response) {
+        Mixpanel.track('Filled gift survey');
+        currentGift.current = $scope.gift;
+        console.log(currentGift);
+        $state.go('gift.pay');
+      });
+    }
   };
 });

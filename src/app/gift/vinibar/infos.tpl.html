@@ -49,13 +49,20 @@
               <textarea ng-model="gift.order.message" class="form-control" rows="6"  maxlength="180" placeholder="max.180 char"></textarea>
             </div>
           </div>
+          <div ng-show="gift.order.gift_type != 'Vinibar' " class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p class="col-subtitle">Un commentaire&nbsp;?</p>
+            <textarea class="form-control" ng-model="gift.order.comment" rows="2" placeholder="Une attention particulière ? D'autres infos sur ses goûts ?"></textarea>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div ng-show="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Livraison</h2>
       <div class="col-container">
-        <p class="col-subtitle">Vinify envoie le bar</p>
+        <p ng-show="gift.order.gift_type === 'Vinibar'" class="col-subtitle">Vinify envoie le bar</p>
+        <p ng-show="gift.order.gift_type === 'Card'" class="col-subtitle">Vinify envoie la carte</p>
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="gift-checkbox" ng-click="gift.order.send_to_receiver = false" ng-class="{infochecked: !gift.order.send_to_receiver}">

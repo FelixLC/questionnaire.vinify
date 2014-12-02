@@ -176,9 +176,17 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "              </p>\n" +
     "            </td>\n" +
     "          </tr>\n" +
+    "          <tr ng-show=\"gift.order.coupon_value\">\n" +
+    "            <td><p>Réduction </p></td>\n" +
+    "            <td>\n" +
+    "              <p>\n" +
+    "                - {{gift.order.coupon_value}}&nbsp;€\n" +
+    "              </p>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
     "          <tr  class=\"\">\n" +
     "            <td><h4>Total </h4></td>\n" +
-    "            <td><h4>{{69 + gift.order.delivery_cost + gift.order.credits| number:1}}&nbsp;€</h4></td>\n" +
+    "            <td><h4>{{69 + gift.order.delivery_cost + gift.order.credits - gift.order.coupon_value | number:1}}&nbsp;€</h4></td>\n" +
     "          </tr>\n" +
     "      </table>\n" +
     "    </div>\n" +
@@ -290,7 +298,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <!-- <p class=\"help\">(L'heureux élu remplira lui même ses goûts)</p> -->\n" +
     "      </div>\n" +
     "      <p ng-show=\"gift.order.gift_type === 'Vinibar' \" class=\"details-helper\">\n" +
-    "        Je connais ces goûts, et je remplis\n" +
+    "        Je connais ses goûts, et je remplis\n" +
     "          <a href=\"\"\n" +
     "              popover-title=\"Que faut-il savoir ?\"\n" +
     "              popover=\"Est-ce qu'il prend du café ? Quel est son dessert préféré ? Quelle couleur de vins boit-il ? ...\"\n" +
@@ -448,7 +456,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"centered\">80.90 € *</p>\n" +
     "      </div>\n" +
     "      <div>\n" +
-    "              <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'\" class=\"help centered\">* le prix comprend la livraison <br> à domicilie en France métropolitaine</p>\n" +
+    "              <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'\" class=\"help centered\">* le prix comprend la livraison <br> à domicile en France métropolitaine</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
@@ -456,13 +464,23 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <p class=\"col-subtitle\">Total de crédits</p>\n" +
     "        <p class=\"centered\">{{gift.order.credits | number:2}} €</p>\n" +
     "      </div>\n" +
+    "      <div id=\"got-a-coupon\" class=\"col-container margin-top got-a-coupon\">\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "              <p class=\"col-subtitle\">J'ai un coupon !</p>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
+    "            <input type=\"text\" ng-model=\"gift.order.coupon\" class=\"form-control\" ng-blur=\"blur()\" placeholder=\"VINICHOUETTE\">\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <div class=\"col-container centered\">\n" +
     "        <p>Total de la commande</p>\n" +
-    "        <p>{{69 + gift.order.delivery_cost + gift.order.credits | number:2}} €</p>\n" +
+    "        <p>{{69 + gift.order.delivery_cost + gift.order.credits - coupon.value | number:2}} €</p>\n" +
     "      </div>\n" +
-    "      <div class=\"btn-block-primary centered margin-top\" ng-click=\"goTo('gift.vinibar.infos')\"><p>Continuer</p></div>\n" +
+    "      <div class=\"btn-block-primary centered margin-top\" ng-class=\"{'disabled-block': gift.order.coupon && !coupon.isChecked}\" ng-click=\"goTo('gift.vinibar.infos')\"><p>Continuer</p></div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "");
@@ -521,13 +539,20 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "              <textarea ng-model=\"gift.order.message\" class=\"form-control\" rows=\"6\"  maxlength=\"180\" placeholder=\"max.180 char\"></textarea>\n" +
     "            </div>\n" +
     "          </div>\n" +
+    "          <div ng-show=\"gift.order.gift_type != 'Vinibar' \" class=\"row\">\n" +
+    "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "            <p class=\"col-subtitle\">Un commentaire&nbsp;?</p>\n" +
+    "            <textarea class=\"form-control\" ng-model=\"gift.order.comment\" rows=\"2\" placeholder=\"Une attention particulière ? D'autres infos sur ses goûts ?\"></textarea>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div ng-show=\"gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Livraison</h2>\n" +
     "      <div class=\"col-container\">\n" +
-    "        <p class=\"col-subtitle\">Vinify envoie le bar</p>\n" +
+    "        <p ng-show=\"gift.order.gift_type === 'Vinibar'\" class=\"col-subtitle\">Vinify envoie le bar</p>\n" +
+    "        <p ng-show=\"gift.order.gift_type === 'Card'\" class=\"col-subtitle\">Vinify envoie la carte</p>\n" +
     "        <div class=\"row\">\n" +
     "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "            <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = false\" ng-class=\"{infochecked: !gift.order.send_to_receiver}\">\n" +
@@ -1632,9 +1657,11 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "			<div class=\"col-lg-12 col-md-12\">\n" +
     "				<form role=\"form\">\n" +
     "				<div class=\"col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4\">\n" +
-    "					<div class=\"form-group\" ng-hide=\"isGift\">\n" +
-    "						<label class=\"sr-only\" for=\"exampleInputEmail2\">Email address</label>\n" +
+    "					<div class=\"input-group\" ng-hide=\"isGift\">\n" +
     "						<input type=\"text\" ng-blur=\"blur()\" class=\"form-control\" ng-model=\"coupon.coupon\" placeholder=\"Code Promo / Parrainage\">\n" +
+    "						<span class=\"input-group-btn\">\n" +
+    "							<button class=\"btn btn-default\" type=\"button\">Go!</button>\n" +
+    "						</span>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "				<div class=\"col-lg-4 col-md-4 centered\">\n" +
@@ -1930,13 +1957,13 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                                  </h4>\n" +
     "                                </td>\n" +
     "                              </tr>\n" +
-    "                              <tr ng-show=\"client.order.coupon.value && client.order.coupon.coupon_type != 'Percentage' \">\n" +
+    "<!--                               <tr ng-show=\"client.order.coupon.value && client.order.coupon.coupon_type != 'Percentage' \">\n" +
     "                                <td><h4>Promo </h4></td>\n" +
     "                                <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>\n" +
-    "                              </tr>\n" +
+    "                              </tr> -->\n" +
     "                              <tr  class=\"bill-total\">\n" +
     "                                <td><h4>Total </h4></td>\n" +
-    "                                <td><h4>{{client.order.amount + delivery.cost - client.order.coupon.value | number:1}}&nbsp;€</h4></td>\n" +
+    "                                <td><h4>{{client.order.amount + delivery.cost | number:1}}&nbsp;€</h4></td>\n" +
     "                              </tr>\n" +
     "                          </table>\n" +
     "                  </div>\n" +
@@ -2216,6 +2243,7 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
     "  </div>\n" +
     "  <div class=\"overlay\">\n" +
     "    <div class=\"vertical-align centered\">\n" +
+    "    <!-- <div class=\"centered\" style=\"color:#FFF\">Notre service est momentanément indisponible, merci de nous excuser <br> a très vite pour l'aventure Vinify </div> -->\n" +
     "      <div class=\"row\">\n" +
     "        <h3>Vous preferez votre café :</h3>\n" +
     "      </div>\n" +
@@ -2565,6 +2593,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "	    <div class=\"progress-whole\"></div>\n" +
     "	  </div>\n" +
     "	<div class=\"overlay\">\n" +
+    "		<div ng-show=\"loading\" class=\"centered\"><h4>Merci de patienter, nous cherchons les bouteilles qui vous correspondent le mieux</h4></div>\n" +
     "		<div class=\"form-errors fader\" ng-show=\"showFormErrors\">\n" +
     "			<span ng-hide=\"form_name.$valid && form_user.$valid\" >Le(s) champ(s) suivant(s) sont requis:</span>\n" +
     "			<span ng-show=\"form_name.first_name.$invalid\">Prénom, </span>\n" +
@@ -2940,7 +2969,7 @@ angular.module("remerciement/remerciement.3.tpl.html", []).run(["$templateCache"
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "<iframe src=\"https://lb.affilae.com/?key=546b6fc823b944df498b4e25-546b6ea723b944df498b4e23&id={{order.uuid}}&amount={{amount}}&payment=online\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
 }]);
 
 angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2969,7 +2998,7 @@ angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache"
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "<iframe src=\"https://lb.affilae.com/?key=546b74af23b944e0498b4c0a-546b6ea723b944df498b4e23&id={{order.uuid}}&amount={{amount}}&payment=online\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
 }]);
 
 angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2998,7 +3027,7 @@ angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCac
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "<iframe src=\"https://lb.affilae.com/?key=546b74af23b944e0498b4c0a-546b6ea723b944df498b4e23&id={{order.uuid}}&amount={{amount}}&payment=online\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
 }]);
 
 angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", function($templateCache) {
