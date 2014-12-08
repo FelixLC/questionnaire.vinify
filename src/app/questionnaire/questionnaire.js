@@ -151,13 +151,10 @@ angular.module('vinibar.questionnaire', [
 
 	$scope.regions = [
 		'Je n\'en ai pas',
-		'Loire',
-		'Languedoc Roussillon',
-		'Champagne',
 		'Bourgogne',
-		'Provence',
-		'Rhône',
+		'Vallée de la Loire',
 		'Alsace',
+		'Vallée du Rhône',
 		'Bordeaux'
 	];
 

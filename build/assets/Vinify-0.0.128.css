@@ -7448,7 +7448,7 @@ footer p {
     width: 250px;
   }
 }
-#quest_winemap #Loire,
+#quest_winemap #Vallée de la Loire,
 #quest_winemap #Alsace,
 #quest_winemap #Bourgogne_1_,
 #quest_winemap #Languedoc,
@@ -8003,6 +8003,71 @@ a.margin-top {
 */
 .modal-billing p {
   font-size: 16px;
+}
+/*
+** GIFT CARD
+*/
+#gift-card > div {
+  width: 600px;
+  margin: 0 auto;
+}
+@media print {
+  #gift-card > div {
+    width: 80%;
+  }
+}
+@media screen {
+  #gift-card > div {
+    padding: 20px;
+    border: 1px solid #e7e7e7;
+  }
+}
+#gift-card p {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+@media print {
+  #gift-card p {
+    font-size: 14px;
+  }
+}
+#gift-card h3 {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+@media print {
+  #gift-card h3 {
+    font-size: 16px;
+  }
+}
+#gift-card .greeting {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#gift-card .message {
+  font-style: italic;
+}
+#gift-card .img-header {
+  width: 60%;
+}
+#gift-card .gift-card-drawing {
+  display: table;
+  width: 100%;
+}
+#gift-card .gift-card-drawing > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#gift-card .gift-card-drawing > div:last-child {
+  padding: 20px;
+  width: 70%;
+}
+#gift-card .gift-card-drawing > div:last-child p {
+  margin: 0;
+}
+#gift-card .tryptic img {
+  margin: 0 auto;
 }
 .page-wrap {
   min-height: 100%;

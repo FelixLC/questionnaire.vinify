@@ -43,7 +43,7 @@ angular.module('vinibar.gift', [
   };
 })
 
-.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, currentGift, params, toaster, settings, $modal, currentClient) {
+.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, currentGift, currentGiftCard, params, toaster, settings, $modal, currentClient) {
 
   Stripe.setPublishableKey((settings.test) ? 'pk_test_sK21onMmCuKNuoY7pbml8z3Q' : 'pk_live_gNv4cCe8tsZpettPUsdQj25F');
   $scope.gift = currentGift.current;
@@ -63,6 +63,7 @@ angular.module('vinibar.gift', [
           }
           $scope.load = { spin: false };
           currentClient.order = data;
+          currentGiftCard.code = data.activation_coupon;
           $state.go('remerciement_gift');
           Mixpanel.track('Sucessful payment');
         })

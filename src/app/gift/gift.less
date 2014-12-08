@@ -348,3 +348,62 @@ a.margin-top {
 .modal-billing p {
     font-size: 16px;
 }
+
+/*
+** GIFT CARD
+*/
+
+#gift-card > div {
+  width: 600px;
+  margin: 0 auto;
+    @media print {
+      width: 80%;
+    }
+    @media screen {
+      padding: 20px;
+      border: 1px solid @dark-grey;
+    }
+}
+#gift-card p {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+    @media print {
+      font-size: 14px;
+    }
+}
+#gift-card h3 {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+    @media print {
+      font-size: 16px;
+    }
+}
+#gift-card .greeting {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#gift-card .message {
+  font-style: italic;
+}
+#gift-card .img-header {
+      width: 60%;
+}
+#gift-card .gift-card-drawing {
+  display: table;
+  width: 100%;
+}
+#gift-card .gift-card-drawing > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#gift-card .gift-card-drawing > div:last-child {
+  padding: 20px;
+  width: 70%;
+}
+#gift-card .gift-card-drawing > div:last-child p {
+  margin: 0;
+}
+#gift-card .tryptic img {
+  margin: 0 auto;
+}

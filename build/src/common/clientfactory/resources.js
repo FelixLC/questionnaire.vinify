@@ -158,4 +158,12 @@ angular.module('Resources', [ 'settings' ])
   return {
     current: null
   };
+} ])
+// the currentGiftCard Factory provides data for the card to print
+.factory('currentGiftCard', [ function () {
+  return {
+    first_name: "",
+    code: "",
+    message: ""
+  };
 } ]);

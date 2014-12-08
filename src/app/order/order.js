@@ -119,7 +119,8 @@ angular.module('vinibar.order', [
               referrer: 'gift'
             });
             Receive.receive();
-            $state.go('congratulation');
+            $rootScope.loading = false;
+            $state.go('congratulation_receive');
           } else {
             Mixpanel.track('UserInfo Added');
             Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,

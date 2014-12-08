@@ -62,7 +62,14 @@
           ng-class="{checked: gift.order.delivery_mode === 'Vinify' }"
           ng-click="gift.order.delivery_mode ='Vinify'">
         <h3>Retrait Vinify</h3>
-        <p class="price">Gratuit</p>
+        <p class="price">
+          Gratuit
+          <a href=""
+              popover-title="Passez nous voir"
+              popover="au 135 rue jean jacques rousseau, à Issy (92)."
+              popover-trigger="mouseenter"
+              popover-placement="bottom">(<i class="fa fa-info-circle">)</i></a>
+        </p>
         <!-- <p class="help">Venez nous voir à Issy (92)</p> -->
       </div>
       <div class="col-container"

@@ -22,7 +22,7 @@
         data: { pageTitle: 'Concours' }
       })
       .state('contest_congratulation', {
-        url: '/bravo',
+        url: '/concours/bravo',
         views: {
           main: {
             templateUrl: 'contest/congratulation.tpl.html'

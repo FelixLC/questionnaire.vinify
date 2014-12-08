@@ -1,4 +1,4 @@
-angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
 
 angular.module("contest/congratulation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("contest/congratulation.tpl.html",
@@ -145,6 +145,37 @@ angular.module("gift/gift.tpl.html", []).run(["$templateCache", function($templa
     "  <div id=\"gift\">\n" +
     "      <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "      <div ui-view class=\"gift-container\"></div>\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
+angular.module("gift/gift_card.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("gift/gift_card.tpl.html",
+    "<div id=\"gift-card\">\n" +
+    "  <div>\n" +
+    "    <div class=\"centered\"><img class=\"img-header\" src=\"https://gallery.mailchimp.com/218bc47385a0a01070ecd4fea/images/87c6a4a6-bb84-4968-b04b-9ea275d1cd5e.png\" class=\"img img-responsive header\" alt=\"\"></div>\n" +
+    "\n" +
+    "    <div class=\"greeting\">\n" +
+    "      <p>Bonjour {{first_name}},</p>\n" +
+    "      <p>Un ami a pensé à vous et vous offre un Vinibar (6 bouteilles de vin sélectionnées pour vous)  !</p>\n" +
+    "      <p>Il vous a laissé un petit message:</p>\n" +
+    "      <p class=\"message\">{{message}}</p>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"gift-card-drawing\">\n" +
+    "      <div><img src=\"https://gallery.mailchimp.com/218bc47385a0a01070ecd4fea/images/94ccf2eb-3aca-47d1-bbee-bf23bd596b5f.png\" class=\"img img-responsive\" alt=\"\"></div>\n" +
+    "      <div>\n" +
+    "        <h3>Comment utiliser votre bon cadeau ?</h3>\n" +
+    "        <ol>\n" +
+    "          <li><p>Rendez-vous sur www.vinify.co</p></li>\n" +
+    "          <li><p>Cliquez sur «J’ai reçu un cadeau » </p></li>\n" +
+    "          <li><p>Entrez le code :</p></li>\n" +
+    "        </ol>\n" +
+    "        <p class=\"centered\">{{code}}</p>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <hr>\n" +
+    "    <div class=\"tryptic centered\"><img src=\"assets/tryptic-gift-card.jpg\" class=\"img img-responsive\" alt=\"\"></div>\n" +
     "  </div>\n" +
     "</div>");
 }]);
@@ -344,7 +375,14 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Vinify' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode ='Vinify'\">\n" +
     "        <h3>Retrait Vinify</h3>\n" +
-    "        <p class=\"price\">Gratuit</p>\n" +
+    "        <p class=\"price\">\n" +
+    "          Gratuit\n" +
+    "          <a href=\"\"\n" +
+    "              popover-title=\"Passez nous voir\"\n" +
+    "              popover=\"au 135 rue jean jacques rousseau, à Issy (92).\"\n" +
+    "              popover-trigger=\"mouseenter\"\n" +
+    "              popover-placement=\"bottom\">(<i class=\"fa fa-info-circle\">)</i></a>\n" +
+    "        </p>\n" +
     "        <!-- <p class=\"help\">Venez nous voir à Issy (92)</p> -->\n" +
     "      </div>\n" +
     "      <div class=\"col-container\"\n" +
@@ -527,7 +565,14 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "          </div>\n" +
     "          <div class=\"row\">\n" +
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
-    "              <p class=\"\">Email</p>\n" +
+    "              <p class=\"\">\n" +
+    "                Email\n" +
+    "              <a href=\"\"\n" +
+    "                  popover-title=\"Chut ...\"\n" +
+    "                  popover=\"Si vous choisissez de l'envoyer chez vous, nous lui enverrons aucun email, nous lui créons juste un compte.\"\n" +
+    "                  popover-trigger=\"mouseenter\"\n" +
+    "                  popover-placement=\"bottom\">(<i class=\"fa fa-info-circle\">)</i></a>\n" +
+    "              </p>\n" +
     "              <input name=\"receiver_email\" type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_email\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_email.$invalid}\"\n" +
     "                            required>\n" +
@@ -2118,7 +2163,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "			<div id=\"container-offers\">\n" +
     "				<div class=\"col-lg-6 col-lg-push-6 col-md-6 col-md-push-6 col-sm-12  col-xs-12 \">\n" +
     "					<button class=\"button btn-square\" ng-click=\"order('Vinibar')\">Commander mon Vinibar</button>\n" +
-    "					<p class=\"centered\">Recevez une sélection de 6 bouteilles <br> revue par notre oenologue pour 69&nbsp;€</p>\n" +
+    "					<p class=\"centered\">Recevez une sélection de <span class=\"highlight\">6 bouteilles différentes</span> <br> revue par notre oenologue pour 69&nbsp;€</p>\n" +
     "				</div>\n" +
     "				<div class=\"col-lg-6 col-lg-pull-6 col-md-6 col-md-pull-6 col-sm-12  col-xs-12 \">\n" +
     "					<button class=\"button btn-square-o\" ng-click=\"order('Découverte')\">Commander ces 3 bouteilles</button>\n" +
@@ -2610,10 +2655,11 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "		<div class=\"vertical-align-comments centered\">\n" +
     "			<div class=\"row\">\n" +
     "				<div class=\"col-lg-6 col-md-6 col-sm-6 hidden-xs elements-quest\" id=\"quest_winemap\">\n" +
-    "					<h3>Ma région viticole préférée&nbsp;: <br>\n" +
+    "					<h3>Ma région viticole préférée&nbsp;:\n" +
+    "					 <br>\n" +
     "					<span ng-hide=\"newuser.survey.quest_7.answ || region.hover\">(Cliquez sur la carte)</span>\n" +
     "					<span ng-show=\"!newuser.survey.quest_7.answ\">{{ region.hover }}</span><span class=\"selected-region\">{{ newuser.survey.quest_7.answ }}</span></h3>\n" +
-    "						<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n" +
+    "						<svg tooltip=\"Laissez vide si vous ne savez pas\"  tooltip-trigger=\"mouseenter\" tooltip-placement=\"bottom\" version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n" +
     "							 viewBox=\"0 0 145.78 143.313\" enable-background=\"new 0 0 145.78 143.313\"\n" +
     "							 xml:space=\"preserve\">\n" +
     "						<g>\n" +
@@ -2653,7 +2699,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								L22.614,60.048z M8.975,40.853l0.237,0.2l-0.36-0.049L8.975,40.853L8.975,40.853z M18.728,58.271l-0.147,0.212l0.1-0.277\n" +
     "								L18.728,58.271L18.728,58.271z M20.393,38.985l-0.119,0.327l-0.143-0.102L20.393,38.985L20.393,38.985z\"/>\n" +
     "\n" +
-    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Loire'} \" ng-mouseenter=\"enter('Loire')\" ng-mouseleave=\"leave('Loire')\" ng-click=\"select('Loire')\"  id=\"Loire\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Vallée de la Loire'} \" ng-mouseenter=\"enter('Vallée de la Loire')\" ng-mouseleave=\"leave('Vallée de la Loire')\" ng-click=\"select('Vallée de la Loire')\"  id=\"Vallée de la Loire\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M30.544,65.399c0.295,0.146,0.627,0.626,0.854,0.853c0.364,0.611,0.62,1.265,0.768,1.962c0.52,0.349,0.917,0.804,1.194,1.365\n" +
     "								c1.316,1.316,6.134,0.007,7.335-1.194c0.278-0.278,0.392-0.697,0.512-0.938c0.184-0.366-0.1-0.912-0.17-1.194\n" +
     "								c0.009,0.036,6.101-0.125,6.909,0.683c1.373,1.378-0.05,2.12,2.388,2.729c1.665,0.416,2.886,2.828,4.947,1.279\n" +
@@ -2674,7 +2720,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.031,0.146-4.933,1.49-5.8,1.706c-1.187,0.298-1.85,2.253-2.729,2.474c-0.433,0.108-0.587,0.176-0.938,0\n" +
     "								c-0.532-0.307-1.015-0.676-1.45-1.108c-0.161-0.161-0.542-0.086-0.768-0.086\"/>\n" +
     "\n" +
-    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Languedoc Roussillon'} \" ng-mouseenter=\"enter('Languedoc Roussillon')\" ng-mouseleave=\"leave('Languedoc Roussillon')\" ng-click=\"select('Languedoc Roussillon')\" id=\"Languedoc\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "<!-- 								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Languedoc Roussillon'} \" ng-mouseenter=\"enter('Languedoc Roussillon')\" ng-mouseleave=\"leave('Languedoc Roussillon')\" ng-click=\"select('Languedoc Roussillon')\" id=\"Languedoc\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M102.805,125.872c-0.221-0.425-0.382-0.871-0.482-1.338c0.318-0.232,0.622-0.482,0.912-0.75c0.375-0.096-0.021-0.387-0.107-0.43\n" +
     "								c-0.229-0.113,0.872-1.53,0.91-1.607c0.316-0.626,0.01-1.419-0.268-1.98c-1.931-3.861-28.059,4.396-25.872,13.068\n" +
     "								c0.187,0.735,0.731,1.496,1.18,2.09c1.591,2.138,4.501,2.579,5.249,5.57c-0.044-0.179,2.657-0.329,2.838-0.375\n" +
@@ -2689,15 +2735,15 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.254-0.064,0.328,0.162,0.549,0.107c0.225-0.057,2.448-2.061,2.449-2.062c0.051-0.201-0.184-0.246-0.107-0.402\n" +
     "								c0.078-0.152,0.4-0.1,0.523-0.16c0.162-0.082,0.441-0.309,0.549-0.416c0.146-0.145-0.002-0.428,0.133-0.494\n" +
     "								c0.182-0.092,0.326,0.021,0.443-0.094c0.162-0.164,0.176-0.424,0.361-0.482c0.716-0.229,1.334-0.584,2.062-0.764\n" +
-    "								c0.259-0.064,0.886,1.75,1.043,1.928c0.322,0.362,1.919,0.259,2.385,0.375\"/>\n" +
+    "								c0.259-0.064,0.886,1.75,1.043,1.928c0.322,0.362,1.919,0.259,2.385,0.375\"/> -->\n" +
     "\n" +
-    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Champagne'} \" ng-mouseenter=\"enter('Champagne')\" ng-mouseleave=\"leave('Champagne')\" ng-click=\"select('Champagne')\" id=\"Champagne\" sodipodi:nodetypes=\"csssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "<!-- 								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Champagne'} \" ng-mouseenter=\"enter('Champagne')\" ng-mouseleave=\"leave('Champagne')\" ng-click=\"select('Champagne')\" id=\"Champagne\" sodipodi:nodetypes=\"csssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M89.291,36.756c1.566-3.002,6.633-2.556,9.264-1.886c-0.264-0.065,0.611-4.597,0.721-5.048c0.6-2.409,6.677,3.741,7.156,4.382\n" +
     "								c0.538,0.716-0.073,2.187-0.611,2.718c-0.844,0.85-2.192,0.948-2.939,1.941c-2.105,2.823-3.621,2.671-6.6,4.16\n" +
     "								c-0.596,0.033-1.188-0.004-1.775-0.111c-0.061-0.015-0.088-0.628-0.111-0.721c-0.08-0.32,0.133-0.449,0.334-0.499\n" +
     "								c1.235-0.309,2.51-1.154,2.828-2.44c0.059-0.23,0.064-0.468,0-0.722c-0.272-1.091-1.009-1.79-1.775-2.552\n" +
     "								c-1.934-1.915-4.621,1.319-5.023,1.097c-0.242-0.134-0.641,0.446-0.689,0.336c-0.105-0.242-0.375-0.231-0.648-0.095\n" +
-    "								C89.17,37.442,89.373,37.178,89.291,36.756C89.408,36.531,89.373,37.178,89.291,36.756z\"/>\n" +
+    "								C89.17,37.442,89.373,37.178,89.291,36.756C89.408,36.531,89.373,37.178,89.291,36.756z\"/> -->\n" +
     "\n" +
     "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Bourgogne'} \" ng-mouseenter=\"enter('Bourgogne')\" ng-mouseleave=\"leave('Bourgogne')\" ng-click=\"select('Bourgogne')\" id=\"Bourgogne_1_\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M98.217,58.001c-0.09-0.18-0.16-0.354,0.156-0.274\n" +
     "								c0.191,0.048,0.27,0.076,0.432,0.157c0.397,0.199,0.441,0.739,0.941,0.862c0.456,0.114,1.488,0.116,1.646,0.745\n" +
@@ -2712,7 +2758,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c0.057,0.227,0.221,0.334,0.277,0.555c0.214,0.861,0.467,2.885,0.055,3.717c-0.703,1.406-2.125,3.394-1.332,4.992\n" +
     "								c0.234,0.505,0.623,0.634,1.166,0.389c0.176-0.045,0.523-0.355,0.609-0.334\"/>\n" +
     "\n" +
-    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Provence'} \" ng-mouseenter=\"enter('Provence')\" ng-mouseleave=\"leave('Provence')\" ng-click=\"select('Provence')\" id=\"Provence\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "<!-- 								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Provence'} \" ng-mouseenter=\"enter('Provence')\" ng-mouseleave=\"leave('Provence')\" ng-click=\"select('Provence')\" id=\"Provence\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M110.178,126.481c0.361,0.083,0.712,0.058,1.053-0.076c0.115-0.057,0.262-0.148,0.338-0.225c0.202-0.224,0.315-0.486,0.338-0.789\n" +
     "								c-0.016-0.152-0.092-0.15-0.244-0.113c-0.123,0.031-0.268,0.213-0.471,0.264c-0.152,0.037-0.295-0.227-0.338-0.311\n" +
     "								c-0.021-0.248-0.128-0.448-0.318-0.602c-0.166-0.082-0.373,0.057-0.545-0.066c-0.09-0.062-0.217-0.197-0.273-0.254\n" +
@@ -2739,9 +2785,9 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c-0.07-0.141-0.059-0.211-0.17-0.32c-0.237-0.235-1.785,0.057-2.199-0.15c0.066,0.034,0.109-2.452-0.498-2.123\n" +
     "								c-0.248,0.063-0.477,0.17-0.686,0.318c-0.313,0.159-1.976,0.247-2.246-0.018c-0.107-0.109-0.24-0.361-0.348-0.414\n" +
     "								c-0.17-0.084,0.062-0.391,0.074-0.414C109.652,126.704,110.131,126.518,110.178,126.481\n" +
-    "								C110.264,126.524,110.131,126.518,110.178,126.481z\"/>\n" +
+    "								C110.264,126.524,110.131,126.518,110.178,126.481z\"/> -->\n" +
     "\n" +
-    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Rhône'} \" ng-mouseenter=\"enter('Rhône')\" ng-mouseleave=\"leave('Rhône')\" ng-click=\"select('Rhône')\" id=\"Cote_du_Rhone\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M108.615,102.473c0.123-0.156,0.572-0.395,0.758-0.488\n" +
+    "								<path ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Vallée du Rhône'} \" ng-mouseenter=\"enter('Vallée du Rhône')\" ng-mouseleave=\"leave('Vallée du Rhône')\" ng-click=\"select('Vallée du Rhône')\" id=\"Cote_du_Rhone\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"M108.615,102.473c0.123-0.156,0.572-0.395,0.758-0.488\n" +
     "								c0.205-0.102,0.66,0.033,0.812,0.109c1.112,0.552,0.233,1.415-0.596,1.627c-0.305,0.076-0.42,0.002-0.65-0.055\n" +
     "								c-0.191-0.049-0.328-0.273-0.434-0.379C108.285,103.067,108.482,102.637,108.615,102.473\n" +
     "								C108.738,102.317,108.482,102.637,108.615,102.473z M112.857,110.905c0.158-0.278,0.343-0.539,0.553-0.781\n" +
@@ -3015,6 +3061,7 @@ angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCac
     "      <div class=\"container row-fluid\">\n" +
     "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
     "        <p>Merci pour votre cadeau !</p>\n" +
+    "        <a href ui-sref=\"gift_card\">Imprimer le bon cadeau</a>\n" +
     "<!--         <h2>Merci pour votre commande</h2>\n" +
     "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
     "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->\n" +

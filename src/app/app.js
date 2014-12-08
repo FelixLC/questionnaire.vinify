@@ -3,6 +3,7 @@ angular.module('vinibar', [
   'templates-common',
   'vinibar.pay_mobile',
   'vinibar.gift',
+  'vinibar.gift_card',
   'mondialrelay',
   'vinibar.order',
   'vinibar.questionnaire',

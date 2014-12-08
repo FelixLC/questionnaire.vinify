@@ -81,6 +81,7 @@ angular.module('vinibar.gift.vinibar', [
     if ($scope.gift) {
       if ($scope.gift.order.gift_type != 'Vinibar') {
         $scope.gift = new Gift('Vinibar');
+        $scope.details.credits =  true;
         $scope.gift.order.delivery_mode = 'Point Relais';
       }
     } else {
@@ -91,6 +92,7 @@ angular.module('vinibar.gift.vinibar', [
 
   $scope.initCard = function () {
     if ($scope.gift.order.gift_type === 'Vinibar') {
+      $scope.details.credits =  true;
       $scope.gift = new Gift('Email');
       console.log($scope.gift);
 
@@ -158,7 +160,7 @@ angular.module('vinibar.gift.vinibar', [
     }
   };
 })
-.controller('giftInfosVinibarCtrl', function giftInfosVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window) {
+.controller('giftInfosVinibarCtrl', function giftInfosVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, currentGiftCard, $stateParams, params, settings, toaster, $window) {
   $scope.gift = currentGift.current;
   $scope.is = {
     client: true
@@ -171,6 +173,11 @@ angular.module('vinibar.gift.vinibar', [
       the form is valid
     *****************/
     if (form.$valid) {
+      // save message and first name
+      currentGiftCard.first_name = $scope.gift.order.receiver_first_name;
+      currentGiftCard.message = $scope.gift.order.message;
+      console.log($scope.gift);
+      console.log(currentGiftCard);
       // if it's a new prospect
       if (!$scope.is.client) {
         console.log('it\'s a new prospect');

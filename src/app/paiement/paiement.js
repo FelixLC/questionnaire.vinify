@@ -86,6 +86,8 @@ angular.module('vinibar.paiement', [
                                 })
                                 .success(function (data, status, headers, config) {
                                     $scope.client.order = data;
+                                    $scope.client.order_type = data.order_type;
+                                    currentClient.currentClient = $scope.client;
                                     $state.go('pay_mobile');
                                 })
                                 .error(function (data, status, headers, config) {

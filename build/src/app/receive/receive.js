@@ -21,7 +21,7 @@
         },
         data: { pageTitle: 'Cadeau' }
       })
-      .state('congratulation', {
+      .state('congratulation_receive', {
         url: '/bravo',
         views: {
           main: {
