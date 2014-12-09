@@ -5,9 +5,9 @@ var Stripe = {
   setPublishableKey: function (param) { return true; }
 };
 
-describe('pay_mobileCtrl', function () {
+describe('payMobileCtrl', function () {
 
-    var pay_mobileCtrl, $location, $scope, currentClient, Order, toaster, Str;
+    var payMobileCtrl, $location, $scope, currentClient, Order, toaster, Str;
 
     beforeEach(module('vinibar.pay_mobile'));
     beforeEach(module('vinibar.mockmodelresource'));
@@ -23,7 +23,7 @@ describe('pay_mobileCtrl', function () {
       spyOn(toaster, 'pop');
       spyOn(Order, 'testCoupon').and.callThrough();
 
-      pay_mobileCtrl = $controller('pay_mobileCtrl', {
+      payMobileCtrl = $controller('payMobileCtrl', {
         $state: $state,
         $scope: $scope,
         $rootScope: $rootScope,
@@ -35,7 +35,7 @@ describe('pay_mobileCtrl', function () {
     }));
 
     it('should pass a dummy test', inject(function () {
-      expect(pay_mobileCtrl).toBeTruthy();
+      expect(payMobileCtrl).toBeTruthy();
     }));
 
 });

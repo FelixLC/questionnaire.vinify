@@ -153,25 +153,29 @@ angular.module("gift/gift_card.tpl.html", []).run(["$templateCache", function($t
   $templateCache.put("gift/gift_card.tpl.html",
     "<div id=\"gift-card\">\n" +
     "  <div>\n" +
-    "    <div class=\"centered\"><img class=\"img-header\" src=\"https://gallery.mailchimp.com/218bc47385a0a01070ecd4fea/images/87c6a4a6-bb84-4968-b04b-9ea275d1cd5e.png\" class=\"img img-responsive header\" alt=\"\"></div>\n" +
-    "\n" +
-    "    <div class=\"greeting\">\n" +
+    "    <div class=\"centered\">\n" +
+    "      <h2>Bon cadeau</h2>\n" +
+    "      <img class=\"gift-card-logo\" src=\"assets/logo.png\" alt=\"\">\n" +
+    "    </div>\n" +
+    "    <h3 class=\"centered\">Vous avez reçu un Vinibar</h3>\n" +
+    "    <h3 class=\"centered\">6 bouteilles sélectionnées pour vos goûts</h3>\n" +
+    "<!--     <div class=\"greeting\">\n" +
     "      <p>Bonjour {{first_name}},</p>\n" +
     "      <p>Un ami a pensé à vous et vous offre un Vinibar (6 bouteilles de vin sélectionnées pour vous)  !</p>\n" +
     "      <p>Il vous a laissé un petit message:</p>\n" +
     "      <p class=\"message\">{{message}}</p>\n" +
-    "    </div>\n" +
+    "    </div> -->\n" +
     "\n" +
     "    <div class=\"gift-card-drawing\">\n" +
-    "      <div><img src=\"https://gallery.mailchimp.com/218bc47385a0a01070ecd4fea/images/94ccf2eb-3aca-47d1-bbee-bf23bd596b5f.png\" class=\"img img-responsive\" alt=\"\"></div>\n" +
+    "      <div><img src=\"assets/gift-card.png\" class=\"img img-responsive\" alt=\"\"></div>\n" +
     "      <div>\n" +
     "        <h3>Comment utiliser votre bon cadeau ?</h3>\n" +
     "        <ol>\n" +
     "          <li><p>Rendez-vous sur www.vinify.co</p></li>\n" +
-    "          <li><p>Cliquez sur «J’ai reçu un cadeau » </p></li>\n" +
+    "          <li><p>Cliquez sur Cadeau / recevoir </p></li>\n" +
     "          <li><p>Entrez le code :</p></li>\n" +
     "        </ol>\n" +
-    "        <p class=\"centered\">{{code}}</p>\n" +
+    "        <p class=\"centered code\">{{code}}</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <hr>\n" +
@@ -379,7 +383,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          Gratuit\n" +
     "          <a href=\"\"\n" +
     "              popover-title=\"Passez nous voir\"\n" +
-    "              popover=\"au 135 rue jean jacques rousseau, à Issy (92).\"\n" +
+    "              popover=\"au 135 rue Jean Jacques Rousseau, à Issy (92).\"\n" +
     "              popover-trigger=\"mouseenter\"\n" +
     "              popover-placement=\"bottom\">(<i class=\"fa fa-info-circle\">)</i></a>\n" +
     "        </p>\n" +
@@ -917,7 +921,7 @@ angular.module("mrelay/mrelay.tpl.html", []).run(["$templateCache", function($te
     "<nav class=\"navbar\" role=\"navigation\">\n" +
     "  <div class=\"container-fluid\">\n" +
     "    <div class=\"navbar-header\">\n" +
-    "       <a href=\"\"><img alt=\"\" src=\"assets/LogoVinifyco.png\" style=\"height:45px\"/></a>\n" +
+    "       <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
     "    </div>\n" +
     "    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
     "      <ul class=\"nav navbar-nav navbar-right\">\n" +
@@ -1859,7 +1863,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                <p>{{client.email}}</h4>\n" +
     "                <p>{{client.userinfos.delivery_address.street}}<br>\n" +
     "                {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>\n" +
-    "\n" +
+    "                <p ng-show=\"delivery.mode === 'Point Relais' && selected.shop\">Point Relais: {{shop.Nom}} - {{shop.Ville}}</p>\n" +
     "                  </div>\n" +
     "                  <hr class=\"visible-sm visible-xs\">\n" +
     "                  <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
@@ -1868,9 +1872,6 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                              <tr ng-click=\"updateOrder(1)\">\n" +
     "                                <td>\n" +
     "                      <svg ng-show=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
-    "                        <title>Grapes</title>\n" +
-    "                        <desc>Created with Sketch.</desc>\n" +
     "                        <defs></defs>\n" +
     "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
@@ -1887,9 +1888,6 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                        </g>\n" +
     "                      </svg>\n" +
     "                      <svg ng-hide=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
-    "                        <title>Grapes</title>\n" +
-    "                        <desc>Created with Sketch.</desc>\n" +
     "                        <defs></defs>\n" +
     "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
@@ -1902,14 +1900,11 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                        </g>\n" +
     "                      </svg>\n" +
     "                                 </h4>\n" +
-    "                                <td><p> Point Relais </p></td>\n" +
+    "                                <td><p> Point Relais</p></td>\n" +
     "                              </tr>\n" +
     "                              <tr ng-click=\"updateOrder(2)\">\n" +
     "                                <td>\n" +
     "                      <svg ng-show=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
-    "                        <title>Grapes</title>\n" +
-    "                        <desc>Created with Sketch.</desc>\n" +
     "                        <defs></defs>\n" +
     "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
@@ -1926,9 +1921,6 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                        </g>\n" +
     "                      </svg>\n" +
     "                      <svg ng-hide=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
-    "                        <title>Grapes</title>\n" +
-    "                        <desc>Created with Sketch.</desc>\n" +
     "                        <defs></defs>\n" +
     "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
@@ -1942,15 +1934,12 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                      </svg>\n" +
     "                  </td>\n" +
     "                                <td>\n" +
-    "                    <p> Colissimo Suivi </p>\n" +
+    "                                <p> Colissimo Suivi </p>\n" +
     "                                </td>\n" +
     "                              </tr>\n" +
     "                              <tr ng-click=\"updateOrder(3)\"  class=\"bill-total\">\n" +
     "                                <td>\n" +
     "                      <svg ng-show=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
-    "                        <title>Grapes</title>\n" +
-    "                        <desc>Created with Sketch.</desc>\n" +
     "                        <defs></defs>\n" +
     "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
@@ -1967,9 +1956,6 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                        </g>\n" +
     "                      </svg>\n" +
     "                      <svg ng-hide=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->\n" +
-    "                        <title>Grapes</title>\n" +
-    "                        <desc>Created with Sketch.</desc>\n" +
     "                        <defs></defs>\n" +
     "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
     "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
@@ -2018,7 +2004,18 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                 <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa fa-lock\"></i> SSL Secure\n" +
     "                <hr>\n" +
     "              </div>\n" +
-    "            <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- Point Relais -->\n" +
+    "            <div id=\"relay-picker\" ng-show=\"delivery.mode === 'Point Relais' && !selected.shop\" class=\"row\">\n" +
+    "              <div id=\"mondialrelay-widget\">\n" +
+    "                  <div id=\"Zone_Widget\"></div>\n" +
+    "                  <input type=\"text\" id=\"Retour_Widget\" style=\"display:none\" class=\"\"/>\n" +
+    "                  <button class=\"btn-square-o\" class=\"centered\" ng-click=\"validateShop()\">Valider</button>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Paiement -->\n" +
+    "            <div ng-hide=\"delivery.mode === 'Point Relais' && !selected.shop\" class=\"row\">\n" +
     "             <form name=\"stripe-form\" id=\"stripe-form\" stripe-form=\"submit\">\n" +
     "             <h4 class=\"centered\">Vos coordonnées de paiement</h4>\n" +
     "               <div class=\"row item\">\n" +

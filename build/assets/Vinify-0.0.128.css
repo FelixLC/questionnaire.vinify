@@ -6939,6 +6939,51 @@ footer p {
 .btn-back:focus {
   color: #2c3e50;
 }
+#mondialrelay-widget {
+  width: 680px;
+  margin: 0 auto;
+}
+#mondialrelay-widget button {
+  margin: 0 auto;
+}
+#relay-picker.ng-enter {
+  animation: fadeIn 1s;
+}
+#relay-picker.ng-leave {
+  animation: fadeOut 1s;
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+.animated.hinge {
+  animation-duration: 2s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fadeOut {
+  animation-name: fadeOut;
+}
 #order_mobile {
   padding-bottom: 43px;
 }
@@ -8007,6 +8052,11 @@ a.margin-top {
 /*
 ** GIFT CARD
 */
+@media screen {
+  #gift-card {
+    background: url(utils/subtle_white_mini_waves.png) repeat;
+  }
+}
 #gift-card > div {
   width: 600px;
   margin: 0 auto;
@@ -8020,7 +8070,15 @@ a.margin-top {
   #gift-card > div {
     padding: 20px;
     border: 1px solid #e7e7e7;
+    background: none;
+    background-color: #FFF;
   }
+}
+#gift-card ol {
+  font-size: 16px;
+}
+.gift-card-logo {
+  width: 50%;
 }
 #gift-card p {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
@@ -8031,15 +8089,23 @@ a.margin-top {
     font-size: 14px;
   }
 }
+#gift-card .code,
 #gift-card h3 {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
 }
 @media print {
+  #gift-card .code,
   #gift-card h3 {
     font-size: 16px;
   }
+}
+#gift-card h2 {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #cb0001;
 }
 #gift-card .greeting {
   padding-top: 20px;

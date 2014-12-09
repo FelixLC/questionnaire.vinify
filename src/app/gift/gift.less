@@ -353,6 +353,11 @@ a.margin-top {
 ** GIFT CARD
 */
 
+#gift-card {
+    @media screen {
+      background: url(utils/subtle_white_mini_waves.png) repeat;
+    }
+}
 #gift-card > div {
   width: 600px;
   margin: 0 auto;
@@ -362,7 +367,15 @@ a.margin-top {
     @media screen {
       padding: 20px;
       border: 1px solid @dark-grey;
+      background: none;
+      background-color: #FFF;
     }
+}
+#gift-card ol {
+  font-size: 16px;
+}
+.gift-card-logo {
+  width: 50%;
 }
 #gift-card p {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
@@ -371,6 +384,7 @@ a.margin-top {
       font-size: 14px;
     }
 }
+#gift-card .code,
 #gift-card h3 {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -378,6 +392,12 @@ a.margin-top {
     @media print {
       font-size: 16px;
     }
+}
+#gift-card h2 {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: @brand-color;
 }
 #gift-card .greeting {
   padding-top: 20px;

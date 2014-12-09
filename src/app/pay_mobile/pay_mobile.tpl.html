@@ -29,7 +29,7 @@
                 <p>{{client.email}}</h4>
                 <p>{{client.userinfos.delivery_address.street}}<br>
                 {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>
-
+                <p ng-show="delivery.mode === 'Point Relais' && selected.shop">Point Relais: {{shop.Nom}} - {{shop.Ville}}</p>
                   </div>
                   <hr class="visible-sm visible-xs">
                   <div class="col-lg-4 col-md-4 col-sm-12 centered">
@@ -38,9 +38,6 @@
                               <tr ng-click="updateOrder(1)">
                                 <td>
                       <svg ng-show="delivery.mode === 'Point Relais' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
-                        <title>Grapes</title>
-                        <desc>Created with Sketch.</desc>
                         <defs></defs>
                         <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                             <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
@@ -57,9 +54,6 @@
                         </g>
                       </svg>
                       <svg ng-hide="delivery.mode === 'Point Relais' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
-                        <title>Grapes</title>
-                        <desc>Created with Sketch.</desc>
                         <defs></defs>
                         <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                             <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
@@ -72,14 +66,11 @@
                         </g>
                       </svg>
                                  </h4>
-                                <td><p> Point Relais </p></td>
+                                <td><p> Point Relais</p></td>
                               </tr>
                               <tr ng-click="updateOrder(2)">
                                 <td>
                       <svg ng-show="delivery.mode === 'Colissimo' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
-                        <title>Grapes</title>
-                        <desc>Created with Sketch.</desc>
                         <defs></defs>
                         <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                             <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
@@ -96,9 +87,6 @@
                         </g>
                       </svg>
                       <svg ng-hide="delivery.mode === 'Colissimo' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
-                        <title>Grapes</title>
-                        <desc>Created with Sketch.</desc>
                         <defs></defs>
                         <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                             <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
@@ -112,15 +100,12 @@
                       </svg>
                   </td>
                                 <td>
-                    <p> Colissimo Suivi </p>
+                                <p> Colissimo Suivi </p>
                                 </td>
                               </tr>
                               <tr ng-click="updateOrder(3)"  class="bill-total">
                                 <td>
                       <svg ng-show="delivery.mode === 'Vinify' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
-                        <title>Grapes</title>
-                        <desc>Created with Sketch.</desc>
                         <defs></defs>
                         <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                             <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
@@ -137,9 +122,6 @@
                         </g>
                       </svg>
                       <svg ng-hide="delivery.mode === 'Vinify' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <!-- Generator: Sketch 3.0.4 (8054) - http://www.bohemiancoding.com/sketch -->
-                        <title>Grapes</title>
-                        <desc>Created with Sketch.</desc>
                         <defs></defs>
                         <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                             <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
@@ -188,7 +170,18 @@
                  <img src="assets/credit_cards.png" alt=""> <i class="fa fa-lock"></i> SSL Secure
                 <hr>
               </div>
-            <div class="row">
+
+            <!-- Point Relais -->
+            <div id="relay-picker" ng-show="delivery.mode === 'Point Relais' && !selected.shop" class="row">
+              <div id="mondialrelay-widget">
+                  <div id="Zone_Widget"></div>
+                  <input type="text" id="Retour_Widget" style="display:none" class=""/>
+                  <button class="btn-square-o" class="centered" ng-click="validateShop()">Valider</button>
+              </div>
+            </div>
+
+            <!-- Paiement -->
+            <div ng-hide="delivery.mode === 'Point Relais' && !selected.shop" class="row">
              <form name="stripe-form" id="stripe-form" stripe-form="submit">
              <h4 class="centered">Vos coordonnées de paiement</h4>
                <div class="row item">

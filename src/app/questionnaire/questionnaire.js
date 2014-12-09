@@ -222,7 +222,7 @@ angular.module('vinibar.questionnaire', [
 							"Email ": data.email,
 							"Last Name": data.last_name
 						});
-						Mixpanel.track('User Created', {referrer: (currentClient.isGift) ? 'Gift' : $document.referrer});
+						Mixpanel.track('User Created', { referrer: (currentClient.isGift) ? 'Gift' : $document.referrer });
 						if (currentClient.isGift) {//if we have a gift activation
 							Receive.update();
 							$state.go('order.userinfos');

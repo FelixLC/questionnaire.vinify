@@ -320,6 +320,44 @@ footer {
       color: @blue;
     }
 }
+// *****MONDIAL RELAY***** //
+#mondialrelay-widget {
+  width: 680px;
+  margin: 0 auto;
+}
+#mondialrelay-widget button {
+  margin: 0 auto;
+}
+#relay-picker.ng-enter {
+  animation: fadeIn 1s;
+}
+#relay-picker.ng-leave {
+  animation: fadeOut 1s;
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+.animated.hinge {
+  animation-duration: 2s;
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+.fadeOut {
+  animation-name: fadeOut;
+}
 
 // *****STRIPE FORM***** //
 #order_mobile {
