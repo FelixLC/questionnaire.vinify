@@ -63,6 +63,8 @@ angular.module('vinibar.questionnaire', [
 
 .controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receive, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
   $scope.is = { contest: currentClient.isContest };
+  currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
+  currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 
   // modal
   $scope.open = function (size) {
@@ -85,6 +87,7 @@ angular.module('vinibar.questionnaire', [
   $scope.region = { selected: null, hover: null };
   $scope.enter = function (region) {
     $scope.region.hover = region;
+    $scope.newuser.survey.quest_7.answ = region;
   };
 
   $scope.leave = function (region) {
@@ -93,6 +96,8 @@ angular.module('vinibar.questionnaire', [
 
   $scope.select = function (region) {
     $scope.newuser.survey.quest_7.answ = region;
+    console.log($scope.newuser.survey.quest_7.answ);
+    console.log($scope.newuser.survey.quest_7.answ === 'Vallée du Rhône');
   };
 
 
@@ -126,21 +131,28 @@ angular.module('vinibar.questionnaire', [
   $scope.validateBalanceAnswer = function () {
 
     // CHECK IF ALL BALANCE ARE NOT SET TO 4 (DEFAULT VALUE)
-    if ($scope.newuser.survey.quest_6.answ_1 === 4 ||  $scope.newuser.survey.quest_6.answ_2 === 4 ||  $scope.newuser.survey.quest_6.answ_3 === 4) {
+    if ($scope.newuser.survey.quest_6.answ_1 === 4 ||
+          $scope.newuser.survey.quest_6.answ_2 === 4 ||
+          $scope.newuser.survey.quest_6.answ_3 === 4) {
       toaster.pop('info', 'Merci de choisir une préférence pour chaque type de vin', ' puis valider avec la flèche');
       console.log('error');
-    } else if ($scope.newuser.survey.quest_6.answ_1 === 0 &&  $scope.newuser.survey.quest_6.answ_2 === 0 &&  $scope.newuser.survey.quest_6.answ_3 === 0) {
+    } else if ($scope.newuser.survey.quest_6.answ_1 === 0 &&
+                      $scope.newuser.survey.quest_6.answ_2 === 0 &&
+                      $scope.newuser.survey.quest_6.answ_3 === 0) {
       toaster.pop('info', 'Vous ne voulez pas de vins dans votre Vinibar ?');
     } else {
       $state.go('questionnaire.winemap');
     }
-
   };
 
   $scope.validateCuisineAnswer = function () {
 
     // CHECK IF ALL cuisines ARE NOT SET TO false (DEFAULT VALUE)
-    if ($scope.newuser.survey.quest_3.answ_1 === false &&  $scope.newuser.survey.quest_3.answ_2 === false &&  $scope.newuser.survey.quest_3.answ_3 === false &&  $scope.newuser.survey.quest_3.answ_4 === false &&  $scope.newuser.survey.quest_3.answ_5 === false) {
+    if ($scope.newuser.survey.quest_3.answ_1 === false &&
+          $scope.newuser.survey.quest_3.answ_2 === false &&
+          $scope.newuser.survey.quest_3.answ_3 === false &&
+          $scope.newuser.survey.quest_3.answ_4 === false &&
+          $scope.newuser.survey.quest_3.answ_5 === false) {
       toaster.pop('info', 'Merci de choisir au moins une cuisine', ' puis valider avec la flèche');
     } else {
       $scope.answerOne = false;
@@ -158,33 +170,16 @@ angular.module('vinibar.questionnaire', [
     'Bordeaux'
   ];
 
-  // $scope.trackLink = function (n) {
-  //  $scope.newuser.survey.balance.red = 2;
-  //  Mixpanel.track('clicked on your face');
-  // };
-
   $scope.newuser = new Client();
-  $scope.newuser.first_name = (currentClient.isGift && Receive.coupon.user.first_name) ? Receive.coupon.user.first_name : "";
-  $scope.newuser.last_name  = (currentClient.isGift && Receive.coupon.user.last_name) ? Receive.coupon.user.last_name : "";
-  $scope.newuser.email = (currentClient.isGift && Receive.coupon.user.email) ? Receive.coupon.user.email: "";
+  $scope.newuser.first_name = (currentClient.isGift && Receive.coupon.user.first_name) ?
+                                                            Receive.coupon.user.first_name : "";
+  $scope.newuser.last_name  = (currentClient.isGift && Receive.coupon.user.last_name) ?
+                                                            Receive.coupon.user.last_name : "";
+  $scope.newuser.email = (currentClient.isGift && Receive.coupon.user.email) ?
+                                                  Receive.coupon.user.email :  "";
   $scope.newuser.coupon = $stateParams.p ? $stateParams.p : "";
-  console.log($stateParams);
-  // var juice_bckg = new Image ();
-  //  juice_bckg.src = "assets/fruits.jpg";
-  // var cuisine_bckg = new Image ();
-  //  cuisine_bckg.src = "assets/spices.jpg";
-  // var starter_bckg = new Image ();
-  //  starter_bckg.src = "assets/millefeuille.jpg";
-  // var balance_bckg = new Image ();
-  //    balance_bckg.src = "assets/vineyard.jpg";
-  // var winemap_bckg = new Image ();
-  //    winemap_bckg.src = "assets/winery.jpg";
-  // var order_bckg = new Image ();
-  //    order_bckg.src = "assets/background_order.jpg";
 
-
-
-  $scope.createUser = function (name, user, tastes) {
+  var validateAnswers = function (success) {
     if ($scope.newuser.survey.quest_1.answ === 0) {
       toaster.pop('info', 'Oops !', 'Merci de choisir une préférence pour le café');
     } else if ($scope.newuser.survey.quest_2.answ === 0) {
@@ -200,7 +195,13 @@ angular.module('vinibar.questionnaire', [
       $scope.newuser.survey.quest_6.answ_3 === 4) {
       toaster.pop('info', 'Oops !', 'Merci de choisir une préférence pour chaque type de vin');
     } else {
+      success();
+    }
+  };
 
+
+  $scope.createUser = function (name, user, tastes) {
+    validateAnswers(function () {
       // IF FORM IS VALID
       if (name.$valid && user.$valid) {
         delete $window.sessionStorage.token;
@@ -213,6 +214,7 @@ angular.module('vinibar.questionnaire', [
         currentClient.currentClient.userinfos.last_name = $scope.newuser.last_name;
         var couponUuid = (currentClient.isGift && Receive.coupon.uuid) ? Receive.coupon.uuid : false;
 
+        // creates user, or receiver, if couponUuid != false
         $scope.newuser.createUser(referrer, couponUuid)
           .success(function (data, status, headers, config) {
             $window.sessionStorage.token = data.token;
@@ -229,17 +231,17 @@ angular.module('vinibar.questionnaire', [
             } else if ($scope.is.contest) {// if we don't have a gift activation
               $state.go('contest_congratulation');
               $rootScope.loading = false;
-            } else {
+            } else {// new prospect
               Recommender.calcPreview(data)
                 .then(function (response) {
                   $state.go('preview');
                   $rootScope.loading = false;
                 },
                 function (response) {
-
+                  $rootScope.loading = false;
+                  toaster.pop('info', 'Oops, il y a eu une erreur de connexion');
                 });
             }
-            // $state.go('remerciement');
           })
           .error(function (data, status, headers, config) {
             $rootScope.loading = false;
@@ -253,13 +255,13 @@ angular.module('vinibar.questionnaire', [
       // OTHER NOT VALID INPUTS
       } else {
         var strings  = [];
-        if (name.first_name.$invalid) { strings.push('Prénom');}
-        if (name.last_name.$invalid) { strings.push('Nom');}
-        if (user.password.$invalid) { strings.push('Mot de passe');}
+        if (name.first_name.$invalid) { strings.push('Prénom'); }
+        if (name.last_name.$invalid) { strings.push('Nom'); }
+        if (user.password.$invalid) { strings.push('Mot de passe'); }
         if (user.email.$invalid) { strings.push('Email');}
         toaster.pop('info', 'Le(s) champ(s) suivant(s) sont requis :', strings.toString(" "));
       }
-    }
+    });
   };
 
 });

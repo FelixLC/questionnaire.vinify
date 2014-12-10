@@ -41,7 +41,7 @@ angular.module('vinibar.order', [
 
 .controller('orderCtrl', function orderCtrl (Mixpanel, Receive, $scope, $location, currentClient, $state, $rootScope, toaster, Order) {
   var init = function () {
-    $scope.isState= function (state) { return $state.is(state);};
+    $scope.isState = function (state) { return $state.is(state);};
     $scope.client = currentClient.currentClient;
     $scope.isGift = currentClient.isGift;
     $scope.b = {};
@@ -66,11 +66,27 @@ angular.module('vinibar.order', [
 
   var couponCheckerFail = function (response) {
     if (response === 'This code is not valid') {
-      toaster.pop('info', 'Oops, votre code d\'accès semble erroné !', ' Veuillez réessayer ou contacter charlotte@vinify.co');
+      toaster.pop('info', 'Oops, votre code d\'accès semble erroné !',
+                                          ' Veuillez réessayer ou contacter charlotte@vinify.co');
     } else if (response === 'This coupon has been redeemed') {
       toaster.pop('info', 'Malheureusement, Ce code est expiré !');
     } else if (response === 'Referrals may not be used on Discovery orders') {
-       toaster.pop('info', 'Malheureusement', 'Vous ne pouvez pas utiliser un code parrainnage avec l\'offre découverte');
+      toaster.pop('info', 'Malheureusement',
+                                            'Vous ne pouvez pas utiliser un code parrainnage avec l\'offre découverte');
+    }
+  };
+
+  var couponCheckerSuccess = function (response) {
+    if (response.coupon_type === 'Referral' && $scope.client.order_type === 'Vinibar') {
+      toaster.pop('success', 'Coupon validé !', 'Vous économisez 10€ !');
+    } else if (response.coupon_type === 'Referral' && $scope.client.order_type != 'Vinibar') {
+      toaster.pop('info', 'Vous ne pouvez pas utiliser un code parrainnage', 'avec l\'offre découverte. ' +
+                                            'Vous pouvez cependant acquérir un Vinibar à 59€ !');
+      $scope.coupon.coupon = "";
+    } else if (response.coupon_type === 'Percentage') {
+      toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value * 100 + ' % !');
+    } else if (response.coupon_type === 'Monetary') {
+      toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' € !');
     }
   };
 
@@ -79,21 +95,14 @@ angular.module('vinibar.order', [
       Order.testCoupon($scope.coupon,
         // coupon validated
         function (response) {
+          couponCheckerSuccess(response);
           $scope.coupon.isValid = true;
-          if (response.coupon_type === 'Referral' && $scope.client.order_type === 'Vinibar') {
-            toaster.pop('success', 'Coupon validé !', 'Vous économisez 10€ !');
-          } else if (response.coupon_type === 'Referral' && $scope.client.order_type != 'Vinibar') {
-            toaster.pop('info', 'Vous ne pouvez pas utiliser un code parrainnage', 'avec l\'offre découverte. Vous pouvez cependant acquérir un Vinibar à 59€ !');
-            $scope.coupon.coupon = "";
-          } else if (response.coupon_type === 'Percentage') {
-            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value * 100 + ' % !');
-          } else if (response.coupon_type === 'Monetary') {
-            toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' € !');
-          }
           $scope.coupon.isChecked = true;
+        },
         // false coupon
-        }, function (response) {
+        function (response) {
           couponCheckerFail(response);
+          $scope.coupon.isValid = false;
           $scope.coupon.isChecked = true;
           $scope.coupon.coupon = "";
         });
@@ -103,34 +112,34 @@ angular.module('vinibar.order', [
 //  ADD SCOPE INFO TO FACTORY THEN TRIGGER ORDER IF SUCCESS
   $scope.addUserInfo = function (form) {
 
-    if (form.$invalid) { // form is valid
+    if (form.$invalid) { // form is NOT valid
       $rootScope.loading = false;
       toaster.pop('info', 'Oops', 'un ou plusieurs champs sont incomplets ou erronés.');
-    } else { // form is NOT valid
+    } else { // form is valid
       $rootScope.loading = true;
       $scope.client.userinfos.birthday = $scope.b.birthyear + "-" + $scope.b.birthmonth + "-" + $scope.b.birthday;
       currentClient.currentClient = $scope.client;
-      $scope.client.addUserInfo(function (response) {
+      $scope.client.addUserInfo(
         /****************
         * user info added
         *****************/
+        function (response) {
+
           if (currentClient.isGift) {
-            Mixpanel.track('UserInfo Added', {
-              referrer: 'gift'
-            });
-            Receive.receive();
+            Mixpanel.track('UserInfo Added', { referrer: 'gift' });
             $rootScope.loading = false;
             $state.go('congratulation_receive');
+
+            Receive.receive();
           } else {
             Mixpanel.track('UserInfo Added');
+
             Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
               function (data) { // order created
                 $scope.client.order = data;
-                console.log(data);
-                console.log($scope.client.order.final_price);
-                console.log(Math.round($scope.client.order.final_price * 100) / 100);
                 $scope.client.order.final_price = Math.round($scope.client.order.final_price * 100) / 100;
                 currentClient.currentClient = $scope.client;
+
                 if ($scope.client.order.coupon)  {
                   if ($scope.client.order.coupon.coupon_type === 'Gift') {
                     $rootScope.loading = false;
@@ -140,20 +149,21 @@ angular.module('vinibar.order', [
                     $rootScope.loading = false;
                   }
                 } else {
-                  console.log('success @ addUserInfo');
                   $state.go('pay_mobile');
                   $rootScope.loading = false;
                 }
-              }, function (data) { // order failed
+              },
+              function (data) { // order failed
                 $rootScope.loading = false;
                 toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
                 couponCheckerFail(response); // handles toaster in case of errors
               });
           }
-        }, function (response) {
+        },
         /*********************
         * user info NOT added
         *********************/
+        function (response) {
           $rootScope.loading = false;
           toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
         });

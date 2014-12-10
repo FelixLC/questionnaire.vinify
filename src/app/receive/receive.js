@@ -39,7 +39,7 @@
         .then(function (response) {
           if (response.data.coupon_type === 'Gift') {
             Mixpanel.track("activated gift", { type: 'gift' });
-            $state.go('welcome', { r: 'gift' });
+            $state.go('questionnaire.coffee', { r: 'gift' });
           } else {
             Mixpanel.track("activated gift", { type: 'activation' });
             $state.go('congratulation', { r: 'gift' });

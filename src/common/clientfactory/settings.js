@@ -10,7 +10,7 @@
         .factory('settings', settings);
 
     /* @ngInject */
-  function settings ($location) {
+  function settings () {
     var service = {
       production: true,
       test: true,

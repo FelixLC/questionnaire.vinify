@@ -2011,7 +2011,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "\n" +
     "            <!-- Point Relais -->\n" +
     "            <div id=\"relay-picker\" ng-show=\"delivery.mode === 'Point Relais' && !selected.shop\" class=\"row\">\n" +
-    "              <p><i class=\"fa fa-info-circle\"></i> Attention, en période de noël, certains Points Relais sont fermés</p>\n" +
+    "              <p class=\"centered\"><i class=\"fa fa-info-circle\"></i> Attention, en période de noël, certains Points Relais sont fermés</p>\n" +
     "              <div id=\"mondialrelay-widget\">\n" +
     "                  <div id=\"Zone_Widget\"></div>\n" +
     "                  <input type=\"text\" id=\"Retour_Widget\" style=\"display:none\" class=\"\"/>\n" +
