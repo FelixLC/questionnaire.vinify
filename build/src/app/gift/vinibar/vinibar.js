@@ -82,11 +82,11 @@ angular.module('vinibar.gift.vinibar', [
       if ($scope.gift.order.gift_type != 'Vinibar') {
         $scope.gift = new Gift('Vinibar');
         $scope.details.credits =  true;
-        $scope.gift.order.delivery_mode = 'Point Relais';
+        $scope.gift.order.delivery_mode = 'Colissimo';
       }
     } else {
         $scope.gift = new Gift('Vinibar');
-        $scope.gift.order.delivery_mode = 'Point Relais';
+        $scope.gift.order.delivery_mode = 'Colissimo';
     }
   };
 

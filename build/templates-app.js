@@ -378,7 +378,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Vinify' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode ='Vinify'\">\n" +
-    "        <h3>Retrait Vinify</h3>\n" +
+    "        <h3>Retrait Vinify <span class=\"small\">issy (92)</span></h3>\n" +
     "        <p class=\"price\">\n" +
     "          Gratuit\n" +
     "          <a href=\"\"\n" +
@@ -389,13 +389,12 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        </p>\n" +
     "        <!-- <p class=\"help\">Venez nous voir à Issy (92)</p> -->\n" +
     "      </div>\n" +
-    "      <div class=\"col-container\"\n" +
+    "<!--       <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Point Relais' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode = 'Point Relais'\">\n" +
     "        <h3>Point Relais</h3>\n" +
     "        <p class=\"price\">{{costs['vinibar']['Point Relais'] }} € </p>\n" +
-    "        <!-- <p class=\"help\">Livré dans le point relais de votre choix</p> -->\n" +
-    "      </div>\n" +
+    "      </div> -->\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Colissimo' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode =  'Colissimo'\">\n" +
@@ -473,15 +472,15 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "<!--       <div class=\"col-container\"\n" +
+    "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Print' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Print'\">\n" +
-    "        <h3>À imprimer</h3>\n" +
-    "      </div> -->\n" +
+    "        <h3>À imprimer <span class=\"small\">après le paiement</span></h3>\n" +
+    "      </div>\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Card' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Card' \">\n" +
-    "        <h3>Par la poste (+5€)</h3>\n" +
+    "        <h3>Par la poste <span class=\"small\">+ 5 €</span></h3>\n" +
     "        <!-- <p class=\"help\">Vinify enverra une carte manuscrite avec votre mot à l'adresse de votre choix.</p> -->\n" +
     "      </div>\n" +
     "<!--       <div class=\"col-container margin-top checked\">\n" +
@@ -508,11 +507,16 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "      </div>\n" +
     "      <div id=\"got-a-coupon\" class=\"col-container margin-top got-a-coupon\">\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
-    "              <p class=\"col-subtitle\">J'ai un coupon !</p>\n" +
+    "          <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "              <p class=\"col-subtitle\">Coupon</p>\n" +
     "          </div>\n" +
-    "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
-    "            <input type=\"text\" ng-model=\"gift.order.coupon\" class=\"form-control\" ng-blur=\"blur()\" placeholder=\"VINICHOUETTE\">\n" +
+    "          <div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-12\">\n" +
+    "            <div class=\"input-group\">\n" +
+    "              <input type=\"text\" ng-model=\"gift.order.coupon\" class=\"form-control\" ng-blur=\"blur()\" placeholder=\"VINICHOUETTE\">\n" +
+    "              <span class=\"input-group-btn\">\n" +
+    "                <button class=\"btn btn-default\" type=\"button\">Go!</button>\n" +
+    "              </span>\n" +
+    "            </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
@@ -2007,6 +2011,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "\n" +
     "            <!-- Point Relais -->\n" +
     "            <div id=\"relay-picker\" ng-show=\"delivery.mode === 'Point Relais' && !selected.shop\" class=\"row\">\n" +
+    "              <p><i class=\"fa fa-info-circle\"></i> Attention, en période de noël, certains Points Relais sont fermés</p>\n" +
     "              <div id=\"mondialrelay-widget\">\n" +
     "                  <div id=\"Zone_Widget\"></div>\n" +
     "                  <input type=\"text\" id=\"Retour_Widget\" style=\"display:none\" class=\"\"/>\n" +

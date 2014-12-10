@@ -86,9 +86,10 @@ angular.module('clientFactory', ['settings'])
       this.order = {};
     };
 
-    Client.prototype.createUser = function (referrer) {
+    Client.prototype.createUser = function (referrer, giftCouponUuid) {
 
       var self = this;
+      var request;
       var data = {};
       data.survey = this.survey;
       data.email = this.email;
@@ -96,20 +97,17 @@ angular.module('clientFactory', ['settings'])
       data.first_name = this.first_name;
       data.last_name = this.last_name;
       data.initial_referrer = (referrer) ? referrer : "";
-      var request = $http({
-                          url: settings.apiEndPoint + '/users/createuser/',
-                          method: 'POST',
-                          data: data,
-                          headers: {
-                            'Content-Type': 'application/json; charset=UTF-8'
-                          }
-                        });
-      console.log(data);
 
-      return request
-              .success(function (data, status, headers, config) {
-                self.uuid = data.uuid;
-              });
+      if (giftCouponUuid) {
+        data.coupon_uuid = giftCouponUuid;
+        request = $http.post(settings.apiEndPoint + '/orders/gift/update/', data);
+      } else {
+        request = $http.post(settings.apiEndPoint + '/users/createuser/', data);
+      }
+
+      return request.success(function (data, status, headers, config) {
+                      self.uuid = data.uuid;
+                    });
     };
 
     Client.prototype.addUserInfo = function (success, failure) {

@@ -61,7 +61,7 @@
       <div class="col-container"
           ng-class="{checked: gift.order.delivery_mode === 'Vinify' }"
           ng-click="gift.order.delivery_mode ='Vinify'">
-        <h3>Retrait Vinify</h3>
+        <h3>Retrait Vinify <span class="small">issy (92)</span></h3>
         <p class="price">
           Gratuit
           <a href=""
@@ -72,13 +72,12 @@
         </p>
         <!-- <p class="help">Venez nous voir à Issy (92)</p> -->
       </div>
-      <div class="col-container"
+<!--       <div class="col-container"
           ng-class="{checked: gift.order.delivery_mode === 'Point Relais' }"
           ng-click="gift.order.delivery_mode = 'Point Relais'">
         <h3>Point Relais</h3>
         <p class="price">{{costs['vinibar']['Point Relais'] }} € </p>
-        <!-- <p class="help">Livré dans le point relais de votre choix</p> -->
-      </div>
+      </div> -->
       <div class="col-container"
           ng-class="{checked: gift.order.delivery_mode === 'Colissimo' }"
           ng-click="gift.order.delivery_mode =  'Colissimo'">
@@ -156,15 +155,15 @@
           </div>
         </div>
       </div>
-<!--       <div class="col-container"
+      <div class="col-container"
           ng-class="{checked: gift.order.gift_type === 'Print' }"
           ng-click="gift.order.gift_type = 'Print'">
-        <h3>À imprimer</h3>
-      </div> -->
+        <h3>À imprimer <span class="small">après le paiement</span></h3>
+      </div>
       <div class="col-container"
           ng-class="{checked: gift.order.gift_type === 'Card' }"
           ng-click="gift.order.gift_type = 'Card' ">
-        <h3>Par la poste (+5€)</h3>
+        <h3>Par la poste <span class="small">+ 5 €</span></h3>
         <!-- <p class="help">Vinify enverra une carte manuscrite avec votre mot à l'adresse de votre choix.</p> -->
       </div>
 <!--       <div class="col-container margin-top checked">
@@ -191,11 +190,16 @@
       </div>
       <div id="got-a-coupon" class="col-container margin-top got-a-coupon">
         <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <p class="col-subtitle">J'ai un coupon !</p>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <p class="col-subtitle">Coupon</p>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <input type="text" ng-model="gift.order.coupon" class="form-control" ng-blur="blur()" placeholder="VINICHOUETTE">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="input-group">
+              <input type="text" ng-model="gift.order.coupon" class="form-control" ng-blur="blur()" placeholder="VINICHOUETTE">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
           </div>
         </div>
       </div>

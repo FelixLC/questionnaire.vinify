@@ -54,7 +54,7 @@ angular.module('vinibar.remerciement', [
   console.log(currentClient);
   $scope.url = function () {
     var amount =  Math.round(((currentClient.order.final_price - currentClient.order.delivery_cost) / 1.2) * 100) / 100;
-    return "https://lb.affilae.com/?key=546b6fc823b944df498b4e25-546b6ea723b944df498b4e23&id=" +
+    return "https://lb.affilae.com/?key=546b74af23b944e0498b4c0a-546b6ea723b944df498b4e23&id=" +
                   currentClient.order.uuid + "&amount=" + amount + "&payment=online";
   };
 })
@@ -62,7 +62,7 @@ angular.module('vinibar.remerciement', [
   console.log(currentClient);
   $scope.url = function () {
     var amount =  Math.round(((currentClient.order.final_price - currentClient.order.delivery_cost) / 1.2) * 100) / 100;
-    return "https://lb.affilae.com/?key=546b74af23b944e0498b4c0a-546b6ea723b944df498b4e23&id=" +
+    return "https://lb.affilae.com/?key=546b6fc823b944df498b4e25-546b6ea723b944df498b4e23&id=" +
                    currentClient.order.uuid + "&amount=" + amount + "&payment=online";
   };
 });

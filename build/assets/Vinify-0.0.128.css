@@ -6391,6 +6391,9 @@ hr.backgrounded {
 .overlay p {
   font-size: 16px;
 }
+.popover * {
+  color: #000;
+}
 /**
  * Typography
  */
