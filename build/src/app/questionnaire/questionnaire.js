@@ -95,9 +95,8 @@ angular.module('vinibar.questionnaire', [
   };
 
   $scope.select = function (region) {
-    $scope.newuser.survey.quest_7.answ = region;
-    console.log($scope.newuser.survey.quest_7.answ);
-    console.log($scope.newuser.survey.quest_7.answ === 'Vallée du Rhône');
+    $scope.newuser.survey.quest_7.answ = ($scope.newuser.survey.quest_7.answ === region) ?
+                                                        "" : $scope.newuser.survey.quest_7.answ = region;
   };
 
 

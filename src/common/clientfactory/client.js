@@ -143,6 +143,7 @@ angular.module('clientFactory', ['settings'])
     Client.prototype.pickMrShop = function (shop, orderId, success, failure) {
       $http.post(settings.apiEndPoint + '/orders/pickmrshop/', {
         shop_id: shop.concat_ID,
+        shop: shop,
         order_id: orderId
       })
       .success(function (data, status, headers, config) {
