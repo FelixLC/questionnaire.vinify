@@ -5,7 +5,7 @@ angular.module('vinibar.remerciement', [
   'ngAutocomplete'
 ])
 
-.config(["$stateProvider", "$sceDelegateProvider", function config ($stateProvider, $sceDelegateProvider) {
+.config(function config ($stateProvider, $sceDelegateProvider) {
   $stateProvider
     .state('remerciement', {
       url: '/remerciement',
@@ -48,21 +48,21 @@ angular.module('vinibar.remerciement', [
       data: { pageTitle: 'remerciement' }
     });
   $sceDelegateProvider.resourceUrlWhitelist([ 'self',  'https://lb.affilae.com/**' ]);
-}])
+})
 
-.controller('remerciementCtrl', ["$scope", "currentClient", function remerciementCtrl ($scope, currentClient) {
+.controller('remerciementCtrl', function remerciementCtrl ($scope, currentClient) {
   console.log(currentClient);
   $scope.url = function () {
     var amount =  Math.round(((currentClient.order.final_price - currentClient.order.delivery_cost) / 1.2) * 100) / 100;
     return "https://lb.affilae.com/?key=546b74af23b944e0498b4c0a-546b6ea723b944df498b4e23&id=" +
                   currentClient.order.uuid + "&amount=" + amount + "&payment=online";
   };
-}])
-.controller('remerciementSixCtrl', ["$scope", "currentClient", function remerciementSixCtrl ($scope, currentClient) {
+})
+.controller('remerciementSixCtrl', function remerciementSixCtrl ($scope, currentClient) {
   console.log(currentClient);
   $scope.url = function () {
     var amount =  Math.round(((currentClient.order.final_price - currentClient.order.delivery_cost) / 1.2) * 100) / 100;
     return "https://lb.affilae.com/?key=546b6fc823b944df498b4e25-546b6ea723b944df498b4e23&id=" +
                    currentClient.order.uuid + "&amount=" + amount + "&payment=online";
   };
-}]);
+});

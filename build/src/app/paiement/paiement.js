@@ -9,7 +9,7 @@ angular.module('vinibar.paiement', [
   'settings'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider
     .state('paiement', {
       url: '/paiement',
@@ -29,9 +29,9 @@ angular.module('vinibar.paiement', [
       url: '/confirmation',
       templateUrl: 'paiement/parts/paiement.confirmation.tpl.html'
     });
-}])
+})
 
-.controller('paiementCtrl', ["Mixpanel", "$scope", "$http", "$state", "settings", "toaster", "$window", "$rootScope", "$location", "currentClient", "Client", function paiementCtrl (Mixpanel, $scope, $http, $state, settings, toaster, $window, $rootScope, $location, currentClient, Client) {
+.controller('paiementCtrl', function paiementCtrl (Mixpanel, $scope, $http, $state, settings, toaster, $window, $rootScope, $location, currentClient, Client, Recommender) {
   $scope.delivery = {
     mode: 'Colissimo',
     cost: 11.90
@@ -62,48 +62,40 @@ angular.module('vinibar.paiement', [
     //                          alert('Vous n\'avez pas de commande en cours');
     //                       });
 
-      var request = $http({
-                            url: settings.apiEndPoint + '/users/login/',
-                            method: "POST",
-                            data: {'username' : email, 'password' : password},
-                            headers: {
-                                     'Content-Type': 'application/json; charset=UTF-8'
-                            }
-                    }).success(function (data, status, headers, config) {
-                      $window.sessionStorage.token = data.token;
-                      $scope.client = new Client();
-                      $scope.client.uuid = data.uuid;
-                      $scope.client.email = data.email;
-                      $scope.client.first_name = data.first_name;
-                      $scope.client.last_name = data.last_name;
-                      currentClient.currentClient = $scope.client;
-                      currentClient.currentClient.userinfos.first_name = $scope.client.first_name;
-                      currentClient.currentClient.userinfos.last_name = $scope.client.last_name;
-                        if(data.status == 2.5) {
-                          $http({
-                                  url: settings.apiEndPoint + '/orders/unfinishedorder/',
-                                  method: "GET"
-                                })
-                                .success(function (data, status, headers, config) {
-                                    $scope.client.order = data;
-                                    $scope.client.order_type = data.order_type;
-                                    currentClient.currentClient = $scope.client;
-                                    $state.go('pay_mobile');
-                                })
-                                .error(function (data, status, headers, config) {
-                                  alert('Vous n\'avez pas de commande en cours');
-                                });
-                        } else if (data.status == 2) {
-                          $state.go('order.userinfos');
-                        } else if (data.status == 1) {
-                          $state.go('questionnaire.coffee');
-                        } else {
-                          toaster.pop('infos', 'Vous n\'avez pas de commande de Vinibar en cours');
-                        }
-                      })
-                    .error(function (data, status, headers, config) {
-                        toaster.pop('infos', 'Erreur', 'Combinaison Email / Mot de passe érronée');
-                      });
+    $http.post(settings.apiEndPoint + '/users/login/', { username: email, password: password })
+        .success(function (data, status, headers, config) {
+          $window.sessionStorage.token = data.token;
+          $scope.client = new Client();
+          $scope.client.uuid = data.uuid;
+          $scope.client.email = data.email;
+          $scope.client.first_name = data.first_name;
+          $scope.client.last_name = data.last_name;
+          currentClient.currentClient = $scope.client;
+          currentClient.currentClient.userinfos.first_name = $scope.client.first_name;
+          currentClient.currentClient.userinfos.last_name = $scope.client.last_name;
+          if (data.status >= 2) {
+            $http.get(settings.apiEndPoint + '/orders/unfinishedorder/')
+                  .success(function (data, status, headers, config) {
+                    // user has bottles. Let's show them who's the boss
+                    $scope.client.order = data.order;
+                    $scope.client.order_type = data.order.order_type;
+                    currentClient.currentClient = $scope.client;
+                    Recommender.setPreview(data.wines);
+                    $state.go('pay_mobile');
+                  })
+                  .error(function (data, status, headers, config) {
+                    Recommender.calcPreview($scope.client.uuid);
+                    $state.go('preview');
+                  });
+          } else if (data.status < 2) {
+            $state.go('questionnaire.coffee');
+          } else {
+            toaster.pop('infos', 'Vous n\'avez pas de commande de Vinibar en cours');
+          }
+        })
+          .error(function (data, status, headers, config) {
+            toaster.pop('infos', 'Erreur', 'Combinaison Email / Mot de passe érronée');
+          });
 
   };
 //  SEND ORDER REQUEST TO SERVER. IF SUCCESS UPDATE SCOPE WITH ORDER DATA AND TRANSITION TO CONFIRMATION
@@ -192,4 +184,4 @@ angular.module('vinibar.paiement', [
         return request;
   };
 
-}]);
+});

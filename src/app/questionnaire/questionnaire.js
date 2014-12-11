@@ -230,7 +230,7 @@ angular.module('vinibar.questionnaire', [
               $state.go('contest_congratulation');
               $rootScope.loading = false;
             } else {// new prospect
-              Recommender.calcPreview(data)
+              Recommender.calcPreview(data.uuid)
                 .then(function (response) {
                   $state.go('preview');
                   $rootScope.loading = false;

@@ -6,8 +6,8 @@ angular.module('Resources', [ 'settings' ])
     var _preview = null;
     var _uuid = null;
     return {
-      calcPreview: function (user) {
-        return $http.post(settings.backendEndPoint + '/backoffice/recommender/preview3/', { user_uuid: user.uuid })
+      calcPreview: function (uuid) {
+        return $http.post(settings.backendEndPoint + '/backoffice/recommender/preview3/', { user_uuid: uuid })
           .success(function (data, status, headers, config) {
             _preview = data.wines;
             _uuid = data.order_uuid;
@@ -15,6 +15,10 @@ angular.module('Resources', [ 'settings' ])
       },
       getPreview: function () {
         return _preview;
+      },
+      setPreview: function (data) {
+        _preview = data.wines;
+        _uuid = data.order.uuid;
       },
       getUuid: function () {
         return _uuid;
