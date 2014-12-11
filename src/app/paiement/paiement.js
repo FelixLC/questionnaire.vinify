@@ -51,17 +51,7 @@ angular.module('vinibar.paiement', [
                                   $rootScope.loading= false;
   };
   $scope.login = function (email, password) {
-
-    // var unfinishedOrder = $http({
-    //                               url: '/unfinishedorder/',
-    //                               method: "GET"
-    //                       }).success(function (data, status, headers, config) {
-    //                           $scope.currentUser = data;
-    //                           $state.go('paiement.confirmation');
-    //                       }).error(function (data, status, headers, config) {
-    //                          alert('Vous n\'avez pas de commande en cours');
-    //                       });
-
+    delete $window.sessionStorage.token;
     $http.post(settings.apiEndPoint + '/users/login/', { username: email, password: password })
         .success(function (data, status, headers, config) {
           $window.sessionStorage.token = data.token;
