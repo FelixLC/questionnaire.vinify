@@ -87,7 +87,6 @@ angular.module('vinibar.questionnaire', [
   $scope.region = { selected: null, hover: null };
   $scope.enter = function (region) {
     $scope.region.hover = region;
-    $scope.newuser.survey.quest_7.answ = region;
   };
 
   $scope.leave = function (region) {

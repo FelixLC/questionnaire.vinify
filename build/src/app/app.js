@@ -24,12 +24,12 @@ angular.module('vinibar', [
   'ngCookies'
 ])
 
-.config(function myAppConfig ($stateProvider, $urlRouterProvider) {
+.config(["$stateProvider", "$urlRouterProvider", function myAppConfig ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/demarrer');
-})
+}])
 
 // We'll intercept all request and put the token in it
-.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
+.factory('authInterceptor', ["$rootScope", "$q", "$window", "$location", function ($rootScope, $q, $window, $location) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
@@ -45,10 +45,10 @@ angular.module('vinibar', [
       return response || $q.when(response);
     }
   };
-})
-.config(function ($httpProvider) {
+}])
+.config(["$httpProvider", function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
-})
+}])
 
 .config([ '$httpProvider', function ($httpProvider) {
   $httpProvider.defaults.useXDomain = true;
@@ -57,14 +57,14 @@ angular.module('vinibar', [
   $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 } ])
 
-.controller('AppCtrl', function AppCtrl ($scope, $location, settings) {
+.controller('AppCtrl', ["$scope", "$location", "settings", function AppCtrl ($scope, $location, settings) {
   $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
     if (angular.isDefined(toState.data.pageTitle)) {
       $scope.pageTitle = toState.data.pageTitle + ' | vinibar' ;
     }
   });
   console.log(settings.apiEndPoint);
-})
+}])
 
 .factory('User', [ function () {
 

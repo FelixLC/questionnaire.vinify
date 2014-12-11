@@ -472,11 +472,11 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "      <div class=\"col-container\"\n" +
+    "<!--       <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Print' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Print'\">\n" +
     "        <h3>À imprimer <span class=\"small\">après le paiement</span></h3>\n" +
-    "      </div>\n" +
+    "      </div> -->\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Card' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Card' \">\n" +
@@ -1867,7 +1867,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                <p>{{client.email}}</h4>\n" +
     "                <p>{{client.userinfos.delivery_address.street}}<br>\n" +
     "                {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>\n" +
-    "                <p ng-show=\"delivery.mode === 'Point Relais' && selected.shop\">Point Relais: {{shop.Nom}} - {{shop.Ville}}</p>\n" +
+    "                <p class=\"picked-relay\" ng-show=\"delivery.mode === 'Point Relais' && selected.shop\">Point Relais: {{shop.Nom}} - {{shop.Ville}}</p>\n" +
     "                  </div>\n" +
     "                  <hr class=\"visible-sm visible-xs\">\n" +
     "                  <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
@@ -2701,7 +2701,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								L22.614,60.048z M8.975,40.853l0.237,0.2l-0.36-0.049L8.975,40.853L8.975,40.853z M18.728,58.271l-0.147,0.212l0.1-0.277\n" +
     "								L18.728,58.271L18.728,58.271z M20.393,38.985l-0.119,0.327l-0.143-0.102L20.393,38.985L20.393,38.985z\"/>\n" +
     "\n" +
-    "								<path ng-click=\"select('Vallée de la Loire')\" ng-mouseenter=\"enter('Vallée de la Loire')\" ng-mouseleave=\"leave('Vallée de la Loire')\" ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Vallée de la Loire'} \"  id=\"Vallée de la Loire\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
+    "								<path ng-click=\"select('Vallée de la Loire')\" ng-mouseenter=\"enter('Vallée de la Loire')\" ng-mouseleave=\"leave('Vallée de la Loire')\" ng-class=\"{selectedregion:  newuser.survey.quest_7.answ == 'Vallée de la Loire'} \"  id=\"Vallée-de-la-Loire\" sodipodi:nodetypes=\"cssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" d=\"\n" +
     "								M30.544,65.399c0.295,0.146,0.627,0.626,0.854,0.853c0.364,0.611,0.62,1.265,0.768,1.962c0.52,0.349,0.917,0.804,1.194,1.365\n" +
     "								c1.316,1.316,6.134,0.007,7.335-1.194c0.278-0.278,0.392-0.697,0.512-0.938c0.184-0.366-0.1-0.912-0.17-1.194\n" +
     "								c0.009,0.036,6.101-0.125,6.909,0.683c1.373,1.378-0.05,2.12,2.388,2.729c1.665,0.416,2.886,2.828,4.947,1.279\n" +
@@ -3063,7 +3063,7 @@ angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCac
     "      <div class=\"container row-fluid\">\n" +
     "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
     "        <p>Merci pour votre cadeau !</p>\n" +
-    "        <a href ui-sref=\"gift_card\">Imprimer le bon cadeau</a>\n" +
+    "        <!-- <a href ui-sref=\"gift_card\">Imprimer le bon cadeau</a> -->\n" +
     "<!--         <h2>Merci pour votre commande</h2>\n" +
     "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
     "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->\n" +

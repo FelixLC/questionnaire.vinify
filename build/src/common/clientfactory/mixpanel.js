@@ -57,4 +57,5 @@
       }
     }
   }
+  Mixpanel.$inject = ["settings"];
 })();

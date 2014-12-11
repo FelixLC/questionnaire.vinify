@@ -1,5 +1,5 @@
 
-angular.module('clientFactory', ['settings'])
+angular.module('clientFactory', [ 'settings' ])
 
 
   //  The Client Factory is used to instantiate a new client
