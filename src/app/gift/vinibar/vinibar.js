@@ -85,8 +85,8 @@ angular.module('vinibar.gift.vinibar', [
         $scope.gift.order.delivery_mode = 'Colissimo';
       }
     } else {
-        $scope.gift = new Gift('Vinibar');
-        $scope.gift.order.delivery_mode = 'Colissimo';
+      $scope.gift = new Gift('Vinibar');
+      $scope.gift.order.delivery_mode = 'Colissimo';
     }
   };
 

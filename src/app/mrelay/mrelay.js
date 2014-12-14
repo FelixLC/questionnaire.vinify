@@ -45,8 +45,9 @@ angular.module('mondialrelay', [
 			// LET'S CHECK IF THE USER CLICKED ON SOME SHOP
 			if(shop) {
 				var data = {
-					'shop_id': shop.concat_ID,
-					'order_id': order_id
+					shop_id: shop.concat_ID,
+					shop: shop,
+					order_id: order_id
 				};
 
 				var request = $http({

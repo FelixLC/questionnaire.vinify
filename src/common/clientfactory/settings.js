@@ -13,13 +13,13 @@
   function settings () {
     var service = {
       production: true,
-      test: true,
-      apiEndPoint: 'http://127.0.0.1:8000/api',
-      // apiEndPoint: 'https://api.vinify.co/api',
+      test: false,
+      // apiEndPoint: 'http://127.0.0.1:8000/api',
+      apiEndPoint: 'https://api.vinify.co/api',
       // apiEndPoint: 'https://backoffice.vinify.co/api',
       // backendEndPoint: 'https://backoffice.vinify.co/api'
-      // backendEndPoint: 'https://api.vinify.co/api'
-      backendEndPoint: 'http://127.0.0.1:8000/api'
+      backendEndPoint: 'https://api.vinify.co/api'
+      // backendEndPoint: 'http://127.0.0.1:8000/api'
     };
     return service;
   }

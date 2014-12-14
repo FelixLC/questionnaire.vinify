@@ -28,7 +28,7 @@ angular.module('vinibar.questionnaire', [
       data: { pageTitle: 'questionnaire' }
     })
     .state('questionnaire.coffee', {
-      url: '/coffee',
+      url: '/coffee?r',
       templateUrl: 'questionnaire/parts/questionnaire.coffee.tpl.html'
     })
     .state('questionnaire.balance', {
@@ -63,7 +63,7 @@ angular.module('vinibar.questionnaire', [
 
 .controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receive, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
   $scope.is = { contest: currentClient.isContest };
-  currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
+  console.log(currentClient);
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 
   // modal
@@ -205,6 +205,7 @@ angular.module('vinibar.questionnaire', [
         delete $window.sessionStorage.token;
         $rootScope.loading = true;
         $scope.showFormEmailError = false;
+
         $scope.showFormErrors = false;
         var referrer = currentClient.initial_referrer;
         currentClient.currentClient = $scope.newuser;

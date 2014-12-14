@@ -67,24 +67,36 @@ angular.module('vinibar.paiement', [
             $http.get(settings.apiEndPoint + '/orders/unfinishedorder/')
                   .success(function (data, status, headers, config) {
                     // user has bottles. Let's show them who's the boss
-                    $scope.client.order = data.order;
-                    $scope.client.order_type = data.order.order_type;
+                    $scope.client.order = data;
+                    $scope.client.order_type = data.order_type;
+                    $scope.client.userinfos.delivery_address = data.delivery_address;
+                    $scope.client.userinfos.billing_address = data.billing_address;
                     currentClient.currentClient = $scope.client;
-                    Recommender.setPreview(data.wines);
-                    $state.go('pay_mobile');
+                    Recommender.calcPreview($scope.client.uuid).then(function (response) {
+                      $state.go('preview');
+                    },
+                    function (response) {
+                      toaster.pop('info', 'Une erreur est survenue', 'Merci de réessayer.');
+                    });
+
                   })
                   .error(function (data, status, headers, config) {
-                    Recommender.calcPreview($scope.client.uuid);
-                    $state.go('preview');
+                    Recommender.calcPreview($scope.client.uuid).then(function (response) {
+                      $state.go('preview');
+                    },
+                    function (response) {
+                      toaster.pop('info', 'Une erreur est survenue', 'Merci de réessayer.');
+                    });
+
                   });
           } else if (data.status < 2) {
             $state.go('questionnaire.coffee');
           } else {
-            toaster.pop('infos', 'Vous n\'avez pas de commande de Vinibar en cours');
+            toaster.pop('info', 'Vous n\'avez pas de commande de Vinibar en cours');
           }
         })
           .error(function (data, status, headers, config) {
-            toaster.pop('infos', 'Erreur', 'Combinaison Email / Mot de passe érronée');
+            toaster.pop('info', 'Erreur', 'Combinaison Email / Mot de passe érronée');
           });
 
   };

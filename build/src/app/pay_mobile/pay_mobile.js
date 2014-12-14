@@ -97,27 +97,33 @@ angular.module('vinibar.pay_mobile', [
         id: response.id,
         order_uuid: $scope.client.order.uuid
       };
-      $scope.client.chargeOrder(response.id, $scope.client.order.uuid, $scope.client.order_type, settings.test)
-        .success(function (data, status, headers, config) {
-          currentClient.order = data;
-          $rootScope.loading = false;
-          if ($scope.client.order.delivery_mode === 'Point Relais') {
-            $scope.client.pickMrShop($scope.shop, $scope.client.order.uuid,
-              function () {},
-              function () {
-                $scope.client.pickMrEmail($scope.client.order.uuid);
-                console.log('error');
-              }
-            );
-          }
-          $state.go(direction);
-          Mixpanel.track('Sucessful payment');
-        })
-        .error(function (data, status, headers, config) {
-          $rootScope.loading = false;
-          toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
-          Mixpanel.track('Server failed to proceed payment');
-        });
+      if ($scope.client.order.delivery_mode === 'Point Relais' && !$scope.shop) {
+        $rootScope.loading = false;
+        $scope.selected = { shop: false };
+        toaster.pop('info', 'Aucun Point Relais sélectionné', 'Merci de choisir un Point Relais');
+      } else {
+        $scope.client.chargeOrder(response.id, $scope.client.order.uuid, $scope.client.order_type, settings.test)
+          .success(function (data, status, headers, config) {
+            currentClient.order = data;
+            $rootScope.loading = false;
+            if ($scope.client.order.delivery_mode === 'Point Relais') {
+              $scope.client.pickMrShop($scope.shop, $scope.client.order.uuid,
+                function () {},
+                function () {
+                  $scope.client.pickMrEmail($scope.client.order.uuid);
+                  console.log('error');
+                }
+              );
+            }
+            $state.go(direction);
+            Mixpanel.track('Sucessful payment');
+          })
+          .error(function (data, status, headers, config) {
+            $rootScope.loading = false;
+            toaster.pop('error', 'Une erreur est survenue', 'Vous n\'avez pas été facturés. Merci de réessayer');
+            Mixpanel.track('Server failed to proceed payment');
+          });
+      }
     }
 
   };

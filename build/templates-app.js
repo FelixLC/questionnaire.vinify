@@ -3166,7 +3166,8 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "			<h3>Bienvenue dans l'aventure Vinify</h3>\n" +
     "		</div>\n" +
     "		<div class=\"centered\">\n" +
-    "			<img src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
+    "			<img ng-hide=\"is.gift\" src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
+    "			<img ng-show=\"is.gift\" src=\"assets/vinibar-showcase-gift.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
     "			<p>Ces quelques questions permettront à notre oenologue de sélectionner <span class=\"highlight\">spécialement pour vous 6 bouteilles</span> parmi notre gamme de plus de 100 références.</p>\n" +
     "			<button ui-sref=\"questionnaire.coffee\" class=\"button btn-square margin-top\">Démarrer</button>\n" +
     "			<p>En continuant, je certifie avoir plus de 18 ans et j'accepte les <a href=\"https://vinify.co/docs/cgv.pdf\">CGV</a> de Vinify</p>\n" +
