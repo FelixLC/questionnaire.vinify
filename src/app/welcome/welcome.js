@@ -37,7 +37,7 @@ angular.module('vinibar.welcome', [
   winemapBckg.src = "assets/winery.jpg";
 
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
-  currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
+  // currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
   $scope.is = { gift: currentClient.isGift };
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 

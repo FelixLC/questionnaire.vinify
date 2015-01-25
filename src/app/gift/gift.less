@@ -2,7 +2,7 @@
   background-color: @background-color;
   position: absolute;
   top: @navheight;
-  padding: @navheight 0;
+  padding: @navheight/4 0;
   left: 0;
   right: 0;
   padding-bottom: @navheight;
@@ -62,7 +62,7 @@
   .make-sm-column(12);
   .make-lg-column(10);
   .make-lg-column-offset(1);
-  padding: @navheight @navheight/2;
+  padding: @navheight/4 @navheight/2;
 }
 #gift .offset-2 {
   .make-lg-column-offset(2);
@@ -264,6 +264,14 @@
         content: "\f046";
         color: @brand-color;
 }
+#gift .gift-checkbox.info-unchecked::before {
+        position:absolute;
+        left: 6px;
+        font-family: FontAwesome;
+        font-size: 14px;
+        content: "\f096";
+        color: @brand-color;
+}
  #gift .got-a-coupon {
   padding-top: 11.1px;
   padding-bottom: 11.1px;
@@ -375,7 +383,7 @@ a.margin-top {
   font-size: 16px;
 }
 .gift-card-logo {
-  width: 50%;
+  width: 33%;
 }
 #gift-card p {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
@@ -413,6 +421,9 @@ a.margin-top {
   display: table;
   width: 100%;
 }
+// #gift-card .gift-card-logo {
+//   width: 200px;
+// }
 #gift-card .gift-card-drawing > div {
   display: table-cell;
   vertical-align: middle;
@@ -426,4 +437,102 @@ a.margin-top {
 }
 #gift-card .tryptic img {
   margin: 0 auto;
+}
+#gift-card .gift-header {
+  border: 4px solid @brand-color;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin-bottom: 50px;
+}
+
+  .navbar-nav .dropdown-menu {
+    border-radius: 2px;
+  }
+  .navbar-splash {
+    padding: 5px 5px 5px 6.25px;
+    background-color: transparent;
+    border-color: transparent;
+      .brand-image {
+        float: left;
+        display: inline-block;
+      }
+      .quick-links {
+        float: right;
+        display: inline-block;
+      }
+  }
+  .navbar-gift {
+    padding: 5px 5px 5px 6.25px;
+    background-color: white;
+    border: 0 solid #ebebeb;
+    border-bottom-width: 1px;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+  @media (max-width: 900px) {
+    .nav > li > a {
+      display: inline-block;
+      padding: 10px 5px;
+    }
+  }
+
+    .navbar-fixed-top .navbar-collapse {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+  .navbar-toggle {
+    border-color: #ebebeb;
+
+    .icon-bar {
+      background-color: #ebebeb;
+    }
+  }
+  .navbar-gift li > a {
+    font-family: 'Roboto', 'Open Sans', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    display: block !important;
+  }
+  .navbar-gift li > a:hover, .navbar-gift li > a:focus {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: transparent;
+    color: @color-support-strong;
+  }
+  .navbar-gift .btn-navbar-cta {
+    border: 1px solid @color-support-strong;
+    color: @color-support-strong;
+  }
+  .navbar-gift .btn-navbar-cta:hover,
+  .navbar-gift .btn-navbar-cta:focus {
+    background-color: c;
+    color: #FFF;
+      -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+      -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+      -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+      -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+      transition: color 0.1s ease-in, background 0.1s ease-in;
+  }
+
+  .navbar-nav > li > .dropdown-menu {
+    margin-top: 7px;
+    border-color: #FFF;
+  }
+.christmas {
+  background-color: @color-support-strong;
+  color: #fff;
+  margin-top: -14px;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // z-index: 9999;
+}
+.christmas p {
+  margin-bottom: 0;
 }

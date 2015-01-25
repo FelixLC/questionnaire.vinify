@@ -1,4 +1,4 @@
-angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'receive/update.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
 
 angular.module("contest/congratulation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("contest/congratulation.tpl.html",
@@ -113,36 +113,43 @@ angular.module("gift/address.tpl.html", []).run(["$templateCache", function($tem
 angular.module("gift/gift.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("gift/gift.tpl.html",
     "<div>\n" +
-    "  <nav class=\"navbar\" role=\"navigation\">\n" +
+    "  <nav class=\"navbar navbar-gift\" role=\"navigation\">\n" +
     "    <div class=\"container-fluid\">\n" +
     "      <div class=\"navbar-header\">\n" +
-    "         <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n" +
+    "          <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "         <a href=\"https://vinify.co/\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
     "      </div>\n" +
+    "\n" +
     "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
-    "<!--         <ul class=\"nav navbar-nav navbar-right\">\n" +
-    "          <li ng-show=\"state.current === 'gift.choose' \">\n" +
-    "            <a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" style=\"height:45px\"/></a>\n" +
-    "          </li>\n" +
-    "          <li ng-show=\"state.current == 'order.userinfos' \">\n" +
-    "            <a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a>\n" +
-    "          </li>\n" +
-    "          <li ng-show=\"state.current == 'order.userinfos'\">\n" +
-    "            <a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a>\n" +
-    "          </li>\n" +
-    "          <li ng-show=\"!(state.current == 'order.userinfos')\">\n" +
-    "            <a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a>\n" +
-    "          </li>\n" +
-    "          <li ng-show=\"state.current == 'order.paiement'\">\n" +
-    "            <a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a>\n" +
-    "          </li>\n" +
-    "          <li ng-hide=\"state.current == 'order.paiement'\">\n" +
-    "            <a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a>\n" +
-    "          </li>\n" +
-    "        </ul> -->\n" +
-    "      </div><!-- /.navbar-collapse -->\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#getstarted\" id=\"home-navbar-second-faq\" class=\"btn-navbar-second\">\n" +
+    "                  Comment ça marche ?\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#how-it-works\" id=\"home-navbar-second-experience\" class=\"btn-navbar-second\">\n" +
+    "                  L'expérience Vinify\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"http://blog.vinify.co\" id=\"home-navbar-second-contact\" class=\"btn-navbar-second\">\n" +
+    "                 Blog\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "  </nav>\n" +
     "  <div id=\"gift\">\n" +
+    "      <div ng-show=\"gift.order.gift_type === 'Vinibar'\" class=\"christmas\">\n" +
+    "            <p class=\"centered\">Pour recevoir les vins avant Noël, commandez avant Mercredi minuit.</p>\n" +
+    "      </div>\n" +
     "      <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "      <div ui-view class=\"gift-container\"></div>\n" +
     "  </div>\n" +
@@ -153,12 +160,12 @@ angular.module("gift/gift_card.tpl.html", []).run(["$templateCache", function($t
   $templateCache.put("gift/gift_card.tpl.html",
     "<div id=\"gift-card\">\n" +
     "  <div>\n" +
-    "    <div class=\"centered\">\n" +
+    "    <div class=\"centered gift-header\">\n" +
     "      <h2>Bon cadeau</h2>\n" +
     "      <img class=\"gift-card-logo\" src=\"assets/logo.png\" alt=\"\">\n" +
+    "      <h3>Vous avez reçu un Vinibar <span ng-show=\"credits\">et {{credits}} € de crédits</span>  !</h3>\n" +
+    "      <h3>6 bouteilles sélectionnées pour vos goûts</h3>\n" +
     "    </div>\n" +
-    "    <h3 class=\"centered\">Vous avez reçu un Vinibar</h3>\n" +
-    "    <h3 class=\"centered\">6 bouteilles sélectionnées pour vos goûts</h3>\n" +
     "<!--     <div class=\"greeting\">\n" +
     "      <p>Bonjour {{first_name}},</p>\n" +
     "      <p>Un ami a pensé à vous et vous offre un Vinibar (6 bouteilles de vin sélectionnées pour vous)  !</p>\n" +
@@ -172,7 +179,7 @@ angular.module("gift/gift_card.tpl.html", []).run(["$templateCache", function($t
     "        <h3>Comment utiliser votre bon cadeau ?</h3>\n" +
     "        <ol>\n" +
     "          <li><p>Rendez-vous sur www.vinify.co</p></li>\n" +
-    "          <li><p>Cliquez sur Cadeau / recevoir </p></li>\n" +
+    "          <li><p>Cliquez sur Cadeau puis recevoir </p></li>\n" +
     "          <li><p>Entrez le code :</p></li>\n" +
     "        </ol>\n" +
     "        <p class=\"centered code\">{{code}}</p>\n" +
@@ -224,17 +231,17 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "            <td><h4>{{69 + gift.order.delivery_cost + gift.order.credits - gift.order.coupon_value | number:1}}&nbsp;€</h4></td>\n" +
     "          </tr>\n" +
     "      </table>\n" +
+    "      <p class=\"centered\"><a href class=\"dotted-underline margin-top\" ng-click=\"open('sm')\">Ajouter une adresse de facturation</a></p>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "  <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
-    "    <h2 class=\"col-title\">Envoyé à</h2>\n" +
+    "    <h2 class=\"col-title\">L'heureux élu</h2>\n" +
     "    <div class=\"col-container centered\">\n" +
     "      <p>{{gift.order.receiver_address.first_name}} {{gift.order.receiver_address.last_name}}</p>\n" +
     "      <p>{{gift.order.receiver_email}}</p>\n" +
     "      <p ng-hide=\"gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  \">{{gift.order.receiver_address.street}}</p>\n" +
     "      <p ng-hide=\"gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  \">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>\n" +
     "      <p><br></p>\n" +
-    "      <p><a href class=\"dotted-underline margin-top\" ng-click=\"open('sm')\">Ajouter une adresse de facturation</a></p>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -300,13 +307,13 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
     "         <div class=\"row row-submit centered\">\n" +
     "         <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "            <div><input type=\"hidden\" name=\"name\" ng-model=\"gift.giver.last_name\"/></div>\n" +
-    "           <div class=\"margin-top\"><button class=\"btn-block-primary\" value=\"submit\"><p>Offrir mon cadeau  <i ng-show=\"load.spin\" class=\"fa fa-spinner fa-spin\"></i></p></button></div>\n" +
+    "           <div class=\"margin-top\"><button class=\"btn-block-primary\" value=\"submit\"><p>Offrir mon cadeau  <i ng-show=\"load.spin\" class=\"fa icon-spinner icon-spin\"></i></p></button></div>\n" +
     "         </div>\n" +
     "         </div>\n" +
     "       </form>\n" +
     "    </div>\n" +
     "    <div class=\"centered\">\n" +
-    "       <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa fa-lock\"></i> <p>SSL Secure</p>\n" +
+    "       <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa icon-lock\"></i> <p>SSL Secure</p>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -316,12 +323,11 @@ angular.module("gift/pay.tpl.html", []).run(["$templateCache", function($templat
 angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("gift/vinibar/details.tpl.html",
     "<div class=\"gift-header\">\n" +
-    "  <h1>offrir un vinibar</h1>\n" +
-    "  <h2>Je choisis la formule que j'offre</h2>\n" +
+    "  <h1>Offrez 6 bouteilles de vin à ses goûts</h1>\n" +
     "</div>\n" +
     "<div class=\"row container-fluid\">\n" +
     "  <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Formule</h2>\n" +
+    "      <h2 class=\"col-title\">Choix de la formule</h2>\n" +
     "      <div ng-click=\"initVB()\" ng-class=\"{checked: gift.order.gift_type === 'Vinibar' }\"\n" +
     "                class=\"col-container\">\n" +
     "        <h3>Vinibar</h3>\n" +
@@ -338,14 +344,14 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "              popover-title=\"Que faut-il savoir ?\"\n" +
     "              popover=\"Est-ce qu'il prend du café ? Quel est son dessert préféré ? Quelle couleur de vins boit-il ? ...\"\n" +
     "              popover-trigger=\"mouseenter\"\n" +
-    "              popover-placement=\"bottom\">le questionnaire Vinify à sa place (<i class=\"fa fa-info-circle\">)</i></a>, pour qu'il ou elle reçoive directement le bar personnalisé.\n" +
+    "              popover-placement=\"bottom\">le questionnaire Vinify à sa place (<i class=\"fa icon-info-circle\">)</i></a>, pour qu'il ou elle reçoive directement le bar personnalisé.\n" +
     "      </p>\n" +
     "      <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"details-helper\">\n" +
     "        Je ne connais pas ses goûts, il ou elle démarrera l'aventure avec le questionnaire Vinify quand j'offrirai le cadeau.\n" +
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Crédits</h2>\n" +
+    "      <h2 class=\"col-title\">Ajout de crédits</h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <div class=\"gift-checkbox\" ng-click=\"details.credits = !details.credits \"\n" +
     "                  ng-class=\"{'quiz-check-on': details.credits, 'quiz-check-off': !details.credits}\">\n" +
@@ -374,7 +380,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "      </div>\n" +
     "    </div>\n" +
     "    <div ng-show=\"gift.order.gift_type === 'Vinibar' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Livraison</h2>\n" +
+    "      <h2 class=\"col-title\">Choix de Livraison</h2>\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Vinify' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode ='Vinify'\">\n" +
@@ -385,7 +391,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "              popover-title=\"Passez nous voir\"\n" +
     "              popover=\"au 135 rue Jean Jacques Rousseau, à Issy (92).\"\n" +
     "              popover-trigger=\"mouseenter\"\n" +
-    "              popover-placement=\"bottom\">(<i class=\"fa fa-info-circle\">)</i></a>\n" +
+    "              popover-placement=\"bottom\">(<i class=\"fa icon-info-circle\">)</i></a>\n" +
     "        </p>\n" +
     "        <!-- <p class=\"help\">Venez nous voir à Issy (92)</p> -->\n" +
     "      </div>\n" +
@@ -406,9 +412,14 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "    <div ng-hide=\"gift.order.gift_type === 'Vinibar' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Envoi de la carte</h2>\n" +
     "      <div class=\"col-container\"\n" +
+    "          ng-class=\"{checked: gift.order.gift_type === 'Print' }\"\n" +
+    "          ng-click=\"gift.order.gift_type = 'Print'\">\n" +
+    "        <h3>Bon à imprimer <span class=\"small\">après paiement</span></h3>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Email' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Email' \">\n" +
-    "        <h3>Par Email <span class=\"small\">envoyée le :</span></h3>\n" +
+    "        <h3>Par Email <span class=\"small\">au receveur, le :</span></h3>\n" +
     "        <div class=\"row\">\n" +
     "          <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n" +
     "            <select class=\"form-control\" ng-model=\"sendDate.day\" name=\"day\">\n" +
@@ -472,16 +483,11 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "<!--       <div class=\"col-container\"\n" +
-    "          ng-class=\"{checked: gift.order.gift_type === 'Print' }\"\n" +
-    "          ng-click=\"gift.order.gift_type = 'Print'\">\n" +
-    "        <h3>À imprimer <span class=\"small\">après le paiement</span></h3>\n" +
-    "      </div> -->\n" +
     "      <div class=\"col-container\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Card' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Card' \">\n" +
     "        <h3>Par la poste <span class=\"small\">+ 5 €</span></h3>\n" +
-    "        <!-- <p class=\"help\">Vinify enverra une carte manuscrite avec votre mot à l'adresse de votre choix.</p> -->\n" +
+    "        <p class=\"help\">Vinify enverra une carte postale manuscrite avec votre mot à l'adresse de votre choix.</p>\n" +
     "      </div>\n" +
     "<!--       <div class=\"col-container margin-top checked\">\n" +
     "        <h3>Livraison du Bar (11€90)</h3>\n" +
@@ -535,8 +541,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
 angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("gift/vinibar/infos.tpl.html",
     "<div class=\"gift-header\">\n" +
-    "  <h1>offrir un vinibar</h1>\n" +
-    "  <h2>Je remplis ses coordonnées</h2>\n" +
+    "  <h1>Offrez 6 bouteilles de vin à ses goûts</h1>\n" +
     "</div>\n" +
     "<form novalidate name=\"infos\" ng-submit=\"submit(infos)\">\n" +
     "  <div class=\"row container-fluid\">\n" +
@@ -575,11 +580,11 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "              <p class=\"\">\n" +
     "                Email\n" +
-    "              <a href=\"\"\n" +
+    "              <a ng-hide=\"gift.order.gift_type === 'Email'\" href=\"\"\n" +
     "                  popover-title=\"Chut ...\"\n" +
     "                  popover=\"Si vous choisissez de l'envoyer chez vous, nous lui enverrons aucun email, nous lui créons juste un compte.\"\n" +
     "                  popover-trigger=\"mouseenter\"\n" +
-    "                  popover-placement=\"bottom\">(<i class=\"fa fa-info-circle\">)</i></a>\n" +
+    "                  popover-placement=\"bottom\">(<i class=\"fa icon-info-circle\">)</i></a>\n" +
     "              </p>\n" +
     "              <input name=\"receiver_email\" type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_email\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_email.$invalid}\"\n" +
@@ -601,19 +606,19 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "    <div ng-show=\"gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "    <div ng-show=\"gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <h2 class=\"col-title\">Livraison</h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <p ng-show=\"gift.order.gift_type === 'Vinibar'\" class=\"col-subtitle\">Vinify envoie le bar</p>\n" +
     "        <p ng-show=\"gift.order.gift_type === 'Card'\" class=\"col-subtitle\">Vinify envoie la carte</p>\n" +
     "        <div class=\"row\">\n" +
     "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
-    "            <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = false\" ng-class=\"{infochecked: !gift.order.send_to_receiver}\">\n" +
+    "            <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = false\" ng-class=\"{infochecked: !gift.order.send_to_receiver, 'info-unchecked': gift.order.send_to_receiver}\">\n" +
     "              <p>Chez moi</p>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
-    "          <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = true\" ng-class=\"{infochecked: gift.order.send_to_receiver}\">\n" +
+    "          <div class=\"gift-checkbox\" ng-click=\"gift.order.send_to_receiver = true\" ng-class=\"{infochecked: gift.order.send_to_receiver, 'info-unchecked': !gift.order.send_to_receiver}\">\n" +
     "            <p>Chez\n" +
     "                    <span ng-show=\"gift.order.receiver_sex != 'F' && gift.order.receiver_sex != 'M' \">lui / elle</span>\n" +
     "                    <span ng-show=\"gift.order.receiver_sex === 'F' \">elle</span>\n" +
@@ -629,14 +634,14 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.first_name\"\n" +
     "                            autocomplete=\"first_name\" name=\"first_name\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.first_name.$invalid}\"\n" +
-    "                            ng-required=\"gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'\">\n" +
+    "                            ng-required=\"gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'\">\n" +
     "            </div>\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Nom</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.last_name\"\n" +
     "                            autocomplete=\"last_name\" name=\"last_name\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.last_name.$invalid}\"\n" +
-    "                            ng-required=\"gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'\">\n" +
+    "                            ng-required=\"gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'\">\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
@@ -645,7 +650,7 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.street\"\n" +
     "                            autocomplete=\"street\" name=\"street\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.street.$invalid}\"\n" +
-    "                            ng-required=\"gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'\">\n" +
+    "                            ng-required=\"gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'\">\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
@@ -654,14 +659,14 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.zipcode\"\n" +
     "                            autocomplete=\"zipcode\" name=\"zipcode\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.zipcode.$invalid}\"\n" +
-    "                            ng-required=\"gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'\">\n" +
+    "                            ng-required=\"gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'\">\n" +
     "            </div>\n" +
     "            <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-12\">\n" +
     "              <p class=\"\">Ville</p>\n" +
     "              <input type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_address.city\"\n" +
     "                            autocomplete=\"city\" name=\"city\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.city.$invalid}\"\n" +
-    "                            ng-required=\"gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'\">\n" +
+    "                            ng-required=\"gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'\">\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
@@ -691,10 +696,10 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "        <h2 class=\"col-title\">Moi</h2>\n" +
     "        <div class=\"col-tab\">\n" +
     "          <div ng-click=\"is.client = true\" ng-class=\"{'background': is.client}\">\n" +
-    "            <p class=\"col-subtitle\">Je suis <br> client Vinify</p>\n" +
+    "            <p class=\"col-subtitle\">J'ai un compte <br> Vinify</p>\n" +
     "          </div>\n" +
     "          <div ng-click=\"is.client = false\" ng-class=\"{'background': !is.client}\">\n" +
-    "            <p class=\"col-subtitle\">Je ne suis pas <br> client Vinify</p>\n" +
+    "            <p class=\"col-subtitle\">Je n'ai pas de <br> compte Vinify</p>\n" +
     "          </div>\n" +
     "        </div>\n" +
     "        <div class=\"col-container\">\n" +
@@ -752,13 +757,9 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "            </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
+    "        <p class=\"centered\"><a href=\"https://api.vinify.co/api/users/password/reset/\">réinitialiser votre mot de passe</a></p>\n" +
+    "        <button type=\"submit\" class=\"btn-block-primary centered margin-top\"><p>Continuer <i ng-show=\"load\" class=\"fa icon-spinner icon-spin\"></i></p></button>\n" +
     "      </div>\n" +
-    "  </div>\n" +
-    "  <div class=\"row container-fluid\">\n" +
-    "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right\">\n" +
-    "        <button type=\"submit\" class=\"btn-block-primary centered margin-top\"><p>Continuer <i ng-show=\"load\" class=\"fa fa-spinner fa-spin\"></i></p></button>\n" +
-    "    </div>\n" +
-    "<!--     <iframe src=\"http://gfycat.com/ifr/WholeSelfreliantCreature\" frameborder=\"0\" scrolling=\"no\" width=\"918\" height=\"612\" style=\"-webkit-backface-visibility: hidden;-webkit-transform: scale(0.3);\" ></iframe> -->\n" +
     "  </div>\n" +
     "</form>");
 }]);
@@ -1829,7 +1830,7 @@ angular.module("paiement/parts/paiement.login.tpl.html", []).run(["$templateCach
     "        </div>\n" +
     "        <button class=\"btn btn-outline-white\" ng-click=\"login(email, password)\">Valider</button>\n" +
     "      </form>\n" +
-    "      <a id=\"get_pwd\" href=\"http://127.0.0.1:8000/api/users/password/reset/\" target=\"_blank\">Récupérer mon mot de passe</a>\n" +
+    "      <a id=\"get_pwd\" href=\"https://api.vinify.co/api/users/password/reset/\" target=\"_blank\">Récupérer mon mot de passe</a>\n" +
     "</div>\n" +
     "");
 }]);
@@ -2005,13 +2006,12 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                  <hr>\n" +
     "              </div>\n" +
     "              <div class=\"row centered\">\n" +
-    "                 <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa fa-lock\"></i> SSL Secure\n" +
+    "                 <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa icon-lock\"></i> SSL Secure\n" +
     "                <hr>\n" +
     "              </div>\n" +
     "\n" +
     "            <!-- Point Relais -->\n" +
     "            <div id=\"relay-picker\" ng-show=\"delivery.mode === 'Point Relais' && !selected.shop\" class=\"row\">\n" +
-    "              <p class=\"centered\"><i class=\"fa fa-info-circle\"></i> Attention, en période de noël, certains Points Relais sont fermés</p>\n" +
     "              <div id=\"mondialrelay-widget\">\n" +
     "                  <div id=\"Zone_Widget\"></div>\n" +
     "                  <input type=\"text\" id=\"Retour_Widget\" style=\"display:none\" class=\"\"/>\n" +
@@ -2268,10 +2268,10 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
-    "      <a ui-sref=\"questionnaire.starter\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.starter\"><i class=\"fa icon-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks-right\">\n" +
-    "      <a href ng-click=\"validateBalanceAnswer()\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
+    "      <a href ng-click=\"validateBalanceAnswer()\"><i class=\"fa icon-chevron-right\"></i></a>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>");
@@ -2314,7 +2314,7 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
     "      </div>\n" +
     "    </div>\n" +
     "<!--     <div class=\"navlinks-right\">\n" +
-    "      <a ui-sref=\"questionnaire.juice\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.juice\"><i class=\"fa icon-chevron-right\"></i></a>\n" +
     "    </div> -->\n" +
     "  </div>\n" +
     "</div>");
@@ -2415,7 +2415,7 @@ angular.module("questionnaire/parts/questionnaire.comments.tpl.html", []).run(["
     "\n" +
     "      </div>\n" +
     "      <div class=\"navlinks\">\n" +
-    "        <a ui-sref=\"questionnaire.balance\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
+    "        <a ui-sref=\"questionnaire.balance\"><i class=\"fa icon-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -2467,10 +2467,10 @@ angular.module("questionnaire/parts/questionnaire.cuisine.tpl.html", []).run(["$
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
-    "      <a ui-sref=\"questionnaire.juice\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.juice\"><i class=\"fa icon-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks-right\">\n" +
-    "      <a href ng-click=\"validateCuisineAnswer()\" ><i class=\"fa fa-chevron-right\"></i></a>\n" +
+    "      <a href ng-click=\"validateCuisineAnswer()\" ><i class=\"fa icon-chevron-right\"></i></a>\n" +
     "    </div>\n" +
     "\n" +
     "  </div>\n" +
@@ -2553,10 +2553,10 @@ angular.module("questionnaire/parts/questionnaire.juice.tpl.html", []).run(["$te
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
-    "      <a ui-sref=\"questionnaire.coffee\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.coffee\"><i class=\"fa icon-chevron-left\"></i></a>\n" +
     "    </div>\n" +
     "<!--     <div class=\"navlinks-right\">\n" +
-    "      <a ui-sref=\"questionnaire.cuisine\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
+    "      <a ui-sref=\"questionnaire.cuisine\"><i class=\"fa icon-chevron-right\"></i></a>\n" +
     "    </div> -->\n" +
     "  </div>\n" +
     "</div>");
@@ -2614,10 +2614,10 @@ angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"navlinks\">\n" +
-    "          <a ui-sref=\"questionnaire.cuisine\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
+    "          <a ui-sref=\"questionnaire.cuisine\"><i class=\"fa icon-chevron-left\"></i></a>\n" +
     "        </div>\n" +
     "        <div class=\"navlinks-right\">\n" +
-    "          <a ui-sref=\"questionnaire.balance\"><i class=\"fa fa-chevron-right\"></i></a>\n" +
+    "          <a ui-sref=\"questionnaire.balance\"><i class=\"fa icon-chevron-right\"></i></a>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -2910,6 +2910,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "					                    id=\"password\" required/>\n" +
     "					              </div>\n" +
     "					            </form>\n" +
+    "					            <p><a target=\"_blank\" href=\"https://api.vinify.co/api/users/password/reset/\" class=\"centered reset-pwd\">réinitialiser votre mot de passe</a></p>\n" +
     "				            </div>\n" +
     "			            </div>\n" +
     "				</div>\n" +
@@ -2924,7 +2925,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "			</div>\n" +
     "		</div>\n" +
     "	    <div class=\"navlinks\">\n" +
-    "	      <a ui-sref=\"questionnaire.balance\"><i class=\"fa fa-chevron-left\"></i></a>\n" +
+    "	      <a ui-sref=\"questionnaire.balance\"><i class=\"fa icon-chevron-left\"></i></a>\n" +
     "	    </div>\n" +
     "	</div>\n" +
     "</div>\n" +
@@ -2980,7 +2981,6 @@ angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($
     "                  ng-model=\"code\"\n" +
     "                  required\n" +
     "                  class=\"form-control\"\n" +
-    "                  ng-minlength=\"5\"\n" +
     "                  id=\"code\"/>\n" +
     "            </div>\n" +
     "            <button class=\"btn btn-outline-white\" ng-click=\"sendTo(code)\">Valider</button>\n" +
@@ -2991,15 +2991,99 @@ angular.module("receive/receive.tpl.html", []).run(["$templateCache", function($
     "</div>");
 }]);
 
+angular.module("receive/update.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("receive/update.tpl.html",
+    "<div class=\"background-receive\">\n" +
+    "  <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "  <div class=\"overlay-receive\">\n" +
+    "    <div class=\"centered\">\n" +
+    "          <h3>Merci de confirmer vos informations</h3>\n" +
+    "          <form role=\"form\" name=\"form_login\" class=\"form-inline\">\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label class=\"sr-only\" for=\"password\">Prénom</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                  placeholder=\"Prénom\"\n" +
+    "                  name=\"first_name\"\n" +
+    "                  ng-model=\"first_name\"\n" +
+    "                  required\n" +
+    "                  class=\"form-control\"\n" +
+    "                  />\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label class=\"sr-only\" for=\"password\">Nom</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                  placeholder=\"Nom\"\n" +
+    "                  name=\"last_name\"\n" +
+    "                  ng-model=\"last_name\"\n" +
+    "                  required\n" +
+    "                  class=\"form-control\"\n" +
+    "                  id=\"last_name\"/>\n" +
+    "            </div>\n" +
+    "          </form>\n" +
+    "          <form role=\"form\" name=\"form_login\" class=\"form-inline\">\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label class=\"sr-only\" for=\"password\">Email</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                  placeholder=\"Email\"\n" +
+    "                  name=\"email\"\n" +
+    "                  ng-model=\"email\"\n" +
+    "                  required\n" +
+    "                  class=\"form-control\"\n" +
+    "                  />\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label class=\"sr-only\" for=\"password\">Mot de passe</label>\n" +
+    "              <input type=\"password\"\n" +
+    "                  name=\"password\"\n" +
+    "                  placeholder=\"Mot de passe\"\n" +
+    "                  ng-model=\"password\"\n" +
+    "                  required\n" +
+    "                  class=\"form-control\"\n" +
+    "                  id=\"password\"/>\n" +
+    "            </div>\n" +
+    "          </form>\n" +
+    "          <button class=\"btn btn-outline-white margin-top\" ng-click=\"update(first_name, last_name, email, password)\">Valider</button>\n" +
+    "    </div>\n" +
+    "\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
 angular.module("remerciement/remerciement.3.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("remerciement/remerciement.3.tpl.html",
-    "<nav class=\"navbar\" role=\"navigation\">\n" +
-    "  <div class=\"container\">\n" +
-    "    <div class=\"navbar-header\">\n" +
-    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "  <nav class=\"navbar navbar-gift\" role=\"navigation\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "      <div class=\"navbar-header\">\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n" +
+    "          <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "         <a href=\"https://vinify.co/\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#getstarted\" id=\"home-navbar-second-faq\" class=\"btn-navbar-second\">\n" +
+    "                  Comment ça marche ?\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#how-it-works\" id=\"home-navbar-second-experience\" class=\"btn-navbar-second\">\n" +
+    "                  L'expérience Vinify\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"http://blog.vinify.co\" id=\"home-navbar-second-contact\" class=\"btn-navbar-second\">\n" +
+    "                 Blog\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
-    "</nav>\n" +
+    "  </nav>\n" +
     "<div class=\"remerciement-container\">\n" +
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +
@@ -3017,18 +3101,85 @@ angular.module("remerciement/remerciement.3.tpl.html", []).run(["$templateCache"
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>\n" +
+    "<!-- Google Code for Clic vers offrir maintenant Vinify Conversion Page -->\n" +
+    "\n" +
+    "<script type=\"text/javascript\">\n" +
+    "\n" +
+    "/* <![CDATA[ */\n" +
+    "\n" +
+    "var google_conversion_id = 1018864233;\n" +
+    "\n" +
+    "var google_conversion_language = \"en\";\n" +
+    "\n" +
+    "var google_conversion_format = \"2\";\n" +
+    "\n" +
+    "var google_conversion_color = \"ffffff\";\n" +
+    "\n" +
+    "var google_conversion_label = \"6F2fCLn6pFgQ6cTq5QM\";\n" +
+    "\n" +
+    "var google_remarketing_only = false;\n" +
+    "\n" +
+    "/* ]]> */\n" +
+    "\n" +
+    "</script>\n" +
+    "\n" +
+    "<script type=\"text/javascript\"\n" +
+    "\n" +
+    "src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
+    "\n" +
+    "</script>\n" +
+    "\n" +
+    "<noscript>\n" +
+    "\n" +
+    "<div style=\"display:inline;\">\n" +
+    "\n" +
+    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\"\n" +
+    "\n" +
+    "src=\"//www.googleadservices.com/pagead/conversion/1018864233/?label=6F2fCLn6\n" +
+    "\n" +
+    "pFgQ6cTq5QM&amp;guid=ON&amp;script=0\"/>\n" +
+    "\n" +
+    "</div>\n" +
+    "\n" +
+    "</noscript>");
 }]);
 
 angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("remerciement/remerciement.6.tpl.html",
-    "<nav class=\"navbar\" role=\"navigation\">\n" +
-    "  <div class=\"container\">\n" +
-    "    <div class=\"navbar-header\">\n" +
-    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "  <nav class=\"navbar navbar-gift\" role=\"navigation\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "      <div class=\"navbar-header\">\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n" +
+    "          <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "         <a href=\"https://vinify.co/\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#getstarted\" id=\"home-navbar-second-faq\" class=\"btn-navbar-second\">\n" +
+    "                  Comment ça marche ?\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#how-it-works\" id=\"home-navbar-second-experience\" class=\"btn-navbar-second\">\n" +
+    "                  L'expérience Vinify\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"http://blog.vinify.co\" id=\"home-navbar-second-contact\" class=\"btn-navbar-second\">\n" +
+    "                 Blog\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
-    "</nav>\n" +
+    "  </nav>\n" +
     "<div class=\"remerciement-container\">\n" +
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +
@@ -3046,24 +3197,91 @@ angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache"
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>\n" +
+    "<!-- Google Code for Clic vers offrir maintenant Vinify Conversion Page -->\n" +
+    "\n" +
+    "<script type=\"text/javascript\">\n" +
+    "\n" +
+    "/* <![CDATA[ */\n" +
+    "\n" +
+    "var google_conversion_id = 1018864233;\n" +
+    "\n" +
+    "var google_conversion_language = \"en\";\n" +
+    "\n" +
+    "var google_conversion_format = \"2\";\n" +
+    "\n" +
+    "var google_conversion_color = \"ffffff\";\n" +
+    "\n" +
+    "var google_conversion_label = \"6F2fCLn6pFgQ6cTq5QM\";\n" +
+    "\n" +
+    "var google_remarketing_only = false;\n" +
+    "\n" +
+    "/* ]]> */\n" +
+    "\n" +
+    "</script>\n" +
+    "\n" +
+    "<script type=\"text/javascript\"\n" +
+    "\n" +
+    "src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
+    "\n" +
+    "</script>\n" +
+    "\n" +
+    "<noscript>\n" +
+    "\n" +
+    "<div style=\"display:inline;\">\n" +
+    "\n" +
+    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\"\n" +
+    "\n" +
+    "src=\"//www.googleadservices.com/pagead/conversion/1018864233/?label=6F2fCLn6\n" +
+    "\n" +
+    "pFgQ6cTq5QM&amp;guid=ON&amp;script=0\"/>\n" +
+    "\n" +
+    "</div>\n" +
+    "\n" +
+    "</noscript>");
 }]);
 
 angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("remerciement/remerciement.gift.tpl.html",
-    "<nav class=\"navbar\" role=\"navigation\">\n" +
-    "  <div class=\"container\">\n" +
-    "    <div class=\"navbar-header\">\n" +
-    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "  <nav class=\"navbar navbar-gift\" role=\"navigation\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "      <div class=\"navbar-header\">\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n" +
+    "          <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "         <a href=\"https://vinify.co/\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#getstarted\" id=\"home-navbar-second-faq\" class=\"btn-navbar-second\">\n" +
+    "                  Comment ça marche ?\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#how-it-works\" id=\"home-navbar-second-experience\" class=\"btn-navbar-second\">\n" +
+    "                  L'expérience Vinify\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"http://blog.vinify.co\" id=\"home-navbar-second-contact\" class=\"btn-navbar-second\">\n" +
+    "                 Blog\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
-    "</nav>\n" +
+    "  </nav>\n" +
     "<div class=\"remerciement-container\">\n" +
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +
     "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
     "        <p>Merci pour votre cadeau !</p>\n" +
-    "        <!-- <a href ui-sref=\"gift_card\">Imprimer le bon cadeau</a> -->\n" +
+    "        <a class=\"btn btn-square-o\" href ng-if=\"isPrint === 'true' \" ui-sref=\"gift_card\">Imprimer le bon cadeau</a>\n" +
     "<!--         <h2>Merci pour votre commande</h2>\n" +
     "        <p>Nous préparons votre sélection personnalisée.</p>\n" +
     "        <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->\n" +
@@ -3076,18 +3294,85 @@ angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCac
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>");
+    "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>\n" +
+    "<!-- Google Code for Clic vers offrir maintenant Vinify Conversion Page -->\n" +
+    "\n" +
+    "<script type=\"text/javascript\">\n" +
+    "\n" +
+    "/* <![CDATA[ */\n" +
+    "\n" +
+    "var google_conversion_id = 1018864233;\n" +
+    "\n" +
+    "var google_conversion_language = \"en\";\n" +
+    "\n" +
+    "var google_conversion_format = \"2\";\n" +
+    "\n" +
+    "var google_conversion_color = \"ffffff\";\n" +
+    "\n" +
+    "var google_conversion_label = \"6F2fCLn6pFgQ6cTq5QM\";\n" +
+    "\n" +
+    "var google_remarketing_only = false;\n" +
+    "\n" +
+    "/* ]]> */\n" +
+    "\n" +
+    "</script>\n" +
+    "\n" +
+    "<script type=\"text/javascript\"\n" +
+    "\n" +
+    "src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
+    "\n" +
+    "</script>\n" +
+    "\n" +
+    "<noscript>\n" +
+    "\n" +
+    "<div style=\"display:inline;\">\n" +
+    "\n" +
+    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\"\n" +
+    "\n" +
+    "src=\"//www.googleadservices.com/pagead/conversion/1018864233/?label=6F2fCLn6\n" +
+    "\n" +
+    "pFgQ6cTq5QM&amp;guid=ON&amp;script=0\"/>\n" +
+    "\n" +
+    "</div>\n" +
+    "\n" +
+    "</noscript>");
 }]);
 
 angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("remerciement/remerciement.tpl.html",
-    "<nav class=\"navbar\" role=\"navigation\">\n" +
-    "  <div class=\"container\">\n" +
-    "    <div class=\"navbar-header\">\n" +
-    "       <a href=\"http://vinify.co\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "  <nav class=\"navbar navbar-gift\" role=\"navigation\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "      <div class=\"navbar-header\">\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n" +
+    "          <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "         <a href=\"https://vinify.co/\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#getstarted\" id=\"home-navbar-second-faq\" class=\"btn-navbar-second\">\n" +
+    "                  Comment ça marche ?\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#how-it-works\" id=\"home-navbar-second-experience\" class=\"btn-navbar-second\">\n" +
+    "                  L'expérience Vinify\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"http://blog.vinify.co\" id=\"home-navbar-second-contact\" class=\"btn-navbar-second\">\n" +
+    "                 Blog\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
-    "</nav>\n" +
+    "  </nav>\n" +
     "<div class=\"remerciement-container\">\n" +
     "  <div class=\"vertical-align centered\">\n" +
     "      <div class=\"container row-fluid\">\n" +

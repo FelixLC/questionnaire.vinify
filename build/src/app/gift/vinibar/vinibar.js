@@ -91,13 +91,27 @@ angular.module('vinibar.gift.vinibar', [
   };
 
   $scope.initCard = function () {
-    if ($scope.gift.order.gift_type === 'Vinibar') {
+    var date = new Date();
+    if ($scope.gift) {
+      if ($scope.gift.order.gift_type === 'Vinibar') {
+        $scope.details.credits =  true;
+        $scope.gift = new Gift('Print');
+        console.log($scope.gift);
+
+        $scope.sendDate = {};
+
+        $scope.sendDate = {
+          day: date.getDate(),
+          month: date.getMonth() + 1,
+          year: date.getFullYear()
+        };
+      }
+    } else {
       $scope.details.credits =  true;
-      $scope.gift = new Gift('Email');
+      $scope.gift = new Gift('Print');
       console.log($scope.gift);
 
       $scope.sendDate = {};
-      var date = new Date();
 
       $scope.sendDate = {
         day: date.getDate(),
@@ -106,9 +120,8 @@ angular.module('vinibar.gift.vinibar', [
       };
     }
   };
-
-  $scope.initVB();
   init();
+  $scope.initCard();
 
 
   var couponCheckerFail = function (response) {
@@ -165,14 +178,17 @@ angular.module('vinibar.gift.vinibar', [
   $scope.is = {
     client: true
   };
-
   $scope.submit = function (form) {
     form.submitted = true;
     $scope.gift.giver.initial_referrer = $window.document.referrer;
+    $scope.gift.order.credits = ($scope.gift.order.credits) ? $scope.gift.order.credits : 0;
+
+    if ($scope.gift.order.receiver_email === $scope.gift.giver.email || $scope.gift.order.receiver_email === $scope.gift.client.username) {
+      toaster.pop('error', 'Vous ne pouvez pas mettre la même adresse mail');
     /*****************
       the form is valid
     *****************/
-    if (form.$valid) {
+    } else if (form.$valid) {
       // save message and first name
       currentGiftCard.first_name = $scope.gift.order.receiver_first_name;
       currentGiftCard.message = $scope.gift.order.message;
@@ -210,6 +226,7 @@ angular.module('vinibar.gift.vinibar', [
                   $state.go('gift.pay');
                 }
               }, function (error) { // order creation error
+                $scope.load = false;
                 if (error.data === 'User with this email is already a client') {
                   toaster.pop('info', 'Oops !', 'Cet utilisateur est déjà un de nos clients');
                 } else {
@@ -218,7 +235,12 @@ angular.module('vinibar.gift.vinibar', [
               });
 
           }, function (error) {// account creation error
-            toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+            $scope.load = false;
+            if (error.data === 'Incorrect username/password') {
+              toaster.pop('info', 'Oops !', 'Vous avez déjà un compte');
+            } else {
+              toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+            }
           });
 
       // if it's a client
@@ -259,7 +281,7 @@ angular.module('vinibar.gift.vinibar', [
               });
 
           }, function (error) { // login error
-            toaster.pop('info', 'Oops !', 'Il y a eu une erreur de connexion');
+            toaster.pop('info', 'Oops !', 'Combinaison Email / Mot de passe erronée');
           });
 
       } else { // if there are no login credentials
@@ -275,14 +297,13 @@ angular.module('vinibar.gift.vinibar', [
   };
 })
 .controller('giftQuizVinibarCtrl', function giftQuizVinibarCtrl (Mixpanel, $scope, $state, currentGift, toaster) {
+
   $scope.regions = [
-    'Loire',
-    'Languedoc Roussillon',
-    'Champagne',
+    'Il/elle n\'en a pas',
     'Bourgogne',
-    'Provence',
-    'Rhône',
+    'Vallée de la Loire',
     'Alsace',
+    'Vallée du Rhône',
     'Bordeaux'
   ];
   $scope.gift = currentGift.current;

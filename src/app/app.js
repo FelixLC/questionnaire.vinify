@@ -20,8 +20,7 @@ angular.module('vinibar', [
   'settings',
   'Mixpanel',
   'ngAnimate',
-  'clientFactory',
-  'ngCookies'
+  'clientFactory'
 ])
 
 .config(function myAppConfig ($stateProvider, $urlRouterProvider) {

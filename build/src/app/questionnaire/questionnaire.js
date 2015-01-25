@@ -3,6 +3,7 @@ angular.module('vinibar.questionnaire', [
   'ui.bootstrap',
   'Resources',
   'ngAutocomplete',
+  'settings',
   'Mixpanel',
   'receiverService',
   'toaster'
@@ -61,27 +62,15 @@ angular.module('vinibar.questionnaire', [
     });
 })
 
-.controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receive, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams) {
+.controller('questionnaireCtrl', function questionnaireCtrl ($document, Mixpanel, Recommender, Receive, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams, settings) {
   $scope.is = { contest: currentClient.isContest };
   console.log(currentClient);
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 
-  // modal
-  $scope.open = function (size) {
-
-    var modalInstance = $modal.open({
-      templateUrl: 'myModalContent.html',
-      controller: ModalInstanceCtrl,
-      size: size,
-      keyboard: false,
-      backdrop: 'static'
-    });
-
-    modalInstance.result.then(function (email) {
-      $scope.newuser.email = email;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
+  $window.onbeforeunload = function () {
+    if (!settings.test) {
+      return "Attention, si vous rafraichissez la page, vous perderez vos données!";
+    }
   };
 
   $scope.region = { selected: null, hover: null };
@@ -116,10 +105,6 @@ angular.module('vinibar.questionnaire', [
       $modalInstance.dismiss('cancel');
     };
   };
-  // ! modal
-
-  // opening the modal when loading
-  $scope.open('lg');
 
   Mixpanel.track('Questionnaire Ouvert');
   $scope.form_print = function (form) {

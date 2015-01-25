@@ -7,7 +7,8 @@ angular.module('vinibar.pay_mobile', [
   'orderService',
   'Mixpanel',
   'settings',
-  'toaster'
+  'toaster',
+  'angularLoad'
 ])
 
 .config(function config ($stateProvider) {
@@ -17,6 +18,14 @@ angular.module('vinibar.pay_mobile', [
       main: {
         controller: 'payMobileCtrl',
         templateUrl: 'pay_mobile/pay_mobile.tpl.html'
+      }
+    },
+    resolve: {
+      maps: function (angularLoad) {
+        return angularLoad.loadScript('https://maps.googleapis.com/maps/api/js?sensor=false');
+      },
+      mondialrelay: function (angularLoad) {
+        return angularLoad.loadScript('https://widget.mondialrelay.com/parcelshop-picker/v3_0/scripts/jquery.plugin.mondialrelay.parcelshoppicker.min.js');
       }
     },
     data: { pageTitle: 'Commander' }

@@ -1,6 +1,5 @@
 <div class="gift-header">
-  <h1>offrir un vinibar</h1>
-  <h2>Je remplis ses coordonnées</h2>
+  <h1>Offrez 6 bouteilles de vin à ses goûts</h1>
 </div>
 <form novalidate name="infos" ng-submit="submit(infos)">
   <div class="row container-fluid">
@@ -39,11 +38,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="">
                 Email
-              <a href=""
+              <a ng-hide="gift.order.gift_type === 'Email'" href=""
                   popover-title="Chut ..."
                   popover="Si vous choisissez de l'envoyer chez vous, nous lui enverrons aucun email, nous lui créons juste un compte."
                   popover-trigger="mouseenter"
-                  popover-placement="bottom">(<i class="fa fa-info-circle">)</i></a>
+                  popover-placement="bottom">(<i class="fa icon-info-circle">)</i></a>
               </p>
               <input name="receiver_email" type="text" class="form-control" ng-model="gift.order.receiver_email"
                             ng-class="{'input-error' : infos.submitted && infos.receiver_email.$invalid}"
@@ -65,19 +64,19 @@
         </div>
       </div>
     </div>
-    <div ng-show="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <div ng-show="gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Livraison</h2>
       <div class="col-container">
         <p ng-show="gift.order.gift_type === 'Vinibar'" class="col-subtitle">Vinify envoie le bar</p>
         <p ng-show="gift.order.gift_type === 'Card'" class="col-subtitle">Vinify envoie la carte</p>
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="gift-checkbox" ng-click="gift.order.send_to_receiver = false" ng-class="{infochecked: !gift.order.send_to_receiver}">
+            <div class="gift-checkbox" ng-click="gift.order.send_to_receiver = false" ng-class="{infochecked: !gift.order.send_to_receiver, 'info-unchecked': gift.order.send_to_receiver}">
               <p>Chez moi</p>
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <div class="gift-checkbox" ng-click="gift.order.send_to_receiver = true" ng-class="{infochecked: gift.order.send_to_receiver}">
+          <div class="gift-checkbox" ng-click="gift.order.send_to_receiver = true" ng-class="{infochecked: gift.order.send_to_receiver, 'info-unchecked': !gift.order.send_to_receiver}">
             <p>Chez
                     <span ng-show="gift.order.receiver_sex != 'F' && gift.order.receiver_sex != 'M' ">lui / elle</span>
                     <span ng-show="gift.order.receiver_sex === 'F' ">elle</span>
@@ -93,14 +92,14 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.first_name"
                             autocomplete="first_name" name="first_name"
                             ng-class="{'input-error' : infos.submitted && infos.first_name.$invalid}"
-                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
+                            ng-required="gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Nom</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.last_name"
                             autocomplete="last_name" name="last_name"
                             ng-class="{'input-error' : infos.submitted && infos.last_name.$invalid}"
-                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
+                            ng-required="gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'">
             </div>
           </div>
           <div class="row">
@@ -109,7 +108,7 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.street"
                             autocomplete="street" name="street"
                             ng-class="{'input-error' : infos.submitted && infos.street.$invalid}"
-                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
+                            ng-required="gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'">
             </div>
           </div>
           <div class="row">
@@ -118,14 +117,14 @@
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.zipcode"
                             autocomplete="zipcode" name="zipcode"
                             ng-class="{'input-error' : infos.submitted && infos.zipcode.$invalid}"
-                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
+                            ng-required="gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
               <p class="">Ville</p>
               <input type="text" class="form-control" ng-model="gift.order.receiver_address.city"
                             autocomplete="city" name="city"
                             ng-class="{'input-error' : infos.submitted && infos.city.$invalid}"
-                            ng-required="gift.order.gift_type === 'Vinibar' || gift.order.gift_type === 'Card'">
+                            ng-required="gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'">
             </div>
           </div>
           <div class="row">
@@ -155,10 +154,10 @@
         <h2 class="col-title">Moi</h2>
         <div class="col-tab">
           <div ng-click="is.client = true" ng-class="{'background': is.client}">
-            <p class="col-subtitle">Je suis <br> client Vinify</p>
+            <p class="col-subtitle">J'ai un compte <br> Vinify</p>
           </div>
           <div ng-click="is.client = false" ng-class="{'background': !is.client}">
-            <p class="col-subtitle">Je ne suis pas <br> client Vinify</p>
+            <p class="col-subtitle">Je n'ai pas de <br> compte Vinify</p>
           </div>
         </div>
         <div class="col-container">
@@ -216,12 +215,8 @@
             </div>
           </div>
         </div>
+        <p class="centered"><a href="https://api.vinify.co/api/users/password/reset/">réinitialiser votre mot de passe</a></p>
+        <button type="submit" class="btn-block-primary centered margin-top"><p>Continuer <i ng-show="load" class="fa icon-spinner icon-spin"></i></p></button>
       </div>
-  </div>
-  <div class="row container-fluid">
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
-        <button type="submit" class="btn-block-primary centered margin-top"><p>Continuer <i ng-show="load" class="fa fa-spinner fa-spin"></i></p></button>
-    </div>
-<!--     <iframe src="http://gfycat.com/ifr/WholeSelfreliantCreature" frameborder="0" scrolling="no" width="918" height="612" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(0.3);" ></iframe> -->
   </div>
 </form>

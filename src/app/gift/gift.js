@@ -63,8 +63,9 @@ angular.module('vinibar.gift', [
           }
           $scope.load = { spin: false };
           currentClient.order = data;
-          currentGiftCard.code = data.activation_coupon;
-          $state.go('remerciement_gift');
+          currentGiftCard.code = data.activation_code;
+          currentGiftCard.credits = data.credits;
+          $state.go('remerciement_gift', { print: ($scope.gift.order.gift_type === 'Print') ? true : false });
           Mixpanel.track('Sucessful payment');
         })
         .error(function (data, status, headers, config) {

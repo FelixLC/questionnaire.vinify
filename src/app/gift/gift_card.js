@@ -5,7 +5,7 @@ angular.module('vinibar.gift_card', [
 .config(function config ($stateProvider) {
   $stateProvider
     .state('gift_card', {
-      url: '/carte_cadeau?code',
+      url: '/carte_cadeau?code&credits',
       views: {
         main: {
           controller: 'giftCardCtrl',
@@ -17,6 +17,7 @@ angular.module('vinibar.gift_card', [
 })
 .controller('giftCardCtrl', function ($scope, currentGiftCard, $stateParams) {
   $scope.code = (currentGiftCard.code) ?  currentGiftCard.code : $stateParams.code;
+  $scope.credits = (currentGiftCard.credits) ?  currentGiftCard.credits : $stateParams.credits;
   $scope.message = currentGiftCard.message;
   $scope.first_name = currentGiftCard.first_name;
 });

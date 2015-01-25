@@ -11,6 +11,7 @@
           activate: activate,
           update: update,
           receive: receive,
+          updateReceiver: updateReceiver,
           coupon: null
       };
 
@@ -20,7 +21,7 @@
         return $http.post(settings.apiEndPoint + '/orders/gift/activate/',  {
           code: _code
         }).then(function (response) {
-          service.coupon = response.data;
+          service.coupon = response.data.coupon;
           return response;
         });
       }
@@ -32,6 +33,15 @@
         } else {
           return new Error('No coupon');
         }
+      }
+      function updateReceiver (firstName, lastName, email, password) {
+        return $http.post(settings.apiEndPoint + '/users/updatereceiver/',  {
+          coupon_code: service.coupon.code,
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password
+        });
       }
       function receive () {
         if (service.coupon.uuid) {

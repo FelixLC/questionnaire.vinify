@@ -36,17 +36,17 @@
             <td><h4>{{69 + gift.order.delivery_cost + gift.order.credits - gift.order.coupon_value | number:1}}&nbsp;€</h4></td>
           </tr>
       </table>
+      <p class="centered"><a href class="dotted-underline margin-top" ng-click="open('sm')">Ajouter une adresse de facturation</a></p>
     </div>
   </div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <h2 class="col-title">Envoyé à</h2>
+    <h2 class="col-title">L'heureux élu</h2>
     <div class="col-container centered">
       <p>{{gift.order.receiver_address.first_name}} {{gift.order.receiver_address.last_name}}</p>
       <p>{{gift.order.receiver_email}}</p>
       <p ng-hide="gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  ">{{gift.order.receiver_address.street}}</p>
       <p ng-hide="gift.order.gift_type === 'Email' || gift.order.gift_type != 'Print'  ">{{gift.order.receiver_address.zipcode}} {{gift.order.receiver_address.city}}</p>
       <p><br></p>
-      <p><a href class="dotted-underline margin-top" ng-click="open('sm')">Ajouter une adresse de facturation</a></p>
     </div>
   </div>
 </div>
@@ -112,13 +112,13 @@
          <div class="row row-submit centered">
          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div><input type="hidden" name="name" ng-model="gift.giver.last_name"/></div>
-           <div class="margin-top"><button class="btn-block-primary" value="submit"><p>Offrir mon cadeau  <i ng-show="load.spin" class="fa fa-spinner fa-spin"></i></p></button></div>
+           <div class="margin-top"><button class="btn-block-primary" value="submit"><p>Offrir mon cadeau  <i ng-show="load.spin" class="fa icon-spinner icon-spin"></i></p></button></div>
          </div>
          </div>
        </form>
     </div>
     <div class="centered">
-       <img src="assets/credit_cards.png" alt=""> <i class="fa fa-lock"></i> <p>SSL Secure</p>
+       <img src="assets/credit_cards.png" alt=""> <i class="fa icon-lock"></i> <p>SSL Secure</p>
     </div>
   </div>
 </div>

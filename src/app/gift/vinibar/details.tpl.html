@@ -1,10 +1,9 @@
 <div class="gift-header">
-  <h1>offrir un vinibar</h1>
-  <h2>Je choisis la formule que j'offre</h2>
+  <h1>Offrez 6 bouteilles de vin à ses goûts</h1>
 </div>
 <div class="row container-fluid">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Formule</h2>
+      <h2 class="col-title">Choix de la formule</h2>
       <div ng-click="initVB()" ng-class="{checked: gift.order.gift_type === 'Vinibar' }"
                 class="col-container">
         <h3>Vinibar</h3>
@@ -21,14 +20,14 @@
               popover-title="Que faut-il savoir ?"
               popover="Est-ce qu'il prend du café ? Quel est son dessert préféré ? Quelle couleur de vins boit-il ? ..."
               popover-trigger="mouseenter"
-              popover-placement="bottom">le questionnaire Vinify à sa place (<i class="fa fa-info-circle">)</i></a>, pour qu'il ou elle reçoive directement le bar personnalisé.
+              popover-placement="bottom">le questionnaire Vinify à sa place (<i class="fa icon-info-circle">)</i></a>, pour qu'il ou elle reçoive directement le bar personnalisé.
       </p>
       <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' " class="details-helper">
         Je ne connais pas ses goûts, il ou elle démarrera l'aventure avec le questionnaire Vinify quand j'offrirai le cadeau.
       </p>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Crédits</h2>
+      <h2 class="col-title">Ajout de crédits</h2>
       <div class="col-container">
         <div class="gift-checkbox" ng-click="details.credits = !details.credits "
                   ng-class="{'quiz-check-on': details.credits, 'quiz-check-off': !details.credits}">
@@ -57,7 +56,7 @@
       </div>
     </div>
     <div ng-show="gift.order.gift_type === 'Vinibar' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Livraison</h2>
+      <h2 class="col-title">Choix de Livraison</h2>
       <div class="col-container"
           ng-class="{checked: gift.order.delivery_mode === 'Vinify' }"
           ng-click="gift.order.delivery_mode ='Vinify'">
@@ -68,7 +67,7 @@
               popover-title="Passez nous voir"
               popover="au 135 rue Jean Jacques Rousseau, à Issy (92)."
               popover-trigger="mouseenter"
-              popover-placement="bottom">(<i class="fa fa-info-circle">)</i></a>
+              popover-placement="bottom">(<i class="fa icon-info-circle">)</i></a>
         </p>
         <!-- <p class="help">Venez nous voir à Issy (92)</p> -->
       </div>
@@ -89,9 +88,14 @@
     <div ng-hide="gift.order.gift_type === 'Vinibar' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <h2 class="col-title">Envoi de la carte</h2>
       <div class="col-container"
+          ng-class="{checked: gift.order.gift_type === 'Print' }"
+          ng-click="gift.order.gift_type = 'Print'">
+        <h3>Bon à imprimer <span class="small">après paiement</span></h3>
+      </div>
+      <div class="col-container"
           ng-class="{checked: gift.order.gift_type === 'Email' }"
           ng-click="gift.order.gift_type = 'Email' ">
-        <h3>Par Email <span class="small">envoyée le :</span></h3>
+        <h3>Par Email <span class="small">au receveur, le :</span></h3>
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <select class="form-control" ng-model="sendDate.day" name="day">
@@ -155,16 +159,11 @@
           </div>
         </div>
       </div>
-<!--       <div class="col-container"
-          ng-class="{checked: gift.order.gift_type === 'Print' }"
-          ng-click="gift.order.gift_type = 'Print'">
-        <h3>À imprimer <span class="small">après le paiement</span></h3>
-      </div> -->
       <div class="col-container"
           ng-class="{checked: gift.order.gift_type === 'Card' }"
           ng-click="gift.order.gift_type = 'Card' ">
         <h3>Par la poste <span class="small">+ 5 €</span></h3>
-        <!-- <p class="help">Vinify enverra une carte manuscrite avec votre mot à l'adresse de votre choix.</p> -->
+        <p class="help">Vinify enverra une carte postale manuscrite avec votre mot à l'adresse de votre choix.</p>
       </div>
 <!--       <div class="col-container margin-top checked">
         <h3>Livraison du Bar (11€90)</h3>

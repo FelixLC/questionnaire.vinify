@@ -73,6 +73,8 @@ angular.module('vinibar.order', [
     } else if (response === 'Referrals may not be used on Discovery orders') {
       toaster.pop('info', 'Malheureusement',
                                             'Vous ne pouvez pas utiliser un code parrainnage avec l\'offre découverte');
+    } else if (response === 'Gift Coupon not allowed') {
+      toaster.pop('info', 'Pour activer votre cadeau', 'rendez vous sur Cadeau / Recevoir dans la barre de navigation de la page d\'acceuil');
     }
   };
 

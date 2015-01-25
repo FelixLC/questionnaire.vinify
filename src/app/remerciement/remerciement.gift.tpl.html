@@ -1,16 +1,42 @@
-<nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-       <a href="http://vinify.co"><img alt="" src="assets/logo.png" style="height:45px"/></a>
+  <nav class="navbar navbar-gift" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+         <a href="https://vinify.co/" id="home-logo-brand-second"><img alt="" src="assets/logo.png" style="height:45px" id="mf2"/></a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="https://vinify.co/index.html#getstarted" id="home-navbar-second-faq" class="btn-navbar-second">
+                  Comment ça marche ?
+              </a>
+            </li>
+            <li>
+              <a href="https://vinify.co/index.html#how-it-works" id="home-navbar-second-experience" class="btn-navbar-second">
+                  L'expérience Vinify
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.vinify.co" id="home-navbar-second-contact" class="btn-navbar-second">
+                 Blog
+              </a>
+            </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 <div class="remerciement-container">
   <div class="vertical-align centered">
       <div class="container row-fluid">
         <h2>Bienvenue dans l'univers Vinify</h2>
         <p>Merci pour votre cadeau !</p>
-        <!-- <a href ui-sref="gift_card">Imprimer le bon cadeau</a> -->
+        <a class="btn btn-square-o" href ng-if="isPrint === 'true' " ui-sref="gift_card">Imprimer le bon cadeau</a>
 <!--         <h2>Merci pour votre commande</h2>
         <p>Nous préparons votre sélection personnalisée.</p>
         <p>Vous aller recevoir un email contenant votre facture et votre numéro de commande.</p> -->
@@ -24,3 +50,44 @@
   </div>
 </div>
 <iframe ng-src="{{url()}}" frameborder="0" width="1" height="1"></iframe>
+<!-- Google Code for Clic vers offrir maintenant Vinify Conversion Page -->
+
+<script type="text/javascript">
+
+/* <![CDATA[ */
+
+var google_conversion_id = 1018864233;
+
+var google_conversion_language = "en";
+
+var google_conversion_format = "2";
+
+var google_conversion_color = "ffffff";
+
+var google_conversion_label = "6F2fCLn6pFgQ6cTq5QM";
+
+var google_remarketing_only = false;
+
+/* ]]> */
+
+</script>
+
+<script type="text/javascript"
+
+src="//www.googleadservices.com/pagead/conversion.js">
+
+</script>
+
+<noscript>
+
+<div style="display:inline;">
+
+<img height="1" width="1" style="border-style:none;" alt=""
+
+src="//www.googleadservices.com/pagead/conversion/1018864233/?label=6F2fCLn6
+
+pFgQ6cTq5QM&amp;guid=ON&amp;script=0"/>
+
+</div>
+
+</noscript>

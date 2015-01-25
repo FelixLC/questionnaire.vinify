@@ -65,18 +65,16 @@ module.exports = {
       'bower_components/angular/angular.js',
       'bower_components/angular-animate/angular-animate.min.js',
       'bower_components/angular-payments/lib/angular-payments.min.js',
-      'bower_components/angular-cookies/angular-cookies.min.js',
+      'bower_components/angular-load/angular-load.js',
       'bower_components/angular-toaster/angular-toaster.js',
-      'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'bower_components/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
-      'bower_components/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/angular-ui-utils/modules/route/route.js'
+      'bower_components/angular-bootstrap/ui-bootstrap-custom-tpls.min.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js'
     ],
     css: [
     ],
     assets: [
-      'bower_components/bootstrap/fonts/*.*',
+      'bower_components/bootstrap/fonts/*.*'
 
     ]
-  },
+  }
 };

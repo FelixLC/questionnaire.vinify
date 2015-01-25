@@ -18,7 +18,7 @@ angular.module('vinibar.remerciement', [
       data: { pageTitle: 'remerciement' }
     })
     .state('remerciement_gift', {
-      url: '/remerciement/cadeau',
+      url: '/remerciement/cadeau?print',
       views: {
         main: {
           controller: 'remerciementSixCtrl',
@@ -58,8 +58,9 @@ angular.module('vinibar.remerciement', [
                   currentClient.order.uuid + "&amount=" + amount + "&payment=online";
   };
 })
-.controller('remerciementSixCtrl', function remerciementSixCtrl ($scope, currentClient) {
-  console.log(currentClient);
+.controller('remerciementSixCtrl', function remerciementSixCtrl ($scope, currentClient, $stateParams) {
+  $scope.isPrint = $stateParams.print;
+  console.log($scope.isPrint === "false");
   $scope.url = function () {
     var amount =  Math.round(((currentClient.order.final_price - currentClient.order.delivery_cost) / 1.2) * 100) / 100;
     return "https://lb.affilae.com/?key=546b6fc823b944df498b4e25-546b6ea723b944df498b4e23&id=" +
