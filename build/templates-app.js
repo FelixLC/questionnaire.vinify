@@ -1,4 +1,4 @@
-angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'receive/update.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html']);
+angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'receive/update.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html', 'wines/wines.tpl.html']);
 
 angular.module("contest/congratulation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("contest/congratulation.tpl.html",
@@ -3448,7 +3448,7 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "<div id=\"welcome\">\n" +
     "	<div class=\"container-welcome\">\n" +
     "		<div class=\"centered\">\n" +
-    "			<h3>Bienvenue dans l'aventure Vinify</h3>\n" +
+    "			<h3><a ui-sref=\"wines({pc: 'CBA02BRGE143'})\">Bienvenue</a> dans l'aventure Vinify</h3>\n" +
     "		</div>\n" +
     "		<div class=\"centered\">\n" +
     "			<img ng-hide=\"is.gift\" src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
@@ -3458,6 +3458,62 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "			<p>En continuant, je certifie avoir plus de 18 ans et j'accepte les <a href=\"https://vinify.co/docs/cgv.pdf\">CGV</a> de Vinify</p>\n" +
     "		</div>\n" +
     "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("wines/wines.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("wines/wines.tpl.html",
+    "<nav class=\"navbar\" role=\"navigation\">\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "       <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</nav>\n" +
+    "\n" +
+    "<div class=\"container\">\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-lg-4 centered\">\n" +
+    "      <img ng-src=\"assets/wines/{{wine.product_code}}.jpg\" alt=\"{{wine.region + '-' + wine.display_name}}\">\n" +
+    "      <h4>{{wine.display_name}}</h4>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-lg-8\">\n" +
+    "      <div class=\"wine-table-container\">\n" +
+    "        <div class=\"logo\"><div class=\"sprites sprite-france\"></div></div>\n" +
+    "        <div class=\"info\">\n" +
+    "          <h4>{{wine.appellation}} - {{wine.region}}</h4>\n" +
+    "          <p>{{wine.color}} - {{wine.vintage}} - {{wine.variety}}</p>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"wine-table-container\">\n" +
+    "        <div class=\"logo\"><div class=\"sprites sprite-grapes\"></div></div>\n" +
+    "        <div class=\"info\">\n" +
+    "          <h4>Producteur</h4>\n" +
+    "          <p>{{wine.domain}}</p>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"wine-table-container\">\n" +
+    "        <div class=\"logo\"><div class=\"sprites sprite-glass\"></div></div>\n" +
+    "        <div class=\"info\">\n" +
+    "          <h4>Description</h4>\n" +
+    "          <p>{{wine.tasting}}</p>\n" +
+    "          <p>Robe : {{wine.dress}}</p>\n" +
+    "          <p>Nez : {{wine.nose}}</p>\n" +
+    "          <p>Bouche : {{wine.mouth}}</p>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"wine-table-container\">\n" +
+    "        <div class=\"logo\"><div class=\"sprites sprite-forks\"></div></div>\n" +
+    "        <div class=\"info\">\n" +
+    "          <h4>Accords Mets-Vins</h4>\n" +
+    "          <p>{{wine.cuisine}}</p>\n" +
+    "          <p>{{wine.food}}</p>\n" +
+    "          <p>{{wine.meat_fish}}</p>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "");
 }]);

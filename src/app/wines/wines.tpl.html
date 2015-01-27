@@ -1,0 +1,51 @@
+<nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+       <a href=""><img alt="" src="assets/logo.png" style="height:45px"/></a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 centered">
+      <img ng-src="assets/wines/{{wine.product_code}}.jpg" alt="{{wine.region + '-' + wine.display_name}}">
+      <h4>{{wine.display_name}}</h4>
+    </div>
+    <div class="col-lg-8">
+      <div class="wine-table-container">
+        <div class="logo"><div class="sprites sprite-france"></div></div>
+        <div class="info">
+          <h4>{{wine.appellation}} - {{wine.region}}</h4>
+          <p>{{wine.color}} - {{wine.vintage}} - {{wine.variety}}</p>
+        </div>
+      </div>
+      <div class="wine-table-container">
+        <div class="logo"><div class="sprites sprite-grapes"></div></div>
+        <div class="info">
+          <h4>Producteur</h4>
+          <p>{{wine.domain}}</p>
+        </div>
+      </div>
+      <div class="wine-table-container">
+        <div class="logo"><div class="sprites sprite-glass"></div></div>
+        <div class="info">
+          <h4>Description</h4>
+          <p>{{wine.tasting}}</p>
+          <p>Robe : {{wine.dress}}</p>
+          <p>Nez : {{wine.nose}}</p>
+          <p>Bouche : {{wine.mouth}}</p>
+        </div>
+      </div>
+      <div class="wine-table-container">
+        <div class="logo"><div class="sprites sprite-forks"></div></div>
+        <div class="info">
+          <h4>Accords Mets-Vins</h4>
+          <p>{{wine.cuisine}}</p>
+          <p>{{wine.food}}</p>
+          <p>{{wine.meat_fish}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

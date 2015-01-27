@@ -2,7 +2,7 @@ angular.module('vinibar.welcome', [
   'ui.router',
   'ui.bootstrap',
   'ngAutocomplete',
-  'mondialRelay',
+  'mondialrelay',
   'clientFactory',
   'toaster'
 ])

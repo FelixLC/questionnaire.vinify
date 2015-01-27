@@ -1,6 +1,6 @@
 {
   "name": "commande",
-  "version": "0.0.163",
+  "version": "0.0.186",
   "dependencies": {
     "angular": "~1.3",
     "json3": "~3.2.4",

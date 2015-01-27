@@ -9,7 +9,7 @@
    * @module myModule
    * @namespace myModule
    */
-  myModule.provider('myModule.soap-interceptor', [ '$httpProvider', function ($httpProvider) {
+  myModule.provider('soapInterceptor', [ '$httpProvider', function ($httpProvider) {
     var providerInstance = this;
 
     // jQuery's XML parser to get rid of the dependency
@@ -226,7 +226,6 @@
                     serviceInstance.soapSerializeParameter(config.data) +
                     '</' + soapParams.method + '></soap:Body></soap:Envelope>';
 
-
             // Set SOAP headers
             soapAction = ((namespace.lastIndexOf('/') !== namespace.length - 1) ? namespace + '/' : namespace) + soapParams.method;
             config.headers = config.headers || {};
@@ -234,7 +233,7 @@
                 'SOAPAction' : soapAction,
                 'Content-Type' : 'text/xml; charset=utf-8'
             });
-
+            console.log(config);
             return config;
         };
 
@@ -539,21 +538,14 @@
     };
   }]);
 
-  myModule.service(['myModule.soap-interceptor', function (soap) {
-      $http.get('http://api.mondialrelay.com/Web_Services.asmx?WSDL',
-      { isJSON: true }).then(function(result){
-          soap.setWSDL('http://api.mondialrelay.com/Web_Services.asmx?WSDL', result.data);
-          console.log(result.data);
-      });
-  }]);
-
   // Add http interceptors that allows us to handle http request before it sends and http response parsing
   myModule.config(function dataConfig($httpProvider) {
-      $httpProvider.interceptors.push(['$q','myModule.soap-interceptor', function ($q, soap) {
+      $httpProvider.interceptors.push(['$q','soapInterceptor', function ($q, soap) {
           return {
               'request': function httpRequestInterceptor(config) {
                   if(!config.isJSON && config.url.indexOf('.html') === -1) {
                       config = soap.handleSoapRequest(config);
+
                   }
                   return config || $q.when(config);
               },

@@ -1,0 +1,62 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'python-magic' ]
+2 info using npm@1.3.14
+3 info using node@v0.10.22
+4 verbose cache add [ 'python-magic', null ]
+5 verbose cache add name=undefined spec="python-magic" args=["python-magic",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'python-magic',
+6 verbose parsed url   path: 'python-magic',
+6 verbose parsed url   href: 'python-magic' }
+7 silly lockFile aafa8fc6-python-magic python-magic
+8 verbose lock python-magic /Users/apple/.npm/aafa8fc6-python-magic.lock
+9 silly lockFile aafa8fc6-python-magic python-magic
+10 silly lockFile aafa8fc6-python-magic python-magic
+11 verbose addNamed [ 'python-magic', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 8f704f93-python-magic python-magic@
+14 verbose lock python-magic@ /Users/apple/.npm/8f704f93-python-magic.lock
+15 silly addNameRange { name: 'python-magic', range: '*', hasData: false }
+16 verbose url raw python-magic
+17 verbose url resolving [ 'https://registry.npmjs.org/', './python-magic' ]
+18 verbose url resolved https://registry.npmjs.org/python-magic
+19 info trying registry request attempt 1 at 17:15:04
+20 http GET https://registry.npmjs.org/python-magic
+21 http 404 https://registry.npmjs.org/python-magic
+22 silly registry.get cb [ 404,
+22 silly registry.get   { date: 'Mon, 26 Jan 2015 16:15:05 GMT',
+22 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     'cache-control': 'max-age=0',
+22 silly registry.get     'content-length': '52',
+22 silly registry.get     'accept-ranges': 'bytes',
+22 silly registry.get     via: '1.1 varnish',
+22 silly registry.get     age: '0',
+22 silly registry.get     'x-served-by': 'cache-fra1226-FRA',
+22 silly registry.get     'x-cache': 'MISS',
+22 silly registry.get     'x-cache-hits': '0',
+22 silly registry.get     'x-timer': 'S1422288905.129944,VS0,VE426',
+22 silly registry.get     'keep-alive': 'timeout=10, max=50',
+22 silly registry.get     connection: 'Keep-Alive' } ]
+23 silly lockFile 8f704f93-python-magic python-magic@
+24 silly lockFile 8f704f93-python-magic python-magic@
+25 error 404 'python-magic' is not in the npm registry.
+25 error 404 You should bug the author to publish it
+25 error 404
+25 error 404 Note that you can also install from a
+25 error 404 tarball, folder, or http url, or git url.
+26 error System Darwin 13.4.0
+27 error command "node" "/usr/local/bin/npm" "install" "-g" "python-magic"
+28 error cwd /Users/apple/development/app/commande
+29 error node -v v0.10.22
+30 error npm -v 1.3.14
+31 error code E404
+32 verbose exit [ 1, true ]

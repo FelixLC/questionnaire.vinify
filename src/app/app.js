@@ -12,6 +12,7 @@ angular.module('vinibar', [
   'vinibar.paiement',
   'vinibar.welcome',
   'vinibar.receive',
+  'vinibar.wines',
   'vinibar.remerciement',
   'vinibar.remerciement_order',
   'vinibar.remerciement_mobile',

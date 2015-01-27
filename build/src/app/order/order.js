@@ -2,7 +2,7 @@ angular.module('vinibar.order', [
   'ui.router',
   'ui.bootstrap',
   'ngAutocomplete',
-  'mondialRelay',
+  'mondialrelay',
   'toaster',
   'receiverService',
   'Mixpanel',
