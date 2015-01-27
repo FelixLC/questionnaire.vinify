@@ -1,4 +1,5 @@
   .wine-table-container {
+    margin-top: 25px;
     display: table;
     width: 100%;
   }
@@ -8,7 +9,7 @@
   .wine-table-container .logo {
     display: table-cell;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: top;
     width: 78px;
   }
   .wine-table-container .info {
@@ -18,4 +19,107 @@
   .wine-table-container .info h4 {
     font-weight: 400;
     color: #cb0001;
+    margin-top: 0;
+  }
+
+  #wines {
+    h3 {
+      color: #cb0001;
+    }
+    .wine-content {
+      margin-top: 100px;
+    }
+    .testimonial {
+      font-size: 16px;
+      text-transform: italic;
+    }
+    .signature {
+      font-size: 16px;
+      text-align: right;
+    }
+    .strong {
+      font-weight: 400;
+    }
+    .navbar-nav .dropdown-menu {
+      border-radius: 2px;
+    }
+    .navbar-splash {
+      padding: 0px 0px 5px 0px;
+      background-color: transparent;
+      border-color: transparent;
+        .brand-image {
+          float: left;
+          display: inline-block;
+        }
+        .quick-links {
+          float: right;
+          display: inline-block;
+        }
+    }
+    #navbar-second {
+      padding: 5px 0px 5px 0px;
+      background-color: #fff;
+      border: 0 solid @color-grey;
+      border-bottom-width: 1px;
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    .navbar-nav > li > a {
+      line-height: 45px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .nav > li > a {
+        display: inline-block;
+        padding: 10px 5px;
+      }
+    }
+
+      .navbar-fixed-top .navbar-collapse {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+    .navbar-toggle {
+      border-color: #ebebeb;
+
+      .icon-bar {
+        background-color: #ebebeb;
+      }
+    }
+
+    #navbar-second li > a:hover, #navbar-second li > a:focus {
+      cursor: pointer;
+      text-decoration: none;
+      background-color: transparent;
+      color: @color-support-strong;
+    }
+    #navbar-second .btn-navbar-cta {
+      border: 1px solid @color-support-strong;
+      color: @color-support-strong;
+    }
+    #navbar-second .btn-navbar-cta:hover,
+    #navbar-second .btn-navbar-cta:focus {
+      background-color: @color-support-strong;
+      color: #FFF;
+        -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+        -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+        -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+        -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+        transition: color 0.1s ease-in, background 0.1s ease-in;
+    }
+    #navbar-first li > a:hover, #navbar-first li > a:focus {
+      cursor: pointer;
+      text-decoration: none;
+      background-color: @color-support-strong;
+      border-color: @color-support-strong;
+      color: #FFF;
+    }
+
+    .navbar-nav > li > .dropdown-menu {
+      margin-top: 7px;
+      border-color: #FFF;
+    }
   }

@@ -3464,56 +3464,109 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
 
 angular.module("wines/wines.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("wines/wines.tpl.html",
-    "<nav class=\"navbar\" role=\"navigation\">\n" +
-    "  <div class=\"container\">\n" +
-    "    <div class=\"navbar-header\">\n" +
-    "       <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "</nav>\n" +
+    "<div id=\"wines\">\n" +
+    "  <nav class=\"navbar navbar-fixed-top\" role=\"navigation\" id=\"navbar-second\">\n" +
+    "        <div class=\"container\">\n" +
+    "          <div class=\"navbar-header\">\n" +
+    "            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n" +
+    "              <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "              <span class=\"icon-bar\"></span>\n" +
+    "              <span class=\"icon-bar\"></span>\n" +
+    "              <span class=\"icon-bar\"></span>\n" +
+    "            </button>\n" +
+    "             <a href=\"#splashscreen\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
+    "          </div>\n" +
     "\n" +
-    "<div class=\"container\">\n" +
-    "  <div class=\"row\">\n" +
-    "    <div class=\"col-lg-4 centered\">\n" +
-    "      <img ng-src=\"assets/wines/{{wine.product_code}}.jpg\" alt=\"{{wine.region + '-' + wine.display_name}}\">\n" +
-    "      <h4>{{wine.display_name}}</h4>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-lg-8\">\n" +
-    "      <div class=\"wine-table-container\">\n" +
-    "        <div class=\"logo\"><div class=\"sprites sprite-france\"></div></div>\n" +
-    "        <div class=\"info\">\n" +
-    "          <h4>{{wine.appellation}} - {{wine.region}}</h4>\n" +
-    "          <p>{{wine.color}} - {{wine.vintage}} - {{wine.variety}}</p>\n" +
+    "          <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "            <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "                <li>\n" +
+    "                  <a href=\"http://vinify.co/index.html#getstarted\" id=\"home-navbar-second-faq\" class=\"btn-navbar-second\">\n" +
+    "                      Comment ça marche ?\n" +
+    "                  </a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                  <a href=\"http://vinify.co/index.html#how-it-works\" id=\"home-navbar-second-experience\" class=\"btn-navbar-second\">\n" +
+    "                      L'expérience Vinify\n" +
+    "                  </a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                  <a href=\"http://blog.vinify.co\" id=\"home-navbar-second-blog\" class=\"btn-navbar-second\">\n" +
+    "                     Blog\n" +
+    "                  </a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                  <a href=\"https://api.vinify.co/s/client/build/index.html#/\" id=\"home-navbar-second-login\" class=\"btn-navbar-second\">\n" +
+    "                     <i class=\"fa icon-user\"></i> Login\n" +
+    "                  </a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                  <a href=\"https://start.vinify.co/\" id=\"home-navbar-second-start\" class=\"btn-navbar-second btn-navbar-cta\">\n" +
+    "                     Démarrer\n" +
+    "                  </a>\n" +
+    "                </li>\n" +
+    "            </ul>\n" +
+    "          </div>\n" +
     "        </div>\n" +
+    "  </nav>\n" +
+    "  <div class=\"container wine-content\">\n" +
+    "    <div class=\"row\">\n" +
+    "      <div class=\"col-lg-4 centered\">\n" +
+    "        <img ng-src=\"assets/wines/{{wine.product_code}}.jpg\" alt=\"{{wine.region + '-' + wine.display_name}}\">\n" +
+    "        <h3>{{wine.display_name}}</h3>\n" +
+    "        <h4>{{wine.appellation}}</h4>\n" +
+    "        <h4>{{wine.region}} - {{wine.color}} - {{wine.vintage}}</h4>\n" +
+    "        <p ng-if=\"wine.testimonial\" class=\"testimonial\">{{wine.testimonial}}</p>\n" +
+    "        <p ng-if=\"wine.testimonial\" class=\"signature\">Un client heureux.</p>\n" +
     "      </div>\n" +
-    "      <div class=\"wine-table-container\">\n" +
-    "        <div class=\"logo\"><div class=\"sprites sprite-grapes\"></div></div>\n" +
-    "        <div class=\"info\">\n" +
-    "          <h4>Producteur</h4>\n" +
-    "          <p>{{wine.domain}}</p>\n" +
+    "      <div class=\"col-lg-8 wine-description\">\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-lg-6\">\n" +
+    "            <div class=\"wine-table-container\">\n" +
+    "              <div class=\"logo\"><div class=\"sprites sprite-glass\"></div></div>\n" +
+    "              <div class=\"info\">\n" +
+    "                <h4>Description</h4>\n" +
+    "                <p>{{wine.tasting}}</p>\n" +
+    "                <p><span class=\"strong\">Robe :</span> {{wine.dress}}</p>\n" +
+    "                <p><span class=\"strong\">Nez :</span> {{wine.nose}}</p>\n" +
+    "                <p><span class=\"strong\">Bouche :</span> {{wine.mouth}}</p>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-6\">\n" +
+    "          <div class=\"wine-table-container\">\n" +
+    "            <div class=\"logo\"><div class=\"sprites sprite-france\"></div></div>\n" +
+    "            <div class=\"info\">\n" +
+    "              <h4>Producteur</h4>\n" +
+    "              <p>{{wine.domain}}</p>\n" +
+    "              <p>{{wine.domain_know_more}}</p>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          </div>\n" +
     "        </div>\n" +
-    "      </div>\n" +
-    "      <div class=\"wine-table-container\">\n" +
-    "        <div class=\"logo\"><div class=\"sprites sprite-glass\"></div></div>\n" +
-    "        <div class=\"info\">\n" +
-    "          <h4>Description</h4>\n" +
-    "          <p>{{wine.tasting}}</p>\n" +
-    "          <p>Robe : {{wine.dress}}</p>\n" +
-    "          <p>Nez : {{wine.nose}}</p>\n" +
-    "          <p>Bouche : {{wine.mouth}}</p>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "      <div class=\"wine-table-container\">\n" +
-    "        <div class=\"logo\"><div class=\"sprites sprite-forks\"></div></div>\n" +
-    "        <div class=\"info\">\n" +
-    "          <h4>Accords Mets-Vins</h4>\n" +
-    "          <p>{{wine.cuisine}}</p>\n" +
-    "          <p>{{wine.food}}</p>\n" +
-    "          <p>{{wine.meat_fish}}</p>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-lg-6\">\n" +
+    "            <div class=\"wine-table-container\">\n" +
+    "              <div class=\"logo\"><div class=\"sprites sprite-grapes\"></div></div>\n" +
+    "              <div class=\"info\">\n" +
+    "                <h4>Cépages</h4>\n" +
+    "                <p> {{wine.variety}}</p>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-6\">\n" +
+    "            <div class=\"wine-table-container\">\n" +
+    "              <div class=\"logo\"><div class=\"sprites sprite-forks\"></div></div>\n" +
+    "              <div class=\"info\">\n" +
+    "                <h4>Accords Mets-Vins</h4>\n" +
+    "                <p>{{wine.cuisine}}</p>\n" +
+    "                <p>{{wine.food}}</p>\n" +
+    "                <p>{{wine.meat_fish}}</p>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "</div>\n" +
-    "");
+    "</div>");
 }]);

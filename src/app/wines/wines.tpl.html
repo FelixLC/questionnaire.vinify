@@ -1,49 +1,103 @@
-<nav class="navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-       <a href=""><img alt="" src="assets/logo.png" style="height:45px"/></a>
-    </div>
-  </div>
-</nav>
+<div id="wines">
+  <nav class="navbar navbar-fixed-top" role="navigation" id="navbar-second">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+             <a href="#splashscreen" id="home-logo-brand-second"><img alt="" src="assets/logo.png" style="height:45px" id="mf2"/></a>
+          </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4 centered">
-      <img ng-src="assets/wines/{{wine.product_code}}.jpg" alt="{{wine.region + '-' + wine.display_name}}">
-      <h4>{{wine.display_name}}</h4>
-    </div>
-    <div class="col-lg-8">
-      <div class="wine-table-container">
-        <div class="logo"><div class="sprites sprite-france"></div></div>
-        <div class="info">
-          <h4>{{wine.appellation}} - {{wine.region}}</h4>
-          <p>{{wine.color}} - {{wine.vintage}} - {{wine.variety}}</p>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="http://vinify.co/index.html#getstarted" id="home-navbar-second-faq" class="btn-navbar-second">
+                      Comment ça marche ?
+                  </a>
+                </li>
+                <li>
+                  <a href="http://vinify.co/index.html#how-it-works" id="home-navbar-second-experience" class="btn-navbar-second">
+                      L'expérience Vinify
+                  </a>
+                </li>
+                <li>
+                  <a href="http://blog.vinify.co" id="home-navbar-second-blog" class="btn-navbar-second">
+                     Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="https://api.vinify.co/s/client/build/index.html#/" id="home-navbar-second-login" class="btn-navbar-second">
+                     <i class="fa icon-user"></i> Login
+                  </a>
+                </li>
+                <li>
+                  <a href="https://start.vinify.co/" id="home-navbar-second-start" class="btn-navbar-second btn-navbar-cta">
+                     Démarrer
+                  </a>
+                </li>
+            </ul>
+          </div>
         </div>
+  </nav>
+  <div class="container wine-content">
+    <div class="row">
+      <div class="col-lg-4 centered">
+        <img ng-src="assets/wines/{{wine.product_code}}.jpg" alt="{{wine.region + '-' + wine.display_name}}">
+        <h3>{{wine.display_name}}</h3>
+        <h4>{{wine.appellation}}</h4>
+        <h4>{{wine.region}} - {{wine.color}} - {{wine.vintage}}</h4>
+        <p ng-if="wine.testimonial" class="testimonial">{{wine.testimonial}}</p>
+        <p ng-if="wine.testimonial" class="signature">Un client heureux.</p>
       </div>
-      <div class="wine-table-container">
-        <div class="logo"><div class="sprites sprite-grapes"></div></div>
-        <div class="info">
-          <h4>Producteur</h4>
-          <p>{{wine.domain}}</p>
+      <div class="col-lg-8 wine-description">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="wine-table-container">
+              <div class="logo"><div class="sprites sprite-glass"></div></div>
+              <div class="info">
+                <h4>Description</h4>
+                <p>{{wine.tasting}}</p>
+                <p><span class="strong">Robe :</span> {{wine.dress}}</p>
+                <p><span class="strong">Nez :</span> {{wine.nose}}</p>
+                <p><span class="strong">Bouche :</span> {{wine.mouth}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+          <div class="wine-table-container">
+            <div class="logo"><div class="sprites sprite-france"></div></div>
+            <div class="info">
+              <h4>Producteur</h4>
+              <p>{{wine.domain}}</p>
+              <p>{{wine.domain_know_more}}</p>
+            </div>
+          </div>
+          </div>
         </div>
-      </div>
-      <div class="wine-table-container">
-        <div class="logo"><div class="sprites sprite-glass"></div></div>
-        <div class="info">
-          <h4>Description</h4>
-          <p>{{wine.tasting}}</p>
-          <p>Robe : {{wine.dress}}</p>
-          <p>Nez : {{wine.nose}}</p>
-          <p>Bouche : {{wine.mouth}}</p>
-        </div>
-      </div>
-      <div class="wine-table-container">
-        <div class="logo"><div class="sprites sprite-forks"></div></div>
-        <div class="info">
-          <h4>Accords Mets-Vins</h4>
-          <p>{{wine.cuisine}}</p>
-          <p>{{wine.food}}</p>
-          <p>{{wine.meat_fish}}</p>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="wine-table-container">
+              <div class="logo"><div class="sprites sprite-grapes"></div></div>
+              <div class="info">
+                <h4>Cépages</h4>
+                <p> {{wine.variety}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="wine-table-container">
+              <div class="logo"><div class="sprites sprite-forks"></div></div>
+              <div class="info">
+                <h4>Accords Mets-Vins</h4>
+                <p>{{wine.cuisine}}</p>
+                <p>{{wine.food}}</p>
+                <p>{{wine.meat_fish}}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
