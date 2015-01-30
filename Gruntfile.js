@@ -23,6 +23,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-aws-s3');
 
   /**
    * Load in our build configuration file.
@@ -34,6 +35,76 @@ module.exports = function (grunt) {
    * instructions.
    */
   var taskConfig = {
+
+    /**
+     * Load our secret access keys
+     */
+    aws: grunt.file.readJSON('aws-keys.json'),
+    aws_s3: {
+      options: {
+        accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
+        secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
+        region: 'eu-west-1',
+        uploadConcurrency: 5, // 5 simultaneous uploads
+        downloadConcurrency: 5 // 5 simultaneous downloads
+      },
+      staging: {
+        options: {
+          bucket: 'html5test.vinify.co',
+          differential: true // Only uploads the files that have changed
+        },
+        files: [
+          {dest: 'app/', cwd: 'backup/staging/', action: 'download'},
+          {src: 'app/', cwd: 'copy/', action: 'copy'},
+          {expand: true, cwd: 'dist/staging/scripts/', src: ['**'], dest: 'app/scripts/'},
+          {expand: true, cwd: 'dist/staging/styles/', src: ['**'], dest: 'app/styles/'},
+          {dest: 'src/app', action: 'delete'}
+        ]
+      },
+      production: {
+        options: {
+          bucket: 'start.vinify.co',
+          differential: 'true'
+        },
+        files: [
+          {dest: 'assets/', 'action': 'delete', cwd: 'bin/assets/'},
+          {expand: true, cwd: 'bin/', src: ['*.html'], dest: '', params: {CacheControl: '0', ContentType: 'text/html; charset=utf-8'}},
+          {expand: true, cwd: 'bin/assets/', src: ['**'], exclude: ["**/*.js", "**/*.css"], dest: 'assets/'},
+          {expand: true, cwd: 'dist/assets/',  src: ['**/*js'], dest: 'assets/', params: {ContentType: 'application/javascript; charset=utf-8', ContentEncoding: 'gzip'}},
+          {expand: true, cwd: 'dist/assets/',  src: ['**/*css'], dest: 'assets/', params: {ContentType: 'text/css; charset=utf-8', ContentEncoding: 'gzip'}}
+        ]
+      },
+      clean_production: {
+        options: {
+          bucket: 'my-wonderful-production-bucket',
+          debug: true // Doesn't actually delete but shows log
+        },
+        files: [
+          {dest: 'app/', action: 'delete'},
+          {dest: 'assets/', exclude: "**/*.tgz", action: 'delete'}, // will not delete the tgz
+          {dest: 'assets/large/', exclude: "**/*copy*", flipExclude: true, action: 'delete'} // will delete everything that has copy in the name
+        ]
+      },
+      download_production: {
+        options: {
+          bucket: 'my-wonderful-production-bucket'
+        },
+        files: [
+          {dest: 'app/', cwd: 'backup/', action: 'download'}, // Downloads the content of app/ to backup/
+          {dest: 'assets/', cwd: 'backup-assets/', exclude: "**/*copy*", action: 'download'} // Downloads everything which doesn't have copy in the name
+        ]
+      },
+      secret: {
+        options: {
+          bucket: 'my-wonderful-private-bucket',
+          access: 'private'
+        },
+        files: [
+          {expand: true, cwd: 'secret_garden/', src: ['*.key'], dest: 'secret/'}
+        ]
+      }
+    },
+
     /**
      * We read in our `package.json` file so we can access the package name and
      * version. It's already there, so we don't repeat ourselves here.
@@ -669,6 +740,10 @@ module.exports = function (grunt) {
   grunt.registerTask('compile', [
     'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile',
      'imagemin'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'bump', 'compile', 'compress', 'aws_s3:production'
   ]);
 
   /**

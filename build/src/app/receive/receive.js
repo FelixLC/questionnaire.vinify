@@ -10,7 +10,7 @@
     'receiverService',
     'toaster'
   ])
-  .config(function config ($stateProvider) {
+  .config(["$stateProvider", function config ($stateProvider) {
     $stateProvider
       .state('receive', {
         url: '/recevoir',
@@ -41,8 +41,8 @@
         },
         data: { pageTitle: 'Cadeau' }
       });
-  })
-  .controller('receiveCtrl', function receiveCtrl (Mixpanel, Receive, $scope, $state, toaster, currentClient) {
+  }])
+  .controller('receiveCtrl', ["Mixpanel", "Receive", "$scope", "$state", "toaster", "currentClient", function receiveCtrl (Mixpanel, Receive, $scope, $state, toaster, currentClient) {
 
     $scope.update = function (firstName, lastName, email, password) {
       if (firstName && lastName && email && password) {
@@ -84,9 +84,9 @@
         toaster.pop('error', 'Merci de rentrer un coupon');
       }
     };
-  })
+  }])
 
-  .controller('updateCtrl', function updateCtrl (Mixpanel, Receive, $scope, $state, toaster, currentClient) {
+  .controller('updateCtrl', ["Mixpanel", "Receive", "$scope", "$state", "toaster", "currentClient", function updateCtrl (Mixpanel, Receive, $scope, $state, toaster, currentClient) {
     $scope.first_name = (currentClient.receiver) ? currentClient.receiver.first_name : "";
     $scope.last_name = (currentClient.receiver) ? currentClient.receiver.last_name : "";
     $scope.email = (currentClient.receiver) ? currentClient.receiver.email : "";
@@ -105,5 +105,5 @@
         toaster.pop('error', 'Oops !', "Merci de remplir tous les champs");
       }
     };
-  });
+  }]);
 })();

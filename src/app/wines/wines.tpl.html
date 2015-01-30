@@ -49,7 +49,7 @@
         <h3>{{wine.display_name}}</h3>
         <h4>{{wine.appellation}}</h4>
         <h4>{{wine.region}} - {{wine.color}} - {{wine.vintage}}</h4>
-        <p ng-if="wine.testimonial" class="testimonial">{{wine.testimonial}}</p>
+        <p ng-if="wine.testimonial" class="testimonial">"{{wine.testimonial}}"</p>
         <p ng-if="wine.testimonial" class="signature">Un client heureux.</p>
       </div>
       <div class="col-lg-8 wine-description">
@@ -72,7 +72,7 @@
             <div class="info">
               <h4>Producteur</h4>
               <p>{{wine.domain}}</p>
-              <p>{{wine.domain_know_more}}</p>
+              <!-- <p>{{wine.domain_know_more}}</p> -->
             </div>
           </div>
           </div>

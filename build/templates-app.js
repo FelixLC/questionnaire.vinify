@@ -3448,7 +3448,7 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "<div id=\"welcome\">\n" +
     "	<div class=\"container-welcome\">\n" +
     "		<div class=\"centered\">\n" +
-    "			<h3><a ui-sref=\"wines({pc: 'CBA02BRGE143'})\">Bienvenue</a> dans l'aventure Vinify</h3>\n" +
+    "			<h3><a href=\"#/vin/pouilly-fume-vieilles-vignes-jp-bailly-2011\">Bienvenue</a> dans l'aventure Vinify</h3>\n" +
     "		</div>\n" +
     "		<div class=\"centered\">\n" +
     "			<img ng-hide=\"is.gift\" src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +
@@ -3515,7 +3515,7 @@ angular.module("wines/wines.tpl.html", []).run(["$templateCache", function($temp
     "        <h3>{{wine.display_name}}</h3>\n" +
     "        <h4>{{wine.appellation}}</h4>\n" +
     "        <h4>{{wine.region}} - {{wine.color}} - {{wine.vintage}}</h4>\n" +
-    "        <p ng-if=\"wine.testimonial\" class=\"testimonial\">{{wine.testimonial}}</p>\n" +
+    "        <p ng-if=\"wine.testimonial\" class=\"testimonial\">\"{{wine.testimonial}}\"</p>\n" +
     "        <p ng-if=\"wine.testimonial\" class=\"signature\">Un client heureux.</p>\n" +
     "      </div>\n" +
     "      <div class=\"col-lg-8 wine-description\">\n" +
@@ -3538,7 +3538,7 @@ angular.module("wines/wines.tpl.html", []).run(["$templateCache", function($temp
     "            <div class=\"info\">\n" +
     "              <h4>Producteur</h4>\n" +
     "              <p>{{wine.domain}}</p>\n" +
-    "              <p>{{wine.domain_know_more}}</p>\n" +
+    "              <!-- <p>{{wine.domain_know_more}}</p> -->\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          </div>\n" +

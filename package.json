@@ -1,7 +1,7 @@
 {
   "author": "Felix",
   "name": "Vinify",
-  "version": "0.0.186",
+  "version": "0.0.217",
   "homepage": "http://vinify.co",
   "licenses": {
     "type": "MIT"
@@ -53,6 +53,7 @@
     "grunt-contrib-connect": "~0.8.0",
     "shell": "~0.3.2",
     "grunt-contrib-compress": "~0.13.0",
-    "grunt-contrib-imagemin": "~0.9.2"
+    "grunt-contrib-imagemin": "~0.9.2",
+    "grunt-aws-s3": "~0.11.0"
   }
 }

@@ -18,13 +18,16 @@ angular.module('vinibar', [
   'vinibar.remerciement_mobile',
   'ui.router',
   'params',
+  'Meta',
   'settings',
   'Mixpanel',
   'ngAnimate',
   'clientFactory'
 ])
 
-.config(function myAppConfig ($stateProvider, $urlRouterProvider) {
+.config(function myAppConfig ($stateProvider, $urlRouterProvider, $locationProvider) {
+  // $locationProvider.html5Mode(true).hashPrefix('!');
+  // $locationProvider.hashPrefix('!');
   $urlRouterProvider.otherwise('/demarrer');
 })
 
@@ -57,10 +60,12 @@ angular.module('vinibar', [
   $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 } ])
 
-.controller('AppCtrl', function AppCtrl ($scope, $location, settings) {
+.controller('AppCtrl', function AppCtrl ($scope, $rootScope, $location, settings, PageTitle, Description) {
+  $rootScope.PageTitle = PageTitle;
+  $rootScope.Description = Description;
   $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-    if (angular.isDefined(toState.data.pageTitle)) {
-      $scope.pageTitle = toState.data.pageTitle + ' | vinibar' ;
+    if (angular.isDefined(toState.data) && angular.isDefined(toState.data.pageTitle)) {
+      PageTitle.setTitle(toState.data.pageTitle + ' | vinibar');
     }
   });
   console.log(settings.apiEndPoint);

@@ -14,8 +14,8 @@
 
     // //////////////
 
-    function get (productCode) {
-      return $http.get(settings.restApiEndPoint + '/public/wines/?product_code=' + productCode);
+    function get (slug) {
+      return $http.get(settings.restApiEndPoint + '/public/wines/?slug=' + slug);
     }
   }
 })();
