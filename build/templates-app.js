@@ -2197,6 +2197,24 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "		</div>\n" +
     "	</div>\n" +
     "</div>\n" +
+    "<!-- Google Code for Survey completed Conversion Page -->\n" +
+    "<script type=\"text/javascript\">\n" +
+    "/* <![CDATA[ */\n" +
+    "var google_conversion_id = 988279546;\n" +
+    "var google_conversion_language = \"en\";\n" +
+    "var google_conversion_format = \"3\";\n" +
+    "var google_conversion_color = \"ffffff\";\n" +
+    "var google_conversion_label = \"qbYRCPW0pVkQ-uWf1wM\";\n" +
+    "var google_remarketing_only = false;\n" +
+    "/* ]]> */\n" +
+    "</script>\n" +
+    "<script type=\"text/javascript\" src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
+    "</script>\n" +
+    "<noscript>\n" +
+    "<div style=\"display:inline;\">\n" +
+    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?label=qbYRCPW0pVkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
+    "</div>\n" +
+    "</noscript>\n" +
     "");
 }]);
 
@@ -3104,44 +3122,25 @@ angular.module("remerciement/remerciement.3.tpl.html", []).run(["$templateCache"
     "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>\n" +
     "<!-- Google Code for Clic vers offrir maintenant Vinify Conversion Page -->\n" +
     "\n" +
+    "<!-- Google Code for Discovery Conversion Page -->\n" +
     "<script type=\"text/javascript\">\n" +
-    "\n" +
     "/* <![CDATA[ */\n" +
-    "\n" +
-    "var google_conversion_id = 1018864233;\n" +
-    "\n" +
+    "var google_conversion_id = 988279546;\n" +
     "var google_conversion_language = \"en\";\n" +
-    "\n" +
-    "var google_conversion_format = \"2\";\n" +
-    "\n" +
+    "var google_conversion_format = \"3\";\n" +
     "var google_conversion_color = \"ffffff\";\n" +
-    "\n" +
-    "var google_conversion_label = \"6F2fCLn6pFgQ6cTq5QM\";\n" +
-    "\n" +
+    "var google_conversion_label = \"t9pJCK74pVkQ-uWf1wM\";\n" +
+    "var google_conversion_value = 39.00;\n" +
+    "var google_conversion_currency = \"EUR\";\n" +
     "var google_remarketing_only = false;\n" +
-    "\n" +
     "/* ]]> */\n" +
-    "\n" +
     "</script>\n" +
-    "\n" +
-    "<script type=\"text/javascript\"\n" +
-    "\n" +
-    "src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
-    "\n" +
+    "<script type=\"text/javascript\" src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
     "</script>\n" +
-    "\n" +
     "<noscript>\n" +
-    "\n" +
     "<div style=\"display:inline;\">\n" +
-    "\n" +
-    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\"\n" +
-    "\n" +
-    "src=\"//www.googleadservices.com/pagead/conversion/1018864233/?label=6F2fCLn6\n" +
-    "\n" +
-    "pFgQ6cTq5QM&amp;guid=ON&amp;script=0\"/>\n" +
-    "\n" +
+    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?value=39.00&amp;currency_code=EUR&amp;label=t9pJCK74pVkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
     "</div>\n" +
-    "\n" +
     "</noscript>");
 }]);
 
@@ -3200,44 +3199,25 @@ angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache"
     "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>\n" +
     "<!-- Google Code for Clic vers offrir maintenant Vinify Conversion Page -->\n" +
     "\n" +
+    "<!-- Google Code for Commande Vinibar Conversion Page -->\n" +
     "<script type=\"text/javascript\">\n" +
-    "\n" +
     "/* <![CDATA[ */\n" +
-    "\n" +
-    "var google_conversion_id = 1018864233;\n" +
-    "\n" +
+    "var google_conversion_id = 988279546;\n" +
     "var google_conversion_language = \"en\";\n" +
-    "\n" +
-    "var google_conversion_format = \"2\";\n" +
-    "\n" +
+    "var google_conversion_format = \"3\";\n" +
     "var google_conversion_color = \"ffffff\";\n" +
-    "\n" +
-    "var google_conversion_label = \"6F2fCLn6pFgQ6cTq5QM\";\n" +
-    "\n" +
+    "var google_conversion_label = \"YVyxCOLZolkQ-uWf1wM\";\n" +
+    "var google_conversion_value = 69.00;\n" +
+    "var google_conversion_currency = \"EUR\";\n" +
     "var google_remarketing_only = false;\n" +
-    "\n" +
     "/* ]]> */\n" +
-    "\n" +
     "</script>\n" +
-    "\n" +
-    "<script type=\"text/javascript\"\n" +
-    "\n" +
-    "src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
-    "\n" +
+    "<script type=\"text/javascript\" src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
     "</script>\n" +
-    "\n" +
     "<noscript>\n" +
-    "\n" +
     "<div style=\"display:inline;\">\n" +
-    "\n" +
-    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\"\n" +
-    "\n" +
-    "src=\"//www.googleadservices.com/pagead/conversion/1018864233/?label=6F2fCLn6\n" +
-    "\n" +
-    "pFgQ6cTq5QM&amp;guid=ON&amp;script=0\"/>\n" +
-    "\n" +
+    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?value=69.00&amp;currency_code=EUR&amp;label=YVyxCOLZolkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
     "</div>\n" +
-    "\n" +
     "</noscript>");
 }]);
 
@@ -3297,44 +3277,25 @@ angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCac
     "<iframe ng-src=\"{{url()}}\" frameborder=\"0\" width=\"1\" height=\"1\"></iframe>\n" +
     "<!-- Google Code for Clic vers offrir maintenant Vinify Conversion Page -->\n" +
     "\n" +
+    "<!-- Google Code for Gift Conversion Page -->\n" +
     "<script type=\"text/javascript\">\n" +
-    "\n" +
     "/* <![CDATA[ */\n" +
-    "\n" +
-    "var google_conversion_id = 1018864233;\n" +
-    "\n" +
+    "var google_conversion_id = 988279546;\n" +
     "var google_conversion_language = \"en\";\n" +
-    "\n" +
-    "var google_conversion_format = \"2\";\n" +
-    "\n" +
+    "var google_conversion_format = \"3\";\n" +
     "var google_conversion_color = \"ffffff\";\n" +
-    "\n" +
-    "var google_conversion_label = \"6F2fCLn6pFgQ6cTq5QM\";\n" +
-    "\n" +
+    "var google_conversion_label = \"967pCJK0pVkQ-uWf1wM\";\n" +
+    "var google_conversion_value = 69.00;\n" +
+    "var google_conversion_currency = \"EUR\";\n" +
     "var google_remarketing_only = false;\n" +
-    "\n" +
     "/* ]]> */\n" +
-    "\n" +
     "</script>\n" +
-    "\n" +
-    "<script type=\"text/javascript\"\n" +
-    "\n" +
-    "src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
-    "\n" +
+    "<script type=\"text/javascript\" src=\"//www.googleadservices.com/pagead/conversion.js\">\n" +
     "</script>\n" +
-    "\n" +
     "<noscript>\n" +
-    "\n" +
     "<div style=\"display:inline;\">\n" +
-    "\n" +
-    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\"\n" +
-    "\n" +
-    "src=\"//www.googleadservices.com/pagead/conversion/1018864233/?label=6F2fCLn6\n" +
-    "\n" +
-    "pFgQ6cTq5QM&amp;guid=ON&amp;script=0\"/>\n" +
-    "\n" +
+    "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?value=69.00&amp;currency_code=EUR&amp;label=967pCJK0pVkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
     "</div>\n" +
-    "\n" +
     "</noscript>");
 }]);
 
@@ -3448,7 +3409,7 @@ angular.module("welcome/welcome.tpl.html", []).run(["$templateCache", function($
     "<div id=\"welcome\">\n" +
     "	<div class=\"container-welcome\">\n" +
     "		<div class=\"centered\">\n" +
-    "			<h3><a href=\"#/vin/pouilly-fume-vieilles-vignes-jp-bailly-2011\">Bienvenue</a> dans l'aventure Vinify</h3>\n" +
+    "			<h3>Bienvenue dans l'aventure Vinify</h3>\n" +
     "		</div>\n" +
     "		<div class=\"centered\">\n" +
     "			<img ng-hide=\"is.gift\" src=\"assets/vinibar-showcase-half.jpg\" alt=\"vinibar\" class=\"img img-responsive\">\n" +

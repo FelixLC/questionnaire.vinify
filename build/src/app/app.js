@@ -27,7 +27,7 @@ angular.module('vinibar', [
 
 .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function myAppConfig ($stateProvider, $urlRouterProvider, $locationProvider) {
   // $locationProvider.html5Mode(true).hashPrefix('!');
-  // $locationProvider.hashPrefix('!');
+  $locationProvider.hashPrefix('');
   $urlRouterProvider.otherwise('/demarrer');
 }])
 

@@ -24,6 +24,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-aws-s3');
+  grunt.loadNpmTasks('grunt-html-snapshot');
+  grunt.loadNpmTasks('grunt-sitemap');
 
   /**
    * Load in our build configuration file.
@@ -50,28 +52,27 @@ module.exports = function (grunt) {
       },
       staging: {
         options: {
-          bucket: 'html5test.vinify.co',
-          differential: true // Only uploads the files that have changed
-        },
-        files: [
-          {dest: 'app/', cwd: 'backup/staging/', action: 'download'},
-          {src: 'app/', cwd: 'copy/', action: 'copy'},
-          {expand: true, cwd: 'dist/staging/scripts/', src: ['**'], dest: 'app/scripts/'},
-          {expand: true, cwd: 'dist/staging/styles/', src: ['**'], dest: 'app/styles/'},
-          {dest: 'src/app', action: 'delete'}
-        ]
-      },
-      production: {
-        options: {
-          bucket: 'start.vinify.co',
+          bucket: 'staging.vinify.co',
           differential: 'true'
         },
         files: [
           {dest: 'assets/', 'action': 'delete', cwd: 'bin/assets/'},
-          {expand: true, cwd: 'bin/', src: ['*.html'], dest: '', params: {CacheControl: '0', ContentType: 'text/html; charset=utf-8'}},
+          {expand: true, cwd: 'bin/', src: ['*.html'], dest: '', params: {CacheControl: 'max-age=0', ContentType: 'text/html; charset=utf-8'}},
           {expand: true, cwd: 'bin/assets/', src: ['**'], exclude: ["**/*.js", "**/*.css"], dest: 'assets/'},
           {expand: true, cwd: 'dist/assets/',  src: ['**/*js'], dest: 'assets/', params: {ContentType: 'application/javascript; charset=utf-8', ContentEncoding: 'gzip'}},
           {expand: true, cwd: 'dist/assets/',  src: ['**/*css'], dest: 'assets/', params: {ContentType: 'text/css; charset=utf-8', ContentEncoding: 'gzip'}}
+        ]
+      },
+      production: {
+        options: {
+          bucket: 'start.vinify.co'
+        },
+        files: [
+          {dest: 'assets/', 'action': 'delete', cwd: 'bin/assets/', differential: 'true'},
+          {expand: true, cwd: 'bin/', src: ['*.html'], dest: '', params: {CacheControl: 'max-age=0', ContentType: 'text/html; charset=utf-8'}},
+          {expand: true, cwd: 'bin/assets/', src: ['**'], exclude: ["**/*.js", "**/*.css"], dest: 'assets/', differential: 'true'},
+          {expand: true, cwd: 'dist/assets/',  src: ['**/*js'], dest: 'assets/', params: {ContentType: 'application/javascript; charset=utf-8', ContentEncoding: 'gzip'}, differential: 'true'},
+          {expand: true, cwd: 'dist/assets/',  src: ['**/*css'], dest: 'assets/', params: {ContentType: 'text/css; charset=utf-8', ContentEncoding: 'gzip'}, differential: 'true'}
         ]
       },
       clean_production: {
@@ -105,6 +106,13 @@ module.exports = function (grunt) {
       }
     },
 
+    sitemap: {
+      dist: {
+        pattern: ['**/*.html', '!**/google*.html'], // this will exclude 'google*.html'
+        siteRoot: 'bin/',
+        homepage: 'https://www.vinify.co'
+      }
+    },
     /**
      * We read in our `package.json` file so we can access the package name and
      * version. It's already there, so we don't repeat ourselves here.
@@ -703,7 +711,140 @@ module.exports = function (grunt) {
           livereload: false
         }
       }
-    }
+    },
+
+      /**
+       * generates html snapshots and save it
+       */
+      htmlSnapshot: {
+            all: {
+              options: {
+                //that's the path where the snapshots should be placed
+                //it's empty by default which means they will go into the directory
+                //where your Gruntfile.js is placed
+                snapshotPath: 'snapshots/',
+                //This should be either the base path to your index.html file
+                //or your base URL. Currently the task does not use it's own
+                //webserver. So if your site needs a webserver to be fully
+                //functional configure it here.
+                sitePath: 'https://start.vinify.co/index.html',
+                //sanitize function to be used for filenames. Converts '#/' to '_' as default
+                //has a filename argument, must have a return that is a sanitized string
+                sanitize: function (requestUri) {
+                    //returns 'index.html' if the url is '/', otherwise a prefix
+                    if (/\/$/.test(requestUri)) {
+                      return 'index.html';
+                    } else {
+                      return requestUri.replace(/\//g, 'prefix-');
+                    }
+                },
+                //here goes the list of all urls that should be fetched
+                urls: [
+                  "#/vin/pouilly-fume-vieilles-vignes-jp-bailly-2011",
+                  "#/vin/chateau-baret-2002",
+                  "#/vin/chateau-baret-2003",
+                  "#/vin/marquis-de-montmelas-rouge-2007",
+                  "#/vin/montmelas-cuvee-speciale-1566-2010",
+                  "#/vin/marquis-de-montmelas-blanc-2011",
+                  "#/vin/montmains-domaine-chevallier-2012",
+                  "#/vin/cuvee-prestige-domaine-chevallier-2012",
+                  "#/vin/montmains-domaine-chevallier-2013",
+                  "#/vin/cuvee-prestige-domaine-chevallier-2013",
+                  "#/vin/chateau-la-trochoire-2008",
+                  "#/vin/chateau-la-trochoire-2010",
+                  "#/vin/fleurie-cuvee-jules-appert-2011",
+                  "#/vin/riesling-rittersberg-bernhard-et-reibel-2011",
+                  "#/vin/pinot-noir-domaine-bernhard-et-reibel-2012",
+                  "#/vin/anjou-rouge-domaine-la-croix-2011",
+                  "#/vin/anjou-rouge-domaine-la-croix-2013",
+                  "#/vin/domaine-de-venus-rouge-2004",
+                  "#/vin/domaine-de-venus-rouge-2006",
+                  "#/vin/leffrontee-de-venus-2009",
+                  "#/vin/domaine-de-venus-rose-2012",
+                  "#/vin/chateau-de-chamirey-2008",
+                  "#/vin/le-renard-2011",
+                  "#/vin/cotes-dauxerre-domaine-felix-fils-2012",
+                  "#/vin/loi-domaine-saladin-2010",
+                  "#/vin/paul-domaine-saladin-2012",
+                  "#/vin/tralala-2013",
+                  "#/vin/le-clos-des-joubert-2010",
+                  "#/vin/lexcellence-vieilles-vignes-2012",
+                  "#/vin/lexcellence-vieilles-vignes-2013",
+                  "#/vin/terroir-les-gras-moutons-2013",
+                  "#/vin/gewurztraminer-pierre-frick-2009",
+                  "#/vin/riesling-gd-cru-steinert-pierre-frick-2009",
+                  "#/vin/pinot-noir-pierre-frick-2010",
+                  "#/vin/cuvee-florence-domaine-les-goubert-2006",
+                  "#/vin/beaumes-de-venise-domaine-les-goubert-2010",
+                  "#/vin/sablet-rouge-domaine-les-goubert-2011",
+                  "#/vin/les-favoris-domaine-les-goubert-2012",
+                  "#/vin/sablet-blanc-domaine-les-goubert-2012",
+                  "#/vin/beaumes-de-venise-domaine-les-goubert-2012",
+                  "#/vin/gewurztraminer-gloeckelberg-koehly-2011",
+                  "#/vin/riesling-hahnenberg-koehly-2011",
+                  "#/vin/gewurztraminer-gloeckelberg-koehly-2012",
+                  "#/vin/gewurztraminer-hannenberg-koehly-2012",
+                  "#/vin/pinot-noir-koehly-2012",
+                  "#/vin/saumur-domaine-lavigne-2012",
+                  "#/vin/marquis-de-pennautier-2011",
+                  "#/vin/chateau-de-ciffre-2011",
+                  "#/vin/chateau-la-veille-cure-2006",
+                  "#/vin/chateau-la-veille-cure-2011",
+                  "#/vin/les-grains-merlot-2011",
+                  "#/vin/orca-2011",
+                  "#/vin/doria-2012",
+                  "#/vin/grand-marrenon-blanc-2012",
+                  "#/vin/private-gallery-rouge-2012",
+                  "#/vin/grand-marrenon-rouge-2012",
+                  "#/vin/les-grains-syrah-2012",
+                  "#/vin/les-grains-chardonnay-2013",
+                  "#/vin/les-grains-vermentino-2013",
+                  "#/vin/doria-2013",
+                  "#/vin/private-gallery-blanc-2013",
+                  "#/vin/les-grains-viognier-2013",
+                  "#/vin/petula-2013",
+                  "#/vin/rosefine-2013",
+                  "#/vin/cuvee-m-2013",
+                  "#/vin/alliance-des-generations-2005",
+                  "#/vin/boa-le-rouge-2009",
+                  "#/vin/cent-visages-2010",
+                  "#/vin/la-rosee-2012",
+                  "#/vin/laurus-2011",
+                  "#/vin/laurus-2012",
+                  "#/vin/laurus-blanc-2013",
+                  "#/vin/terre-de-galets-blanc-2013",
+                  "#/vin/chateau-de-tresques-2013",
+                  "#/vin/plan-de-dieu-saint-mapalis-2013",
+                  "#/vin/gm-gabriel-meffre-2013",
+                  "#/vin/chateau-des-jacques-louis-jadot-2004",
+                  "#/vin/expression-domaine-de-lebeaupin-2007",
+                  "#/vin/confidence-domaine-de-lebeaupin-2010",
+                  "#/vin/malbec-domaine-de-lebeaupin-2011",
+                  "#/vin/tentation-domaine-de-lebeaupin-2012",
+                  "#/vin/elegance-domaine-de-lebeaupin-2012",
+                  "#/vin/elegance-domaine-de-lebeaupin-2013",
+                  "#/vin/st-lambert-domaine-de-paimpare-2011",
+                  "#/vin/clos-de-bretonneau-domaine-de-paimpare-2011",
+                  "#/vin/cuvee-floriane-domaine-de-paimpare-2011",
+                  "#/vin/vielles-vignes-domaine-de-paimpare-2013",
+                  "#/vin/cremant-de-loire-rose-sec-domaine-de-paimpare-2013",
+                  "#/vin/clos-castelot-2010",
+                  "#/vin/chateau-sipian-2010",
+                  "#/vin/chateau-moya-2011",
+                  "#/vin/clos-des-lunes-lune-dargent-2012",
+                  "#/vin/r-cru-classe-2013",
+                  "#/vin/chateau-boutisse-2009",
+                  "#/vin/recougne-terra-recognita-2010",
+                  "#/vin/burkes-of-bordeaux-blanc-2012",
+                  "#/vin/les-renardes-domaine-thevenot-fils-2011",
+                  "#/vin/pinot-beurot-domaine-thevenot-le-brun-fils-2012",
+                  "#/vin/les-renardes-domaine-thevenot-fils-2012",
+                  "#/vin/pinot-beurot-domaine-thevenot-le-brun-fils-2013"
+                ]
+              }
+            }
+        }
+
   };
 
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
@@ -722,6 +863,7 @@ module.exports = function (grunt) {
    * The default task is to build and compile.
    */
   grunt.registerTask('default', [ 'build', 'compile' ]);
+  grunt.registerTask('siteMap', [ 'sitemap' ]);
 
   /**
    * The `build` task gets your app ready to run for development and testing.
@@ -739,7 +881,7 @@ module.exports = function (grunt) {
    */
   grunt.registerTask('compile', [
     'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile',
-     'imagemin'
+     'imagemin', 'siteMap'
   ]);
 
   grunt.registerTask('deploy', [
@@ -810,5 +952,4 @@ module.exports = function (grunt) {
       }
     });
   });
-
 };
