@@ -9,7 +9,7 @@
     'settings',
     'toaster'
   ])
-  .config(["$stateProvider", function config ($stateProvider) {
+  .config(function config ($stateProvider) {
     $stateProvider
       .state('contest', {
         url: '/concours',
@@ -30,13 +30,13 @@
         },
         data: { pageTitle: 'Concours' }
       });
-  }])
-  .controller('contestCtrl', ["$stateParams", "settings", "Mixpanel", "currentClient", "$scope", "$state", "toaster", function contestCtrl ($stateParams, settings, Mixpanel, currentClient, $scope, $state, toaster) {
+  })
+  .controller('contestCtrl', function contestCtrl ($stateParams, settings, Mixpanel, currentClient, $scope, $state, toaster) {
 
     $scope.sendTo = function (code) {
       currentClient.isContest = true;
       Mixpanel.track("contest entry", { contest: code });
       $state.go('welcome', { r: code });
     };
-  }]);
+  });
 })();

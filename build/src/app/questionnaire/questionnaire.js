@@ -6,10 +6,11 @@ angular.module('vinibar.questionnaire', [
   'settings',
   'Mixpanel',
   'receiverService',
-  'toaster'
+  'toaster',
+  'split'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider
     .state('questionnaire', {
       url: '/questionnaire',
@@ -20,11 +21,11 @@ angular.module('vinibar.questionnaire', [
         }
       },
       resolve: {
-          promiseObj:  ["$http", "$templateCache", function ($http, $templateCache) {
+          promiseObj:  function ($http, $templateCache) {
             // $http returns a promise for the url data
             return $http.get('assets/fruits.jpg', { cache: $templateCache });
 
-          }]
+          }
       },
       data: { pageTitle: 'questionnaire' }
     })
@@ -60,9 +61,28 @@ angular.module('vinibar.questionnaire', [
       url: '/starter',
       templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
     });
-}])
+})
 
-.controller('questionnaireCtrl', ["$document", "Mixpanel", "Recommender", "Receive", "$scope", "$http", "$location", "Client", "currentClient", "$state", "$rootScope", "$modal", "$log", "$timeout", "toaster", "$window", "$stateParams", "settings", function questionnaireCtrl ($document, Mixpanel, Recommender, Receive, $scope, $http, $location, Client , currentClient, $state, $rootScope, $modal, $log, $timeout, toaster, $window, $stateParams, settings) {
+.controller('questionnaireCtrl', function questionnaireCtrl ($document,
+                                                                                      Mixpanel,
+                                                                                      Recommender,
+                                                                                      Receive,
+                                                                                      $scope,
+                                                                                      $http,
+                                                                                      $location,
+                                                                                      Client,
+                                                                                      currentClient,
+                                                                                      $state,
+                                                                                      $rootScope,
+                                                                                      $modal,
+                                                                                      $log,
+                                                                                      $timeout,
+                                                                                      toaster,
+                                                                                      $window,
+                                                                                      $stateParams,
+                                                                                      settings,
+                                                                                      split) {
+
   $scope.is = { contest: currentClient.isContest };
   console.log(currentClient);
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
@@ -182,6 +202,15 @@ angular.module('vinibar.questionnaire', [
     }
   };
 
+  $scope.predictive = {
+    split: function (arr, color) {
+      var hash = (arr.answ_1 * 17 + arr.answ_2 * 19 + arr.answ_3 * 23);
+      return split[hash][color];
+    },
+    plural: function (num) {
+      return (num > 1) ? 's' : '';
+    }
+  };
 
   $scope.createUser = function (name, user, tastes) {
     validateAnswers(function () {
@@ -248,4 +277,4 @@ angular.module('vinibar.questionnaire', [
     });
   };
 
-}]);
+});

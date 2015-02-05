@@ -11,7 +11,7 @@ angular.module('vinibar.pay_mobile', [
   'angularLoad'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider.state('pay_mobile', {
     url: '/pay_mobile',
     views: {
@@ -30,9 +30,9 @@ angular.module('vinibar.pay_mobile', [
     // },
     data: { pageTitle: 'Commander' }
   });
-}])
+})
 
-.controller('payMobileCtrl', ["Mixpanel", "$scope", "$http", "currentClient", "$rootScope", "settings", "$state", "Order", "toaster", "$modal", function payMobileCtrl (Mixpanel, $scope, $http, currentClient, $rootScope, settings, $state, Order, toaster, $modal) {
+.controller('payMobileCtrl', function payMobileCtrl (Mixpanel, $scope, $http, currentClient, $rootScope, settings, $state, Order, toaster, $modal) {
   var init = function (argument) {
     $scope.client = currentClient.currentClient;
     $scope.serializedOrder = $scope.client.order;
@@ -149,4 +149,4 @@ angular.module('vinibar.pay_mobile', [
   $scope.displayPrice = function (price) {
     return price;
   };
-}]);
+});

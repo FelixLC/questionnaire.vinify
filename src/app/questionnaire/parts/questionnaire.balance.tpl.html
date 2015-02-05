@@ -1,9 +1,9 @@
 <div class="background-balance">
   <div class="progressbar">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div class="progress-whole"></div>
+    <div class="progress-whole"></div>
+    <div class="progress-whole"></div>
+    <div class="progress-whole"></div>
     <div class="progress-whole"></div>
     <div></div>
   </div>
@@ -17,9 +17,11 @@
     <div class="vertical-align centered  vertical-align-mobile">
         <div class="row">
           <h3>Composez votre Vinibar</h3>
-          <p>(Indiquez vos préférences par type de vin)</p>
+          <p ng-if="!(newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4)">(Indiquez vos préférences par type de vin)</p>
+          <p ng-if="newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4">~ {{predictive.split(newuser.survey.quest_6, 'red')}} rouge{{predictive.plural(newuser.survey.quest_6.answ_1)}},
+                    {{predictive.split(newuser.survey.quest_6, 'white')}} blanc{{predictive.plural(newuser.survey.quest_6.answ_2)}} et
+                    {{predictive.split(newuser.survey.quest_6, 'rose')}} rosé{{predictive.plural(newuser.survey.quest_6.answ_3)}}</p>
         </div>
-
         <div class="row" id="quest_balance">
           <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -61,7 +63,12 @@
                       ng-click="newuser.survey.quest_6.answ_3 = 0">Pas</button><br>
             </div>
           </div>
-      </div>
+        </div>
+        <div ng-if="newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4" class="row">
+          <p>~ {{predictive.split(newuser.survey.quest_6, 'red')}} rouge{{predictive.plural(newuser.survey.quest_6.answ_1)}},
+                    {{predictive.split(newuser.survey.quest_6, 'white')}} blanc{{predictive.plural(newuser.survey.quest_6.answ_2)}} et
+                    {{predictive.split(newuser.survey.quest_6, 'rose')}} rosé{{predictive.plural(newuser.survey.quest_6.answ_3)}}</p>
+        </div>
     </div>
     <div class="navlinks">
       <a ui-sref="questionnaire.starter"><i class="fa icon-chevron-left"></i></a>

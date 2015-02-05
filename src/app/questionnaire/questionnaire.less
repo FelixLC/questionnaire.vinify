@@ -7,12 +7,23 @@
   text-align: center;
 }
 .progressbar > div {
-  height: 14px;
-  width: 14px;
-  border-radius: 7px;
-  border: 1px solid #FFF;
+  height: 16px;
+  width: 16px;
+  // border-radius: 7px;
+  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
   display: inline-block;
-  margin: 10px;
+  margin: 0px -3px;
+}
+.progressbar > div:first-child {
+  border-left: 1px solid #FFF;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.progressbar > div:last-child {
+  border-right: 1px solid #FFF;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .progressbar .progress-whole {
   background-color: #FFF;

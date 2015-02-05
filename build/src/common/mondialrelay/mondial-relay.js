@@ -17,5 +17,4 @@
     function func () {
     }
   }
-  mRelay.$inject = ["soap"];
 })();

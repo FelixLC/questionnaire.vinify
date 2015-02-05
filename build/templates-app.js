@@ -2222,10 +2222,10 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
   $templateCache.put("questionnaire/parts/questionnaire.balance.tpl.html",
     "<div class=\"background-balance\">\n" +
     "  <div class=\"progressbar\">\n" +
-    "    <div></div>\n" +
-    "    <div></div>\n" +
-    "    <div></div>\n" +
-    "    <div></div>\n" +
+    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div class=\"progress-whole\"></div>\n" +
     "    <div class=\"progress-whole\"></div>\n" +
     "    <div></div>\n" +
     "  </div>\n" +
@@ -2239,9 +2239,11 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "    <div class=\"vertical-align centered  vertical-align-mobile\">\n" +
     "        <div class=\"row\">\n" +
     "          <h3>Composez votre Vinibar</h3>\n" +
-    "          <p>(Indiquez vos préférences par type de vin)</p>\n" +
+    "          <p ng-if=\"!(newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4)\">(Indiquez vos préférences par type de vin)</p>\n" +
+    "          <p ng-if=\"newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4\">~ {{predictive.split(newuser.survey.quest_6, 'red')}} rouge{{predictive.plural(newuser.survey.quest_6.answ_1)}},\n" +
+    "                    {{predictive.split(newuser.survey.quest_6, 'white')}} blanc{{predictive.plural(newuser.survey.quest_6.answ_2)}} et\n" +
+    "                    {{predictive.split(newuser.survey.quest_6, 'rose')}} rosé{{predictive.plural(newuser.survey.quest_6.answ_3)}}</p>\n" +
     "        </div>\n" +
-    "\n" +
     "        <div class=\"row\" id=\"quest_balance\">\n" +
     "          <div class=\"col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3\">\n" +
     "            <div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
@@ -2283,7 +2285,12 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "                      ng-click=\"newuser.survey.quest_6.answ_3 = 0\">Pas</button><br>\n" +
     "            </div>\n" +
     "          </div>\n" +
-    "      </div>\n" +
+    "        </div>\n" +
+    "        <div ng-if=\"newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4\" class=\"row\">\n" +
+    "          <p>~ {{predictive.split(newuser.survey.quest_6, 'red')}} rouge{{predictive.plural(newuser.survey.quest_6.answ_1)}},\n" +
+    "                    {{predictive.split(newuser.survey.quest_6, 'white')}} blanc{{predictive.plural(newuser.survey.quest_6.answ_2)}} et\n" +
+    "                    {{predictive.split(newuser.survey.quest_6, 'rose')}} rosé{{predictive.plural(newuser.survey.quest_6.answ_3)}}</p>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
     "      <a ui-sref=\"questionnaire.starter\"><i class=\"fa icon-chevron-left\"></i></a>\n" +
@@ -2299,7 +2306,7 @@ angular.module("questionnaire/parts/questionnaire.coffee.tpl.html", []).run(["$t
   $templateCache.put("questionnaire/parts/questionnaire.coffee.tpl.html",
     "<div class=\"background-coffee\">\n" +
     "  <div class=\"progressbar\">\n" +
-    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div></div>\n" +
     "    <div></div>\n" +
     "    <div></div>\n" +
     "    <div></div>\n" +
@@ -2444,9 +2451,9 @@ angular.module("questionnaire/parts/questionnaire.cuisine.tpl.html", []).run(["$
   $templateCache.put("questionnaire/parts/questionnaire.cuisine.tpl.html",
     "<div class=\"background-cuisine\">\n" +
     "  <div class=\"progressbar\">\n" +
-    "    <div></div>\n" +
-    "    <div></div>\n" +
     "    <div class=\"progress-whole\"></div>\n" +
+    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div></div>\n" +
     "    <div></div>\n" +
     "    <div></div>\n" +
     "    <div></div>\n" +
@@ -2458,7 +2465,7 @@ angular.module("questionnaire/parts/questionnaire.cuisine.tpl.html", []).run(["$
     "    <div class=\"vertical-align centered\">\n" +
     "      <div class=\"row\">\n" +
     "        <h3>Vous aimez les cuisines :</h3>\n" +
-    "        <p>(Choisissez TOUS les styles que vous appréciez, puis validez avec la flèche)</p>\n" +
+    "        <p>Plusieurs choix possibles</p>\n" +
     "      </div>\n" +
     "      <div class=\"row\" id=\"quest_cuisine\">\n" +
     "        <div class=\"col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2\">\n" +
@@ -2542,8 +2549,8 @@ angular.module("questionnaire/parts/questionnaire.juice.tpl.html", []).run(["$te
   $templateCache.put("questionnaire/parts/questionnaire.juice.tpl.html",
     "<div class=\"background-juice\">\n" +
     "  <div class=\"progressbar\">\n" +
-    "    <div></div>\n" +
     "    <div class=\"progress-whole\"></div>\n" +
+    "    <div></div>\n" +
     "    <div></div>\n" +
     "    <div></div>\n" +
     "    <div></div>\n" +
@@ -2589,10 +2596,10 @@ angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$
   $templateCache.put("questionnaire/parts/questionnaire.starter.tpl.html",
     "<div class=\"background-starter\">\n" +
     "  <div class=\"progressbar\">\n" +
-    "    <div></div>\n" +
-    "    <div></div>\n" +
-    "    <div></div>\n" +
     "    <div class=\"progress-whole\"></div>\n" +
+    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div></div>\n" +
     "    <div></div>\n" +
     "    <div></div>\n" +
     "  </div>\n" +
@@ -2650,12 +2657,12 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
   $templateCache.put("questionnaire/parts/questionnaire.winemap.tpl.html",
     "<div class=\"background-winemap\">\n" +
     "	  <div class=\"progressbar\">\n" +
-    "	    <div></div>\n" +
-    "	    <div></div>\n" +
-    "	    <div></div>\n" +
-    "	    <div></div>\n" +
-    "	    <div></div>\n" +
     "	    <div class=\"progress-whole\"></div>\n" +
+    "	    <div class=\"progress-whole\"></div>\n" +
+    "	    <div class=\"progress-whole\"></div>\n" +
+    "	    <div class=\"progress-whole\"></div>\n" +
+    "	    <div class=\"progress-whole\"></div>\n" +
+    "	    <div></div>\n" +
     "	  </div>\n" +
     "	<div class=\"overlay\">\n" +
     "		<div ng-show=\"loading\" class=\"centered\"><h4>Merci de patienter, nous cherchons les bouteilles qui vous correspondent le mieux</h4></div>\n" +
@@ -3435,7 +3442,7 @@ angular.module("wines/wines.tpl.html", []).run(["$templateCache", function($temp
     "              <span class=\"icon-bar\"></span>\n" +
     "              <span class=\"icon-bar\"></span>\n" +
     "            </button>\n" +
-    "             <a href=\"#splashscreen\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
+    "             <a href=\"http://vinify.co/index.html#splashscreen\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
     "          </div>\n" +
     "\n" +
     "          <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
@@ -3472,7 +3479,7 @@ angular.module("wines/wines.tpl.html", []).run(["$templateCache", function($temp
     "  <div class=\"container wine-content\">\n" +
     "    <div class=\"row\">\n" +
     "      <div class=\"col-lg-4 centered\">\n" +
-    "        <img ng-src=\"assets/wines/{{wine.product_code}}.jpg\" alt=\"{{wine.region + '-' + wine.display_name}}\">\n" +
+    "        <img ng-src=\"assets/wines/{{wine.product_code}}.jpg\" alt=\"{{wine.region + ' - ' + wine.display_name}}\">\n" +
     "        <h3>{{wine.display_name}}</h3>\n" +
     "        <h4>{{wine.appellation}}</h4>\n" +
     "        <h4>{{wine.region}} - {{wine.color}} - {{wine.vintage}}</h4>\n" +

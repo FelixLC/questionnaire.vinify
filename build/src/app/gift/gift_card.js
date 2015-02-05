@@ -2,7 +2,7 @@ angular.module('vinibar.gift_card', [
   'Resources'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider
     .state('gift_card', {
       url: '/carte_cadeau?code&credits',
@@ -14,10 +14,10 @@ angular.module('vinibar.gift_card', [
       },
       data: { pageTitle: 'Cadeau' }
     });
-}])
-.controller('giftCardCtrl', ["$scope", "currentGiftCard", "$stateParams", function ($scope, currentGiftCard, $stateParams) {
+})
+.controller('giftCardCtrl', function ($scope, currentGiftCard, $stateParams) {
   $scope.code = (currentGiftCard.code) ?  currentGiftCard.code : $stateParams.code;
   $scope.credits = (currentGiftCard.credits) ?  currentGiftCard.credits : $stateParams.credits;
   $scope.message = currentGiftCard.message;
   $scope.first_name = currentGiftCard.first_name;
-}]);
+});
