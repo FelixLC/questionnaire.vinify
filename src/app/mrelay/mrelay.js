@@ -2,9 +2,7 @@ angular.module('mondialrelay', [
   'ui.router',
   'ui.bootstrap',
   'toaster',
-  'settings',
-  // 'myModule',
-  'md5'
+  'settings'
 ])
 
 .config(function config ($stateProvider) {
@@ -22,7 +20,7 @@ angular.module('mondialrelay', [
 })
 
 
-.controller('mondialrelayCtrl', function mondialrelayCtrl ($scope, $stateParams, $http, $state, settings, toaster, $timeout, md5) {
+.controller('mondialrelayCtrl', function mondialrelayCtrl ($scope, $stateParams, $http, $state, settings, toaster, $timeout) {
 
    var order_id = $stateParams.orderid;
    var zipcode = $stateParams.zipcode;
@@ -98,45 +96,10 @@ angular.module('mondialrelay', [
        return request;
    };
 
-  // $http.get('http://www.mondialrelay.fr/webservice/Web_Services.asmx?WSDL', { isJSON: true }).then(function (result) {
-  //   soapInterceptor.setWSDL('http://www.mondialrelay.fr/webservice/Web_Services.asmx', result.data);
-  //   console.log(result.data);
-  // });
   // $scope.sendMR = function () {
-  //   data = {
-  //     Enseigne: "EC005788",
-  //     Pays: "FR",
-  //    // NumPointRelais: "",
-  //     Ville: "",
-  //     CP: "75010",
-  //     Latitude: "",
-  //     Longitude: "",
-  //     Taille: "",
-  //     Poids: "",
-  //     Action: "",
-  //     DelaiEnvoi: "0",
-  //     RayonRecherche: "20"
-  //   };
-  //   var string = '';
-  //   angular.forEach(data, function (value, key) {
-  //     string += value;
-  //   });
-  //   string += 'UvJxT93M';
-  //   console.log(string);
-  //   $http.post('http://www.mondialrelay.fr/webservice/Web_Services.asmx/WSI3_PointRelais_Recherche', {
-  //     Enseigne: "EC005788",
-  //     Pays: "FR",
-  //    // NumPointRelais: "",
-  //     Ville: "",
-  //     CP: "75010",
-  //     Latitude: "",
-  //     Longitude: "",
-  //     Taille: "",
-  //     Poids: "",
-  //     Action: "",
-  //     DelaiEnvoi: "0",
-  //     RayonRecherche: "20",
-  //     Security: md5.createHash(string).toUpperCase()
+  //   console.log($stateParams.zipcode);
+  //   mRelay.pointRelaisRecherche($stateParams.zipcode).then(function (response) {
+  //     console.log(response);
   //   });
   // };
 

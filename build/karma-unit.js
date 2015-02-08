@@ -16,6 +16,8 @@ module.exports = function ( karma ) {
       'bower_components/angular-toaster/angular-toaster.js',
       'bower_components/angular-bootstrap/ui-bootstrap-custom-tpls.min.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/angular-soap/soapclient.js',
+      'bower_components/angular-soap/angular.soap.js',
       'build/templates-app.js',
       'build/templates-common.js',
       'bower_components/angular-mocks/angular-mocks.js',

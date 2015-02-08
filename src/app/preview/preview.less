@@ -4,25 +4,18 @@
 	top: 56px;
 	left: 0;
 	right: 0;
-      padding-bottom: 56px;
+      bottom:0;
+      // padding-bottom: 56px;
 }
 #preview * {
   outline: none;
 }
-#preview .container-preview {
-	// max-width: 600px;
-	margin: 0 auto 50px auto;
-}
-#preview > div > div:last-child {
-	background-color: #FFF;
-	padding: 20px;
-}
-#preview > div > div:first-child {
-	padding: 20px;
-}
 #preview  p{
   	font-size: 16px;
   	font-family: 'Roboto';
+}
+#preview #bottles {
+  background-color: #FFF;
 }
 #preview h3 {
   	font-family: 'Julius Sans One', Helvetica, Arial, sans-serif;
@@ -93,7 +86,7 @@
   width: 30%;
 }
 #preview button {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 40px;
   font-size: 16px;
   padding:  5px 10px;
@@ -107,6 +100,13 @@
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   border: 1px solid @color-support-strong;
 }
+#container-offers {
+  background-color: #efeeeb;
+}
+#container-offers p {
+  margin-top: 40px;
+  margin-bottom: 0px;
+}
 @media screen and (max-width: 640px) {
         #preview div.btn-cta {
           font-size: 20px;
@@ -115,7 +115,7 @@
 		padding: 10px;
 	}
 	#preview > div > div:last-child {
-		background-color: #FFF;
+		// background-color: #FFF;
 		padding: 10px;
 	}
 	#preview h3 {

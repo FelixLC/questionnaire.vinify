@@ -4,7 +4,7 @@
     <div class="progress-whole"></div>
     <div class="progress-whole"></div>
     <div class="progress-whole"></div>
-    <div class="progress-whole"></div>
+    <div></div>
     <div></div>
   </div>
   <div class="overlay">
@@ -63,11 +63,6 @@
                       ng-click="newuser.survey.quest_6.answ_3 = 0">Pas</button><br>
             </div>
           </div>
-        </div>
-        <div ng-if="newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4" class="row">
-          <p>~ {{predictive.split(newuser.survey.quest_6, 'red')}} rouge{{predictive.plural(newuser.survey.quest_6.answ_1)}},
-                    {{predictive.split(newuser.survey.quest_6, 'white')}} blanc{{predictive.plural(newuser.survey.quest_6.answ_2)}} et
-                    {{predictive.split(newuser.survey.quest_6, 'rose')}} rosé{{predictive.plural(newuser.survey.quest_6.answ_3)}}</p>
         </div>
     </div>
     <div class="navlinks">

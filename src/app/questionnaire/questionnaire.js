@@ -107,6 +107,10 @@ angular.module('vinibar.questionnaire', [
                                                         "" : $scope.newuser.survey.quest_7.answ = region;
   };
 
+  $scope.unSelect = function () {
+    $scope.newuser.survey.quest_7.answ = "";
+  };
+
 
   // Please note that $modalInstance represents a modal window (instance) dependency.
   // It is not the same as the $modal service used above.

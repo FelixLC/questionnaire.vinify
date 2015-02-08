@@ -25,7 +25,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-aws-s3');
   grunt.loadNpmTasks('grunt-html-snapshot');
-  grunt.loadNpmTasks('grunt-sitemap');
 
   /**
    * Load in our build configuration file.

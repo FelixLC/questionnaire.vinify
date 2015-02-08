@@ -68,7 +68,9 @@ module.exports = {
       'bower_components/angular-load/angular-load.js',
       'bower_components/angular-toaster/angular-toaster.js',
       'bower_components/angular-bootstrap/ui-bootstrap-custom-tpls.min.js',
-      'bower_components/angular-ui-router/release/angular-ui-router.js'
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/angular-soap/soapclient.js',
+      'bower_components/angular-soap/angular.soap.js'
     ],
     css: [
     ],

@@ -2096,106 +2096,87 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
   $templateCache.put("preview/preview.tpl.html",
     "\n" +
     "<nav class=\"navbar\" role=\"navigation\">\n" +
-    "	<div class=\"container\">\n" +
-    "		<div class=\"navbar-header\">\n" +
-    "			 <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
-    "		</div>\n" +
-    "	</div>\n" +
+    "  <div class=\"container\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "       <a href=\"\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\"/></a>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
     "</nav>\n" +
     "\n" +
     "<div id=\"preview\">\n" +
-    "	<div class=\"container-preview\">\n" +
-    "		<div class=\"centered\">\n" +
-    "			<h3>Un apercu de votre Vinibar</h3>\n" +
-    "		</div>\n" +
-    "		<div class=\"centered col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12\">\n" +
-    "			<div class=\"wines-preview\">\n" +
-    "				<div>\n" +
-    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\">\n" +
-    "						<img ng-src=\"assets/wines/{{preview[0].product_code}}.jpg\" alt=\"\">\n" +
-    "						<div class=\"preview-overlay\" ng-show=\"wine_1\">\n" +
-    "							<div>\n" +
-    "								<h4>Cépages</h4>\n" +
-    "								<span>{{preview[0].variety}}</span>\n" +
-    "								<h4>Appellation</h4>\n" +
-    "								<span>{{preview[0].appellation}}</span>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div>\n" +
-    "						<h4>{{preview[0].display_name}}</h4>\n" +
-    "						<p>{{preview[0].region}} -  {{preview[0].vintage}}</p>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div>\n" +
-    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_2 = !wine_2\" ng-mouseleave=\"wine_2 = !wine_2\">\n" +
-    "						<img ng-src=\"assets/wines/{{preview[1].product_code}}.jpg\" alt=\"\">\n" +
-    "						<div class=\"preview-overlay\" ng-show=\"wine_2\">\n" +
-    "							<div>\n" +
-    "								<h4>Cépages</h4>\n" +
-    "								<span>{{preview[1].variety}}</span>\n" +
-    "								<h4>Appellation</h4>\n" +
-    "								<span>{{preview[1].appellation}}</span>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div>\n" +
-    "						<h4>{{preview[1].display_name}}</h4>\n" +
-    "						<p>{{preview[1].region}} -  {{preview[1].vintage}}</p>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div>\n" +
-    "					<div class=\"bottle-row\" ng-mouseenter=\"wine_3 = !wine_3\" ng-mouseleave=\"wine_3 = !wine_3\">\n" +
-    "						<img ng-src=\"assets/wines/{{preview[2].product_code}}.jpg\" alt=\"\">\n" +
-    "						<div class=\"preview-overlay\" ng-show=\"wine_3\">\n" +
-    "							<div>\n" +
-    "								<h4>Cépages</h4>\n" +
-    "								<span>{{preview[2].variety}}</span>\n" +
-    "								<h4>Appellation</h4>\n" +
-    "								<span>{{preview[2].appellation}}</span>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div>\n" +
-    "						<h4>{{preview[2].display_name}}</h4>\n" +
-    "						<p>{{preview[2].region}} -  {{preview[2].vintage}}</p>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div id=\"container-offers\">\n" +
-    "				<div class=\"col-lg-6 col-lg-push-6 col-md-6 col-md-push-6 col-sm-12  col-xs-12 \">\n" +
-    "					<button class=\"button btn-square\" ng-click=\"order('Vinibar')\">Commander mon Vinibar</button>\n" +
-    "					<p class=\"centered\">Recevez une sélection de <span class=\"highlight\">6 bouteilles différentes</span> <br> revue par notre oenologue pour 69&nbsp;€</p>\n" +
-    "				</div>\n" +
-    "				<div class=\"col-lg-6 col-lg-pull-6 col-md-6 col-md-pull-6 col-sm-12  col-xs-12 \">\n" +
-    "					<button class=\"button btn-square-o\" ng-click=\"order('Découverte')\">Commander ces 3 bouteilles</button>\n" +
-    "					<p class=\"centered\">Découvrez la gamme Vinify <br> avec ces 3 bouteilles pour 39&nbsp;€</p>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "<!-- 			<div class=\"wines-preview\">\n" +
-    "				<div>\n" +
-    "					<div class=\"bottle-row\">\n" +
-    "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div>\n" +
-    "					<div class=\"bottle-row\">\n" +
-    "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div>\n" +
-    "					<div class=\"bottle-row\">\n" +
-    "						<img ng-src=\"assets/wines/mystery-bottle.jpg\" alt=\"\">\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div> -->\n" +
-    "<!-- 			<div class=\"container container-hr\">\n" +
-    "				<div><hr></div>\n" +
-    "				<div><img alt=\"\" src=\"assets/logo_mini.png\" style=\"height:45px\"/></div>\n" +
-    "				<div><hr></div>\n" +
-    "			</div> -->\n" +
-    "		</div>\n" +
-    "	</div>\n" +
+    "  <div class=\"container-fluid\">\n" +
+    "    <div class=\"row-fluid clearfix\" id=\"bottles\">\n" +
+    "      <div class=\"centered col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "        <h4 class=\"centered\">Voici un apercu de votre sélection</h4>\n" +
+    "        <div class=\"wines-preview container\">\n" +
+    "          <div>\n" +
+    "            <div ng-click=\"openModal(preview[0])\" class=\"bottle-row\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\">\n" +
+    "              <img ng-src=\"assets/wines/{{preview[0].product_code}}.jpg\" alt=\"\">\n" +
+    "              <div class=\"preview-overlay\" ng-show=\"wine_1\">\n" +
+    "                <div>\n" +
+    "                  <h4>Cépages</h4>\n" +
+    "                  <span>{{preview[0].variety}}</span>\n" +
+    "                  <h4>Appellation</h4>\n" +
+    "                  <span>{{preview[0].appellation}}</span>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div>\n" +
+    "              <h4>{{preview[0].display_name}}</h4>\n" +
+    "              <p>{{preview[0].region}} -  {{preview[0].vintage}}</p>\n" +
+    "              <p class=\"p-highlight u-cursor\" ng-click=\"openModal(preview[0])\">En savoir plus</p>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "         <div>\n" +
+    "            <div ng-click=\"openModal(preview[1])\" class=\"bottle-row\" ng-mouseenter=\"wine_2 = !wine_2\" ng-mouseleave=\"wine_2 = !wine_2\">\n" +
+    "              <img ng-src=\"assets/wines/{{preview[1].product_code}}.jpg\" alt=\"\">\n" +
+    "              <div class=\"preview-overlay\" ng-show=\"wine_2\">\n" +
+    "                <div>\n" +
+    "                  <h4>Cépages</h4>\n" +
+    "                  <span>{{preview[1].variety}}</span>\n" +
+    "                  <h4>Appellation</h4>\n" +
+    "                  <span>{{preview[1].appellation}}</span>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div>\n" +
+    "              <h4>{{preview[1].display_name}}</h4>\n" +
+    "              <p>{{preview[1].region}} -  {{preview[1].vintage}}</p>\n" +
+    "              <p class=\"p-highlight u-cursor\" ng-click=\"openModal(preview[1])\">En savoir plus</p>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div>\n" +
+    "            <div ng-click=\"openModal(preview[2])\" class=\"bottle-row\" ng-mouseenter=\"wine_3 = !wine_3\" ng-mouseleave=\"wine_3 = !wine_3\">\n" +
+    "              <img ng-src=\"assets/wines/{{preview[2].product_code}}.jpg\" alt=\"\">\n" +
+    "              <div class=\"preview-overlay\" ng-show=\"wine_3\">\n" +
+    "                <div>\n" +
+    "                  <h4>Cépages</h4>\n" +
+    "                  <span>{{preview[2].variety}}</span>\n" +
+    "                  <h4>Appellation</h4>\n" +
+    "                  <span>{{preview[2].appellation}}</span>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div>\n" +
+    "              <h4>{{preview[2].display_name}}</h4>\n" +
+    "              <p>{{preview[2].region}} -  {{preview[2].vintage}}</p>\n" +
+    "              <p class=\"p-highlight u-cursor\" ng-click=\"openModal(preview[2])\">En savoir plus</p>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"row-fluid clearfix\" id=\"container-offers\">\n" +
+    "      <div class=\"col-lg-6  col-lg-push-6 col-md-6 col-md-push-6  col-sm-12  col-xs-12 centered\">\n" +
+    "        <p class=\"centered\">Recevez une sélection de <span class=\"highlight\">6 bouteilles différentes</span> <br> revue par notre oenologue pour 69&nbsp;€</p>\n" +
+    "        <button class=\"button btn-square\" ng-click=\"order('Vinibar')\">Je veux 6 bouteilles choisies pour moi</button>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-lg-6  col-lg-pull-6 col-md-6 col-md-pull-6   col-sm-12  col-xs-12 centered\">\n" +
+    "        <p class=\"centered\">Découvrez la gamme Vinify <br> avec ces 3 bouteilles pour 39&nbsp;€</p>\n" +
+    "        <button class=\"button btn-square-o\" ng-click=\"order('Découverte')\">Je teste ces 3 bouteilles</button>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "<!-- Google Code for Survey completed Conversion Page -->\n" +
     "<script type=\"text/javascript\">\n" +
@@ -2215,7 +2196,59 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?label=qbYRCPW0pVkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
     "</div>\n" +
     "</noscript>\n" +
-    "");
+    "    <script type=\"text/ng-template\" id=\"myModalContent.html\">\n" +
+    "        <div class=\"modal-header\">\n" +
+    "            <h3 class=\"modal-title\">{{wine.display_name}}</h3>\n" +
+    "        </div>\n" +
+    "          <div class=\"u-padding wine-description\">\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-lg-12\">\n" +
+    "                <div class=\"wine-table-container\">\n" +
+    "                  <div class=\"logo\"><div class=\"sprites sprite-glass\"></div></div>\n" +
+    "                  <div class=\"info\">\n" +
+    "                    <h4>Description</h4>\n" +
+    "                    <p>{{wine['tasting']}}</p>\n" +
+    "                    <p><span class=\"strong\">Robe :</span> {{wine['dress']}}</p>\n" +
+    "                    <p><span class=\"strong\">Nez :</span> {{wine['nose']}}</p>\n" +
+    "                    <p><span class=\"strong\">Bouche :</span> {{wine['mouth']}}</p>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "              <div class=\"col-lg-12\">\n" +
+    "              <div class=\"wine-table-container\">\n" +
+    "                <div class=\"logo\"><div class=\"sprites sprite-france\"></div></div>\n" +
+    "                <div class=\"info\">\n" +
+    "                  <h4>Producteur</h4>\n" +
+    "                  <p>{{wine['domain']}}</p>\n" +
+    "                  <!-- <p>{{wine['domain_know_more']}}</p> -->\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-lg-12\">\n" +
+    "                <div class=\"wine-table-container\">\n" +
+    "                  <div class=\"logo\"><div class=\"sprites sprite-grapes\"></div></div>\n" +
+    "                  <div class=\"info\">\n" +
+    "                    <h4>Cépages</h4>\n" +
+    "                    <p> {{wine['variety']}}</p>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "              <div class=\"col-lg-12\">\n" +
+    "                <div class=\"wine-table-container\">\n" +
+    "                  <div class=\"logo\"><div class=\"sprites sprite-forks\"></div></div>\n" +
+    "                  <div class=\"info\">\n" +
+    "                    <h4>Accords Mets-Vins</h4>\n" +
+    "                    <p>{{wine['cuisine']}}</p>\n" +
+    "                    <p>{{wine['food']}}</p>\n" +
+    "                    <p>{{wine['meat_fish']}}</p>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "    </script>");
 }]);
 
 angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2226,7 +2259,7 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "    <div class=\"progress-whole\"></div>\n" +
     "    <div class=\"progress-whole\"></div>\n" +
     "    <div class=\"progress-whole\"></div>\n" +
-    "    <div class=\"progress-whole\"></div>\n" +
+    "    <div></div>\n" +
     "    <div></div>\n" +
     "  </div>\n" +
     "  <div class=\"overlay\">\n" +
@@ -2285,11 +2318,6 @@ angular.module("questionnaire/parts/questionnaire.balance.tpl.html", []).run(["$
     "                      ng-click=\"newuser.survey.quest_6.answ_3 = 0\">Pas</button><br>\n" +
     "            </div>\n" +
     "          </div>\n" +
-    "        </div>\n" +
-    "        <div ng-if=\"newuser.survey.quest_6.answ_1 < 4 && newuser.survey.quest_6.answ_2 < 4 && newuser.survey.quest_6.answ_3 < 4\" class=\"row\">\n" +
-    "          <p>~ {{predictive.split(newuser.survey.quest_6, 'red')}} rouge{{predictive.plural(newuser.survey.quest_6.answ_1)}},\n" +
-    "                    {{predictive.split(newuser.survey.quest_6, 'white')}} blanc{{predictive.plural(newuser.survey.quest_6.answ_2)}} et\n" +
-    "                    {{predictive.split(newuser.survey.quest_6, 'rose')}} rosé{{predictive.plural(newuser.survey.quest_6.answ_3)}}</p>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"navlinks\">\n" +
@@ -2607,7 +2635,7 @@ angular.module("questionnaire/parts/questionnaire.starter.tpl.html", []).run(["$
     "        <div class=\"vertical-align centered\">\n" +
     "            <div class=\"row\">\n" +
     "                <h3>Quels plats vous font envie ?</h3>\n" +
-    "                <p>(Choisissez TOUS les plats que vous appréciez, puis validez avec la flèche)</p>\n" +
+    "                <p>Plusieurs choix possibles</p>\n" +
     "            </div>\n" +
     "            <div class=\"row\" id=\"quest_starter\">\n" +
     "              <div class=\"col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2\">\n" +
@@ -2686,7 +2714,7 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "					 <br>\n" +
     "					<span ng-hide=\"newuser.survey.quest_7.answ || region.hover\">(Cliquez sur la carte)</span>\n" +
     "					<span ng-show=\"!newuser.survey.quest_7.answ\">{{ region.hover }}</span><span class=\"selected-region\">{{ newuser.survey.quest_7.answ }}</span></h3>\n" +
-    "						<svg tooltip=\"Laissez vide si vous ne savez pas\"  tooltip-trigger=\"mouseenter\" tooltip-placement=\"bottom\" version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n" +
+    "						<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n" +
     "							 viewBox=\"0 0 145.78 143.313\" enable-background=\"new 0 0 145.78 143.313\"\n" +
     "							 xml:space=\"preserve\">\n" +
     "						<g>\n" +
@@ -2853,6 +2881,11 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "								c-0.05-0.343-0.118-0.681-0.205-1.016c-0.113,0.09-0.298,0.25-0.385,0.443\"/>\n" +
     "						</g>\n" +
     "						</svg>\n" +
+    "						<p class=\"u-cursor\" ng-click=\"unSelect()\">\n" +
+    "							<i ng-if=\"newuser.survey.quest_7.answ\" class=\"fa icon-check-empty\"></i>\n" +
+    "							<i ng-if=\"!newuser.survey.quest_7.answ\" class=\"fa icon-check\"></i>\n" +
+    "							Je n'en ai pas\n" +
+    "						</p>\n" +
     "				</div>\n" +
     "				<div class=\"col-lg-6 col-md-6 col-sm-6 elements-quest\">\n" +
     "					<div class=\"row\">\n" +
@@ -2937,15 +2970,13 @@ angular.module("questionnaire/parts/questionnaire.winemap.tpl.html", []).run(["$
     "					            </form>\n" +
     "					            <p><a target=\"_blank\" href=\"https://api.vinify.co/api/users/password/reset/\" class=\"centered reset-pwd\">réinitialiser votre mot de passe</a></p>\n" +
     "				            </div>\n" +
+    "				            <div class=\"row\">\n" +
+    "						<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">\n" +
+    "							<span ng-show=\"is.contest\">Valider ma participation</span>\n" +
+    "							<span ng-show=\"!is.contest\">Découvrir ma sélection</span>\n" +
+    "						</button>\n" +
+    "				            </div>\n" +
     "			            </div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"row\">\n" +
-    "				<div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
-    "					<button class=\"btn button-createuser\" ng-click=\"createUser(form_name, form_user, form_tastes)\">\n" +
-    "						<span ng-show=\"is.contest\">Valider ma participation</span>\n" +
-    "						<span ng-show=\"!is.contest\">Découvrir ma sélection</span>\n" +
-    "					</button>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
@@ -3148,7 +3179,23 @@ angular.module("remerciement/remerciement.3.tpl.html", []).run(["$templateCache"
     "<div style=\"display:inline;\">\n" +
     "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?value=39.00&amp;currency_code=EUR&amp;label=t9pJCK74pVkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
     "</div>\n" +
-    "</noscript>");
+    "</noscript>\n" +
+    "<!-- Facebook Conversion Code for Conversion Paiement Découverte -->\n" +
+    "<script>(function() {\n" +
+    "var _fbq = window._fbq || (window._fbq = []);\n" +
+    "if (!_fbq.loaded) {\n" +
+    "var fbds = document.createElement('script');\n" +
+    "fbds.async = true;\n" +
+    "fbds.src = '//connect.facebook.net/en_US/fbds.js';\n" +
+    "var s = document.getElementsByTagName('script')[0];\n" +
+    "s.parentNode.insertBefore(fbds, s);\n" +
+    "_fbq.loaded = true;\n" +
+    "}\n" +
+    "})();\n" +
+    "window._fbq = window._fbq || [];\n" +
+    "window._fbq.push(['track', '6024359343393', {'value':'39.00','currency':'EUR'}]);\n" +
+    "</script>\n" +
+    "<noscript><img height=\"1\" width=\"1\" alt=\"\" style=\"display:none\" src=\"https://www.facebook.com/tr?ev=6024359343393&amp;cd[value]=39.00&amp;cd[currency]=EUR&amp;noscript=1\" /></noscript>");
 }]);
 
 angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -3225,7 +3272,23 @@ angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache"
     "<div style=\"display:inline;\">\n" +
     "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?value=69.00&amp;currency_code=EUR&amp;label=YVyxCOLZolkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
     "</div>\n" +
-    "</noscript>");
+    "</noscript>\n" +
+    "<!-- Facebook Conversion Code for Conversion Paiement VB -->\n" +
+    "<script>(function() {\n" +
+    "var _fbq = window._fbq || (window._fbq = []);\n" +
+    "if (!_fbq.loaded) {\n" +
+    "var fbds = document.createElement('script');\n" +
+    "fbds.async = true;\n" +
+    "fbds.src = '//connect.facebook.net/en_US/fbds.js';\n" +
+    "var s = document.getElementsByTagName('script')[0];\n" +
+    "s.parentNode.insertBefore(fbds, s);\n" +
+    "_fbq.loaded = true;\n" +
+    "}\n" +
+    "})();\n" +
+    "window._fbq = window._fbq || [];\n" +
+    "window._fbq.push(['track', '6023674984193', {'value':'69.00','currency':'EUR'}]);\n" +
+    "</script>\n" +
+    "<noscript><img height=\"1\" width=\"1\" alt=\"\" style=\"display:none\" src=\"https://www.facebook.com/tr?ev=6023674984193&amp;cd[value]=69.00&amp;cd[currency]=EUR&amp;noscript=1\" /></noscript>");
 }]);
 
 angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -3303,7 +3366,23 @@ angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCac
     "<div style=\"display:inline;\">\n" +
     "<img height=\"1\" width=\"1\" style=\"border-style:none;\" alt=\"\" src=\"//www.googleadservices.com/pagead/conversion/988279546/?value=69.00&amp;currency_code=EUR&amp;label=967pCJK0pVkQ-uWf1wM&amp;guid=ON&amp;script=0\"/>\n" +
     "</div>\n" +
-    "</noscript>");
+    "</noscript>\n" +
+    "<!-- Facebook Conversion Code for Conversion Cadeau -->\n" +
+    "<script>(function() {\n" +
+    "var _fbq = window._fbq || (window._fbq = []);\n" +
+    "if (!_fbq.loaded) {\n" +
+    "var fbds = document.createElement('script');\n" +
+    "fbds.async = true;\n" +
+    "fbds.src = '//connect.facebook.net/en_US/fbds.js';\n" +
+    "var s = document.getElementsByTagName('script')[0];\n" +
+    "s.parentNode.insertBefore(fbds, s);\n" +
+    "_fbq.loaded = true;\n" +
+    "}\n" +
+    "})();\n" +
+    "window._fbq = window._fbq || [];\n" +
+    "window._fbq.push(['track', '6024359347593', {'value':'69.00','currency':'EUR'}]);\n" +
+    "</script>\n" +
+    "<noscript><img height=\"1\" width=\"1\" alt=\"\" style=\"display:none\" src=\"https://www.facebook.com/tr?ev=6024359347593&amp;cd[value]=69.00&amp;cd[currency]=EUR&amp;noscript=1\" /></noscript>");
 }]);
 
 angular.module("remerciement/remerciement.tpl.html", []).run(["$templateCache", function($templateCache) {

@@ -1,0 +1,37 @@
+{
+  "name": "angular-soap",
+  "version": "1.0.0",
+  "homepage": "https://github.com/andrewmcgivery/angular-soap",
+  "authors": [
+    "andrewmcgivery <andrew@mcgivery.com>"
+  ],
+  "description": "An angular port of a Javascript SOAP Client into a factory that has a similar syntax to $http.",
+  "main": [
+    "soapclient.js",
+    "angular.soap.js"
+  ],
+  "keywords": [
+    "soap",
+    "angular",
+    "web",
+    "services"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "5ed44211b21b73f60ba80beb59fc38b56fbb8812"
+  },
+  "_source": "git://github.com/andrewmcgivery/angular-soap.git",
+  "_target": "~1.0.0",
+  "_originalSource": "angular-soap",
+  "_direct": true
+}
