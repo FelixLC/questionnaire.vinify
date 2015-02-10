@@ -16,14 +16,14 @@
     </div>
   </nav>
   <div class="container-delivery-checkout-less">
-      <toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
+    <toaster-container toaster-options="{'time-out': 4000, 'position-class': 'toast-top-right'}"></toaster-container>
     <h3 class="centered">Merci de vérifier vos informations</h3>
     <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding">
       <div class="main-container">
         <div class="row row-paiement">
             <div class="col-lg-12 col-md-12 col-sm-12">
-              <div class="row">
-                  <div class="col-lg-3 col-md-3 col-sm-12 centered">
+              <div ng-if="!validate" class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-12 centered">
                     <h4>Adresse de Livraison</h4>
                     <hr>
                     <p class="">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>
@@ -41,48 +41,48 @@
                     <table class="table-deliv-mode">
                         <tr ng-click="updateOrder(1)">
                           <td colspan="2"><p>
-                            <i ng-if="delivery.mode === 'Point Relais' " class="icon icon-dot-circled u-color-brand"></i>
-                            <i ng-if="delivery.mode != 'Point Relais' " class="icon icon-circle-empty u-color-brand"></i>
-                             <span class="p-highlight">Point Relais</span> ~ 3 - 4j
+                            <i ng-if="delivery.mode === 'Point Relais' " class="icon icon-dot-circled"></i>
+                            <i ng-if="delivery.mode != 'Point Relais' " class="icon icon-circle-empty"></i>
+                             <span class="strong">Point Relais</span><br>
+                              <small class="indent">Livraison en 3 - 4j ouvrés</small>
                           </p></td>
                         </tr>
                         <tr ng-click="updateOrder(2)">
                           <td colspan="2"><p>
-                            <i ng-if="delivery.mode === 'Colissimo' " class="icon icon-dot-circled u-color-brand"></i>
-                            <i ng-if="delivery.mode != 'Colissimo' " class="icon icon-circle-empty u-color-brand"></i>
-                             <span class="p-highlight">Colissimo Suivi</span> ~ 2 - 3j
+                            <i ng-if="delivery.mode === 'Colissimo' " class="icon icon-dot-circled"></i>
+                            <i ng-if="delivery.mode != 'Colissimo' " class="icon icon-circle-empty"></i>
+                             <span class="strong">Colissimo Suivi</span><br>
+                              <small class="indent">Livraison en 2 - 3j ouvrés</small>
                           </p></td>
                         </tr>
                         <tr ng-click="updateOrder(3)">
                           <td colspan="2"><p>
-                            <i ng-if="delivery.mode === 'Vinify' " class="icon icon-dot-circled u-color-brand"></i>
-                            <i ng-if="delivery.mode != 'Vinify' " class="icon icon-circle-empty u-color-brand"></i>
-                             <span class="p-highlight">Retrait Vinify</span> <span class="small">à partir de demain midi</span><br>
+                            <i ng-if="delivery.mode === 'Vinify' " class="icon icon-dot-circled"></i>
+                            <i ng-if="delivery.mode != 'Vinify' " class="icon icon-circle-empty"></i>
+                             <span class="strong">Retrait Vinify</span> <span class="small">à partir de demain midi</span><br>
                              <small class="indent">135 rue jean jacques rousseau, 92130 Issy</small>
                           </p></td>
                         </tr>
-                        <tr class="border-top">
-                          <td colspan="2"><p class="margin-top">
-                             <span class="p-highlight">Livraison Express Paris</span> (Nouveau !)<br>
-                             <small>Je reçois mon bar chez moi <span class="p-highlight">{{beforeNoon()}},</span></small>
+<!--                         <tr ng-click="chooseExpress(delivery.mode)">
+                          <td colspan="2"><p>
+                            <i ng-if="isExpress(delivery.mode)" class="icon icon-dot-circled"></i>
+                            <i ng-if="!isExpress(delivery.mode)" class="icon icon-circle-empty"></i>
+                             <span class="strong">Livraison Express Paris</span><br>
+                             <small class="indent">Je reçois mon bar <span class="p-highlight"> chez moi {{beforeNoon()}},</span></small>
                           </p></td>
                         </tr>
                         <tr>
-                          <td ng-click="updateOrder(4)"><p>
-                            <i ng-if="delivery.mode === 'express_1' " class="icon icon-dot-circled u-color-brand"></i>
-                            <i ng-if="delivery.mode != 'express_1' " class="icon icon-circle-empty u-color-brand"></i>
-                             <small>16h30 - 18h</small>
+                          <td ng-click="updateOrder(4)"><p class="indent">
+                             <small class="schedule" ng-class="{'selected-schedule': delivery.mode === 'express_1'} ">16h30 - 18h</small>
                           </p></td>
-                          <td ng-click="updateOrder(5)"><p>
-                            <i ng-if="delivery.mode === 'express_2' " class="icon icon-dot-circled u-color-brand"></i>
-                            <i ng-if="delivery.mode != 'express_2' " class="icon icon-circle-empty u-color-brand"></i>
-                            <small>19h00 - 21h30</small>
+                          <td ng-click="updateOrder(5)"><p class="indent">
+                            <small class="schedule" ng-class="{'selected-schedule': delivery.mode === 'express_2'} ">19h00 - 21h30</small>
                           </p></td>
-                        </tr>
+                        </tr> -->
                     </table>
                   </div>
                   <hr class="visible-sm visible-xs">
-                  <div class="col-lg-2 col-md-2 col-sm-12">
+                  <div class="col-lg-4 col-md-4 col-sm-12">
                        <h4 class="centered">Commande</h4>
                        <hr>
                       <table class="table-bill">
@@ -111,8 +111,8 @@
                   <hr>
               </div>
               <div class="row centered">
-                <div class="col-lg-12">
-                  <hr>
+                <div class="col-lg-4 pull-right">
+                  <button class="btn-block-primary margin-top" ng-hide="validate || (delivery.mode === 'Point Relais' && !selected.shop)" ng-click="validate = true">Valider</button>
                 </div>
               </div>
 
@@ -121,12 +121,12 @@
               <div id="mondialrelay-widget">
                   <div id="Zone_Widget"></div>
                   <input type="text" id="Retour_Widget" style="display:none" class=""/>
-                  <button class="btn-square-o" class="centered" ng-click="validateShop()">Valider</button>
+                  <div class="col-lg-3 pull-right"><button class="btn-block-primary" class="centered" ng-click="validateShop()">OK</button></div>
               </div>
             </div>
 
             <!-- Paiement -->
-            <div ng-hide="delivery.mode === 'Point Relais' && !selected.shop" class="row">
+            <div ng-if="validate" class="row">
              <form name="stripe-form" id="stripe-form" stripe-form="submit">
              <h4 class="centered">Vos coordonnées de paiement</h4>
                <div class="row item">

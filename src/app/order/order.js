@@ -116,6 +116,7 @@ angular.module('vinibar.order', [
 
     if (form.$invalid) { // form is NOT valid
       $rootScope.loading = false;
+      $scope.submitted = true;
       toaster.pop('info', 'Oops', 'un ou plusieurs champs sont incomplets ou erronés.');
     } else { // form is valid
       $rootScope.loading = true;

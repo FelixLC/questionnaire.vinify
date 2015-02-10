@@ -1397,7 +1397,10 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "            <div id=\"sex-first-name\" class=\"form-group\">\n" +
     "              <div>\n" +
     "                <label for=\"sex\">Civilité</label>\n" +
-    "                <select class=\"form-control\" ng-model=\"client.userinfos.sex\" name=\"sex\" required>\n" +
+    "                <select class=\"form-control\" ng-model=\"client.userinfos.sex\"\n" +
+    "                  name=\"sex\"\n" +
+    "                  required\n" +
+    "                  ng-class=\"{'input-error' : submitted && form_commander.sex.$invalid}\">\n" +
     "                  <option value=\"M\">M.</option>\n" +
     "                  <option value=\"F\">Mme</option>\n" +
     "                </select>\n" +
@@ -1409,6 +1412,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                  name=\"first_name\"\n" +
     "                  ng-model=\"client.userinfos.first_name\"\n" +
     "                  required\n" +
+    "                  ng-class=\"{'input-error' : submitted && form_commander.first_name.$invalid}\"\n" +
     "                  class=\"form-control\"\n" +
     "                  id=\"first_name\"/>\n" +
     "              </div>\n" +
@@ -1421,6 +1425,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                name=\"last_name\"\n" +
     "                ng-model=\"client.userinfos.last_name\"\n" +
     "                required\n" +
+    "                ng-class=\"{'input-error' : submitted && form_commander.last_name.$invalid}\"\n" +
     "                class=\"form-control\"\n" +
     "                id=\"last_name\"/>\n" +
     "            </div>\n" +
@@ -1432,6 +1437,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                name=\"phone\"\n" +
     "                ng-model=\"client.userinfos.phone\"\n" +
     "                required\n" +
+    "                ng-class=\"{'input-error' : submitted && form_commander.phone.$invalid}\"\n" +
     "                class=\"form-control\"\n" +
     "                id=\"phone\"/>\n" +
     "            </div>\n" +
@@ -1440,139 +1446,142 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "\n" +
     "            <div class=\"birthdate form-group\">\n" +
     "              <div class=\"\">\n" +
-    "                <select class=\"form-control\" ng-model=\"b.birthday\" name=\"birthday\" required>\n" +
-    "                <option value=\"\">JJ</option>\n" +
-    "                <option value=\"1\">1</option>\n" +
-    "                <option value=\"2\">2</option>\n" +
-    "                <option value=\"3\">3</option>\n" +
-    "                <option value=\"4\">4</option>\n" +
-    "                <option value=\"5\">5</option>\n" +
-    "                <option value=\"6\">6</option>\n" +
-    "                <option value=\"7\">7</option>\n" +
-    "                <option value=\"8\">8</option>\n" +
-    "                <option value=\"9\">9</option>\n" +
-    "                <option value=\"10\">10</option>\n" +
-    "                <option value=\"11\">11</option>\n" +
-    "                <option value=\"12\">12</option>\n" +
-    "                <option value=\"13\">13</option>\n" +
-    "                <option value=\"14\">14</option>\n" +
-    "                <option value=\"15\">15</option>\n" +
-    "                <option value=\"16\">16</option>\n" +
-    "                <option value=\"17\">17</option>\n" +
-    "                <option value=\"18\">18</option>\n" +
-    "                <option value=\"19\">19</option>\n" +
-    "                <option value=\"20\">20</option>\n" +
-    "                <option value=\"21\">21</option>\n" +
-    "                <option value=\"22\">22</option>\n" +
-    "                <option value=\"23\">23</option>\n" +
-    "                <option value=\"24\">24</option>\n" +
-    "                <option value=\"25\">25</option>\n" +
-    "                <option value=\"26\">26</option>\n" +
-    "                <option value=\"27\">27</option>\n" +
-    "                <option value=\"28\">28</option>\n" +
-    "                <option value=\"29\">29</option>\n" +
-    "                <option value=\"30\">30</option>\n" +
-    "                <option value=\"31\">31</option>\n" +
+    "                <select class=\"form-control\" ng-model=\"b.birthday\" name=\"birthday\" required\n" +
+    "                  ng-class=\"{'input-error' : submitted && form_commander.birthday.$invalid}\">\n" +
+    "                  <option value=\"\">JJ</option>\n" +
+    "                  <option value=\"1\">1</option>\n" +
+    "                  <option value=\"2\">2</option>\n" +
+    "                  <option value=\"3\">3</option>\n" +
+    "                  <option value=\"4\">4</option>\n" +
+    "                  <option value=\"5\">5</option>\n" +
+    "                  <option value=\"6\">6</option>\n" +
+    "                  <option value=\"7\">7</option>\n" +
+    "                  <option value=\"8\">8</option>\n" +
+    "                  <option value=\"9\">9</option>\n" +
+    "                  <option value=\"10\">10</option>\n" +
+    "                  <option value=\"11\">11</option>\n" +
+    "                  <option value=\"12\">12</option>\n" +
+    "                  <option value=\"13\">13</option>\n" +
+    "                  <option value=\"14\">14</option>\n" +
+    "                  <option value=\"15\">15</option>\n" +
+    "                  <option value=\"16\">16</option>\n" +
+    "                  <option value=\"17\">17</option>\n" +
+    "                  <option value=\"18\">18</option>\n" +
+    "                  <option value=\"19\">19</option>\n" +
+    "                  <option value=\"20\">20</option>\n" +
+    "                  <option value=\"21\">21</option>\n" +
+    "                  <option value=\"22\">22</option>\n" +
+    "                  <option value=\"23\">23</option>\n" +
+    "                  <option value=\"24\">24</option>\n" +
+    "                  <option value=\"25\">25</option>\n" +
+    "                  <option value=\"26\">26</option>\n" +
+    "                  <option value=\"27\">27</option>\n" +
+    "                  <option value=\"28\">28</option>\n" +
+    "                  <option value=\"29\">29</option>\n" +
+    "                  <option value=\"30\">30</option>\n" +
+    "                  <option value=\"31\">31</option>\n" +
     "                </select>\n" +
     "              </div>\n" +
     "              <div class=\"\">\n" +
-    "                <select class=\"form-control\" ng-model=\"b.birthmonth\" name=\"birthmonth\" required>\n" +
-    "                <option value=\"\">MM</option>\n" +
-    "                <option value=\"1\">Janvier</option>\n" +
-    "                <option value=\"2\">Février</option>\n" +
-    "                <option value=\"3\">Mars</option>\n" +
-    "                <option value=\"4\">Avril</option>\n" +
-    "                <option value=\"5\">Mai</option>\n" +
-    "                <option value=\"6\">Juin</option>\n" +
-    "                <option value=\"7\">Juillet</option>\n" +
-    "                <option value=\"8\">Aout</option>\n" +
-    "                <option value=\"9\">Septembre</option>\n" +
-    "                <option value=\"10\">Octobre</option>\n" +
-    "                <option value=\"11\">Novembre</option>\n" +
-    "                <option value=\"12\">Décembre</option>\n" +
+    "                <select class=\"form-control\" ng-model=\"b.birthmonth\" name=\"birthmonth\" required\n" +
+    "                ng-class=\"{'input-error' : submitted && form_commander.birthmonth.$invalid}\">\n" +
+    "                  <option value=\"\">MM</option>\n" +
+    "                  <option value=\"1\">Janvier</option>\n" +
+    "                  <option value=\"2\">Février</option>\n" +
+    "                  <option value=\"3\">Mars</option>\n" +
+    "                  <option value=\"4\">Avril</option>\n" +
+    "                  <option value=\"5\">Mai</option>\n" +
+    "                  <option value=\"6\">Juin</option>\n" +
+    "                  <option value=\"7\">Juillet</option>\n" +
+    "                  <option value=\"8\">Aout</option>\n" +
+    "                  <option value=\"9\">Septembre</option>\n" +
+    "                  <option value=\"10\">Octobre</option>\n" +
+    "                  <option value=\"11\">Novembre</option>\n" +
+    "                  <option value=\"12\">Décembre</option>\n" +
     "                </select>\n" +
     "              </div>\n" +
     "              <div class=\"\">\n" +
-    "                <select class=\"form-control\" ng-model=\"b.birthyear\" name=\"birthmonth\" required>\n" +
-    "                <option value=\"\">AAAA</option>\n" +
-    "                <option value=\"1997\">1997</option>\n" +
-    "                <option value=\"1996\">1996</option>\n" +
-    "                <option value=\"1995\">1995</option>\n" +
-    "                <option value=\"1994\">1994</option>\n" +
-    "                <option value=\"1993\">1993</option>\n" +
-    "                <option value=\"1992\">1992</option>\n" +
-    "                <option value=\"1991\">1991</option>\n" +
-    "                <option value=\"1990\">1990</option>\n" +
-    "                <option value=\"1989\">1989</option>\n" +
-    "                <option value=\"1988\">1988</option>\n" +
-    "                <option value=\"1987\">1987</option>\n" +
-    "                <option value=\"1986\">1986</option>\n" +
-    "                <option value=\"1985\">1985</option>\n" +
-    "                <option value=\"1984\">1984</option>\n" +
-    "                <option value=\"1983\">1983</option>\n" +
-    "                <option value=\"1982\">1982</option>\n" +
-    "                <option value=\"1981\">1981</option>\n" +
-    "                <option value=\"1980\">1980</option>\n" +
-    "                <option value=\"1979\">1979</option>\n" +
-    "                <option value=\"1978\">1978</option>\n" +
-    "                <option value=\"1977\">1977</option>\n" +
-    "                <option value=\"1976\">1976</option>\n" +
-    "                <option value=\"1975\">1975</option>\n" +
-    "                <option value=\"1974\">1974</option>\n" +
-    "                <option value=\"1973\">1973</option>\n" +
-    "                <option value=\"1972\">1972</option>\n" +
-    "                <option value=\"1971\">1971</option>\n" +
-    "                <option value=\"1970\">1970</option>\n" +
-    "                <option value=\"1969\">1969</option>\n" +
-    "                <option value=\"1968\">1968</option>\n" +
-    "                <option value=\"1967\">1967</option>\n" +
-    "                <option value=\"1966\">1966</option>\n" +
-    "                <option value=\"1965\">1965</option>\n" +
-    "                <option value=\"1964\">1964</option>\n" +
-    "                <option value=\"1963\">1963</option>\n" +
-    "                <option value=\"1962\">1962</option>\n" +
-    "                <option value=\"1961\">1961</option>\n" +
-    "                <option value=\"1960\">1960</option>\n" +
-    "                <option value=\"1959\">1959</option>\n" +
-    "                <option value=\"1958\">1958</option>\n" +
-    "                <option value=\"1957\">1957</option>\n" +
-    "                <option value=\"1956\">1956</option>\n" +
-    "                <option value=\"1955\">1955</option>\n" +
-    "                <option value=\"1954\">1954</option>\n" +
-    "                <option value=\"1953\">1953</option>\n" +
-    "                <option value=\"1952\">1952</option>\n" +
-    "                <option value=\"1951\">1951</option>\n" +
-    "                <option value=\"1950\">1950</option>\n" +
-    "                <option value=\"1949\">1949</option>\n" +
-    "                <option value=\"1948\">1948</option>\n" +
-    "                <option value=\"1947\">1947</option>\n" +
-    "                <option value=\"1946\">1946</option>\n" +
-    "                <option value=\"1945\">1945</option>\n" +
-    "                <option value=\"1944\">1944</option>\n" +
-    "                <option value=\"1943\">1943</option>\n" +
-    "                <option value=\"1942\">1942</option>\n" +
-    "                <option value=\"1941\">1941</option>\n" +
-    "                <option value=\"1940\">1940</option>\n" +
-    "                <option value=\"1939\">1939</option>\n" +
-    "                <option value=\"1938\">1938</option>\n" +
-    "                <option value=\"1937\">1937</option>\n" +
-    "                <option value=\"1936\">1936</option>\n" +
-    "                <option value=\"1935\">1935</option>\n" +
-    "                <option value=\"1934\">1934</option>\n" +
-    "                <option value=\"1933\">1933</option>\n" +
-    "                <option value=\"1932\">1932</option>\n" +
-    "                <option value=\"1931\">1931</option>\n" +
-    "                <option value=\"1930\">1930</option>\n" +
-    "                <option value=\"1929\">1929</option>\n" +
-    "                <option value=\"1928\">1928</option>\n" +
-    "                <option value=\"1927\">1927</option>\n" +
-    "                <option value=\"1926\">1926</option>\n" +
-    "                <option value=\"1925\">1925</option>\n" +
-    "                <option value=\"1924\">1924</option>\n" +
-    "                <option value=\"1923\">1923</option>\n" +
-    "                <option value=\"1922\">1922</option>\n" +
-    "                <option value=\"1921\">1921</option>\n" +
-    "                <option value=\"1920\">1920</option>\n" +
+    "                <select class=\"form-control\" ng-model=\"b.birthyear\" name=\"birthyear\" required\n" +
+    "                  ng-class=\"{'input-error' : submitted && form_commander.birthyear.$invalid}\">\n" +
+    "                  <option value=\"\">AAAA</option>\n" +
+    "                  <option value=\"1997\">1997</option>\n" +
+    "                  <option value=\"1996\">1996</option>\n" +
+    "                  <option value=\"1995\">1995</option>\n" +
+    "                  <option value=\"1994\">1994</option>\n" +
+    "                  <option value=\"1993\">1993</option>\n" +
+    "                  <option value=\"1992\">1992</option>\n" +
+    "                  <option value=\"1991\">1991</option>\n" +
+    "                  <option value=\"1990\">1990</option>\n" +
+    "                  <option value=\"1989\">1989</option>\n" +
+    "                  <option value=\"1988\">1988</option>\n" +
+    "                  <option value=\"1987\">1987</option>\n" +
+    "                  <option value=\"1986\">1986</option>\n" +
+    "                  <option value=\"1985\">1985</option>\n" +
+    "                  <option value=\"1984\">1984</option>\n" +
+    "                  <option value=\"1983\">1983</option>\n" +
+    "                  <option value=\"1982\">1982</option>\n" +
+    "                  <option value=\"1981\">1981</option>\n" +
+    "                  <option value=\"1980\">1980</option>\n" +
+    "                  <option value=\"1979\">1979</option>\n" +
+    "                  <option value=\"1978\">1978</option>\n" +
+    "                  <option value=\"1977\">1977</option>\n" +
+    "                  <option value=\"1976\">1976</option>\n" +
+    "                  <option value=\"1975\">1975</option>\n" +
+    "                  <option value=\"1974\">1974</option>\n" +
+    "                  <option value=\"1973\">1973</option>\n" +
+    "                  <option value=\"1972\">1972</option>\n" +
+    "                  <option value=\"1971\">1971</option>\n" +
+    "                  <option value=\"1970\">1970</option>\n" +
+    "                  <option value=\"1969\">1969</option>\n" +
+    "                  <option value=\"1968\">1968</option>\n" +
+    "                  <option value=\"1967\">1967</option>\n" +
+    "                  <option value=\"1966\">1966</option>\n" +
+    "                  <option value=\"1965\">1965</option>\n" +
+    "                  <option value=\"1964\">1964</option>\n" +
+    "                  <option value=\"1963\">1963</option>\n" +
+    "                  <option value=\"1962\">1962</option>\n" +
+    "                  <option value=\"1961\">1961</option>\n" +
+    "                  <option value=\"1960\">1960</option>\n" +
+    "                  <option value=\"1959\">1959</option>\n" +
+    "                  <option value=\"1958\">1958</option>\n" +
+    "                  <option value=\"1957\">1957</option>\n" +
+    "                  <option value=\"1956\">1956</option>\n" +
+    "                  <option value=\"1955\">1955</option>\n" +
+    "                  <option value=\"1954\">1954</option>\n" +
+    "                  <option value=\"1953\">1953</option>\n" +
+    "                  <option value=\"1952\">1952</option>\n" +
+    "                  <option value=\"1951\">1951</option>\n" +
+    "                  <option value=\"1950\">1950</option>\n" +
+    "                  <option value=\"1949\">1949</option>\n" +
+    "                  <option value=\"1948\">1948</option>\n" +
+    "                  <option value=\"1947\">1947</option>\n" +
+    "                  <option value=\"1946\">1946</option>\n" +
+    "                  <option value=\"1945\">1945</option>\n" +
+    "                  <option value=\"1944\">1944</option>\n" +
+    "                  <option value=\"1943\">1943</option>\n" +
+    "                  <option value=\"1942\">1942</option>\n" +
+    "                  <option value=\"1941\">1941</option>\n" +
+    "                  <option value=\"1940\">1940</option>\n" +
+    "                  <option value=\"1939\">1939</option>\n" +
+    "                  <option value=\"1938\">1938</option>\n" +
+    "                  <option value=\"1937\">1937</option>\n" +
+    "                  <option value=\"1936\">1936</option>\n" +
+    "                  <option value=\"1935\">1935</option>\n" +
+    "                  <option value=\"1934\">1934</option>\n" +
+    "                  <option value=\"1933\">1933</option>\n" +
+    "                  <option value=\"1932\">1932</option>\n" +
+    "                  <option value=\"1931\">1931</option>\n" +
+    "                  <option value=\"1930\">1930</option>\n" +
+    "                  <option value=\"1929\">1929</option>\n" +
+    "                  <option value=\"1928\">1928</option>\n" +
+    "                  <option value=\"1927\">1927</option>\n" +
+    "                  <option value=\"1926\">1926</option>\n" +
+    "                  <option value=\"1925\">1925</option>\n" +
+    "                  <option value=\"1924\">1924</option>\n" +
+    "                  <option value=\"1923\">1923</option>\n" +
+    "                  <option value=\"1922\">1922</option>\n" +
+    "                  <option value=\"1921\">1921</option>\n" +
+    "                  <option value=\"1920\">1920</option>\n" +
     "                </select>\n" +
     "              </div>\n" +
     "            </div>\n" +
@@ -1603,7 +1612,9 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                  ng-model=\"client.userinfos.delivery_address.street\"\n" +
     "                  placeholder=\"Rue\"\n" +
     "                  class=\"form-control\"\n" +
+    "                  name=\"street\"\n" +
     "                  required\n" +
+    "                  ng-class=\"{'input-error' : submitted && form_commander.street.$invalid}\"\n" +
     "                  id=\"delivery_address.street_2\"/>\n" +
     "              </div>\n" +
     "              <div class=\"form-group\">\n" +
@@ -1622,6 +1633,8 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                  placeholder=\"Code Postal\"\n" +
     "                  class=\"form-control\"\n" +
     "                  required\n" +
+    "                  name=\"zipcode\"\n" +
+    "                  ng-class=\"{'input-error' : submitted && form_commander.zipcode.$invalid}\"\n" +
     "                  id=\"delivery_address.zipcode\"/>\n" +
     "              </div>\n" +
     "              <div class=\"u-w50 inline-right form-group\">\n" +
@@ -1631,7 +1644,9 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                  ng-model=\"client.userinfos.delivery_address.city\"\n" +
     "                  placeholder=\"Ville\"\n" +
     "                  class=\"form-control\"\n" +
+    "                  name=\"city\"\n" +
     "                  required\n" +
+    "                  ng-class=\"{'input-error' : submitted && form_commander.city.$invalid}\"\n" +
     "                  id=\"delivery_address.city\"/>\n" +
     "              </div>\n" +
     "\n" +
@@ -1878,14 +1893,14 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "    </div>\n" +
     "  </nav>\n" +
     "  <div class=\"container-delivery-checkout-less\">\n" +
-    "      <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
+    "    <toaster-container toaster-options=\"{'time-out': 4000, 'position-class': 'toast-top-right'}\"></toaster-container>\n" +
     "    <h3 class=\"centered\">Merci de vérifier vos informations</h3>\n" +
     "    <div class=\"col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 form-infos u-padding\">\n" +
     "      <div class=\"main-container\">\n" +
     "        <div class=\"row row-paiement\">\n" +
     "            <div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
-    "              <div class=\"row\">\n" +
-    "                  <div class=\"col-lg-3 col-md-3 col-sm-12 centered\">\n" +
+    "              <div ng-if=\"!validate\" class=\"row\">\n" +
+    "                  <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
     "                    <h4>Adresse de Livraison</h4>\n" +
     "                    <hr>\n" +
     "                    <p class=\"\">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>\n" +
@@ -1903,48 +1918,48 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                    <table class=\"table-deliv-mode\">\n" +
     "                        <tr ng-click=\"updateOrder(1)\">\n" +
     "                          <td colspan=\"2\"><p>\n" +
-    "                            <i ng-if=\"delivery.mode === 'Point Relais' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
-    "                            <i ng-if=\"delivery.mode != 'Point Relais' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
-    "                             <span class=\"p-highlight\">Point Relais</span> ~ 3 - 4j\n" +
+    "                            <i ng-if=\"delivery.mode === 'Point Relais' \" class=\"icon icon-dot-circled\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'Point Relais' \" class=\"icon icon-circle-empty\"></i>\n" +
+    "                             <span class=\"strong\">Point Relais</span><br>\n" +
+    "                              <small class=\"indent\">Livraison en 3 - 4j ouvrés</small>\n" +
     "                          </p></td>\n" +
     "                        </tr>\n" +
     "                        <tr ng-click=\"updateOrder(2)\">\n" +
     "                          <td colspan=\"2\"><p>\n" +
-    "                            <i ng-if=\"delivery.mode === 'Colissimo' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
-    "                            <i ng-if=\"delivery.mode != 'Colissimo' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
-    "                             <span class=\"p-highlight\">Colissimo Suivi</span> ~ 2 - 3j\n" +
+    "                            <i ng-if=\"delivery.mode === 'Colissimo' \" class=\"icon icon-dot-circled\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'Colissimo' \" class=\"icon icon-circle-empty\"></i>\n" +
+    "                             <span class=\"strong\">Colissimo Suivi</span><br>\n" +
+    "                              <small class=\"indent\">Livraison en 2 - 3j ouvrés</small>\n" +
     "                          </p></td>\n" +
     "                        </tr>\n" +
     "                        <tr ng-click=\"updateOrder(3)\">\n" +
     "                          <td colspan=\"2\"><p>\n" +
-    "                            <i ng-if=\"delivery.mode === 'Vinify' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
-    "                            <i ng-if=\"delivery.mode != 'Vinify' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
-    "                             <span class=\"p-highlight\">Retrait Vinify</span> <span class=\"small\">à partir de demain midi</span><br>\n" +
+    "                            <i ng-if=\"delivery.mode === 'Vinify' \" class=\"icon icon-dot-circled\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'Vinify' \" class=\"icon icon-circle-empty\"></i>\n" +
+    "                             <span class=\"strong\">Retrait Vinify</span> <span class=\"small\">à partir de demain midi</span><br>\n" +
     "                             <small class=\"indent\">135 rue jean jacques rousseau, 92130 Issy</small>\n" +
     "                          </p></td>\n" +
     "                        </tr>\n" +
-    "                        <tr class=\"border-top\">\n" +
-    "                          <td colspan=\"2\"><p class=\"margin-top\">\n" +
-    "                             <span class=\"p-highlight\">Livraison Express Paris</span> (Nouveau !)<br>\n" +
-    "                             <small>Je reçois mon bar chez moi <span class=\"p-highlight\">{{beforeNoon()}},</span></small>\n" +
+    "<!--                         <tr ng-click=\"chooseExpress(delivery.mode)\">\n" +
+    "                          <td colspan=\"2\"><p>\n" +
+    "                            <i ng-if=\"isExpress(delivery.mode)\" class=\"icon icon-dot-circled\"></i>\n" +
+    "                            <i ng-if=\"!isExpress(delivery.mode)\" class=\"icon icon-circle-empty\"></i>\n" +
+    "                             <span class=\"strong\">Livraison Express Paris</span><br>\n" +
+    "                             <small class=\"indent\">Je reçois mon bar <span class=\"p-highlight\"> chez moi {{beforeNoon()}},</span></small>\n" +
     "                          </p></td>\n" +
     "                        </tr>\n" +
     "                        <tr>\n" +
-    "                          <td ng-click=\"updateOrder(4)\"><p>\n" +
-    "                            <i ng-if=\"delivery.mode === 'express_1' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
-    "                            <i ng-if=\"delivery.mode != 'express_1' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
-    "                             <small>16h30 - 18h</small>\n" +
+    "                          <td ng-click=\"updateOrder(4)\"><p class=\"indent\">\n" +
+    "                             <small class=\"schedule\" ng-class=\"{'selected-schedule': delivery.mode === 'express_1'} \">16h30 - 18h</small>\n" +
     "                          </p></td>\n" +
-    "                          <td ng-click=\"updateOrder(5)\"><p>\n" +
-    "                            <i ng-if=\"delivery.mode === 'express_2' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
-    "                            <i ng-if=\"delivery.mode != 'express_2' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
-    "                            <small>19h00 - 21h30</small>\n" +
+    "                          <td ng-click=\"updateOrder(5)\"><p class=\"indent\">\n" +
+    "                            <small class=\"schedule\" ng-class=\"{'selected-schedule': delivery.mode === 'express_2'} \">19h00 - 21h30</small>\n" +
     "                          </p></td>\n" +
-    "                        </tr>\n" +
+    "                        </tr> -->\n" +
     "                    </table>\n" +
     "                  </div>\n" +
     "                  <hr class=\"visible-sm visible-xs\">\n" +
-    "                  <div class=\"col-lg-2 col-md-2 col-sm-12\">\n" +
+    "                  <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
     "                       <h4 class=\"centered\">Commande</h4>\n" +
     "                       <hr>\n" +
     "                      <table class=\"table-bill\">\n" +
@@ -1973,8 +1988,8 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                  <hr>\n" +
     "              </div>\n" +
     "              <div class=\"row centered\">\n" +
-    "                <div class=\"col-lg-12\">\n" +
-    "                  <hr>\n" +
+    "                <div class=\"col-lg-4 pull-right\">\n" +
+    "                  <button class=\"btn-block-primary margin-top\" ng-hide=\"validate || (delivery.mode === 'Point Relais' && !selected.shop)\" ng-click=\"validate = true\">Valider</button>\n" +
     "                </div>\n" +
     "              </div>\n" +
     "\n" +
@@ -1983,12 +1998,12 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "              <div id=\"mondialrelay-widget\">\n" +
     "                  <div id=\"Zone_Widget\"></div>\n" +
     "                  <input type=\"text\" id=\"Retour_Widget\" style=\"display:none\" class=\"\"/>\n" +
-    "                  <button class=\"btn-square-o\" class=\"centered\" ng-click=\"validateShop()\">Valider</button>\n" +
+    "                  <div class=\"col-lg-3 pull-right\"><button class=\"btn-block-primary\" class=\"centered\" ng-click=\"validateShop()\">OK</button></div>\n" +
     "              </div>\n" +
     "            </div>\n" +
     "\n" +
     "            <!-- Paiement -->\n" +
-    "            <div ng-hide=\"delivery.mode === 'Point Relais' && !selected.shop\" class=\"row\">\n" +
+    "            <div ng-if=\"validate\" class=\"row\">\n" +
     "             <form name=\"stripe-form\" id=\"stripe-form\" stripe-form=\"submit\">\n" +
     "             <h4 class=\"centered\">Vos coordonnées de paiement</h4>\n" +
     "               <div class=\"row item\">\n" +
