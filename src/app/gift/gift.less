@@ -1,5 +1,5 @@
 #gift {
-  background-color: @background-color;
+  // background-color: @background-color;
   position: absolute;
   top: @navheight;
   padding: @navheight/4 0;
@@ -78,7 +78,9 @@
   padding-right: @navheight;
   padding-left: @navheight;
 }
-
+.col-fade * {
+  opacity: 0.5;
+}
 #gift .gift-header {
   text-align: center;
 }
@@ -188,6 +190,22 @@
 /*
 ** FORMULE
 */
+#gift .col-radio.checked::before {
+        position:absolute;
+        left: -5px;
+        font-family: "fontello";
+        font-size: 14px;
+        content: "\e808";
+        color: @brand-color;
+}
+#gift .col-radio::before {
+        position:absolute;
+        left: -5px;
+        font-family: "fontello";
+        font-size: 14px;
+        content: "\e809";
+        color: @brand-color;
+}
 #gift .col-container {
   background-color: @background-color;
 }

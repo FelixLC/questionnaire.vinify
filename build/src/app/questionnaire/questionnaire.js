@@ -256,7 +256,8 @@ angular.module('vinibar.questionnaire', [
                 },
                 function (response) {
                   $rootScope.loading = false;
-                  toaster.pop('info', 'Oops, il y a eu une erreur de connexion');
+                  $state.go('remerciement_fail');
+                  // toaster.pop('info', 'Oops, il y a eu une erreur de connexion');
                 });
             }
           })

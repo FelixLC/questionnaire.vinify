@@ -3,18 +3,17 @@
 </div>
 <div class="row container-fluid">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Choix de la formule</h2>
-      <div ng-click="initVB()" ng-class="{checked: gift.order.gift_type === 'Vinibar' }"
-                class="col-container">
-        <h3>Vinibar</h3>
+      <h2 class="col-title">1/ Choix de la formule</h2>
+      <div ng-click="initVB()" ng-class="{checked: gift.order.gift_type === 'Vinibar' }" class="col-container col-radio">
+        <h3><i class="fa fa-dot-circle-o"></i> Vinibar</h3>
         <!-- <p class="help">(quiz Vinify sur ses goûts à l'étape suivante)</p> -->
       </div>
       <div ng-click="initCard()" ng-class="{checked: gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' }"
-                class="col-container">
-        <h3>Carte Cadeau</h3>
+                class="col-container col-radio">
+        <h3><i class="fa fa-dot-circle-o"></i> Carte Cadeau</h3>
         <!-- <p class="help">(L'heureux élu remplira lui même ses goûts)</p> -->
       </div>
-      <p ng-show="gift.order.gift_type === 'Vinibar' " class="details-helper">
+      <p ng-if="gift.order.gift_type === 'Vinibar' " class="details-helper">
         Je connais ses goûts, et je remplis
           <a href=""
               popover-title="Que faut-il savoir ?"
@@ -22,18 +21,18 @@
               popover-trigger="mouseenter"
               popover-placement="bottom">le questionnaire Vinify à sa place (<i class="fa icon-info-circle">)</i></a>, pour qu'il ou elle reçoive directement le bar personnalisé.
       </p>
-      <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' " class="details-helper">
+      <p ng-if="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' " class="details-helper">
         Je ne connais pas ses goûts, il ou elle démarrera l'aventure avec le questionnaire Vinify quand j'offrirai le cadeau.
       </p>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Ajout de crédits</h2>
+      <h2 class="col-title">2/ Ajout de crédits</h2>
       <div class="col-container">
         <div class="gift-checkbox" ng-click="details.credits = !details.credits "
                   ng-class="{'quiz-check-on': details.credits, 'quiz-check-off': !details.credits}">
           <p>Ajoutez des crédits pour recharger son vinibar</p>
         </div>
-        <div ng-show="details.credits" class="col-container-price-level">
+        <div ng-if="details.credits" class="col-container-price-level">
           <div ng-class="{checked: gift.order.credits === 40 }"
                     class="no-border"
                     ng-click="gift.order.credits = 40 ">
@@ -49,15 +48,15 @@
             <p>100 €<p>
           </div>
         </div>
-        <div ng-show="details.credits" class="free-amount">
+        <div ng-if="details.credits" class="free-amount">
           <div><p class="col-subtitle">Ou rentrez montant de votre choix</p></div>
           <div><input type="number" class="form-control" ng-model="gift.order.credits"> <p>€</p></div>
         </div>
       </div>
     </div>
-    <div ng-show="gift.order.gift_type === 'Vinibar' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Choix de Livraison</h2>
-      <div class="col-container"
+    <div ng-if="gift.order.gift_type === 'Vinibar' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <h2 class="col-title">3/ Choix de Livraison</h2>
+      <div class="col-container col-radio"
           ng-class="{checked: gift.order.delivery_mode === 'Vinify' }"
           ng-click="gift.order.delivery_mode ='Vinify'">
         <h3>Retrait Vinify <span class="small">issy (92)</span></h3>
@@ -77,7 +76,7 @@
         <h3>Point Relais</h3>
         <p class="price">{{costs['vinibar']['Point Relais'] }} € </p>
       </div> -->
-      <div class="col-container"
+      <div class="col-container col-radio"
           ng-class="{checked: gift.order.delivery_mode === 'Colissimo' }"
           ng-click="gift.order.delivery_mode =  'Colissimo'">
         <h3>Colissimo Suivi</h3>
@@ -86,13 +85,13 @@
       </div>
     </div>
     <div ng-hide="gift.order.gift_type === 'Vinibar' " class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <h2 class="col-title">Envoi de la carte</h2>
-      <div class="col-container"
+      <h2 class="col-title">3/ Envoi de la carte</h2>
+      <div class="col-container col-radio"
           ng-class="{checked: gift.order.gift_type === 'Print' }"
           ng-click="gift.order.gift_type = 'Print'">
         <h3>Bon à imprimer <span class="small">après paiement</span></h3>
       </div>
-      <div class="col-container"
+      <div class="col-container col-radio"
           ng-class="{checked: gift.order.gift_type === 'Email' }"
           ng-click="gift.order.gift_type = 'Email' ">
         <h3>Par Email <span class="small">au receveur, le :</span></h3>
@@ -159,7 +158,7 @@
           </div>
         </div>
       </div>
-      <div class="col-container"
+      <div class="col-container col-radio"
           ng-class="{checked: gift.order.gift_type === 'Card' }"
           ng-click="gift.order.gift_type = 'Card' ">
         <h3>Par la poste <span class="small">+ 5 €</span></h3>
@@ -175,15 +174,15 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
       <div class="col-container">
         <p class="col-subtitle">Prix du bar</p>
-        <p ng-show="gift.order.gift_type === 'Vinibar' " class="centered">69.00 €</p>
-        <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' " class="centered">80.90 € *</p>
+        <p ng-if="gift.order.gift_type === 'Vinibar' " class="centered">69.00 €</p>
+        <p ng-if="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' " class="centered">80.90 € *</p>
       </div>
       <div>
-              <p ng-show="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'" class="help centered">* le prix comprend la livraison <br> à domicile en France métropolitaine</p>
+              <p ng-if="gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'" class="help centered">* le prix comprend la livraison <br> à domicile en France métropolitaine</p>
       </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div class="col-container">
+      <div class="col-container ">
         <p class="col-subtitle">Total de crédits</p>
         <p class="centered">{{gift.order.credits | number:2}} €</p>
       </div>
@@ -208,6 +207,6 @@
         <p>Total de la commande</p>
         <p>{{69 + gift.order.delivery_cost + gift.order.credits - coupon.value | number:2}} €</p>
       </div>
-      <div class="btn-block-primary centered margin-top" ng-class="{'disabled-block': gift.order.coupon && !coupon.isChecked}" ng-click="goTo('gift.vinibar.infos')"><p>Continuer</p></div>
+      <div class="btn-block-primary centered margin-top" ng-class="{'disabled-block': gift.order.coupon && !coupon.isChecked}" ng-click="goTo('gift.vinibar.infos')">Continuer</div>
     </div>
   </div>

@@ -27,6 +27,16 @@ angular.module('vinibar.remerciement', [
       },
       data: { pageTitle: 'remerciement' }
     })
+    .state('remerciement_fail', {
+      url: '/remerciement/questionnaire',
+      views: {
+        main: {
+          controller: 'remerciementSixCtrl',
+          templateUrl: 'remerciement/remerciement.fail.tpl.html'
+        }
+      },
+      data: { pageTitle: 'remerciement' }
+    })
     .state('remerciement_3', {
       url: '/remerciement/3',
       views: {

@@ -25,10 +25,10 @@ angular.module('vinibar.order', [
       url: '/infos',
       templateUrl: 'order/parts/order.userinfos.tpl.html'
     })
-    .state('order.paiement', {
-      url: '/paiement',
-      templateUrl: 'order/parts/order.paiement.tpl.html'
-    })
+    // .state('order.paiement', {
+    //   url: '/paiement',
+    //   templateUrl: 'order/parts/order.paiement.tpl.html'
+    // })
     .state('order.delivery', {
       url: '/delivery',
       templateUrl: 'order/parts/order.delivery.tpl.html'

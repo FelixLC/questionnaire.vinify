@@ -1,4 +1,4 @@
-angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'receive/update.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html', 'wines/wines.tpl.html']);
+angular.module('templates-app', ['contest/congratulation.tpl.html', 'contest/contest.tpl.html', 'gift/address.tpl.html', 'gift/gift.tpl.html', 'gift/gift_card.tpl.html', 'gift/pay.tpl.html', 'gift/vinibar/details.tpl.html', 'gift/vinibar/infos.tpl.html', 'gift/vinibar/quiz.tpl.html', 'mrelay/mrelay.tpl.html', 'order/order.tpl.html', 'order/parts/order.confirmation.tpl.html', 'order/parts/order.delivery.tpl.html', 'order/parts/order.paiement.tpl.html', 'order/parts/order.userinfos.tpl.html', 'paiement/paiement.tpl.html', 'paiement/parts/paiement.confirmation.tpl.html', 'paiement/parts/paiement.login.tpl.html', 'pay_mobile/pay_mobile.tpl.html', 'preview/preview.tpl.html', 'questionnaire/parts/questionnaire.balance.tpl.html', 'questionnaire/parts/questionnaire.coffee.tpl.html', 'questionnaire/parts/questionnaire.comments.tpl.html', 'questionnaire/parts/questionnaire.cuisine.tpl.html', 'questionnaire/parts/questionnaire.discovery.comments.tpl.html', 'questionnaire/parts/questionnaire.juice.tpl.html', 'questionnaire/parts/questionnaire.profile.tpl.html', 'questionnaire/parts/questionnaire.starter.tpl.html', 'questionnaire/parts/questionnaire.winemap.tpl.html', 'questionnaire/questionnaire.tpl.html', 'receive/congratulation.tpl.html', 'receive/receive.tpl.html', 'receive/update.tpl.html', 'remerciement/remerciement.3.tpl.html', 'remerciement/remerciement.6.tpl.html', 'remerciement/remerciement.fail.tpl.html', 'remerciement/remerciement.gift.tpl.html', 'remerciement/remerciement.tpl.html', 'remerciement_mobile/remerciement_mobile.tpl.html', 'remerciement_order/remerciement_order.tpl.html', 'welcome/welcome.tpl.html', 'wines/wines.tpl.html']);
 
 angular.module("contest/congratulation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("contest/congratulation.tpl.html",
@@ -327,18 +327,17 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "</div>\n" +
     "<div class=\"row container-fluid\">\n" +
     "  <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Choix de la formule</h2>\n" +
-    "      <div ng-click=\"initVB()\" ng-class=\"{checked: gift.order.gift_type === 'Vinibar' }\"\n" +
-    "                class=\"col-container\">\n" +
-    "        <h3>Vinibar</h3>\n" +
+    "      <h2 class=\"col-title\">1/ Choix de la formule</h2>\n" +
+    "      <div ng-click=\"initVB()\" ng-class=\"{checked: gift.order.gift_type === 'Vinibar' }\" class=\"col-container col-radio\">\n" +
+    "        <h3><i class=\"fa fa-dot-circle-o\"></i> Vinibar</h3>\n" +
     "        <!-- <p class=\"help\">(quiz Vinify sur ses goûts à l'étape suivante)</p> -->\n" +
     "      </div>\n" +
     "      <div ng-click=\"initCard()\" ng-class=\"{checked: gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' }\"\n" +
-    "                class=\"col-container\">\n" +
-    "        <h3>Carte Cadeau</h3>\n" +
+    "                class=\"col-container col-radio\">\n" +
+    "        <h3><i class=\"fa fa-dot-circle-o\"></i> Carte Cadeau</h3>\n" +
     "        <!-- <p class=\"help\">(L'heureux élu remplira lui même ses goûts)</p> -->\n" +
     "      </div>\n" +
-    "      <p ng-show=\"gift.order.gift_type === 'Vinibar' \" class=\"details-helper\">\n" +
+    "      <p ng-if=\"gift.order.gift_type === 'Vinibar' \" class=\"details-helper\">\n" +
     "        Je connais ses goûts, et je remplis\n" +
     "          <a href=\"\"\n" +
     "              popover-title=\"Que faut-il savoir ?\"\n" +
@@ -346,18 +345,18 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "              popover-trigger=\"mouseenter\"\n" +
     "              popover-placement=\"bottom\">le questionnaire Vinify à sa place (<i class=\"fa icon-info-circle\">)</i></a>, pour qu'il ou elle reçoive directement le bar personnalisé.\n" +
     "      </p>\n" +
-    "      <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"details-helper\">\n" +
+    "      <p ng-if=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"details-helper\">\n" +
     "        Je ne connais pas ses goûts, il ou elle démarrera l'aventure avec le questionnaire Vinify quand j'offrirai le cadeau.\n" +
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Ajout de crédits</h2>\n" +
+    "      <h2 class=\"col-title\">2/ Ajout de crédits</h2>\n" +
     "      <div class=\"col-container\">\n" +
     "        <div class=\"gift-checkbox\" ng-click=\"details.credits = !details.credits \"\n" +
     "                  ng-class=\"{'quiz-check-on': details.credits, 'quiz-check-off': !details.credits}\">\n" +
     "          <p>Ajoutez des crédits pour recharger son vinibar</p>\n" +
     "        </div>\n" +
-    "        <div ng-show=\"details.credits\" class=\"col-container-price-level\">\n" +
+    "        <div ng-if=\"details.credits\" class=\"col-container-price-level\">\n" +
     "          <div ng-class=\"{checked: gift.order.credits === 40 }\"\n" +
     "                    class=\"no-border\"\n" +
     "                    ng-click=\"gift.order.credits = 40 \">\n" +
@@ -373,15 +372,15 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "            <p>100 €<p>\n" +
     "          </div>\n" +
     "        </div>\n" +
-    "        <div ng-show=\"details.credits\" class=\"free-amount\">\n" +
+    "        <div ng-if=\"details.credits\" class=\"free-amount\">\n" +
     "          <div><p class=\"col-subtitle\">Ou rentrez montant de votre choix</p></div>\n" +
     "          <div><input type=\"number\" class=\"form-control\" ng-model=\"gift.order.credits\"> <p>€</p></div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "    <div ng-show=\"gift.order.gift_type === 'Vinibar' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Choix de Livraison</h2>\n" +
-    "      <div class=\"col-container\"\n" +
+    "    <div ng-if=\"gift.order.gift_type === 'Vinibar' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
+    "      <h2 class=\"col-title\">3/ Choix de Livraison</h2>\n" +
+    "      <div class=\"col-container col-radio\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Vinify' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode ='Vinify'\">\n" +
     "        <h3>Retrait Vinify <span class=\"small\">issy (92)</span></h3>\n" +
@@ -401,7 +400,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <h3>Point Relais</h3>\n" +
     "        <p class=\"price\">{{costs['vinibar']['Point Relais'] }} € </p>\n" +
     "      </div> -->\n" +
-    "      <div class=\"col-container\"\n" +
+    "      <div class=\"col-container col-radio\"\n" +
     "          ng-class=\"{checked: gift.order.delivery_mode === 'Colissimo' }\"\n" +
     "          ng-click=\"gift.order.delivery_mode =  'Colissimo'\">\n" +
     "        <h3>Colissimo Suivi</h3>\n" +
@@ -410,13 +409,13 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "      </div>\n" +
     "    </div>\n" +
     "    <div ng-hide=\"gift.order.gift_type === 'Vinibar' \" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <h2 class=\"col-title\">Envoi de la carte</h2>\n" +
-    "      <div class=\"col-container\"\n" +
+    "      <h2 class=\"col-title\">3/ Envoi de la carte</h2>\n" +
+    "      <div class=\"col-container col-radio\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Print' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Print'\">\n" +
     "        <h3>Bon à imprimer <span class=\"small\">après paiement</span></h3>\n" +
     "      </div>\n" +
-    "      <div class=\"col-container\"\n" +
+    "      <div class=\"col-container col-radio\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Email' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Email' \">\n" +
     "        <h3>Par Email <span class=\"small\">au receveur, le :</span></h3>\n" +
@@ -483,7 +482,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "      <div class=\"col-container\"\n" +
+    "      <div class=\"col-container col-radio\"\n" +
     "          ng-class=\"{checked: gift.order.gift_type === 'Card' }\"\n" +
     "          ng-click=\"gift.order.gift_type = 'Card' \">\n" +
     "        <h3>Par la poste <span class=\"small\">+ 5 €</span></h3>\n" +
@@ -499,15 +498,15 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Prix du bar</p>\n" +
-    "        <p ng-show=\"gift.order.gift_type === 'Vinibar' \" class=\"centered\">69.00 €</p>\n" +
-    "        <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"centered\">80.90 € *</p>\n" +
+    "        <p ng-if=\"gift.order.gift_type === 'Vinibar' \" class=\"centered\">69.00 €</p>\n" +
+    "        <p ng-if=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"centered\">80.90 € *</p>\n" +
     "      </div>\n" +
     "      <div>\n" +
-    "              <p ng-show=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'\" class=\"help centered\">* le prix comprend la livraison <br> à domicile en France métropolitaine</p>\n" +
+    "              <p ng-if=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'\" class=\"help centered\">* le prix comprend la livraison <br> à domicile en France métropolitaine</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
-    "      <div class=\"col-container\">\n" +
+    "      <div class=\"col-container \">\n" +
     "        <p class=\"col-subtitle\">Total de crédits</p>\n" +
     "        <p class=\"centered\">{{gift.order.credits | number:2}} €</p>\n" +
     "      </div>\n" +
@@ -532,7 +531,7 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "        <p>Total de la commande</p>\n" +
     "        <p>{{69 + gift.order.delivery_cost + gift.order.credits - coupon.value | number:2}} €</p>\n" +
     "      </div>\n" +
-    "      <div class=\"btn-block-primary centered margin-top\" ng-class=\"{'disabled-block': gift.order.coupon && !coupon.isChecked}\" ng-click=\"goTo('gift.vinibar.infos')\"><p>Continuer</p></div>\n" +
+    "      <div class=\"btn-block-primary centered margin-top\" ng-class=\"{'disabled-block': gift.order.coupon && !coupon.isChecked}\" ng-click=\"goTo('gift.vinibar.infos')\">Continuer</div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "");
@@ -580,15 +579,16 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "            <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
     "              <p class=\"\">\n" +
     "                Email\n" +
-    "              <a ng-hide=\"gift.order.gift_type === 'Email'\" href=\"\"\n" +
+    "<!--               <a ng-hide=\"gift.order.gift_type === 'Email'\" href=\"\"\n" +
     "                  popover-title=\"Chut ...\"\n" +
     "                  popover=\"Si vous choisissez de l'envoyer chez vous, nous lui enverrons aucun email, nous lui créons juste un compte.\"\n" +
     "                  popover-trigger=\"mouseenter\"\n" +
-    "                  popover-placement=\"bottom\">(<i class=\"fa icon-info-circle\">)</i></a>\n" +
+    "                  popover-placement=\"bottom\">(<i class=\"fa icon-info-circle\">)</i></a> -->\n" +
     "              </p>\n" +
     "              <input name=\"receiver_email\" type=\"text\" class=\"form-control\" ng-model=\"gift.order.receiver_email\"\n" +
     "                            ng-class=\"{'input-error' : infos.submitted && infos.receiver_email.$invalid}\"\n" +
     "                            required>\n" +
+    "              <p cass=\"centered\"><span ng-hide=\"gift.order.gift_type === 'Email' || gift.order.gift_type === 'Vinibar' \" class=\"small\">nous n'enverrons aucun mail avant la réception du cadeau</span><span ng-if=\"gift.order.gift_type === 'Vinibar'\" class=\"small\">nous n'enverrons aucun mail avant l'envoi du Vinibar</span></p>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "          <div class=\"row\">\n" +
@@ -758,7 +758,7 @@ angular.module("gift/vinibar/infos.tpl.html", []).run(["$templateCache", functio
     "          </div>\n" +
     "        </div>\n" +
     "        <p class=\"centered\"><a href=\"https://api.vinify.co/api/users/password/reset/\">réinitialiser votre mot de passe</a></p>\n" +
-    "        <button type=\"submit\" class=\"btn-block-primary centered margin-top\"><p>Continuer <i ng-show=\"load\" class=\"fa icon-spinner icon-spin\"></i></p></button>\n" +
+    "        <button type=\"submit\" class=\"btn-block-primary centered margin-top\">Continuer <i ng-show=\"load\" class=\"fa icon-spinner icon-spin\"></i></button>\n" +
     "      </div>\n" +
     "  </div>\n" +
     "</form>");
@@ -1389,341 +1389,364 @@ angular.module("order/parts/order.paiement.tpl.html", []).run(["$templateCache",
 angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("order/parts/order.userinfos.tpl.html",
     "\n" +
-    "		<div class=\"row\">\n" +
-    "			<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
-    "				<form novalidate name=\"form_commander\" class=\"clearfix\">\n" +
-    "					<div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
-    "						<div class=\"form-group\">\n" +
-    "							<label for=\"first_name\">Prénom *</label>\n" +
-    "							<input type=\"text\"\n" +
-    "								placeholder=\"John\"\n" +
-    "								name=\"first_name\"\n" +
-    "								ng-model=\"client.userinfos.first_name\"\n" +
-    "								required\n" +
-    "								class=\"form-control\"\n" +
-    "								id=\"first_name\"/>\n" +
-    "						</div>\n" +
+    "    <div class=\"row\">\n" +
+    "      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n" +
+    "        <form novalidate name=\"form_commander\" class=\"clearfix\">\n" +
+    "          <div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
     "\n" +
-    "						<div class=\"form-group\">\n" +
-    "							<label for=\"last_name\">Nom *</label>\n" +
-    "							<input type=\"text\"\n" +
-    "								placeholder=\"Snow\"\n" +
-    "								name=\"last_name\"\n" +
-    "								ng-model=\"client.userinfos.last_name\"\n" +
-    "								required\n" +
-    "								class=\"form-control\"\n" +
-    "								id=\"last_name\"/>\n" +
-    "						</div>\n" +
+    "            <div id=\"sex-first-name\" class=\"form-group\">\n" +
+    "              <div>\n" +
+    "                <label for=\"sex\">Civilité</label>\n" +
+    "                <select class=\"form-control\" ng-model=\"client.userinfos.sex\" name=\"sex\" required>\n" +
+    "                  <option value=\"M\">M.</option>\n" +
+    "                  <option value=\"F\">Mme</option>\n" +
+    "                </select>\n" +
+    "              </div>\n" +
+    "              <div>\n" +
+    "                <label for=\"first_name\">Prénom *</label>\n" +
+    "                <input type=\"text\"\n" +
+    "                  placeholder=\"John\"\n" +
+    "                  name=\"first_name\"\n" +
+    "                  ng-model=\"client.userinfos.first_name\"\n" +
+    "                  required\n" +
+    "                  class=\"form-control\"\n" +
+    "                  id=\"first_name\"/>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
     "\n" +
-    "						<div class=\"form-group\">\n" +
-    "							<label for=\"phone\">Téléphone *</label>\n" +
-    "							<input type=\"tel\"\n" +
-    "								placeholder=\"+33 6 XX XX XX XX\"\n" +
-    "								name=\"phone\"\n" +
-    "								ng-model=\"client.userinfos.phone\"\n" +
-    "								required\n" +
-    "								class=\"form-control\"\n" +
-    "								id=\"phone\"/>\n" +
-    "						</div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label for=\"last_name\">Nom *</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                placeholder=\"Snow\"\n" +
+    "                name=\"last_name\"\n" +
+    "                ng-model=\"client.userinfos.last_name\"\n" +
+    "                required\n" +
+    "                class=\"form-control\"\n" +
+    "                id=\"last_name\"/>\n" +
+    "            </div>\n" +
     "\n" +
-    "						<label for=\"birthday\">Date de Naissance*</label>\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label for=\"phone\">Téléphone *</label>\n" +
+    "              <input type=\"tel\"\n" +
+    "                placeholder=\"+33 6 XX XX XX XX\"\n" +
+    "                name=\"phone\"\n" +
+    "                ng-model=\"client.userinfos.phone\"\n" +
+    "                required\n" +
+    "                class=\"form-control\"\n" +
+    "                id=\"phone\"/>\n" +
+    "            </div>\n" +
     "\n" +
-    "						  <div class=\"birthdate\">\n" +
-    "							<div class=\"\">\n" +
-    "							  <select class=\"form-control\" ng-model=\"b.birthday\" name=\"birthday\" required>\n" +
-    "								<option value=\"\">JJ</option>\n" +
-    "								<option value=\"1\">1</option>\n" +
-    "								<option value=\"2\">2</option>\n" +
-    "								<option value=\"3\">3</option>\n" +
-    "								<option value=\"4\">4</option>\n" +
-    "								<option value=\"5\">5</option>\n" +
-    "								<option value=\"6\">6</option>\n" +
-    "								<option value=\"7\">7</option>\n" +
-    "								<option value=\"8\">8</option>\n" +
-    "								<option value=\"9\">9</option>\n" +
-    "								<option value=\"10\">10</option>\n" +
-    "								<option value=\"11\">11</option>\n" +
-    "								<option value=\"12\">12</option>\n" +
-    "								<option value=\"13\">13</option>\n" +
-    "								<option value=\"14\">14</option>\n" +
-    "								<option value=\"15\">15</option>\n" +
-    "								<option value=\"16\">16</option>\n" +
-    "								<option value=\"17\">17</option>\n" +
-    "								<option value=\"18\">18</option>\n" +
-    "								<option value=\"19\">19</option>\n" +
-    "								<option value=\"20\">20</option>\n" +
-    "								<option value=\"21\">21</option>\n" +
-    "								<option value=\"22\">22</option>\n" +
-    "								<option value=\"23\">23</option>\n" +
-    "								<option value=\"24\">24</option>\n" +
-    "								<option value=\"25\">25</option>\n" +
-    "								<option value=\"26\">26</option>\n" +
-    "								<option value=\"27\">27</option>\n" +
-    "								<option value=\"28\">28</option>\n" +
-    "								<option value=\"29\">29</option>\n" +
-    "								<option value=\"30\">30</option>\n" +
-    "								<option value=\"31\">31</option>\n" +
-    "							  </select>\n" +
-    "							</div>\n" +
-    "							<div class=\"\">\n" +
-    "							  <select class=\"form-control\" ng-model=\"b.birthmonth\" name=\"birthmonth\" required>\n" +
-    "								<option value=\"\">MM</option>\n" +
-    "								<option value=\"1\">Janvier</option>\n" +
-    "								<option value=\"2\">Février</option>\n" +
-    "								<option value=\"3\">Mars</option>\n" +
-    "								<option value=\"4\">Avril</option>\n" +
-    "								<option value=\"5\">Mai</option>\n" +
-    "								<option value=\"6\">Juin</option>\n" +
-    "								<option value=\"7\">Juillet</option>\n" +
-    "								<option value=\"8\">Aout</option>\n" +
-    "								<option value=\"9\">Septembre</option>\n" +
-    "								<option value=\"10\">Octobre</option>\n" +
-    "								<option value=\"11\">Novembre</option>\n" +
-    "								<option value=\"12\">Décembre</option>\n" +
-    "							  </select>\n" +
-    "							</div>\n" +
-    "							<div class=\"\">\n" +
-    "							  <select class=\"form-control\" ng-model=\"b.birthyear\" name=\"birthmonth\" required>\n" +
-    "								<option value=\"\">AAAA</option>\n" +
-    "								<option value=\"1997\">1997</option>\n" +
-    "								<option value=\"1996\">1996</option>\n" +
-    "								<option value=\"1995\">1995</option>\n" +
-    "								<option value=\"1994\">1994</option>\n" +
-    "								<option value=\"1993\">1993</option>\n" +
-    "								<option value=\"1992\">1992</option>\n" +
-    "								<option value=\"1991\">1991</option>\n" +
-    "								<option value=\"1990\">1990</option>\n" +
-    "								<option value=\"1989\">1989</option>\n" +
-    "								<option value=\"1988\">1988</option>\n" +
-    "								<option value=\"1987\">1987</option>\n" +
-    "								<option value=\"1986\">1986</option>\n" +
-    "								<option value=\"1985\">1985</option>\n" +
-    "								<option value=\"1984\">1984</option>\n" +
-    "								<option value=\"1983\">1983</option>\n" +
-    "								<option value=\"1982\">1982</option>\n" +
-    "								<option value=\"1981\">1981</option>\n" +
-    "								<option value=\"1980\">1980</option>\n" +
-    "								<option value=\"1979\">1979</option>\n" +
-    "								<option value=\"1978\">1978</option>\n" +
-    "								<option value=\"1977\">1977</option>\n" +
-    "								<option value=\"1976\">1976</option>\n" +
-    "								<option value=\"1975\">1975</option>\n" +
-    "								<option value=\"1974\">1974</option>\n" +
-    "								<option value=\"1973\">1973</option>\n" +
-    "								<option value=\"1972\">1972</option>\n" +
-    "								<option value=\"1971\">1971</option>\n" +
-    "								<option value=\"1970\">1970</option>\n" +
-    "								<option value=\"1969\">1969</option>\n" +
-    "								<option value=\"1968\">1968</option>\n" +
-    "								<option value=\"1967\">1967</option>\n" +
-    "								<option value=\"1966\">1966</option>\n" +
-    "								<option value=\"1965\">1965</option>\n" +
-    "								<option value=\"1964\">1964</option>\n" +
-    "								<option value=\"1963\">1963</option>\n" +
-    "								<option value=\"1962\">1962</option>\n" +
-    "								<option value=\"1961\">1961</option>\n" +
-    "								<option value=\"1960\">1960</option>\n" +
-    "								<option value=\"1959\">1959</option>\n" +
-    "								<option value=\"1958\">1958</option>\n" +
-    "								<option value=\"1957\">1957</option>\n" +
-    "								<option value=\"1956\">1956</option>\n" +
-    "								<option value=\"1955\">1955</option>\n" +
-    "								<option value=\"1954\">1954</option>\n" +
-    "								<option value=\"1953\">1953</option>\n" +
-    "								<option value=\"1952\">1952</option>\n" +
-    "								<option value=\"1951\">1951</option>\n" +
-    "								<option value=\"1950\">1950</option>\n" +
-    "								<option value=\"1949\">1949</option>\n" +
-    "								<option value=\"1948\">1948</option>\n" +
-    "								<option value=\"1947\">1947</option>\n" +
-    "								<option value=\"1946\">1946</option>\n" +
-    "								<option value=\"1945\">1945</option>\n" +
-    "								<option value=\"1944\">1944</option>\n" +
-    "								<option value=\"1943\">1943</option>\n" +
-    "								<option value=\"1942\">1942</option>\n" +
-    "								<option value=\"1941\">1941</option>\n" +
-    "								<option value=\"1940\">1940</option>\n" +
-    "								<option value=\"1939\">1939</option>\n" +
-    "								<option value=\"1938\">1938</option>\n" +
-    "								<option value=\"1937\">1937</option>\n" +
-    "								<option value=\"1936\">1936</option>\n" +
-    "								<option value=\"1935\">1935</option>\n" +
-    "								<option value=\"1934\">1934</option>\n" +
-    "								<option value=\"1933\">1933</option>\n" +
-    "								<option value=\"1932\">1932</option>\n" +
-    "								<option value=\"1931\">1931</option>\n" +
-    "								<option value=\"1930\">1930</option>\n" +
-    "								<option value=\"1929\">1929</option>\n" +
-    "								<option value=\"1928\">1928</option>\n" +
-    "								<option value=\"1927\">1927</option>\n" +
-    "								<option value=\"1926\">1926</option>\n" +
-    "								<option value=\"1925\">1925</option>\n" +
-    "								<option value=\"1924\">1924</option>\n" +
-    "								<option value=\"1923\">1923</option>\n" +
-    "								<option value=\"1922\">1922</option>\n" +
-    "								<option value=\"1921\">1921</option>\n" +
-    "								<option value=\"1920\">1920</option>\n" +
-    "							  </select>\n" +
-    "							</div>\n" +
-    "						  </div>\n" +
-    "					</div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
+    "            <label for=\"birthday\">Date de Naissance*</label>\n" +
     "\n" +
-    "					<div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
-    "							<label for=\"delivery_address.company\">Adresse de Livraison *</label>\n" +
+    "            <div class=\"birthdate form-group\">\n" +
+    "              <div class=\"\">\n" +
+    "                <select class=\"form-control\" ng-model=\"b.birthday\" name=\"birthday\" required>\n" +
+    "                <option value=\"\">JJ</option>\n" +
+    "                <option value=\"1\">1</option>\n" +
+    "                <option value=\"2\">2</option>\n" +
+    "                <option value=\"3\">3</option>\n" +
+    "                <option value=\"4\">4</option>\n" +
+    "                <option value=\"5\">5</option>\n" +
+    "                <option value=\"6\">6</option>\n" +
+    "                <option value=\"7\">7</option>\n" +
+    "                <option value=\"8\">8</option>\n" +
+    "                <option value=\"9\">9</option>\n" +
+    "                <option value=\"10\">10</option>\n" +
+    "                <option value=\"11\">11</option>\n" +
+    "                <option value=\"12\">12</option>\n" +
+    "                <option value=\"13\">13</option>\n" +
+    "                <option value=\"14\">14</option>\n" +
+    "                <option value=\"15\">15</option>\n" +
+    "                <option value=\"16\">16</option>\n" +
+    "                <option value=\"17\">17</option>\n" +
+    "                <option value=\"18\">18</option>\n" +
+    "                <option value=\"19\">19</option>\n" +
+    "                <option value=\"20\">20</option>\n" +
+    "                <option value=\"21\">21</option>\n" +
+    "                <option value=\"22\">22</option>\n" +
+    "                <option value=\"23\">23</option>\n" +
+    "                <option value=\"24\">24</option>\n" +
+    "                <option value=\"25\">25</option>\n" +
+    "                <option value=\"26\">26</option>\n" +
+    "                <option value=\"27\">27</option>\n" +
+    "                <option value=\"28\">28</option>\n" +
+    "                <option value=\"29\">29</option>\n" +
+    "                <option value=\"30\">30</option>\n" +
+    "                <option value=\"31\">31</option>\n" +
+    "                </select>\n" +
+    "              </div>\n" +
+    "              <div class=\"\">\n" +
+    "                <select class=\"form-control\" ng-model=\"b.birthmonth\" name=\"birthmonth\" required>\n" +
+    "                <option value=\"\">MM</option>\n" +
+    "                <option value=\"1\">Janvier</option>\n" +
+    "                <option value=\"2\">Février</option>\n" +
+    "                <option value=\"3\">Mars</option>\n" +
+    "                <option value=\"4\">Avril</option>\n" +
+    "                <option value=\"5\">Mai</option>\n" +
+    "                <option value=\"6\">Juin</option>\n" +
+    "                <option value=\"7\">Juillet</option>\n" +
+    "                <option value=\"8\">Aout</option>\n" +
+    "                <option value=\"9\">Septembre</option>\n" +
+    "                <option value=\"10\">Octobre</option>\n" +
+    "                <option value=\"11\">Novembre</option>\n" +
+    "                <option value=\"12\">Décembre</option>\n" +
+    "                </select>\n" +
+    "              </div>\n" +
+    "              <div class=\"\">\n" +
+    "                <select class=\"form-control\" ng-model=\"b.birthyear\" name=\"birthmonth\" required>\n" +
+    "                <option value=\"\">AAAA</option>\n" +
+    "                <option value=\"1997\">1997</option>\n" +
+    "                <option value=\"1996\">1996</option>\n" +
+    "                <option value=\"1995\">1995</option>\n" +
+    "                <option value=\"1994\">1994</option>\n" +
+    "                <option value=\"1993\">1993</option>\n" +
+    "                <option value=\"1992\">1992</option>\n" +
+    "                <option value=\"1991\">1991</option>\n" +
+    "                <option value=\"1990\">1990</option>\n" +
+    "                <option value=\"1989\">1989</option>\n" +
+    "                <option value=\"1988\">1988</option>\n" +
+    "                <option value=\"1987\">1987</option>\n" +
+    "                <option value=\"1986\">1986</option>\n" +
+    "                <option value=\"1985\">1985</option>\n" +
+    "                <option value=\"1984\">1984</option>\n" +
+    "                <option value=\"1983\">1983</option>\n" +
+    "                <option value=\"1982\">1982</option>\n" +
+    "                <option value=\"1981\">1981</option>\n" +
+    "                <option value=\"1980\">1980</option>\n" +
+    "                <option value=\"1979\">1979</option>\n" +
+    "                <option value=\"1978\">1978</option>\n" +
+    "                <option value=\"1977\">1977</option>\n" +
+    "                <option value=\"1976\">1976</option>\n" +
+    "                <option value=\"1975\">1975</option>\n" +
+    "                <option value=\"1974\">1974</option>\n" +
+    "                <option value=\"1973\">1973</option>\n" +
+    "                <option value=\"1972\">1972</option>\n" +
+    "                <option value=\"1971\">1971</option>\n" +
+    "                <option value=\"1970\">1970</option>\n" +
+    "                <option value=\"1969\">1969</option>\n" +
+    "                <option value=\"1968\">1968</option>\n" +
+    "                <option value=\"1967\">1967</option>\n" +
+    "                <option value=\"1966\">1966</option>\n" +
+    "                <option value=\"1965\">1965</option>\n" +
+    "                <option value=\"1964\">1964</option>\n" +
+    "                <option value=\"1963\">1963</option>\n" +
+    "                <option value=\"1962\">1962</option>\n" +
+    "                <option value=\"1961\">1961</option>\n" +
+    "                <option value=\"1960\">1960</option>\n" +
+    "                <option value=\"1959\">1959</option>\n" +
+    "                <option value=\"1958\">1958</option>\n" +
+    "                <option value=\"1957\">1957</option>\n" +
+    "                <option value=\"1956\">1956</option>\n" +
+    "                <option value=\"1955\">1955</option>\n" +
+    "                <option value=\"1954\">1954</option>\n" +
+    "                <option value=\"1953\">1953</option>\n" +
+    "                <option value=\"1952\">1952</option>\n" +
+    "                <option value=\"1951\">1951</option>\n" +
+    "                <option value=\"1950\">1950</option>\n" +
+    "                <option value=\"1949\">1949</option>\n" +
+    "                <option value=\"1948\">1948</option>\n" +
+    "                <option value=\"1947\">1947</option>\n" +
+    "                <option value=\"1946\">1946</option>\n" +
+    "                <option value=\"1945\">1945</option>\n" +
+    "                <option value=\"1944\">1944</option>\n" +
+    "                <option value=\"1943\">1943</option>\n" +
+    "                <option value=\"1942\">1942</option>\n" +
+    "                <option value=\"1941\">1941</option>\n" +
+    "                <option value=\"1940\">1940</option>\n" +
+    "                <option value=\"1939\">1939</option>\n" +
+    "                <option value=\"1938\">1938</option>\n" +
+    "                <option value=\"1937\">1937</option>\n" +
+    "                <option value=\"1936\">1936</option>\n" +
+    "                <option value=\"1935\">1935</option>\n" +
+    "                <option value=\"1934\">1934</option>\n" +
+    "                <option value=\"1933\">1933</option>\n" +
+    "                <option value=\"1932\">1932</option>\n" +
+    "                <option value=\"1931\">1931</option>\n" +
+    "                <option value=\"1930\">1930</option>\n" +
+    "                <option value=\"1929\">1929</option>\n" +
+    "                <option value=\"1928\">1928</option>\n" +
+    "                <option value=\"1927\">1927</option>\n" +
+    "                <option value=\"1926\">1926</option>\n" +
+    "                <option value=\"1925\">1925</option>\n" +
+    "                <option value=\"1924\">1924</option>\n" +
+    "                <option value=\"1923\">1923</option>\n" +
+    "                <option value=\"1922\">1922</option>\n" +
+    "                <option value=\"1921\">1921</option>\n" +
+    "                <option value=\"1920\">1920</option>\n" +
+    "                </select>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group country-company\">\n" +
+    "              <div>\n" +
+    "                <label for=\"country\">Pays</label>\n" +
+    "                <select class=\"form-control\" name=\"country\" id=\"country\" ng-model=\"client.userinfos.delivery_address.country\">\n" +
+    "                  <option selected=\"true\" value=\"france\">France</option>\n" +
+    "                </select>\n" +
+    "              </div>\n" +
+    "              <div>\n" +
+    "                <label for=\"company\">Société</label>\n" +
+    "                <input type=\"text\"\n" +
+    "                  placeholder=\"Vinify\"\n" +
+    "                  name=\"company\"\n" +
+    "                  ng-model=\"client.userinfos.delivery_address.company\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  id=\"company\"/>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
     "\n" +
-    "							<div class=\"form-group\">\n" +
-    "								<label for=\"delivery_address.street\" class=\"sr-only\">Rue</label>\n" +
-    "								<input type=\"text\"\n" +
-    "									ng-model=\"client.userinfos.delivery_address.street\"\n" +
-    "									placeholder=\"Rue\"\n" +
-    "									class=\"form-control\"\n" +
-    "									required\n" +
-    "									id=\"delivery_address.street\"/>\n" +
-    "							</div>\n" +
+    "          <div class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
+    "              <div class=\"form-group\">\n" +
+    "                <label for=\"country\">Addresse de Livraison</label>\n" +
+    "                <label for=\"delivery_address.street\" class=\"sr-only\">Rue</label>\n" +
+    "                <input type=\"text\"\n" +
+    "                  ng-model=\"client.userinfos.delivery_address.street\"\n" +
+    "                  placeholder=\"Rue\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  required\n" +
+    "                  id=\"delivery_address.street_2\"/>\n" +
+    "              </div>\n" +
+    "              <div class=\"form-group\">\n" +
+    "                <input type=\"text\"\n" +
+    "                  ng-model=\"client.userinfos.delivery_address.street_2\"\n" +
+    "                  placeholder=\"Rue 2\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  id=\"delivery_address.street_2\"/>\n" +
+    "              </div>\n" +
     "\n" +
-    "							<div class=\"u-w50 inline-left form-group\">\n" +
-    "							<label for=\"delivery_address.company\">Ville *</label>\n" +
-    "							  <label for=\"delivery_address.zipcode\" class=\"sr-only\">CP</label>\n" +
-    "							  <input type=\"text\"\n" +
-    "								  ng-model=\"client.userinfos.delivery_address.zipcode\"\n" +
-    "								  placeholder=\"Code Postal\"\n" +
-    "								  class=\"form-control\"\n" +
-    "								  required\n" +
-    "								  id=\"delivery_address.zipcode\"/>\n" +
-    "							</div>\n" +
-    "							<div class=\"u-w50 inline-right form-group\">\n" +
-    "							<label for=\"delivery_address.company\">&nbsp;</label>\n" +
-    "							  <label for=\"delivery_address.city\" class=\"sr-only\">Ville</label>\n" +
-    "							  <input type=\"text\"\n" +
-    "								  ng-model=\"client.userinfos.delivery_address.city\"\n" +
-    "								  placeholder=\"Ville\"\n" +
-    "								  class=\"form-control\"\n" +
-    "								  required\n" +
-    "								  id=\"delivery_address.city\"/>\n" +
-    "							</div>\n" +
+    "              <div class=\"u-w50 inline-left form-group\">\n" +
+    "              <label for=\"delivery_address.company\">Ville *</label>\n" +
+    "                <label for=\"delivery_address.zipcode\" class=\"sr-only\">CP</label>\n" +
+    "                <input type=\"text\"\n" +
+    "                  ng-model=\"client.userinfos.delivery_address.zipcode\"\n" +
+    "                  placeholder=\"Code Postal\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  required\n" +
+    "                  id=\"delivery_address.zipcode\"/>\n" +
+    "              </div>\n" +
+    "              <div class=\"u-w50 inline-right form-group\">\n" +
+    "              <label for=\"delivery_address.company\">&nbsp;</label>\n" +
+    "                <label for=\"delivery_address.city\" class=\"sr-only\">Ville</label>\n" +
+    "                <input type=\"text\"\n" +
+    "                  ng-model=\"client.userinfos.delivery_address.city\"\n" +
+    "                  placeholder=\"Ville\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  required\n" +
+    "                  id=\"delivery_address.city\"/>\n" +
+    "              </div>\n" +
     "\n" +
-    "							<div class=\"form-group\">\n" +
-    "							  <label for=\"delivery_address.other_info\">Informations Complémentaires</label>\n" +
-    "								<div class=\"u-w50 inline-left form-group\">\n" +
-    "								  <label for=\"delivery_address.zipcode\" class=\"sr-only\">Code</label>\n" +
-    "								  <input type=\"text\"\n" +
-    "									  ng-model=\"client.userinfos.delivery_address.digicode\"\n" +
-    "									  placeholder=\"Code Porte\"\n" +
-    "									  class=\"form-control\"\n" +
-    "									  id=\"delivery_address.zipcode\"/>\n" +
-    "								</div>\n" +
-    "								<div class=\"u-w50 inline-right form-group\">\n" +
-    "								  <label for=\"delivery_address.city\" class=\"sr-only\">Interphone</label>\n" +
-    "								  <input type=\"text\"\n" +
-    "									  ng-model=\"client.userinfos.delivery_address.intercom\"\n" +
-    "									  placeholder=\"Interphone\"\n" +
-    "									  class=\"form-control\"\n" +
-    "									  id=\"delivery_address.city\"/>\n" +
-    "								</div>\n" +
-    "							  <textarea class=\"form-control\" rows=\"2\" ng-model=\"client.userinfos.delivery_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"delivery_address.other_info\"></textarea>\n" +
-    "							</div>\n" +
+    "              <div class=\"form-group\">\n" +
+    "                <label for=\"delivery_address.other_info\">Informations Complémentaires</label>\n" +
+    "                <div class=\"u-w50 inline-left form-group\">\n" +
+    "                  <label for=\"delivery_address.zipcode\" class=\"sr-only\">Code</label>\n" +
+    "                  <input type=\"text\"\n" +
+    "                    ng-model=\"client.userinfos.delivery_address.digicode\"\n" +
+    "                    placeholder=\"Code Porte\"\n" +
+    "                    class=\"form-control\"\n" +
+    "                    id=\"delivery_address.zipcode\"/>\n" +
+    "                </div>\n" +
+    "                <div class=\"u-w50 inline-right form-group\">\n" +
+    "                  <label for=\"delivery_address.city\" class=\"sr-only\">Interphone</label>\n" +
+    "                  <input type=\"text\"\n" +
+    "                    ng-model=\"client.userinfos.delivery_address.intercom\"\n" +
+    "                    placeholder=\"Interphone\"\n" +
+    "                    class=\"form-control\"\n" +
+    "                    id=\"delivery_address.city\"/>\n" +
+    "                </div>\n" +
+    "                <textarea class=\"form-control\" rows=\"2\" ng-model=\"client.userinfos.delivery_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"delivery_address.other_info\"></textarea>\n" +
+    "              </div>\n" +
     "\n" +
-    "						<div ng-hide=\"isGift\"  class=\"checkbox\">\n" +
-    "							<label>\n" +
-    "							  <input type=\"checkbox\" ng-model=\"client.userinfos.same_billing\"> Facturation identique\n" +
-    "							</label>\n" +
-    "						</div>\n" +
-    "					</div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
+    "            <div ng-hide=\"isGift\"  class=\"checkbox\">\n" +
+    "              <label>\n" +
+    "                <input type=\"checkbox\" ng-model=\"client.userinfos.same_billing\"> Facturation identique\n" +
+    "              </label>\n" +
+    "            </div>\n" +
+    "          </div><!-- col-lg-4 col-md-4 col-sm-4 -->\n" +
     "\n" +
     "\n" +
-    "					<div ng-hide=\"client.userinfos.same_billing\" class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
-    "						<label>Adresse de Facturation </label>\n" +
-    "						<!--           <div class=\"form-group\">\n" +
+    "          <div ng-hide=\"client.userinfos.same_billing\" class=\"col-lg-4 col-md-4 col-sm-4\">\n" +
+    "            <!-- <label>Adresse de Facturation </label> -->\n" +
+    "            <div class=\"form-group country-company\">\n" +
+    "              <div>\n" +
+    "                <label for=\"country\">Pays</label>\n" +
+    "                <input type=\"text\"\n" +
+    "                  placeholder=\"France\"\n" +
+    "                  name=\"company\"\n" +
+    "                  ng-model=\"client.userinfos.billing_address.country\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  id=\"company\"/>\n" +
+    "              </div>\n" +
+    "              <div>\n" +
+    "                <label for=\"company\">Société</label>\n" +
+    "                <input type=\"text\"\n" +
+    "                  placeholder=\"Vinify\"\n" +
+    "                  name=\"company\"\n" +
+    "                  ng-model=\"client.userinfos.billing_address.company\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  id=\"company\"/>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label for=\"billing_address.street\" class=\"sr-only\">Rue</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                ng-model=\"client.userinfos.billing_address.street\"\n" +
+    "                placeholder=\"Rue\"\n" +
+    "                class=\"form-control\"\n" +
+    "                id=\"billing_address.street\"\n" +
+    "                name=\"billing_address.street\"\n" +
+    "                />\n" +
+    "            </div>\n" +
+    "            <div class=\"u-w50 inline-left form-group\">\n" +
+    "            <label for=\"billing_address.company\">Ville</label>\n" +
+    "              <label for=\"billing_address.zipcode\" class=\"sr-only\">CP</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                ng-model=\"client.userinfos.billing_address.zipcode\"\n" +
+    "                placeholder=\"Code Postal\"\n" +
+    "                class=\"form-control\"\n" +
+    "                id=\"billing_address.zipcode\"/>\n" +
+    "            </div>\n" +
+    "            <div class=\"u-w50 inline-right form-group\">\n" +
+    "            <label for=\"billing_address.company\">&nbsp;</label>\n" +
+    "              <label for=\"billing_address.city\" class=\"sr-only\">Ville</label>\n" +
+    "              <input type=\"text\"\n" +
+    "                ng-model=\"client.userinfos.billing_address.city\"\n" +
+    "                placeholder=\"Ville\"\n" +
+    "                class=\"form-control\"\n" +
+    "                id=\"billing_address.city\"/>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
     "\n" +
-    "							  <label for=\"billing_address.company\" class=\"sr-only\">Company</label>\n" +
-    "							  <input type=\"text\"\n" +
-    "								  ng-model=\"client.userinfos.billing_address.company\"\n" +
-    "								  placeholder=\"Société\"\n" +
-    "								  class=\"form-control\"\n" +
-    "								  id=\"billing_address.company\"/>\n" +
-    "						  </div> -->\n" +
-    "						<div class=\"form-group\">\n" +
-    "							<label for=\"billing_address.street\" class=\"sr-only\">Rue</label>\n" +
-    "							<input type=\"text\"\n" +
-    "							  ng-model=\"client.userinfos.billing_address.street\"\n" +
-    "							  placeholder=\"Rue\"\n" +
-    "							  class=\"form-control\"\n" +
-    "							  id=\"billing_address.street\"\n" +
-    "							  name=\"billing_address.street\"\n" +
-    "							  />\n" +
-    "						</div>\n" +
-    "						<div class=\"u-w50 inline-left form-group\">\n" +
-    "						<label for=\"billing_address.company\">Ville</label>\n" +
-    "						  <label for=\"billing_address.zipcode\" class=\"sr-only\">CP</label>\n" +
-    "						  <input type=\"text\"\n" +
-    "							  ng-model=\"client.userinfos.billing_address.zipcode\"\n" +
-    "							  placeholder=\"Code Postal\"\n" +
-    "							  class=\"form-control\"\n" +
-    "							  id=\"billing_address.zipcode\"/>\n" +
-    "						</div>\n" +
-    "						<div class=\"u-w50 inline-right form-group\">\n" +
-    "						<label for=\"billing_address.company\">&nbsp;</label>\n" +
-    "						  <label for=\"billing_address.city\" class=\"sr-only\">Ville</label>\n" +
-    "						  <input type=\"text\"\n" +
-    "							  ng-model=\"client.userinfos.billing_address.city\"\n" +
-    "							  placeholder=\"Ville\"\n" +
-    "							  class=\"form-control\"\n" +
-    "							  id=\"billing_address.city\"/>\n" +
-    "						</div>\n" +
+    "          <div ng-show=\"client.userinfos.same_billing\" class=\" form-offer col-lg-4 col-md-4 col-sm-4\">\n" +
+    "            <h4 ng-show=\"client.order_type === 'Vinibar' || isGift\" class=\"centered\">6 Bouteilles</h4>\n" +
+    "            <h4 ng-show=\"client.order_type === 'Découverte' \" class=\"centered\">3 Bouteilles</h4>\n" +
+    "            <hr>\n" +
+    "            <h4 class=\"centered\">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>\n" +
+    "            <hr>\n" +
+    "<!--            <h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
+    "            <h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Découverte' \" class=\"centered\">39 €</h4> -->\n" +
+    "          </div>\n" +
     "\n" +
-    "						<div class=\"form-group\">\n" +
-    "						  <label for=\"billing_address.other_info\">Informations Complémentaires</label>\n" +
-    "							<div class=\"u-w50 inline-left form-group\">\n" +
-    "							  <label for=\"billing_address.zipcode\" class=\"sr-only\">Code</label>\n" +
-    "							  <input type=\"text\"\n" +
-    "								  ng-model=\"client.userinfos.billing_address.digicode\"\n" +
-    "								  placeholder=\"Code Porte\"\n" +
-    "								  class=\"form-control\"\n" +
-    "								  id=\"billing_address.zipcode\"/>\n" +
-    "							</div>\n" +
-    "							<div class=\"u-w50 inline-right form-group\">\n" +
-    "							  <label for=\"billing_address.city\" class=\"sr-only\">Interphone</label>\n" +
-    "							  <input type=\"text\"\n" +
-    "								  ng-model=\"client.userinfos.billing_address.intercom\"\n" +
-    "								  placeholder=\"Interphone\"\n" +
-    "								  class=\"form-control\"\n" +
-    "								  id=\"billing_address.city\"/>\n" +
-    "							</div>\n" +
-    "						  <textarea class=\"form-control\" rows=\"2\" ng-model=\"client.userinfos.billing_address.other_info\" placeholder=\"Société, Bâtiment, Escalier, Etage ...\" id=\"billing_address.other_info\"></textarea>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
+    "        </form>\n" +
+    "      </div>\n" +
+    "    </div>    <!-- ROW -->\n" +
     "\n" +
-    "					<div ng-show=\"client.userinfos.same_billing\" class=\" form-offer col-lg-4 col-md-4 col-sm-4\">\n" +
-    "						<h4 ng-show=\"client.order_type === 'Vinibar' || isGift\" class=\"centered\">6 Bouteilles</h4>\n" +
-    "						<h4 ng-show=\"client.order_type === 'Découverte' \" class=\"centered\">3 Bouteilles</h4>\n" +
-    "						<hr>\n" +
-    "						<h4 class=\"centered\">Choisies spécialement pour vous parmi notre gamme de plus de 100 références !</h4>\n" +
-    "						<hr>\n" +
-    "<!-- 						<h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
-    "						<h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Découverte' \" class=\"centered\">39 €</h4> -->\n" +
-    "					</div>\n" +
-    "\n" +
-    "				</form>\n" +
-    "			</div>\n" +
-    "		</div>    <!-- ROW -->\n" +
-    "\n" +
-    "		<div class=\"row\">\n" +
-    "			<div class=\"col-lg-12 col-md-12\">\n" +
-    "				<form role=\"form\">\n" +
-    "				<div class=\"col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4\">\n" +
-    "					<div class=\"input-group\" ng-hide=\"isGift\">\n" +
-    "						<input type=\"text\" ng-blur=\"blur()\" class=\"form-control\" ng-model=\"coupon.coupon\" placeholder=\"Code Promo / Parrainage\">\n" +
-    "						<span class=\"input-group-btn\">\n" +
-    "							<button class=\"btn btn-default\" type=\"button\">Go!</button>\n" +
-    "						</span>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"col-lg-4 col-md-4 centered\">\n" +
-    "					<button class=\"btn-block-primary\" ng-disabled=\"coupon.coupon && !coupon.isValid\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
-    "				</div>\n" +
-    "				</form>\n" +
-    "			</div>\n" +
-    "		</div>    <!-- ROW -->\n" +
+    "    <div class=\"row\">\n" +
+    "      <div class=\"col-lg-12 col-md-12\">\n" +
+    "        <form role=\"form\">\n" +
+    "        <div class=\"col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4\">\n" +
+    "          <div class=\"input-group\" ng-hide=\"isGift\">\n" +
+    "            <input type=\"text\" ng-blur=\"blur()\" class=\"form-control\" ng-model=\"coupon.coupon\" placeholder=\"Code Promo / Parrainage\">\n" +
+    "            <span class=\"input-group-btn\">\n" +
+    "              <button class=\"btn btn-default\" type=\"button\">Go!</button>\n" +
+    "            </span>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-lg-4 col-md-4 centered\">\n" +
+    "          <button class=\"btn-block-primary\" ng-disabled=\"coupon.coupon && !coupon.isValid\" ng-click=\"addUserInfo(form_commander)\">Valider</button>\n" +
+    "        </div>\n" +
+    "        </form>\n" +
+    "      </div>\n" +
+    "    </div>    <!-- ROW -->\n" +
     "\n" +
     "");
 }]);
@@ -1846,9 +1869,9 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
     "        <ul class=\"nav navbar-nav navbar-right\">\n" +
     "          <li><a href=\"\"><img alt=\"\" src=\"assets/oclipboard.png\" class=\"opacity-link\" style=\"height:45px\"/></a></li>\n" +
-    "          <li ng-show=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
-    "          <li ng-show=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
-    "          <li ng-show=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-if=\"state == 'order.userinfos'\"><a href=\"\"><img alt=\"\" src=\"assets/dolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-if=\"!(state == 'order.userinfos')\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/odolly.png\" style=\"height:45px\"/></a></li>\n" +
+    "          <li ng-if=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" src=\"assets/creditcard.png\" style=\"height:45px\"/></a></li>\n" +
     "          <li ng-hide=\"state == 'order.paiement'\"><a href=\"\"><img alt=\"\" class=\"opacity-link\" src=\"assets/ocreditcard.png\" style=\"height:45px\"/></a></li>\n" +
     "        </ul>\n" +
     "      </div><!-- /.navbar-collapse -->\n" +
@@ -1862,152 +1885,97 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "        <div class=\"row row-paiement\">\n" +
     "            <div class=\"col-lg-12 col-md-12 col-sm-12\">\n" +
     "              <div class=\"row\">\n" +
-    "                  <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
-    "                <h4>Adresse</h4>\n" +
-    "                <p class=\"\">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>\n" +
-    "                <p>{{client.email}}</h4>\n" +
-    "                <p>{{client.userinfos.delivery_address.street}}<br>\n" +
-    "                {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>\n" +
-    "                <p class=\"picked-relay\" ng-show=\"delivery.mode === 'Point Relais' && selected.shop\">Point Relais: {{shop.Nom}} - {{shop.Ville}}</p>\n" +
+    "                  <div class=\"col-lg-3 col-md-3 col-sm-12 centered\">\n" +
+    "                    <h4>Adresse de Livraison</h4>\n" +
+    "                    <hr>\n" +
+    "                    <p class=\"\">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>\n" +
+    "                    <p>{{client.email}}</p>\n" +
+    "                    <p>{{client.userinfos.delivery_address.street}}<br>\n" +
+    "                    {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>\n" +
+    "                    <p class=\"picked-relay\" ng-if=\"delivery.mode === 'Point Relais' && selected.shop\">\n" +
+    "                      Point Relais: {{shop.Nom}} - {{shop.Ville}}\n" +
+    "                    </p>\n" +
     "                  </div>\n" +
     "                  <hr class=\"visible-sm visible-xs\">\n" +
     "                  <div class=\"col-lg-4 col-md-4 col-sm-12 centered\">\n" +
-    "                <h4>Mode de Livraison</h4>\n" +
-    "                          <table class=\"table-deliv-mode\">\n" +
-    "                              <tr ng-click=\"updateOrder(1)\">\n" +
-    "                                <td>\n" +
-    "                      <svg ng-show=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <defs></defs>\n" +
-    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
-    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
-    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
-    "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#CB0001\"></path>\n" +
-    "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
-    "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
-    "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
-    "                                        </g>\n" +
-    "                                    </g>\n" +
-    "                                </g>\n" +
-    "                            </g>\n" +
-    "                        </g>\n" +
-    "                      </svg>\n" +
-    "                      <svg ng-hide=\"delivery.mode === 'Point Relais' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <defs></defs>\n" +
-    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
-    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
-    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
-    "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#CB0001\" fill=\"#FFF\"></path>\n" +
-    "                                    </g>\n" +
-    "                                </g>\n" +
-    "                            </g>\n" +
-    "                        </g>\n" +
-    "                      </svg>\n" +
-    "                                 </h4>\n" +
-    "                                <td><p> Point Relais</p></td>\n" +
-    "                              </tr>\n" +
-    "                              <tr ng-click=\"updateOrder(2)\">\n" +
-    "                                <td>\n" +
-    "                      <svg ng-show=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <defs></defs>\n" +
-    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
-    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
-    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
-    "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#CB0001\"></path>\n" +
-    "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
-    "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
-    "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
-    "                                        </g>\n" +
-    "                                    </g>\n" +
-    "                                </g>\n" +
-    "                            </g>\n" +
-    "                        </g>\n" +
-    "                      </svg>\n" +
-    "                      <svg ng-hide=\"delivery.mode === 'Colissimo' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <defs></defs>\n" +
-    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
-    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
-    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
-    "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#CB0001\" fill=\"#FFF\"></path>\n" +
-    "                                    </g>\n" +
-    "                                </g>\n" +
-    "                            </g>\n" +
-    "                        </g>\n" +
-    "                      </svg>\n" +
-    "                  </td>\n" +
-    "                                <td>\n" +
-    "                                <p> Colissimo Suivi </p>\n" +
-    "                                </td>\n" +
-    "                              </tr>\n" +
-    "                              <tr ng-click=\"updateOrder(3)\"  class=\"bill-total\">\n" +
-    "                                <td>\n" +
-    "                      <svg ng-show=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <defs></defs>\n" +
-    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
-    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
-    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
-    "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" fill=\"#CB0001\"></path>\n" +
-    "                                        <g id=\"Shape-2-+-Shape-3\" transform=\"translate(8.683417, 10.582915)\" fill=\"#FFFFFF\">\n" +
-    "                                            <path d=\"M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z\" id=\"Shape-2\" transform=\"translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) \"></path>\n" +
-    "                                            <path d=\"M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z\" id=\"Shape-3\" transform=\"translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) \"></path>\n" +
-    "                                        </g>\n" +
-    "                                    </g>\n" +
-    "                                </g>\n" +
-    "                            </g>\n" +
-    "                        </g>\n" +
-    "                      </svg>\n" +
-    "                      <svg ng-hide=\"delivery.mode === 'Vinify' \" width=\"25px\" height=\"25px\" viewBox=\"0 0 30 30\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n" +
-    "                        <defs></defs>\n" +
-    "                        <g id=\"Page-4\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n" +
-    "                            <g id=\"TickSmall-2\" sketch:type=\"MSLayerGroup\" transform=\"translate(1.000000, 2.000000)\">\n" +
-    "                                <g id=\"VY-logo-white\" sketch:type=\"MSShapeGroup\">\n" +
-    "                                    <g id=\"Tick\">\n" +
-    "                                        <path d=\"M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z\" id=\"Oval\" stroke=\"#CB0001\" fill=\"#FFF\"></path>\n" +
-    "                                    </g>\n" +
-    "                                </g>\n" +
-    "                            </g>\n" +
-    "                        </g>\n" +
-    "                      </svg>\n" +
-    "                                </td>\n" +
-    "                                <td><p> Retrait Vinify (Issy 92) </p></td>\n" +
-    "                              </tr>\n" +
-    "                          </table>\n" +
+    "                    <h4>Mode de Livraison</h4>\n" +
+    "                    <hr>\n" +
+    "                    <table class=\"table-deliv-mode\">\n" +
+    "                        <tr ng-click=\"updateOrder(1)\">\n" +
+    "                          <td colspan=\"2\"><p>\n" +
+    "                            <i ng-if=\"delivery.mode === 'Point Relais' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'Point Relais' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
+    "                             <span class=\"p-highlight\">Point Relais</span> ~ 3 - 4j\n" +
+    "                          </p></td>\n" +
+    "                        </tr>\n" +
+    "                        <tr ng-click=\"updateOrder(2)\">\n" +
+    "                          <td colspan=\"2\"><p>\n" +
+    "                            <i ng-if=\"delivery.mode === 'Colissimo' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'Colissimo' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
+    "                             <span class=\"p-highlight\">Colissimo Suivi</span> ~ 2 - 3j\n" +
+    "                          </p></td>\n" +
+    "                        </tr>\n" +
+    "                        <tr ng-click=\"updateOrder(3)\">\n" +
+    "                          <td colspan=\"2\"><p>\n" +
+    "                            <i ng-if=\"delivery.mode === 'Vinify' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'Vinify' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
+    "                             <span class=\"p-highlight\">Retrait Vinify</span> <span class=\"small\">à partir de demain midi</span><br>\n" +
+    "                             <small class=\"indent\">135 rue jean jacques rousseau, 92130 Issy</small>\n" +
+    "                          </p></td>\n" +
+    "                        </tr>\n" +
+    "                        <tr class=\"border-top\">\n" +
+    "                          <td colspan=\"2\"><p class=\"margin-top\">\n" +
+    "                             <span class=\"p-highlight\">Livraison Express Paris</span> (Nouveau !)<br>\n" +
+    "                             <small>Je reçois mon bar chez moi <span class=\"p-highlight\">{{beforeNoon()}},</span></small>\n" +
+    "                          </p></td>\n" +
+    "                        </tr>\n" +
+    "                        <tr>\n" +
+    "                          <td ng-click=\"updateOrder(4)\"><p>\n" +
+    "                            <i ng-if=\"delivery.mode === 'express_1' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'express_1' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
+    "                             <small>16h30 - 18h</small>\n" +
+    "                          </p></td>\n" +
+    "                          <td ng-click=\"updateOrder(5)\"><p>\n" +
+    "                            <i ng-if=\"delivery.mode === 'express_2' \" class=\"icon icon-dot-circled u-color-brand\"></i>\n" +
+    "                            <i ng-if=\"delivery.mode != 'express_2' \" class=\"icon icon-circle-empty u-color-brand\"></i>\n" +
+    "                            <small>19h00 - 21h30</small>\n" +
+    "                          </p></td>\n" +
+    "                        </tr>\n" +
+    "                    </table>\n" +
     "                  </div>\n" +
     "                  <hr class=\"visible-sm visible-xs\">\n" +
-    "                  <div class=\"col-lg-4 col-md-4 col-sm-12\">\n" +
+    "                  <div class=\"col-lg-2 col-md-2 col-sm-12\">\n" +
     "                       <h4 class=\"centered\">Commande</h4>\n" +
-    "                          <table class=\"table-bill\">\n" +
-    "                              <tr>\n" +
-    "                                <td><h4>{{client.order_type}} </h4></td>\n" +
-    "                                <td><h4>{{client.order.amount}}&nbsp;€</h4></td>\n" +
-    "                              </tr>\n" +
-    "                              <tr>\n" +
-    "                                <td><h4>Livraison </h4></td>\n" +
-    "                                <td>\n" +
-    "                                  <h4>\n" +
-    "                                    {{delivery.cost}}&nbsp;€\n" +
-    "                                  </h4>\n" +
-    "                                </td>\n" +
-    "                              </tr>\n" +
+    "                       <hr>\n" +
+    "                      <table class=\"table-bill\">\n" +
+    "                          <tr>\n" +
+    "                            <td><p>{{client.order_type}} </p></td>\n" +
+    "                            <td><p>{{client.order.amount}}&nbsp;€</p></td>\n" +
+    "                          </tr>\n" +
+    "                          <tr>\n" +
+    "                            <td><p>Livraison </p></td>\n" +
+    "                            <td>\n" +
+    "                              <p>\n" +
+    "                                {{delivery.cost}}&nbsp;€\n" +
+    "                              </p>\n" +
+    "                            </td>\n" +
+    "                          </tr>\n" +
     "<!--                               <tr ng-show=\"client.order.coupon.value && client.order.coupon.coupon_type != 'Percentage' \">\n" +
-    "                                <td><h4>Promo </h4></td>\n" +
-    "                                <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>\n" +
-    "                              </tr> -->\n" +
-    "                              <tr  class=\"bill-total\">\n" +
-    "                                <td><h4>Total </h4></td>\n" +
-    "                                <td><h4>{{client.order.amount + delivery.cost | number:1}}&nbsp;€</h4></td>\n" +
-    "                              </tr>\n" +
-    "                          </table>\n" +
+    "                            <td><p>Promo </p></td>\n" +
+    "                            <td><p>- {{client.order.coupon.value}}&nbsp;€</p></td>\n" +
+    "                          </tr> -->\n" +
+    "                          <tr  class=\"bill-total\">\n" +
+    "                            <td><p>Total </p></td>\n" +
+    "                            <td><p>{{client.order.amount + delivery.cost | number:1}}&nbsp;€</p></td>\n" +
+    "                          </tr>\n" +
+    "                      </table>\n" +
     "                  </div>\n" +
     "                  <hr>\n" +
     "              </div>\n" +
     "              <div class=\"row centered\">\n" +
-    "                 <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa icon-lock\"></i> SSL Secure\n" +
-    "                <hr>\n" +
+    "                <div class=\"col-lg-12\">\n" +
+    "                  <hr>\n" +
+    "                </div>\n" +
     "              </div>\n" +
     "\n" +
     "            <!-- Point Relais -->\n" +
@@ -2074,11 +2042,14 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                   </label> -->\n" +
     "                 </div>\n" +
     "               </div>\n" +
-    "                <hr>\n" +
     "               <div class=\"row row-submit centered\">\n" +
-    "                <div><input type=\"hidden\" name=\"name\" ng-model=\"client.userinfos.last_name\"/></div>\n" +
-    "                <button class=\"btn-square\" value=\"submit\">Commander mes vins</button>\n" +
-    "                <div><a href ui-sref=\"order.userinfos\">Modifier</a></div>\n" +
+    "                <hr>\n" +
+    "                <div class=\"hidden\"><input type=\"text\" name=\"name\" ng-model=\"name\"/></div>\n" +
+    "                <button class=\"btn-block-primary\" value=\"submit\">Commander mes vins</button>\n" +
+    "               </div>\n" +
+    "               <div class=\"row centered\">\n" +
+    "                 <img src=\"assets/credit_cards.png\" alt=\"\"> <i class=\"fa icon-lock\"></i> SSL Secure\n" +
+    "                  <div class=\"centered\"><a href ui-sref=\"order.userinfos\">Modifier</a></div>\n" +
     "               </div>\n" +
     "             </form>\n" +
     "            </div>\n" +
@@ -3289,6 +3260,58 @@ angular.module("remerciement/remerciement.6.tpl.html", []).run(["$templateCache"
     "window._fbq.push(['track', '6023674984193', {'value':'69.00','currency':'EUR'}]);\n" +
     "</script>\n" +
     "<noscript><img height=\"1\" width=\"1\" alt=\"\" style=\"display:none\" src=\"https://www.facebook.com/tr?ev=6023674984193&amp;cd[value]=69.00&amp;cd[currency]=EUR&amp;noscript=1\" /></noscript>");
+}]);
+
+angular.module("remerciement/remerciement.fail.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("remerciement/remerciement.fail.tpl.html",
+    "  <nav class=\"navbar navbar-gift\" role=\"navigation\">\n" +
+    "    <div class=\"container-fluid\">\n" +
+    "      <div class=\"navbar-header\">\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">\n" +
+    "          <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "          <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "         <a href=\"https://vinify.co/\" id=\"home-logo-brand-second\"><img alt=\"\" src=\"assets/logo.png\" style=\"height:45px\" id=\"mf2\"/></a>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#getstarted\" id=\"home-navbar-second-faq\" class=\"btn-navbar-second\">\n" +
+    "                  Comment ça marche ?\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"https://vinify.co/index.html#how-it-works\" id=\"home-navbar-second-experience\" class=\"btn-navbar-second\">\n" +
+    "                  L'expérience Vinify\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a href=\"http://blog.vinify.co\" id=\"home-navbar-second-contact\" class=\"btn-navbar-second\">\n" +
+    "                 Blog\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </nav>\n" +
+    "<div class=\"remerciement-container\">\n" +
+    "  <div class=\"vertical-align centered\">\n" +
+    "      <div class=\"container row-fluid\">\n" +
+    "        <h2>Bienvenue dans l'univers Vinify</h2>\n" +
+    "        <p>Merci pour vos réponses</p>\n" +
+    "        <p>Notre oenologue reviendra vers vous rapidement avec des vins que vous allez adorer !</p>\n" +
+    "        <div class=\"remerciement\">\n" +
+    "          <img src=\"assets/vinifytailleur.png\" style=\"width:300px;\">\n" +
+    "        <!-- Col -->\n" +
+    "        </div>\n" +
+    "        <p>A très vite pour la suite de l'aventure Vinify !</p>\n" +
+    "      <!-- ROW -->\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "</div>");
 }]);
 
 angular.module("remerciement/remerciement.gift.tpl.html", []).run(["$templateCache", function($templateCache) {

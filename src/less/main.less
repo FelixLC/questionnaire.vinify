@@ -82,6 +82,9 @@ button:active:focus {
 .u-cursor {
   cursor: pointer;
 }
+.u-color-brand {
+  color: @brand-color;
+}
 
 hr.backgrounded {
   border-color: @brand-primary;
@@ -174,29 +177,32 @@ hr.backgrounded {
   .btn-block-primary {
     font-size: 20px;
     cursor: pointer;
+    padding: 8px 14px 7px;
     border: 2px solid  @brand-color;
-    border-bottom: 2px solid #620918;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
     width: 100%;
     color: #fff;
     background-color: @brand-color;
     vertical-align: middle;
-    height: @navheight;
-    line-height: @navheight;
+    // height: @navheight;
+    // line-height: @navheight;
   }
-  .btn-block-primary:not([disabled]):hover {
-    -webkit-transform: translate3d(0, -1px, 0);
-    transform: translate3d(0, -1px, 0);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  .btn-block-primary:hover {
+    border-bottom-color: rgba(0,0,0,0.40);
   }
   .btn-block-primary:not([disabled]):active {
-    -webkit-transform: translate3d(0, 0px, 0);
-    transform: translate3d(0, 0px, 0);
-    box-shadow: none;
+    border-bottom-color: transparent !important;
+    -webkit-box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+    box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+  }
+  .btn-block-primary:focus,
+  .btn-block-primary:visited {
+    outline: 0;
   }
   .btn-block-primary.disabled-block {
     background-color: RGBA(203,0,1,0.5);

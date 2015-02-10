@@ -7,9 +7,9 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a href=""><img alt="" src="assets/oclipboard.png" class="opacity-link" style="height:45px"/></a></li>
-          <li ng-show="state == 'order.userinfos'"><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
-          <li ng-show="!(state == 'order.userinfos')"><a href=""><img alt="" class="opacity-link" src="assets/odolly.png" style="height:45px"/></a></li>
-          <li ng-show="state == 'order.paiement'"><a href=""><img alt="" src="assets/creditcard.png" style="height:45px"/></a></li>
+          <li ng-if="state == 'order.userinfos'"><a href=""><img alt="" src="assets/dolly.png" style="height:45px"/></a></li>
+          <li ng-if="!(state == 'order.userinfos')"><a href=""><img alt="" class="opacity-link" src="assets/odolly.png" style="height:45px"/></a></li>
+          <li ng-if="state == 'order.paiement'"><a href=""><img alt="" src="assets/creditcard.png" style="height:45px"/></a></li>
           <li ng-hide="state == 'order.paiement'"><a href=""><img alt="" class="opacity-link" src="assets/ocreditcard.png" style="height:45px"/></a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -23,152 +23,97 @@
         <div class="row row-paiement">
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-12 centered">
-                <h4>Adresse</h4>
-                <p class="">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>
-                <p>{{client.email}}</h4>
-                <p>{{client.userinfos.delivery_address.street}}<br>
-                {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>
-                <p class="picked-relay" ng-show="delivery.mode === 'Point Relais' && selected.shop">Point Relais: {{shop.Nom}} - {{shop.Ville}}</p>
+                  <div class="col-lg-3 col-md-3 col-sm-12 centered">
+                    <h4>Adresse de Livraison</h4>
+                    <hr>
+                    <p class="">{{client.userinfos.first_name}} {{client.userinfos.last_name}}</p>
+                    <p>{{client.email}}</p>
+                    <p>{{client.userinfos.delivery_address.street}}<br>
+                    {{client.userinfos.delivery_address.zipcode}} {{client.userinfos.delivery_address.city}}</p>
+                    <p class="picked-relay" ng-if="delivery.mode === 'Point Relais' && selected.shop">
+                      Point Relais: {{shop.Nom}} - {{shop.Ville}}
+                    </p>
                   </div>
                   <hr class="visible-sm visible-xs">
                   <div class="col-lg-4 col-md-4 col-sm-12 centered">
-                <h4>Mode de Livraison</h4>
-                          <table class="table-deliv-mode">
-                              <tr ng-click="updateOrder(1)">
-                                <td>
-                      <svg ng-show="delivery.mode === 'Point Relais' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <defs></defs>
-                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
-                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
-                                    <g id="Tick">
-                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" fill="#CB0001"></path>
-                                        <g id="Shape-2-+-Shape-3" transform="translate(8.683417, 10.582915)" fill="#FFFFFF">
-                                            <path d="M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z" id="Shape-2" transform="translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) "></path>
-                                            <path d="M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z" id="Shape-3" transform="translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) "></path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                      </svg>
-                      <svg ng-hide="delivery.mode === 'Point Relais' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <defs></defs>
-                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
-                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
-                                    <g id="Tick">
-                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" stroke="#CB0001" fill="#FFF"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                      </svg>
-                                 </h4>
-                                <td><p> Point Relais</p></td>
-                              </tr>
-                              <tr ng-click="updateOrder(2)">
-                                <td>
-                      <svg ng-show="delivery.mode === 'Colissimo' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <defs></defs>
-                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
-                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
-                                    <g id="Tick">
-                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" fill="#CB0001"></path>
-                                        <g id="Shape-2-+-Shape-3" transform="translate(8.683417, 10.582915)" fill="#FFFFFF">
-                                            <path d="M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z" id="Shape-2" transform="translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) "></path>
-                                            <path d="M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z" id="Shape-3" transform="translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) "></path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                      </svg>
-                      <svg ng-hide="delivery.mode === 'Colissimo' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <defs></defs>
-                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
-                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
-                                    <g id="Tick">
-                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" stroke="#CB0001" fill="#FFF"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                      </svg>
-                  </td>
-                                <td>
-                                <p> Colissimo Suivi </p>
-                                </td>
-                              </tr>
-                              <tr ng-click="updateOrder(3)"  class="bill-total">
-                                <td>
-                      <svg ng-show="delivery.mode === 'Vinify' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <defs></defs>
-                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
-                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
-                                    <g id="Tick">
-                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" fill="#CB0001"></path>
-                                        <g id="Shape-2-+-Shape-3" transform="translate(8.683417, 10.582915)" fill="#FFFFFF">
-                                            <path d="M6.61603572,-0.979270246 C6.83808255,-0.979270246 6.99641974,-0.90543001 6.99641974,-0.819862208 L6.99641974,7.46197174 C6.99641974,7.54797389 6.8376141,7.62181413 6.61603572,7.62181413 C6.36213407,7.62181413 6.20379688,7.54797389 6.20379688,7.46197174 L6.20379688,-0.819862208 C6.20379688,-0.90543001 6.36213407,-0.979270246 6.61603572,-0.979270246 Z" id="Shape-2" transform="translate(6.610832, 3.298008) rotate(45.000000) translate(-6.610832, -3.298008) "></path>
-                                            <path d="M2.1433034,1.87721922 C2.36535023,1.87721922 2.52368742,1.9231654 2.52368742,1.97640892 L2.52368742,7.12967868 C2.52368742,7.18319247 1.73106457,7.23722887 1.73106457,7.18371508 L1.73106457,1.97640892 C1.73106457,1.9231654 1.88940176,1.87721922 2.1433034,1.87721922 Z" id="Shape-3" transform="translate(2.138100, 4.522948) rotate(-45.000000) translate(-2.138100, -4.522948) "></path>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                      </svg>
-                      <svg ng-hide="delivery.mode === 'Vinify' " width="25px" height="25px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-                        <defs></defs>
-                        <g id="Page-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                            <g id="TickSmall-2" sketch:type="MSLayerGroup" transform="translate(1.000000, 2.000000)">
-                                <g id="VY-logo-white" sketch:type="MSShapeGroup">
-                                    <g id="Tick">
-                                        <path d="M13.4994573,26.9989146 C20.9550017,26.9989146 26.9989146,20.9550017 26.9989146,13.4994573 C26.9989146,6.0439129 20.9550017,0 13.4994573,0 C6.0439129,0 0,6.0439129 0,13.4994573 C0,20.9550017 6.0439129,26.9989146 13.4994573,26.9989146 Z" id="Oval" stroke="#CB0001" fill="#FFF"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                      </svg>
-                                </td>
-                                <td><p> Retrait Vinify (Issy 92) </p></td>
-                              </tr>
-                          </table>
+                    <h4>Mode de Livraison</h4>
+                    <hr>
+                    <table class="table-deliv-mode">
+                        <tr ng-click="updateOrder(1)">
+                          <td colspan="2"><p>
+                            <i ng-if="delivery.mode === 'Point Relais' " class="icon icon-dot-circled u-color-brand"></i>
+                            <i ng-if="delivery.mode != 'Point Relais' " class="icon icon-circle-empty u-color-brand"></i>
+                             <span class="p-highlight">Point Relais</span> ~ 3 - 4j
+                          </p></td>
+                        </tr>
+                        <tr ng-click="updateOrder(2)">
+                          <td colspan="2"><p>
+                            <i ng-if="delivery.mode === 'Colissimo' " class="icon icon-dot-circled u-color-brand"></i>
+                            <i ng-if="delivery.mode != 'Colissimo' " class="icon icon-circle-empty u-color-brand"></i>
+                             <span class="p-highlight">Colissimo Suivi</span> ~ 2 - 3j
+                          </p></td>
+                        </tr>
+                        <tr ng-click="updateOrder(3)">
+                          <td colspan="2"><p>
+                            <i ng-if="delivery.mode === 'Vinify' " class="icon icon-dot-circled u-color-brand"></i>
+                            <i ng-if="delivery.mode != 'Vinify' " class="icon icon-circle-empty u-color-brand"></i>
+                             <span class="p-highlight">Retrait Vinify</span> <span class="small">à partir de demain midi</span><br>
+                             <small class="indent">135 rue jean jacques rousseau, 92130 Issy</small>
+                          </p></td>
+                        </tr>
+                        <tr class="border-top">
+                          <td colspan="2"><p class="margin-top">
+                             <span class="p-highlight">Livraison Express Paris</span> (Nouveau !)<br>
+                             <small>Je reçois mon bar chez moi <span class="p-highlight">{{beforeNoon()}},</span></small>
+                          </p></td>
+                        </tr>
+                        <tr>
+                          <td ng-click="updateOrder(4)"><p>
+                            <i ng-if="delivery.mode === 'express_1' " class="icon icon-dot-circled u-color-brand"></i>
+                            <i ng-if="delivery.mode != 'express_1' " class="icon icon-circle-empty u-color-brand"></i>
+                             <small>16h30 - 18h</small>
+                          </p></td>
+                          <td ng-click="updateOrder(5)"><p>
+                            <i ng-if="delivery.mode === 'express_2' " class="icon icon-dot-circled u-color-brand"></i>
+                            <i ng-if="delivery.mode != 'express_2' " class="icon icon-circle-empty u-color-brand"></i>
+                            <small>19h00 - 21h30</small>
+                          </p></td>
+                        </tr>
+                    </table>
                   </div>
                   <hr class="visible-sm visible-xs">
-                  <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="col-lg-2 col-md-2 col-sm-12">
                        <h4 class="centered">Commande</h4>
-                          <table class="table-bill">
-                              <tr>
-                                <td><h4>{{client.order_type}} </h4></td>
-                                <td><h4>{{client.order.amount}}&nbsp;€</h4></td>
-                              </tr>
-                              <tr>
-                                <td><h4>Livraison </h4></td>
-                                <td>
-                                  <h4>
-                                    {{delivery.cost}}&nbsp;€
-                                  </h4>
-                                </td>
-                              </tr>
+                       <hr>
+                      <table class="table-bill">
+                          <tr>
+                            <td><p>{{client.order_type}} </p></td>
+                            <td><p>{{client.order.amount}}&nbsp;€</p></td>
+                          </tr>
+                          <tr>
+                            <td><p>Livraison </p></td>
+                            <td>
+                              <p>
+                                {{delivery.cost}}&nbsp;€
+                              </p>
+                            </td>
+                          </tr>
 <!--                               <tr ng-show="client.order.coupon.value && client.order.coupon.coupon_type != 'Percentage' ">
-                                <td><h4>Promo </h4></td>
-                                <td><h4>- {{client.order.coupon.value}}&nbsp;€</h4></td>
-                              </tr> -->
-                              <tr  class="bill-total">
-                                <td><h4>Total </h4></td>
-                                <td><h4>{{client.order.amount + delivery.cost | number:1}}&nbsp;€</h4></td>
-                              </tr>
-                          </table>
+                            <td><p>Promo </p></td>
+                            <td><p>- {{client.order.coupon.value}}&nbsp;€</p></td>
+                          </tr> -->
+                          <tr  class="bill-total">
+                            <td><p>Total </p></td>
+                            <td><p>{{client.order.amount + delivery.cost | number:1}}&nbsp;€</p></td>
+                          </tr>
+                      </table>
                   </div>
                   <hr>
               </div>
               <div class="row centered">
-                 <img src="assets/credit_cards.png" alt=""> <i class="fa icon-lock"></i> SSL Secure
-                <hr>
+                <div class="col-lg-12">
+                  <hr>
+                </div>
               </div>
 
             <!-- Point Relais -->
@@ -235,11 +180,14 @@
                    </label> -->
                  </div>
                </div>
-                <hr>
                <div class="row row-submit centered">
-                <div><input type="hidden" name="name" ng-model="client.userinfos.last_name"/></div>
-                <button class="btn-square" value="submit">Commander mes vins</button>
-                <div><a href ui-sref="order.userinfos">Modifier</a></div>
+                <hr>
+                <div class="hidden"><input type="text" name="name" ng-model="name"/></div>
+                <button class="btn-block-primary" value="submit">Commander mes vins</button>
+               </div>
+               <div class="row centered">
+                 <img src="assets/credit_cards.png" alt=""> <i class="fa icon-lock"></i> SSL Secure
+                  <div class="centered"><a href ui-sref="order.userinfos">Modifier</a></div>
                </div>
              </form>
             </div>

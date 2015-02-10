@@ -38,15 +38,16 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="">
                 Email
-              <a ng-hide="gift.order.gift_type === 'Email'" href=""
+<!--               <a ng-hide="gift.order.gift_type === 'Email'" href=""
                   popover-title="Chut ..."
                   popover="Si vous choisissez de l'envoyer chez vous, nous lui enverrons aucun email, nous lui créons juste un compte."
                   popover-trigger="mouseenter"
-                  popover-placement="bottom">(<i class="fa icon-info-circle">)</i></a>
+                  popover-placement="bottom">(<i class="fa icon-info-circle">)</i></a> -->
               </p>
               <input name="receiver_email" type="text" class="form-control" ng-model="gift.order.receiver_email"
                             ng-class="{'input-error' : infos.submitted && infos.receiver_email.$invalid}"
                             required>
+              <p cass="centered"><span ng-hide="gift.order.gift_type === 'Email' || gift.order.gift_type === 'Vinibar' " class="small">nous n'enverrons aucun mail avant la réception du cadeau</span><span ng-if="gift.order.gift_type === 'Vinibar'" class="small">nous n'enverrons aucun mail avant l'envoi du Vinibar</span></p>
             </div>
           </div>
           <div class="row">
@@ -216,7 +217,7 @@
           </div>
         </div>
         <p class="centered"><a href="https://api.vinify.co/api/users/password/reset/">réinitialiser votre mot de passe</a></p>
-        <button type="submit" class="btn-block-primary centered margin-top"><p>Continuer <i ng-show="load" class="fa icon-spinner icon-spin"></i></p></button>
+        <button type="submit" class="btn-block-primary centered margin-top">Continuer <i ng-show="load" class="fa icon-spinner icon-spin"></i></button>
       </div>
   </div>
 </form>

@@ -64,7 +64,7 @@ angular.module('clientFactory', [ 'settings' ])
       this.billing_address.other_info = "";
       this.delivery_address.company = "";
       this.delivery_address.other_info = "";
-      this.delivery_address.country = "";
+      this.delivery_address.country = "france";
       this.billing_address.country = "";
       this.delivery_mode = null;
     };

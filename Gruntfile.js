@@ -105,13 +105,6 @@ module.exports = function (grunt) {
       }
     },
 
-    sitemap: {
-      dist: {
-        pattern: ['**/*.html', '!**/google*.html'], // this will exclude 'google*.html'
-        siteRoot: 'bin/',
-        homepage: 'https://www.vinify.co'
-      }
-    },
     /**
      * We read in our `package.json` file so we can access the package name and
      * version. It's already there, so we don't repeat ourselves here.
@@ -862,7 +855,6 @@ module.exports = function (grunt) {
    * The default task is to build and compile.
    */
   grunt.registerTask('default', [ 'build', 'compile' ]);
-  grunt.registerTask('siteMap', [ 'sitemap' ]);
 
   /**
    * The `build` task gets your app ready to run for development and testing.
@@ -880,7 +872,7 @@ module.exports = function (grunt) {
    */
   grunt.registerTask('compile', [
     'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile',
-     'imagemin', 'siteMap'
+     'imagemin'
   ]);
 
   grunt.registerTask('deploy', [
