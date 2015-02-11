@@ -943,7 +943,7 @@ angular.module("mrelay/mrelay.tpl.html", []).run(["$templateCache", function($te
     "          </div>\n" +
     "          <input type=\"text\" id=\"Retour_Widget\" class=\"\"/>\n" +
     "      </div>\n" +
-    "      <div class=\"col-lg-4 col-sm-4\">\n" +
+    "      <div class=\"col-lg-3 col-lg-offset-1 col-sm-3 col-sm-offset-1\">\n" +
     "         <h2>Instructions</h2>\n" +
     "         <br><br>\n" +
     "         <p>Choississez le Point Relais que vous souhaitez et validez.</p>\n" +
@@ -1940,7 +1940,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                             <small class=\"indent\">135 rue jean jacques rousseau, 92130 Issy</small>\n" +
     "                          </p></td>\n" +
     "                        </tr>\n" +
-    "<!--                         <tr ng-click=\"chooseExpress(delivery.mode)\">\n" +
+    "                        <tr ng-click=\"chooseExpress(delivery.mode)\">\n" +
     "                          <td colspan=\"2\"><p>\n" +
     "                            <i ng-if=\"isExpress(delivery.mode)\" class=\"icon icon-dot-circled\"></i>\n" +
     "                            <i ng-if=\"!isExpress(delivery.mode)\" class=\"icon icon-circle-empty\"></i>\n" +
@@ -1955,7 +1955,7 @@ angular.module("pay_mobile/pay_mobile.tpl.html", []).run(["$templateCache", func
     "                          <td ng-click=\"updateOrder(5)\"><p class=\"indent\">\n" +
     "                            <small class=\"schedule\" ng-class=\"{'selected-schedule': delivery.mode === 'express_2'} \">19h00 - 21h30</small>\n" +
     "                          </p></td>\n" +
-    "                        </tr> -->\n" +
+    "                        </tr>\n" +
     "                    </table>\n" +
     "                  </div>\n" +
     "                  <hr class=\"visible-sm visible-xs\">\n" +

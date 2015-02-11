@@ -118,7 +118,7 @@ angular.module('vinibar.pay_mobile', [
   };
 
 
-  // Stripe.setPublishableKey((settings.test) ? 'pk_test_sK21onMmCuKNuoY7pbml8z3Q' : 'pk_live_gNv4cCe8tsZpettPUsdQj25F');
+  Stripe.setPublishableKey((settings.test) ? 'pk_test_sK21onMmCuKNuoY7pbml8z3Q' : 'pk_live_gNv4cCe8tsZpettPUsdQj25F');
   $scope.submit = function (status, response) {
     var direction = ($scope.client.order_type === 'Vinibar') ? 'remerciement_6' : 'remerciement_3';
     if (response.error) {
