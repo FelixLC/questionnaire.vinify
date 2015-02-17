@@ -9,7 +9,7 @@ angular.module('vinibar.gift.vinibar', [
   'Mixpanel'
 ])
 
-.config(function config ($stateProvider) {
+.config(["$stateProvider", function config ($stateProvider) {
   $stateProvider
     .state('gift.vinibar', {
       url: '/vinibar?test',
@@ -40,9 +40,9 @@ angular.module('vinibar.gift.vinibar', [
       controller: 'giftPayCtrl',
       data: { pageTitle: 'Cadeau' }
     });
-})
+}])
 
-.controller('giftVinibarCtrl', function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window, $q) {
+.controller('giftVinibarCtrl', ["Mixpanel", "$scope", "$rootScope", "$state", "Gift", "currentGift", "$stateParams", "params", "settings", "toaster", "$window", "$q", function giftVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, $stateParams, params, settings, toaster, $window, $q) {
 
   var init = function () {
     $scope.costs = params;
@@ -172,8 +172,8 @@ angular.module('vinibar.gift.vinibar', [
       $state.go(state);
     }
   };
-})
-.controller('giftInfosVinibarCtrl', function giftInfosVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, currentGiftCard, $stateParams, params, settings, toaster, $window) {
+}])
+.controller('giftInfosVinibarCtrl', ["Mixpanel", "$scope", "$rootScope", "$state", "Gift", "currentGift", "currentGiftCard", "$stateParams", "params", "settings", "toaster", "$window", function giftInfosVinibarCtrl (Mixpanel, $scope, $rootScope, $state, Gift, currentGift, currentGiftCard, $stateParams, params, settings, toaster, $window) {
   $scope.gift = currentGift.current;
   $scope.is = {
     client: true
@@ -295,8 +295,8 @@ angular.module('vinibar.gift.vinibar', [
       toaster.pop('infos', 'Oops !', ' Vous avez oublié des champs');
     }
   };
-})
-.controller('giftQuizVinibarCtrl', function giftQuizVinibarCtrl (Mixpanel, $scope, $state, currentGift, toaster) {
+}])
+.controller('giftQuizVinibarCtrl', ["Mixpanel", "$scope", "$state", "currentGift", "toaster", function giftQuizVinibarCtrl (Mixpanel, $scope, $state, currentGift, toaster) {
 
   $scope.regions = [
     'Il/elle n\'en a pas',
@@ -331,4 +331,4 @@ angular.module('vinibar.gift.vinibar', [
       });
     }
   };
-});
+}]);

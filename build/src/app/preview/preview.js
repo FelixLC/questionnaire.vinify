@@ -6,7 +6,7 @@ angular.module('vinibar.preview', [
   'Mixpanel'
 ])
 
-.config(function config ($stateProvider) {
+.config(["$stateProvider", function config ($stateProvider) {
   $stateProvider
     .state('preview', {
       url: '/apercu',
@@ -18,9 +18,9 @@ angular.module('vinibar.preview', [
       },
       data: { pageTitle: 'Ma sélection personnalisée' }
     });
-})
+}])
 
-.controller('previewCtrl', function previewCtrl (Mixpanel, Recommender, $scope, currentClient, $state, $modal) {
+.controller('previewCtrl', ["Mixpanel", "Recommender", "$scope", "currentClient", "$state", "$modal", function previewCtrl (Mixpanel, Recommender, $scope, currentClient, $state, $modal) {
   $scope.hover = {
     wine_1: false,
     wine_2: false,
@@ -52,9 +52,9 @@ angular.module('vinibar.preview', [
 
     });
   };
-})
+}])
 
-.controller('ModalInstanceCtrl', function ($scope, $modalInstance, wine) {
+.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "wine", function ($scope, $modalInstance, wine) {
   $scope.wine = wine;
 
   $scope.ok = function () {
@@ -65,4 +65,4 @@ angular.module('vinibar.preview', [
     $modalInstance.dismiss('cancel');
   };
 
-});
+}]);

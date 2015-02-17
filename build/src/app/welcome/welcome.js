@@ -4,10 +4,11 @@ angular.module('vinibar.welcome', [
   'ngAutocomplete',
   'mondialrelay',
   'clientFactory',
-  'toaster'
+  'toaster',
+  'settings'
 ])
 
-.config(function config ($stateProvider) {
+.config(["$stateProvider", function config ($stateProvider) {
   $stateProvider
     .state('welcome', {
       url: '/demarrer?r',
@@ -19,9 +20,9 @@ angular.module('vinibar.welcome', [
       },
       data: { pageTitle: 'Démarrer l\'aventure' }
     });
-})
+}])
 
-.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams, $window) {
+.controller('welcomeCtrl', ["$scope", "currentClient", "$state", "toaster", "$stateParams", "$window", "settings", function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams, $window, settings) {
 
   var coffeeBckg = new Image ();
   coffeeBckg.src = "assets/coffee-grains.jpg";
@@ -37,8 +38,8 @@ angular.module('vinibar.welcome', [
   winemapBckg.src = "assets/winery.jpg";
 
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
-  // currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
+  settings.test = ($stateParams.r === 'test') ?  true : false;
   $scope.is = { gift: currentClient.isGift };
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 
-});
+}]);

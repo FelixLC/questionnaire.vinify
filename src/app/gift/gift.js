@@ -43,7 +43,7 @@ angular.module('vinibar.gift', [
   };
 })
 
-.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, currentGift, currentGiftCard, params, toaster, settings, $modal, currentClient) {
+.controller('giftPayCtrl', function giftPayCtrl (Mixpanel, $scope, $http, $state, $window, currentGift, currentGiftCard, params, toaster, settings, $modal, currentClient) {
 
   Stripe.setPublishableKey((settings.test) ? 'pk_test_sK21onMmCuKNuoY7pbml8z3Q' : 'pk_live_gNv4cCe8tsZpettPUsdQj25F');
   $scope.gift = currentGift.current;
@@ -65,7 +65,9 @@ angular.module('vinibar.gift', [
           currentClient.order = data;
           currentGiftCard.code = data.activation_code;
           currentGiftCard.credits = data.credits;
-          $state.go('remerciement_gift', { print: ($scope.gift.order.gift_type === 'Print') ? true : false });
+          // $state.go('remerciement_gift', { print: ($scope.gift.order.gift_type === 'Print') ? true : false });
+          var amount =  Math.round((($scope.gift.final_price - $scope.gift.delivery_cost) / 1.2) * 100) / 100;
+          $window.location = 'https://vinify.co/remerciement/cadeau.html' + '?id=' + $scope.gift.receiver.gift_uuid + '&amount=' + amount;
           Mixpanel.track('Sucessful payment');
         })
         .error(function (data, status, headers, config) {

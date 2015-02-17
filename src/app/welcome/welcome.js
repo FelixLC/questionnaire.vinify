@@ -4,7 +4,8 @@ angular.module('vinibar.welcome', [
   'ngAutocomplete',
   'mondialrelay',
   'clientFactory',
-  'toaster'
+  'toaster',
+  'settings'
 ])
 
 .config(function config ($stateProvider) {
@@ -21,7 +22,7 @@ angular.module('vinibar.welcome', [
     });
 })
 
-.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams, $window) {
+.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams, $window, settings) {
 
   var coffeeBckg = new Image ();
   coffeeBckg.src = "assets/coffee-grains.jpg";
@@ -37,7 +38,7 @@ angular.module('vinibar.welcome', [
   winemapBckg.src = "assets/winery.jpg";
 
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
-  // currentClient.isGift = ($stateParams.r === 'gift') ?  true : false;
+  settings.test = ($stateParams.r === 'test') ?  true : false;
   $scope.is = { gift: currentClient.isGift };
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 
