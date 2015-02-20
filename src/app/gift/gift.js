@@ -65,10 +65,13 @@ angular.module('vinibar.gift', [
           currentClient.order = data;
           currentGiftCard.code = data.activation_code;
           currentGiftCard.credits = data.credits;
-          // $state.go('remerciement_gift', { print: ($scope.gift.order.gift_type === 'Print') ? true : false });
-          var amount =  Math.round((($scope.gift.final_price - $scope.gift.delivery_cost) / 1.2) * 100) / 100;
-          $window.location = 'https://vinify.co/remerciement/cadeau.html' + '?id=' + $scope.gift.receiver.gift_uuid + '&amount=' + amount;
-          Mixpanel.track('Sucessful payment');
+          if (settings.test) {
+            $state.go('remerciement_gift', { print: ($scope.gift.order.gift_type === 'Print') ? true : false });
+          } else {
+            var amount =  Math.round((($scope.gift.final_price - $scope.gift.delivery_cost) / 1.2) * 100) / 100;
+            $window.location = 'https://vinify.co/remerciement/cadeau.html' + '?id=' + $scope.gift.receiver.gift_uuid + '&amount=' + amount;
+            Mixpanel.track('Sucessful payment');
+          }
         })
         .error(function (data, status, headers, config) {
           $scope.load = { spin: false };

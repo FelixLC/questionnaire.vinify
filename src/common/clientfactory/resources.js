@@ -83,8 +83,7 @@ angular.module('Resources', [ 'settings' ])
       this.intercom = "";
       this.zipcode = "";
       this.other_info = "";
-      this.country = "";
-      this.country = "";
+      this.country = "France";
     };
 
     var Gift = function (type) {

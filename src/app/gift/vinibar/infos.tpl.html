@@ -110,6 +110,8 @@
                             autocomplete="street" name="street"
                             ng-class="{'input-error' : infos.submitted && infos.street.$invalid}"
                             ng-required="gift.order.delivery_mode === 'Colissimo' || gift.order.gift_type === 'Card'">
+              <input type="text" class="form-control" ng-model="gift.order.receiver_address.street_2"
+                            autocomplete="street_2" name="street_2">
             </div>
           </div>
           <div class="row">
@@ -141,10 +143,23 @@
             </div>
           </div>
           <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <p class="">Société</p>
+              <input type="text" class="form-control" ng-model="gift.order.receiver_address.company"
+                            autocomplete="company" name="company">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <p class="">Pays</p>
+                <select class="form-control" name="country" id="country" ng-model="gift.order.receiver_address.country">
+                  <option selected="true" value="france">France</option>
+                </select>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <p class="">Informations Complémentaires</p>
                 <textarea class="form-control" rows="2" ng-model="gift.order.receiver_address.other_info"
-                                      placeholder="Société, Bâtiment, Escalier, Etage ..."  name="other_info"
+                                      placeholder="Bâtiment, Escalier, Etage ..."  name="other_info"
                                       id="other_info"></textarea>
             </div>
           </div>
@@ -154,10 +169,10 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <h2 class="col-title">Moi</h2>
         <div class="col-tab">
-          <div ng-click="is.client = true" ng-class="{'background': is.client}">
+          <div id="is-client" ng-click="is.client = true" ng-class="{'background': is.client}">
             <p class="col-subtitle">J'ai un compte <br> Vinify</p>
           </div>
-          <div ng-click="is.client = false" ng-class="{'background': !is.client}">
+          <div id="is-not-client" ng-click="is.client = false" ng-class="{'background': !is.client}">
             <p class="col-subtitle">Je n'ai pas de <br> compte Vinify</p>
           </div>
         </div>
@@ -198,14 +213,14 @@
           </div>
           <div ng-show="is.client" class="gift-giver">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <p class="">Email</p>
                 <input type="text" class="form-control" ng-model="gift.client.username"
                               name="client_username"
                               ng-class="{'input-error' : infos.submitted && infos.client_username.$invalid}"
                               ng-required="is.client">
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <p class="">Mot de Passe</p>
                 <input type="password" class="form-control" ng-model="gift.client.password"
                               name="client_password"

@@ -1,5 +1,6 @@
 aws-keys.json
 vendor/
+bower_components/
 node_modules
 bin/
 build/

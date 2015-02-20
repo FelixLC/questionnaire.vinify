@@ -11,7 +11,7 @@ angular.module('vinibar.pay_mobile', [
   'angularLoad'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider.state('pay_mobile', {
     url: '/order/paiement',
     views: {
@@ -30,9 +30,9 @@ angular.module('vinibar.pay_mobile', [
     // },
     data: { pageTitle: 'Commander' }
   });
-}])
+})
 
-.controller('payMobileCtrl', ["Mixpanel", "$scope", "$http", "currentClient", "$rootScope", "settings", "$state", "Order", "toaster", "$modal", "$window", function payMobileCtrl (Mixpanel, $scope, $http, currentClient, $rootScope, settings, $state, Order, toaster, $modal, $window) {
+.controller('payMobileCtrl', function payMobileCtrl (Mixpanel, $scope, $http, currentClient, $rootScope, settings, $state, Order, toaster, $modal, $window) {
   var init = function (argument) {
     $scope.state = 'order.paiement';
     $scope.date = new Date();
@@ -148,11 +148,14 @@ angular.module('vinibar.pay_mobile', [
                 }
               );
             }
-            // $state.go(direction);
-            var amount =  Math.round((($scope.client.order.final_price - $scope.client.order.delivery_cost) / 1.2) * 100) / 100;
-            $window.location = ($scope.client.order_type === 'Vinibar') ?
-              'https://vinify.co/remerciement/vinibar.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount :
-              'https://vinify.co/remerciement/decouverte.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount;
+            if (settings.test) {
+              $state.go(direction);
+            } else {
+              var amount =  Math.round((($scope.client.order.final_price - $scope.client.order.delivery_cost) / 1.2) * 100) / 100;
+              $window.location = ($scope.client.order_type === 'Vinibar') ?
+                'https://vinify.co/remerciement/vinibar.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount :
+                'https://vinify.co/remerciement/decouverte.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount;
+            }
             Mixpanel.track('Sucessful payment');
           })
           .error(function (data, status, headers, config) {
@@ -197,4 +200,4 @@ angular.module('vinibar.pay_mobile', [
     }
   };
 
-}]);
+});

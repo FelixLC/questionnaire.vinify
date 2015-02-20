@@ -16,6 +16,9 @@ module.exports = function ( karma ) {
       'bower_components/angular-toaster/angular-toaster.js',
       'bower_components/angular-bootstrap/ui-bootstrap-custom-tpls.min.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/angulartics/dist/angulartics.min.js',
+      'bower_components/angulartics/dist/angulartics-ga.min.js',
+      'bower_components/angulartics/dist/angulartics-mixpanel.min.js',
       'bower_components/angular-soap/soapclient.js',
       'bower_components/angular-soap/angular.soap.js',
       'build/templates-app.js',
@@ -27,7 +30,8 @@ module.exports = function ( karma ) {
       'src/**/*.coffee',
     ],
     exclude: [
-      'src/assets/**/*.js'
+      'src/assets/**/*.js',
+      'src/**/*.e2e.spec.js'
     ],
     frameworks: [ 'jasmine' ],
     plugins: [ 'karma-jasmine', 'karma-firefox-launcher', 'karma-chrome-launcher', 'karma-phantomjs-launcher', 'karma-coffee-preprocessor' ],

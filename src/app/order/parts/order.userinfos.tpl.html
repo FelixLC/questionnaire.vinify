@@ -205,7 +205,7 @@
               <div>
                 <label for="company">Société</label>
                 <input type="text"
-                  placeholder="Vinify"
+                  placeholder=""
                   name="company"
                   ng-model="client.userinfos.delivery_address.company"
                   class="form-control"
@@ -278,7 +278,7 @@
                     class="form-control"
                     id="delivery_address.city"/>
                 </div>
-                <textarea class="form-control" rows="2" ng-model="client.userinfos.delivery_address.other_info" placeholder="Société, Bâtiment, Escalier, Etage ..." id="delivery_address.other_info"></textarea>
+                <textarea class="form-control" rows="2" ng-model="client.userinfos.delivery_address.other_info" placeholder="Bâtiment, Escalier, Etage ..." id="delivery_address.other_info"></textarea>
               </div>
 
             <div ng-hide="isGift"  class="checkbox">
@@ -293,6 +293,28 @@
             <!-- <label>Adresse de Facturation </label> -->
             <div class="form-group country-company">
               <div>
+                <label for="billing_first_name">Prénom</label>
+                <input type="text"
+                  placeholder=""
+                  name="billing_first_name"
+                  ng-model="client.userinfos.billing_address.first_name"
+                  class="form-control"
+                  id="billing_first_name"/>
+              </div>
+              </div>
+              <div>
+                <label for="delivery_last_name">Nom</label>
+                <input type="text"
+                  placeholder=""
+                  name="delivery_last_name"
+                  ng-model="client.userinfos.billing_address.last_name"
+                  class="form-control"
+                  id="delivery_last_name"/>
+              </div>
+            </div>
+
+            <div class="form-group country-company">
+              <div>
                 <label for="country">Pays</label>
                 <input type="text"
                   placeholder="France"
@@ -304,7 +326,7 @@
               <div>
                 <label for="company">Société</label>
                 <input type="text"
-                  placeholder="Vinify"
+                  placeholder=""
                   name="company"
                   ng-model="client.userinfos.billing_address.company"
                   class="form-control"

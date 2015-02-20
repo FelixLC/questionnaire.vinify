@@ -6,11 +6,15 @@
   'use strict';
 
   angular
-        .module('Mixpanel', [ 'settings' ])
+        .module('Mixpanel', [ 'settings', 'angulartics.google.analytics', 'angulartics.mixpanel' ])
+        .config(function ($analyticsProvider) {
+          // turn off automatic tracking
+          $analyticsProvider.virtualPageviews(false);
+        })
         .factory('Mixpanel', Mixpanel);
 
     /* @ngInject */
-  function Mixpanel (settings) {
+  function Mixpanel (settings, $analytics) {
     var service = {
         track: track,
         identify: identify,
@@ -28,7 +32,8 @@
           console.log(params);
         }
       } else {
-        mixpanel.track(message, params);
+        $analytics.eventTrack(message, params);
+        // mixpanel.track(message, params);
       }
     }
 
@@ -36,7 +41,8 @@
       if (settings.test) {
         console.log('Mixpanel:Identify:' + id);
       } else {
-        mixpanel.identify(id);
+        $analytics.setUsername(id);
+        // mixpanel.identify(id);
       }
     }
 
@@ -44,7 +50,8 @@
       if (settings.test) {
         console.log('Mixpanel:Alias:' + id);
       } else {
-        mixpanel.alias(id);
+        // mixpanel.alias(id);
+        $analytics.setAlias(id);
       }
     }
 
@@ -53,7 +60,8 @@
         console.log('Mixpanel:People:Set');
         console.log(params);
       } else {
-        mixpanel.people.set(params);
+        $analytics.setUserProperties(params);
+        // mixpanel.people.set(params);
       }
     }
   }

@@ -24,7 +24,7 @@
                                                     'Avec Vinify, je ne suis plus jamais déçu par une bouteille de vin !' +
                                                     'Sans abonnement et entièrement sur mesure, Vinify s\'adapte totalement à mes goûts et à mon budget.';
 
-      var metaKey  = 'vin, goût, goûts, box, abonnement, cadeau';
+      var metaKey  = 'vin, goût, goûts, box, abonnement, cadeau, coffret';
 
       var metaWebsite = 'https://app.vinify.co';
       var metaImg = 'http://www.vinify.co/img/LogoVinifyMini2.png';

@@ -27,7 +27,7 @@ angular.module('vinibar.questionnaire', [
 
           }
       },
-      data: { pageTitle: 'questionnaire' }
+      data: { pageTitle: 'Questionnaire' }
     })
     .state('questionnaire.coffee', {
       url: '/coffee?r',
@@ -84,6 +84,7 @@ angular.module('vinibar.questionnaire', [
                                                                                       split) {
 
   $scope.is = { contest: currentClient.isContest };
+
   console.log(currentClient);
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 

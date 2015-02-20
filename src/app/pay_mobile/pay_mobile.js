@@ -148,11 +148,14 @@ angular.module('vinibar.pay_mobile', [
                 }
               );
             }
-            // $state.go(direction);
-            var amount =  Math.round((($scope.client.order.final_price - $scope.client.order.delivery_cost) / 1.2) * 100) / 100;
-            $window.location = ($scope.client.order_type === 'Vinibar') ?
-              'https://vinify.co/remerciement/vinibar.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount :
-              'https://vinify.co/remerciement/decouverte.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount;
+            if (settings.test) {
+              $state.go(direction);
+            } else {
+              var amount =  Math.round((($scope.client.order.final_price - $scope.client.order.delivery_cost) / 1.2) * 100) / 100;
+              $window.location = ($scope.client.order_type === 'Vinibar') ?
+                'https://vinify.co/remerciement/vinibar.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount :
+                'https://vinify.co/remerciement/decouverte.html' + '?id=' + $scope.client.order.uuid + '&amount=' + amount;
+            }
             Mixpanel.track('Sucessful payment');
           })
           .error(function (data, status, headers, config) {

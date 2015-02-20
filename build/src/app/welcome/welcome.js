@@ -8,7 +8,7 @@ angular.module('vinibar.welcome', [
   'settings'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider
     .state('welcome', {
       url: '/demarrer?r',
@@ -20,9 +20,9 @@ angular.module('vinibar.welcome', [
       },
       data: { pageTitle: 'Démarrer l\'aventure' }
     });
-}])
+})
 
-.controller('welcomeCtrl', ["$scope", "currentClient", "$state", "toaster", "$stateParams", "$window", "settings", function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams, $window, settings) {
+.controller('welcomeCtrl', function welcomeCtrl ($scope, currentClient, $state, toaster, $stateParams, $window, settings) {
 
   var coffeeBckg = new Image ();
   coffeeBckg.src = "assets/coffee-grains.jpg";
@@ -38,8 +38,8 @@ angular.module('vinibar.welcome', [
   winemapBckg.src = "assets/winery.jpg";
 
   currentClient.isMobile = ($stateParams.r === 'mobile') ?  true : false;
-  settings.test = ($stateParams.r === 'test') ?  true : false;
+  settings.test = ($stateParams.r === 'test') ?  true : settings.test;
   $scope.is = { gift: currentClient.isGift };
   currentClient.initial_referrer = ($stateParams.r) ? $stateParams.r : $window.document.referrer;
 
-}]);
+});

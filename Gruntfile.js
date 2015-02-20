@@ -24,6 +24,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-aws-s3');
+  grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-html-snapshot');
 
   /**
@@ -584,6 +585,30 @@ module.exports = function (grunt) {
     },
 
     /**
+     * A Grunt plugin for running Protractor runner.
+     * https://github.com/teerapap/grunt-protractor-runner
+
+     * This task can't be run alone because protractor works by interacting with
+     * a running application. Therefore, a web server needs to be serving up the
+     * application. We use `connect:testServer` for that, see the `test:e2e` task.
+    **/
+    protractor: {
+      options: {
+        keepAlive: false  // If false, the grunt process stops when the test fails.
+      },
+      e2e: {
+        options: {
+          configFile: 'protractor/protractor_conf.js'
+        }
+      },
+      continuous: {
+        options: {
+          configFile: 'protractor/protractor_conf_continous.js'
+        }
+      }
+    },
+
+    /**
      * And for rapid development, we have a watch set up that checks to see if
      * any of the files listed below change, and then to execute the listed
      * tasks when they do. This just saves us from having to type "grunt" into
@@ -874,6 +899,12 @@ module.exports = function (grunt) {
     'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile',
      'imagemin'
   ]);
+
+  /**
+   * The `test` task tests crucial worklflow on the app
+   */
+  grunt.registerTask('test', [ 'connect', 'build', 'protractor:e2e' ]);
+
 
   grunt.registerTask('deploy', [
     'bump', 'compile', 'compress', 'aws_s3:production'
