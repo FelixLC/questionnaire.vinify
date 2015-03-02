@@ -15,10 +15,31 @@
     });
   });
 
-  app.controller('welcomeWinemakerCtrl', function ($scope, DomainResource) {
+  app.controller('welcomeWinemakerCtrl', function ($scope, $state, DomainResource, Mixpanel, Domains) {
 
+    $scope.query = function (email) {
+
+      DomainResource.query({ email: email },
+        function (domainList) {
+          if (domainList.length) {
+            Mixpanel.identify(email);
+            Domains.setDomains(domainList);
+            $state.go('domain_list');
+          } else {
+            Mixpanel.alias(email);
+            $state.go('winemaker_form');
+          }
+        },
+        function (error) {
+          $state.go('winemaker_form');
+          Mixpanel.alias(email);
+        });
+    };
   });
 
 })(angular.module('vinibar.winemaker.welcome', [
-  'vinibar.resources.domain'
+  'vinibar.resources.domain',
+  'vinibar.winemakers.domains',
+  'ui.router',
+  'Mixpanel'
 ]));

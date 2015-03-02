@@ -20,5 +20,5 @@
   });
 
 })(angular.module('vinibar.winemaker.thanks', [
-
+  'ui.router'
 ]));

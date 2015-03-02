@@ -20,5 +20,5 @@
   });
 
 })(angular.module('vinibar.winemaker.wine_list', [
-
+  'ui.router'
 ]));
