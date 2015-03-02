@@ -16,6 +16,7 @@ angular.module('vinibar', [
   'vinibar.remerciement',
   'vinibar.remerciement_order',
   'vinibar.remerciement_mobile',
+  'vinibar.winemakers',
   'ui.router',
   'params',
   'Meta',

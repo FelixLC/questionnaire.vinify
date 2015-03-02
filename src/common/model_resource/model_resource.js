@@ -94,7 +94,7 @@
       resource.prototype.saveOrUpdate = function (success, failure) {
         return $q(function (resolve, reject) {
 
-          if (this.resource_uri !== void (0)) {
+          if (this.uuid !== void (0)) {
             this.$update(success, failure).then(resolve, reject);
           } else {
             this.$save(success, failure).then(resolve, reject);
@@ -106,8 +106,8 @@
       resource.prototype.reload = function (success, failure) {
         return $q(function (resolve, reject) {
 
-          if (this.resource_uri === void (0)) {
-            var error = 'Cannot reload: resource has no resource_uri';
+          if (this.uuid === void (0)) {
+            var error = 'Cannot reload: resource has no uuid';
             if (failure) { failure(error); }
             return reject(error);
           }
