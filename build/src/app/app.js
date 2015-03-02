@@ -25,14 +25,14 @@ angular.module('vinibar', [
   'clientFactory'
 ])
 
-.config(function myAppConfig ($stateProvider, $urlRouterProvider, $locationProvider) {
+.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function myAppConfig ($stateProvider, $urlRouterProvider, $locationProvider) {
   // $locationProvider.html5Mode(true).hashPrefix('!');
   $locationProvider.hashPrefix('');
   $urlRouterProvider.otherwise('/demarrer');
-})
+}])
 
 // We'll intercept all request and put the token in it
-.factory('authInterceptor', function ($rootScope, $q, $window, $location) {
+.factory('authInterceptor', ["$rootScope", "$q", "$window", "$location", function ($rootScope, $q, $window, $location) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
@@ -48,10 +48,10 @@ angular.module('vinibar', [
       return response || $q.when(response);
     }
   };
-})
-.config(function ($httpProvider) {
+}])
+.config(["$httpProvider", function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
-})
+}])
 
 .config([ '$httpProvider', function ($httpProvider) {
   $httpProvider.defaults.useXDomain = true;
@@ -60,7 +60,7 @@ angular.module('vinibar', [
   $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 } ])
 
-.controller('AppCtrl', function AppCtrl ($scope, $rootScope, $location, settings, PageTitle, Description) {
+.controller('AppCtrl', ["$scope", "$rootScope", "$location", "settings", "PageTitle", "Description", function AppCtrl ($scope, $rootScope, $location, settings, PageTitle, Description) {
   $rootScope.PageTitle = PageTitle;
   $rootScope.Description = Description;
   $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
@@ -69,7 +69,7 @@ angular.module('vinibar', [
     }
   });
   console.log(settings.apiEndPoint);
-})
+}])
 
 .factory('User', [ function () {
 

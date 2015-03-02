@@ -46,4 +46,5 @@
       return $soap.get('http://api.mondialrelay.com/webservice.asmx', "WSI3_PointRelais_Recherche", data);
     }
   }
+  mRelay.$inject = ["$soap", "md5"];
 })();

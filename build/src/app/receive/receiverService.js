@@ -55,4 +55,5 @@
 
       return service;
     }
+    Receive.$inject = ["$http", "settings"];
 })();

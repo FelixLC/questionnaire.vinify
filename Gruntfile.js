@@ -867,6 +867,47 @@ module.exports = function (grunt) {
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
   /**
+   * Smple task to check and log the apiendpoint.
+   */
+
+  grunt.registerTask('apiCheck', 'Checks which api endPoint before deploying', function () {
+    var string = grunt.file.read('./src/common/clientfactory/settings.js');
+    var test = string.split('test: ')[1].split(',')[0];
+    if (test === 'false') {
+      grunt.log.writeln('Production Environment');
+    }
+    if (test === 'true') {
+      grunt.fail.warn('Testing Environment');
+    }
+
+    var apiEndPoint = string.split('      apiEndPoint: ')[1].split(',')[0];
+    var restApiEndPoint = string.split('      restApiEndPoint: ')[1].split(',')[0];
+    var backendEndPoint = string.split('      backendEndPoint: ')[1].split(',')[0];
+
+    if (apiEndPoint === 'https://api.vinify.co/api') {
+      grunt.log.writeln('apiEndPoint: ' + apiEndPoint);
+    } else {
+      grunt.log.writeln('apiEndPoint: ' + apiEndPoint);
+      // grunt.fail.warn('Wrong apiEndPoint :' + apiEndPoint);
+    }
+
+    if (restApiEndPoint === 'https://api.vinify.co/restapi') {
+      grunt.log.writeln('restApiEndPoint: ' + restApiEndPoint);
+    } else {
+      grunt.log.writeln('restApiEndPoint: ' + restApiEndPoint);
+      // grunt.fail.warn('Wrong restApiEndPoint :' + restApiEndPoint);
+    }
+
+    if (backendEndPoint === 'https://api.vinify.co/api') {
+      grunt.log.writeln('backendEndPoint: ' + backendEndPoint);
+    } else {
+      grunt.log.writeln('backendEndPoint: ' + backendEndPoint);
+      // grunt.fail.warn('Wrong backendEndPoint :' + backendEndPoint);
+    }
+
+  });
+
+  /**
    * In order to make it safe to just compile or copy *only* what was changed,
    * we need to ensure we are starting from a clean, fresh build. So we rename
    * the `watch` task to `delta` (that's why the configuration var above is
@@ -907,7 +948,7 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('deploy', [
-    'bump', 'compile', 'compress', 'aws_s3:production'
+    'apiCheck', 'bump', 'compile', 'compress', 'aws_s3:production'
   ]);
 
   /**
