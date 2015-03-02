@@ -6,7 +6,7 @@ describe('orderCtrl', function () {
   var orderCtrl, $location, $scope, $rootScope, mockCurrentClient, Order, toaster;
 
   beforeEach(module('vinibar.order'));
-  beforeEach(module('vinibar.mockmodelresource'));
+  beforeEach(module('vinibar.mockmodelresources.orderclient'));
 
   beforeEach(inject(function ($controller, _$state_, $rootScope, MockOrder, MockToaster) {
     $state = _$state_;
