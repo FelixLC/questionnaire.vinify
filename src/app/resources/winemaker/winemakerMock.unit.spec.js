@@ -5,7 +5,7 @@
 
   'use strict';
 
-  app.factory('DomainMockResource', function (MockModelResource) {
+  app.factory('WinemakerMockResource', function (MockModelResource) {
 
     var mockData = [];
 

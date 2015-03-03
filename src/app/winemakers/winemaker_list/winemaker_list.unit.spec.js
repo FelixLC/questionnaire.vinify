@@ -1,24 +1,21 @@
-describe('wineListCtrl Controller', function () {
+describe('winemakerListCtrl Controller', function () {
   'use strict';
 
-  var wineListCtrl,
+  var winemakerListCtrl,
       Mixpanel,
       WineFactory,
-      winemaker,
+      winemakers,
       $stateParams,
       $state,
       $scope;
 
   beforeEach(module('vinibar.winemaker.winemaker_form'));
 
-  beforeEach(inject(function ($rootScope, $controller, _$state_, _$stateParams_) {
+  beforeEach(inject(function ($rootScope, $controller, _$state_) {
     $scope = $rootScope.$new();
     $state = _$state_;
-    $stateParams = _$stateParams_;
 
-    WineFactory = {};
-
-    winemaker = {
+    winemakers = {
       uuid: 123
     };
 
@@ -26,32 +23,30 @@ describe('wineListCtrl Controller', function () {
 
     spyOn($state, 'go');
 
-    wineListCtrl = $controller('wineListCtrl', {
+    winemakerListCtrl = $controller('winemakerListCtrl', {
       $scope: $scope,
-      Mixpanel: Mixpanel,
-      WineFactory: WineFactory,
       $state: $state,
-      winemaker: winemaker
+      winemakers: winemakers
     });
   }));
 
-  it('should have an wineListCtrl with a populated scope', function () {
-    expect(wineListCtrl).toBeDefined();
+  it('should have an winemakerListCtrl with a populated scope', function () {
+    expect(winemakerListCtrl).toBeDefined();
     expect($scope).toBeDefined();
     expect($scope.modifyWinemaker).toBeDefined();
-    expect($scope.modifyWine).toBeDefined();
+    expect($scope.wineList).toBeDefined();
     expect($scope.validate).toBeDefined();
-    expect($scope.winemaker).toBeDefined();
+    expect($scope.winemakers).toBeDefined();
   });
 
   it('should go to winemaker form', function () {
-    $scope.modifyWinemaker(winemaker);
+    $scope.modifyWinemaker({ uuid: 123 });
     expect($state.go).toHaveBeenCalledWith('winemaker_form', { uuid: 123 });
   });
 
-  it('should go to wine form', function () {
-    $scope.modifyWine({ uuid: 321 });
-    expect($state.go).toHaveBeenCalledWith('wine_form', { uuid: 321 });
+  it('should go to wineList form', function () {
+    $scope.wineList({ uuid: 321 });
+    expect($state.go).toHaveBeenCalledWith('wine_list', { uuid: 321 });
   });
 
   it('should go to thanks', function () {

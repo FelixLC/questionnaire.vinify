@@ -8,5 +8,5 @@
   'use strict';
 
 }(angular.module('vinibar.resources', [
-  'vinibar.resources.domain'
+  'vinibar.resources.winemaker'
 ])));

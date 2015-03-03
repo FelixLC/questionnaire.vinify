@@ -3,19 +3,19 @@ describe('welcomeWinemakerCtrl Controller', function () {
 
   var welcomeWinemakerCtrl,
       Mixpanel,
-      DomainResource,
-      Domains,
+      WinemakerResource,
+      WinemakerFactory,
       $scope;
 
   beforeEach(module('vinibar.winemaker.welcome'));
   beforeEach(module('vinibar.mockresources.domain'));
 
-  beforeEach(inject(function ($rootScope, $controller, _$state_, DomainMockResource) {
+  beforeEach(inject(function ($rootScope, $controller, _$state_, WinemakerMockResource) {
     $scope = $rootScope.$new();
     $state = _$state_;
 
-    DomainResource = DomainMockResource;
-    Domains = jasmine.createSpyObj('Domains', [ 'setDomains' ]);
+    WinemakerResource = WinemakerMockResource;
+    WinemakerFactory = jasmine.createSpyObj('WinemakerFactory', [ 'setWinemakers' ]);
     Mixpanel = jasmine.createSpyObj('Mixpanel', [ 'alias', 'identify' ]);
 
     spyOn($state, 'go');
@@ -23,8 +23,8 @@ describe('welcomeWinemakerCtrl Controller', function () {
     welcomeWinemakerCtrl = $controller('welcomeWinemakerCtrl', {
       $scope: $scope,
       Mixpanel: Mixpanel,
-      Domains: Domains,
-      DomainResource: DomainResource,
+      WinemakerFactory: WinemakerFactory,
+      WinemakerResource: WinemakerResource,
       $state: $state
     });
   }));
@@ -35,36 +35,36 @@ describe('welcomeWinemakerCtrl Controller', function () {
     expect($scope.query).toBeDefined();
   });
 
-  it('should query the list, identify setDomains and go to domain_list', function () {
-    spyOn(DomainResource, 'query').and.callFake(function (id, success, failure) {
+  it('should query the list, identify setWinemakers and go to winemaker_list', function () {
+    spyOn(WinemakerResource, 'query').and.callFake(function (id, success, failure) {
       success([ 'Domain', 'domain' ]);
     });
 
     $scope.query('felix.lechevallier@gmail.com');
     expect(Mixpanel.identify).toHaveBeenCalledWith('felix.lechevallier@gmail.com');
-    expect(Domains.setDomains).toHaveBeenCalledWith([ 'Domain', 'domain' ]);
-    expect($state.go).toHaveBeenCalledWith('domain_list');
+    expect(WinemakerFactory.setWinemakers).toHaveBeenCalledWith([ 'Domain', 'domain' ]);
+    expect($state.go).toHaveBeenCalledWith('winemaker_list');
   });
 
   it('should query the list, alias and go to winemaker_form', function () {
-    spyOn(DomainResource, 'query').and.callFake(function (id, success, failure) {
+    spyOn(WinemakerResource, 'query').and.callFake(function (id, success, failure) {
       success([]);
     });
 
     $scope.query('felix.lechevallier@gmail.com');
     expect(Mixpanel.alias).toHaveBeenCalledWith('felix.lechevallier@gmail.com');
-    expect(Domains.setDomains).not.toHaveBeenCalled();
+    expect(WinemakerFactory.setWinemakers).not.toHaveBeenCalled();
     expect($state.go).toHaveBeenCalledWith('winemaker_form');
   });
 
   it('should query the list, alias and go to winemaker_form', function () {
-    spyOn(DomainResource, 'query').and.callFake(function (id, success, failure) {
+    spyOn(WinemakerResource, 'query').and.callFake(function (id, success, failure) {
       failure([]);
     });
 
     $scope.query('felix.lechevallier@gmail.com');
     expect(Mixpanel.alias).toHaveBeenCalledWith('felix.lechevallier@gmail.com');
-    expect(Domains.setDomains).not.toHaveBeenCalled();
+    expect(WinemakerFactory.setWinemakers).not.toHaveBeenCalled();
     expect($state.go).toHaveBeenCalledWith('winemaker_form');
   });
 
