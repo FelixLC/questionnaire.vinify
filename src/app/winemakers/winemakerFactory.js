@@ -9,7 +9,8 @@
   function WinemakerFactory (Mixpanel, toaster, $http, $q, settings, currentWinemaster) {
     var api = {
         saveOrUpdate: saveOrUpdate,
-        getOrCreate: getOrCreate
+        getOrCreate: getOrCreate,
+        remove: remove
     };
 
     // //////////////
@@ -62,6 +63,24 @@
       } else {
         return $q.when({ data: {} });
       }
+    }
+
+    function remove (winemaker, success, failure) {
+      return $http.post(settings.apiEndPoint + '/wines/svi/delete/winemaker/', {
+            email: currentWinemaster.email,
+            uuid: winemaker.uuid
+          })
+          .success(function (data, status, headers, config) {
+            if (success && angular.isFunction(success)) {
+              success(data);
+            }
+          })
+          .error(function (error) {
+            Mixpanel.track('Failed to remove winemaker :' + currentWinemaster.email);
+            if (failure && angular.isFunction(failure)) {
+              failure(error);
+            }
+          });
     }
 
     return api;

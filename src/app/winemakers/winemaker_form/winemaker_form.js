@@ -12,7 +12,7 @@
           return WinemakerFactory.getOrCreate($stateParams.uuid);
         }
       },
-      data: { pageTitle: 'Mon Domaine' }
+      data: { pageTitle: 'Mon Domaine', navTitle: 'Mon Domaine' }
     });
   });
 
@@ -23,6 +23,9 @@
     $scope.goToWineForm = function (winemaker) {
       WinemakerFactory.saveOrUpdate(winemaker,
         function (_winemaker) {
+          WineFactory.region = winemaker.region;
+          WineFactory.appellation = winemaker.appellation;
+          WineFactory.winemaker_name = winemaker.winemaker_name;
           WineFactory.winemaker = _winemaker.uuid;
           $state.go('winemakers.wine_form');
         },

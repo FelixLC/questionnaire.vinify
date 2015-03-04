@@ -28,7 +28,9 @@
       //   }
       // })
       .controller('wineMakersCtrl', function ($scope, $state, currentWinemaster) {
-        $scope.navbarTitle = $state.current.data.navTitle;
+        $scope.navbar = {
+          title: $state.current.data.navTitle
+        };
         if (!currentWinemaster.email) {
           $state.go('winemakers.welcome');
         }
@@ -38,7 +40,7 @@
   /* @ngInject */
   function currentWinemaster () {
     return {
-      ermail: null
+      email: null
     };
   }
 })();

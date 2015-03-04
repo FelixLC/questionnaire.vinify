@@ -16,7 +16,7 @@
     });
   });
 
-  app.controller('wineListCtrl', function ($scope, $state, winemaker, WineFactory) {
+  app.controller('wineListCtrl', function ($scope, $state, $stateParams, winemaker, WineFactory, currentWinemaster, WinemakerResource) {
     $scope.winemaker = winemaker;
 
     $scope.modifyWinemaker = function (winemaker) {
@@ -30,7 +30,26 @@
 
     $scope.addWine = function () {
       WineFactory.winemaker = winemaker.uuid;
+      WineFactory.region = winemaker.region;
+      WineFactory.appellation = winemaker.appellation;
+      WineFactory.winemaker_name = winemaker.winemaker_name;
       $state.go('winemakers.wine_form');
+    };
+
+    $scope.deleteWine = function (wine) {
+      WineFactory.remove(wine,
+        function (success) {
+          WinemakerResource.get({ uuid: $stateParams.uuid },
+            function (response) {
+              $scope.winemaker = response;
+            },
+            function (error) {
+
+            });
+        },
+        function (error) {
+
+        });
     };
 
     $scope.validate = function () {

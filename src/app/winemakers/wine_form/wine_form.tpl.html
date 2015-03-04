@@ -4,18 +4,12 @@
       <div class="table">
         <div class="table-cell">
           <div class="form-group">
-            <label class="svi-label svi-label--white" for="region">Région</label>
-            <input type="text" ng-model="wine.region" class="form-control">
-          </div>
-          <div class="form-group">
             <label class="svi-label svi-label--white" for="display_name">Nom du vin</label>
             <input type="text" ng-model="wine.display_name" class="form-control">
           </div>
-        </div>
-        <div class="table-cell">
           <div class="form-group">
-            <label class="svi-label svi-label--white" for="appellation">Appellation</label>
-            <input type="text" ng-model="wine.appellation" class="form-control">
+            <label class="svi-label svi-label--white" for="region">Région</label>
+            <input type="text" ng-model="wine.region" class="form-control">
           </div>
           <div class="form-group">
             <label class="svi-label svi-label--white" for="color">Couleur</label>
@@ -23,22 +17,16 @@
               <option value="Rouge">Rouge</option>
               <option value="Blanc">Blanc</option>
               <option value="Rosé">Rosé</option>
-              <option value="Champagne">Champagne</option>
             </select>
           </div>
         </div>
-        <div class="table-cell centered">
-          <img src="assets/svi/logo.svg" alt="">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="section-svi section-svi--white">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="table-cell table-cell--bottom">
           <div class="form-group">
-            <label class="svi-label" for="vintage">Millésime</label>
+            <label class="svi-label svi-label--white" for="appellation">Appellation</label>
+            <input type="text" ng-model="wine.appellation" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="svi-label svi-label--white" for="vintage">Millésime</label>
             <select class="form-control" name="vintage" id="" ng-model="wine.vintage">
               <option value="2015">2015</option>
               <option value="2014">2014</option>
@@ -62,27 +50,44 @@
             </select>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="table-cell centered">
+          <img src="assets/svi/logo.svg" alt="">
+          <p class="svi-label svi-label--white">{{winemaker_name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-svi section-svi--white">
+    <div class="container">
+      <div class="row padding-border">
+        <div class="col-lg-12">
+          <h3>Cépages</h3>
+          <p class="help">Si votre vin comporte plus de 3 cépages, merci d'indiquer les 3 principaux</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <label class="svi-label" for="vintage">Cépage n°1</label>
             <select name="vintage" id="" ng-model="wine.svi_profile.variety_1" class="form-control" ng-options="variety for variety in varieties"></select>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <label class="svi-label" for="vintage">Cépage n°2</label>
             <select name="vintage" id="" ng-model="wine.svi_profile.variety_2" class="form-control" ng-options="variety for variety in varieties"></select>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <label class="svi-label" for="vintage">Cépage n°3</label>
             <select name="vintage" id="" ng-model="wine.svi_profile.variety_3" class="form-control" ng-options="variety for variety in varieties"></select>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="row padding-border">
+        <div class="col-lg-12">
+          <h3>Structure</h3>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <label class="svi-label" for="body">Corps</label>
             <select name="body" class="form-control" ng-model="wine.svi_profile.body">
@@ -92,7 +97,7 @@
             </select>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <label class="svi-label" for="texture">Texture</label>
             <select name="texture" class="form-control" ng-model="wine.svi_profile.texture">
@@ -102,7 +107,7 @@
             </select>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div class="form-group">
             <label class="svi-label" for="vivacity">Vivacité/Acidité</label>
             <select name="vivacity" class="form-control" ng-model="wine.svi_profile.nature">
@@ -114,11 +119,11 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row padding-border">
         <div class="col-lg-12">
-          <h3>Votre vin est :</h3>
+          <h3>Arômes :</h3>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
          <div class="checkbox">
             <label>
               <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="wine.svi_profile.fruity"> Fruité
@@ -135,7 +140,7 @@
             </label>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
          <div class="checkbox">
             <label>
               <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="wine.svi_profile.vegetal"> Végétal
@@ -152,7 +157,7 @@
             </label>
           </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
          <div class="checkbox">
             <label>
               <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="wine.svi_profile.animal"> Animal

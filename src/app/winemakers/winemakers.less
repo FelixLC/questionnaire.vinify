@@ -3,6 +3,7 @@
   max-width: 970px;
 }
 #svi .button-svi {
+  margin: 10px;
   font-size: 18px;
   cursor: pointer;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
@@ -80,11 +81,53 @@
   width: 100%;
 }
 #svi .table-cell {
-  padding: 0 20px;
+  // padding: 0 20px;
   display: table-cell;
   vertical-align: middle;
+
+    &--bottom {
+      vertical-align: bottom;
+    }
+
+    &--top {
+      vertical-align: top;
+    }
+
+    &:nth-child(odd) {
+      padding-right: 10px;
+    }
+    &:nth-child(even) {
+      padding-left: 10px;
+    }
 }
 #svi .item-note {
   float: right;
   font-size: 14px;
+}
+#svi .svi-padding-border {
+  // padding: 0 20px;
+}
+#svi table > tbody > tr > td {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+#svi table > tbody > tr > td * {
+  vertical-align: middle;
+}
+#svi table p {
+  margin: 10px 0;
+}
+#svi .bottle-logo {
+  height: 40px;
+}
+#svi .clickable {
+  border-bottom: 1px dotted @color-svi;
+  cursor: pointer;
+
+    &--white {
+      border-bottom-color: #fff;
+    }
+    &:hover {
+      border-bottom-style: solid;
+    }
 }

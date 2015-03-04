@@ -9,8 +9,12 @@
   function WineFactory (Mixpanel, toaster, $http, $q, settings, currentWinemaster) {
     var api = {
         winemaker: null,
+        region: '',
+        appellation: '',
+        winemaker_name: '',
         saveOrUpdate: saveOrUpdate,
-        getOrCreate: getOrCreate
+        getOrCreate: getOrCreate,
+        remove: remove
     };
 
     // //////////////
@@ -135,6 +139,24 @@
           country: ''
         }});
       }
+    }
+
+    function remove (wine, success, failure) {
+      return $http.post(settings.apiEndPoint + '/wines/svi/delete/wine/', {
+            email: currentWinemaster.email,
+            uuid: wine.uuid
+          })
+          .success(function (data, status, headers, config) {
+            if (success && angular.isFunction(success)) {
+              success(data);
+            }
+          })
+          .error(function (error) {
+            Mixpanel.track('Failed to remove wine :' + currentWinemaster.email);
+            if (failure && angular.isFunction(failure)) {
+              failure(error);
+            }
+          });
     }
 
     return api;

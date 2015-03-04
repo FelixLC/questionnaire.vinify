@@ -4,7 +4,12 @@
       <div class="table-cell">
           <h3 class="svi-header--white">Liste des domaines</h3>
           <div ng-repeat="winemaker in winemakers">
-            <p class="svi-label svi-label--white">{{winemaker.winemaker_name}} - {{winemaker.region}} <span ng-click="modifyWinemaker(winemaker)" class="item-note">modifier</span></p>
+            <p class="svi-label svi-label--white">{{winemaker.winemaker_name}} - {{winemaker.region}}
+              <span class="item-note">
+                <span class="clickable clickable--white " ng-click="modifyWinemaker(winemaker)">modifier </span>&middot;
+                <span class="clickable clickable--white " ng-click="deleteWinemaker(winemaker)"> supprimer</span>
+              </span>
+            </p>
           </div>
       </div>
       <div class="table-cell centered">

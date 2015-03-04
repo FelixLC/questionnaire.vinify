@@ -8,7 +8,7 @@
       controller: 'winemakerListCtrl',
       templateUrl: 'winemakers/winemaker_list/winemaker_list.tpl.html',
       resolve: {
-        winemakers: function (WinemakerResource, currentWinemaster) {
+        winemakers: function (WinemakerResource, currentWinemaster, WinemakerFactory) {
           return WinemakerResource.query({ email: currentWinemaster.email });
         }
       },
@@ -16,11 +16,27 @@
     });
   });
 
-  app.controller('winemakerListCtrl', function ($scope, winemakers, $state) {
+  app.controller('winemakerListCtrl', function ($scope, winemakers, $state, currentWinemaster, WinemakerFactory, WinemakerResource) {
     $scope.winemakers = winemakers;
 
     $scope.modifyWinemaker = function (winemaker) {
       $state.go('winemakers.wine_list', { uuid: winemaker.uuid });
+    };
+
+    $scope.deleteWinemaker = function (winemaker) {
+      WinemakerFactory.remove(winemaker,
+        function (success) {
+          WinemakerResource.query({ email: currentWinemaster.email },
+            function (response) {
+              $scope.winemakers = response;
+            },
+            function (error) {
+
+            });
+        },
+        function (error) {
+
+        });
     };
 
     $scope.wineList = function (winemaker) {
@@ -35,5 +51,6 @@
 })(angular.module('vinibar.winemaker.winemaker_list', [
   'vinibar.winemakers',
   'vinibar.resources.winemaker',
+  'vinibar.winemakers.factory',
   'ui.router'
 ]));

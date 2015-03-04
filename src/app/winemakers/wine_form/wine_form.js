@@ -19,6 +19,10 @@
   app.controller('wineFormCtrl', function ($scope, WineFactory, $state, $stateParams, wine, Mixpanel, WineCharacteristicsFactory) {
     $scope.wine = wine.data;
 
+    $scope.wine.region = WineFactory.region;
+    $scope.wine.appellation = WineFactory.appellation;
+    $scope.winemaker_name = WineFactory.winemaker_name;
+
     $scope.wine.svi_profile.body = ($scope.wine.svi_profile.body_light) ? 'light' :
                                                         ($scope.wine.svi_profile.body_medium) ? 'medium' : 'strong';
 
