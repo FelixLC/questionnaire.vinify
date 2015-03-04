@@ -3,20 +3,16 @@
 
   app.config(function ($stateProvider) {
 
-    $stateProvider.state('winemaker_list', {
+    $stateProvider.state('winemakers.winemaker_list', {
       url: '/liste-domaines',
-      views: {
-        main: {
-          controller: 'winemakerListCtrl',
-          templateUrl: 'winemakers/winemaker_list/winemaker_list.tpl.html'
-        }
-      },
+      controller: 'winemakerListCtrl',
+      templateUrl: 'winemakers/winemaker_list/winemaker_list.tpl.html',
       resolve: {
         winemakers: function (WinemakerResource, currentWinemaster) {
           return WinemakerResource.query({ email: currentWinemaster.email });
         }
       },
-      data: { pageTitle: 'Mes Domaines' }
+      data: { pageTitle: 'Mes Domaines' , navTitle: 'Mes Domaines' }
     });
   });
 
@@ -24,15 +20,15 @@
     $scope.winemakers = winemakers;
 
     $scope.modifyWinemaker = function (winemaker) {
-      $state.go('winemaker_form', { uuid: winemaker.uuid });
+      $state.go('winemakers.wine_list', { uuid: winemaker.uuid });
     };
 
     $scope.wineList = function (winemaker) {
-      $state.go('wine_list', { uuid: winemaker.uuid });
+      $state.go('winemakers.wine_list', { uuid: winemaker.uuid });
     };
 
     $scope.validate = function () {
-      $state.go('thanks');
+      $state.go('winemakers.winemaker_thanks');
     };
   });
 

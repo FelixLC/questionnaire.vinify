@@ -1,0 +1,20 @@
+<div class="section-svi">
+  <div class="container">
+    <div class="table">
+      <div class="table-cell">
+          <h3 class="svi-header--white">Liste des domaines</h3>
+          <div ng-repeat="winemaker in winemakers">
+            <p class="svi-label svi-label--white">{{winemaker.winemaker_name}} - {{winemaker.region}} <span ng-click="modifyWinemaker(winemaker)" class="item-note">modifier</span></p>
+          </div>
+      </div>
+      <div class="table-cell centered">
+        <img src="assets/svi/logo.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="centered section-svi section-svi--white">
+    <div class="centered">
+      <button class="button-svi" ui-sref="winemakers.winemaker_form">Ajouter un domaine</button>
+    </div>
+</div>

@@ -33,24 +33,24 @@ describe('WineFactory ', function () {
   });
 
   describe('getOrCreate ', function () {
-    it('should make a call to public/wines when used with uuid', function () {
+    it('should make a call to svi/wines when used with uuid', function () {
       WineFactory.winemaker = '123';
       WineFactory.getOrCreate('uuid');
-      $httpBackend.expectGET(settings.apiEndPoint + '/restapi/public/wines/uuid/').respond(200, {});
+      $httpBackend.expectGET(settings.restApiEndPoint + '/svi/wines/uuid/').respond(200, {});
       $httpBackend.flush();
     });
 
-    it('should make a call to public/wines when used with uuid and generate a wine if error', function () {
+    it('should make a call to svi/wines when used with uuid and generate a wine if error', function () {
       WineFactory.winemaker = '123';
       var result =  WineFactory.getOrCreate('uuid');
-      $httpBackend.expectGET(settings.apiEndPoint + '/restapi/public/wines/uuid/').respond(500, '');
+      $httpBackend.expectGET(settings.restApiEndPoint + '/svi/wines/uuid/').respond(500, '');
       $httpBackend.flush();
       result.success(function (data) {
         expect(data).toEqual({ winemaker: '123' });
       });
     });
 
-    it('should not make a call to public/wines when used without uuid', function () {
+    it('should not make a call to svi/wines when used without uuid', function () {
       WineFactory.winemaker = '123';
       var result = WineFactory.getOrCreate();
       expect(result).toBeTruthy();
@@ -61,11 +61,41 @@ describe('WineFactory ', function () {
     it('should make a call to svi/wines --success', function () {
 
       currentWinemaster.email = 'jmmormeck@gmail.com';
-      var result =  WineFactory.saveOrUpdate({ wine_name: 'jean-marc' });
+      var result =  WineFactory.saveOrUpdate({ wine_name: 'jean-marc',
+                        svi_profile: {
+                            body: '',
+                           nature: '',
+                           texture: '',
+                            body_light: false,
+                            body_medium: false,
+                            body_strong: false,
+                            texture_light: false,
+                            texture_medium: false,
+                            texture_strong: false,
+                            nature_light: false,
+                            nature_medium: false,
+                            nature_strong: false
+                          }
+                        });
 
-      $httpBackend.expectPOST(settings.apiEndPoint + '/api/wines/svi/wine/', {
+      $httpBackend.expectPOST(settings.apiEndPoint + '/wines/svi/wine/', {
           email: 'jmmormeck@gmail.com',
-          wine: { wine_name: 'jean-marc' }
+          wine: { wine_name: 'jean-marc',
+                        svi_profile: {
+                            body: '',
+                           nature: '',
+                           texture: '',
+                            body_light: false,
+                            body_medium: false,
+                            body_strong: false,
+                            texture_light: false,
+                            texture_medium: false,
+                            texture_strong: false,
+                            nature_light: false,
+                            nature_medium: false,
+                            nature_strong: false
+                          }
+                        }
         })
         .respond({ wine_name: 'jean-marc' }, 200);
       $httpBackend.flush();
@@ -77,11 +107,41 @@ describe('WineFactory ', function () {
     it('should make a call to svi/wines --failure', function () {
       spyOn(Mixpanel, 'track');
       currentWinemaster.email = 'jmmormeck@gmail.com';
-      var result =  WineFactory.saveOrUpdate({ wine_name: 'jean-marc' });
+      var result =  WineFactory.saveOrUpdate({ wine_name: 'jean-marc',
+                        svi_profile: {
+                            body: '',
+                           nature: '',
+                           texture: '',
+                            body_light: false,
+                            body_medium: false,
+                            body_strong: false,
+                            texture_light: false,
+                            texture_medium: false,
+                            texture_strong: false,
+                            nature_light: false,
+                            nature_medium: false,
+                            nature_strong: false
+                          }
+                        });
 
-      $httpBackend.expectPOST(settings.apiEndPoint + '/api/wines/svi/wine/', {
+      $httpBackend.expectPOST(settings.apiEndPoint + '/wines/svi/wine/', {
           email: 'jmmormeck@gmail.com',
-          wine: { wine_name: 'jean-marc' }
+          wine: { wine_name: 'jean-marc',
+                        svi_profile: {
+                            body: '',
+                           nature: '',
+                           texture: '',
+                            body_light: false,
+                            body_medium: false,
+                            body_strong: false,
+                            texture_light: false,
+                            texture_medium: false,
+                            texture_strong: false,
+                            nature_light: false,
+                            nature_medium: false,
+                            nature_strong: false
+                          }
+                        }
         })
         .respond(500);
       $httpBackend.flush();

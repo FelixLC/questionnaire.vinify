@@ -1,0 +1,29 @@
+<div class="section-svi">
+  <div class="container">
+    <div class="table">
+      <div class="table-cell">
+          <p class="svi-label svi-label--white">{{winemaker.winemaker_name}}</p>
+          <p class="svi-label svi-label--white" for="region">Région</p>
+          <p class="svi-label svi-label--white" for="region">Appellation Principale</p>
+      </div>
+      <div class="table-cell centered">
+        <img src="assets/svi/logo.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="centered section-svi section-svi--white">
+    <table class="table">
+      <tr ng-repeat="wine in winemaker.wines">
+        <td><p>{{wine.display_name}} - {{wine.region}} - {{wine.vintage}} <span class="item-note" ng-click="modifyWine(wine)">modifier</span></p></td>
+      </tr>
+    </table>
+    <div class="centered">
+      <button class="button-svi" ng-click="modifyWinemaker(winemaker)">Modifier mes informations</button>
+      <button class="button-svi" ng-click="addWine(winemaker)">Ajouter un vin</button>
+    </div>
+    <div class="centered">
+      <button class="button-svi" ng-click="validate(winemaker)">Valider ma fiche</button>
+      <button class="button-svi" ui-sref="winemakers.winemaker_form">Ajouter un domaine</button>
+    </div>
+</div>

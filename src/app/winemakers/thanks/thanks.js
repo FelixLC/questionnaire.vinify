@@ -3,15 +3,11 @@
 
   app.config(function ($stateProvider) {
 
-    $stateProvider.state('thanks', {
+    $stateProvider.state('winemakers.winemaker_thanks', {
       url: '/merci',
-      views: {
-        main: {
-          controller: 'thanksWinemakerCtrl',
-          templateUrl: 'winemakers/thanks/thanks.tpl.html'
-        }
-      },
-      data: { pageTitle: 'Salon des Vignerons Indépendants' }
+      controller: 'thanksWinemakerCtrl',
+      templateUrl: 'winemakers/thanks/thanks.tpl.html',
+      data: { pageTitle: 'Salon des Vignerons Indépendants', navTitle: 'Merci' }
     });
   });
 

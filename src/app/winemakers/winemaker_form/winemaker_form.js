@@ -3,14 +3,10 @@
 
   app.config(function ($stateProvider) {
 
-    $stateProvider.state('winemaker_form', {
+    $stateProvider.state('winemakers.winemaker_form', {
       url: '/domaine/:uuid',
-      views: {
-        main: {
-          controller: 'wineMakerFormCtrl',
-          templateUrl: 'winemakers/winemaker_form/winemaker_form.tpl.html'
-        }
-      },
+      controller: 'wineMakerFormCtrl',
+      templateUrl: 'winemakers/winemaker_form/winemaker_form.tpl.html',
       resolve: {
         winemaker: function (WinemakerFactory, $stateParams) {
           return WinemakerFactory.getOrCreate($stateParams.uuid);
@@ -22,13 +18,23 @@
 
   app.controller('wineMakerFormCtrl', function ($scope, $state, $stateParams, Mixpanel, WinemakerFactory, WineFactory,  winemaker) {
 
-    $scope.winemaker = winemaker;
+    $scope.winemaker = winemaker.data;
+
+    $scope.goToWineForm = function (winemaker) {
+      WinemakerFactory.saveOrUpdate(winemaker,
+        function (_winemaker) {
+          WineFactory.winemaker = _winemaker.uuid;
+          $state.go('winemakers.wine_form');
+        },
+        function (error) {
+          Mixpanel.track('Error trying to save winemaker : ' + $stateParams.email);
+        });
+    };
 
     $scope.validateWinemaker = function (winemaker) {
       WinemakerFactory.saveOrUpdate(winemaker,
         function (_winemaker) {
-          WineFactory.winemaker = _winemaker.uuid;
-          $state.go('wine_form');
+          $state.go('winemakers.winemaker_list');
         },
         function (error) {
           Mixpanel.track('Error trying to save winemaker : ' + $stateParams.email);

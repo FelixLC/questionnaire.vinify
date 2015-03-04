@@ -9,10 +9,10 @@
 
     var mockData = [];
 
-    return new MockModelResource('domain', mockData);
+    return new MockModelResource('winemaker', mockData);
 
   });
 
-}(angular.module('vinibar.mockresources.domain', [
+}(angular.module('vinibar.mockresources.winemaker', [
   'vinibar.mockmodelresource'
 ])));

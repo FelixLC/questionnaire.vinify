@@ -7,7 +7,7 @@
 
   app.factory('WineResource', function ($q, ModelResource) {
 
-    var WineResource = new ModelResource('wine');
+    var WineResource = new ModelResource('wines');
 
     return WineResource;
   });

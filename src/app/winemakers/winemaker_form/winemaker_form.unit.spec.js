@@ -40,21 +40,33 @@ describe('wineMakerFormCtrl Controller', function () {
     expect(wineMakerFormCtrl).toBeDefined();
     expect($scope).toBeDefined();
     expect($scope.validateWinemaker).toBeDefined();
+    expect($scope.goToWineForm).toBeDefined();
   });
 
   it('should save the winemaker and go to wine form', function () {
     WinemakerFactory.saveOrUpdate.and.callFake(function (winemaker, success, failure) {
       success({ uuid: 123 });
     });
-    $scope.validateWinemaker(winemaker);
-    expect($state.go).toHaveBeenCalled();
+    $scope.goToWineForm(winemaker);
+    expect($state.go).toHaveBeenCalledWith('winemakers.wine_form');
     expect(WineFactory.winemaker).toBe(123);
+  });
+
+  it('should save the winemaker and go to winemaker list', function () {
+    WinemakerFactory.saveOrUpdate.and.callFake(function (winemaker, success, failure) {
+      success({ uuid: 123 });
+    });
+    $scope.validateWinemaker(winemaker);
+    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_list');
   });
 
   it('should track an error', function () {
     WinemakerFactory.saveOrUpdate.and.callFake(function (winemaker, success, failure) {
       failure();
     });
+    $scope.goToWineForm(winemaker);
+    expect($state.go).not.toHaveBeenCalled();
+    expect(Mixpanel.track).toHaveBeenCalled();
     $scope.validateWinemaker(winemaker);
     expect($state.go).not.toHaveBeenCalled();
     expect(Mixpanel.track).toHaveBeenCalled();

@@ -33,20 +33,20 @@ describe('WinemakerFactory ', function () {
   });
 
   describe('getOrCreate ', function () {
-    it('should make a call to public/winemakers when used with uuid', function () {
+    it('should make a call to svi/winemakers when used with uuid', function () {
       WinemakerFactory.getOrCreate('uuid');
-      $httpBackend.expectGET(settings.apiEndPoint + '/restapi/public/winemakers/uuid/').respond(200, {});
+      $httpBackend.expectGET(settings.restApiEndPoint + '/svi/winemakers/uuid/').respond(200, {});
       $httpBackend.flush();
     });
 
-    it('should make a call to public/winemakers when used with uuid and generate a wine if error', function () {
+    it('should make a call to svi/winemakers when used with uuid and generate a wine if error', function () {
       var result =  WinemakerFactory.getOrCreate('uuid');
-      $httpBackend.expectGET(settings.apiEndPoint + '/restapi/public/winemakers/uuid/').respond(500, '');
+      $httpBackend.expectGET(settings.restApiEndPoint + '/svi/winemakers/uuid/').respond(500, '');
       $httpBackend.flush();
       expect(result).toBeTruthy();
     });
 
-    it('should not make a call to public/winemakers when used without uuid', function () {
+    it('should not make a call to svi/winemakers when used without uuid', function () {
       var result = WinemakerFactory.getOrCreate();
       expect(result).toBeTruthy();
     });
@@ -58,7 +58,7 @@ describe('WinemakerFactory ', function () {
       currentWinemaster.email = 'jmmormeck@gmail.com';
       var result =  WinemakerFactory.saveOrUpdate({ winemaker_name: 'jean-marc' });
 
-      $httpBackend.expectPOST(settings.apiEndPoint + '/api/wines/svi/winemaker/', {
+      $httpBackend.expectPOST(settings.apiEndPoint + '/wines/svi/winemaker/', {
           email: 'jmmormeck@gmail.com',
           winemaker: { winemaker_name: 'jean-marc' }
         })
@@ -74,7 +74,7 @@ describe('WinemakerFactory ', function () {
       currentWinemaster.email = 'jmmormeck@gmail.com';
       var result =  WinemakerFactory.saveOrUpdate({ winemaker_name: 'jean-marc' });
 
-      $httpBackend.expectPOST(settings.apiEndPoint + '/api/wines/svi/winemaker/', {
+      $httpBackend.expectPOST(settings.apiEndPoint + '/wines/svi/winemaker/', {
           email: 'jmmormeck@gmail.com',
           winemaker: { winemaker_name: 'jean-marc' }
         })

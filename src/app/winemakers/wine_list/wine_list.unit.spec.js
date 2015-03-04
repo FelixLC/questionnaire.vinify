@@ -46,17 +46,17 @@ describe('wineListCtrl Controller', function () {
 
   it('should go to winemaker form', function () {
     $scope.modifyWinemaker(winemaker);
-    expect($state.go).toHaveBeenCalledWith('winemaker_form', { uuid: 123 });
+    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_form', { uuid: 123 });
   });
 
   it('should go to wine form', function () {
     $scope.modifyWine({ uuid: 321 });
-    expect($state.go).toHaveBeenCalledWith('wine_form', { uuid: 321 });
+    expect($state.go).toHaveBeenCalledWith('winemakers.wine_form', { uuid: 321 });
   });
 
   it('should go to thanks', function () {
     $scope.validate();
-    expect($state.go).toHaveBeenCalledWith('thanks');
+    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_thanks');
   });
 
 

@@ -3,30 +3,37 @@
 
   app.config(function ($stateProvider) {
 
-    $stateProvider.state('wine_form', {
+    $stateProvider.state('winemakers.wine_form', {
       url: '/vin/:uuid',
-      views: {
-        main: {
-          controller: 'wineFormCtrl',
-          templateUrl: 'winemakers/wine_form/wine_form.tpl.html'
-        }
-      },
+      controller: 'wineFormCtrl',
+      templateUrl: 'winemakers/wine_form/wine_form.tpl.html',
       resolve: {
         wine: function (WineFactory, $stateParams) {
           return WineFactory.getOrCreate($stateParams.uuid);
         }
       },
-      data: { pageTitle: 'Mon Vins' }
+      data: { pageTitle: 'Mon Vin', navTitle: 'Mon Vin'  }
     });
   });
 
-  app.controller('wineFormCtrl', function ($scope, WineFactory, $state, $stateParams, wine, Mixpanel) {
-    $scope.wine = wine;
+  app.controller('wineFormCtrl', function ($scope, WineFactory, $state, $stateParams, wine, Mixpanel, WineCharacteristicsFactory) {
+    $scope.wine = wine.data;
 
-    $scope.validateWine = function (wine) {
-      WineFactory.saveOrUpdate(wine,
-        function (wine) {
-          $state.go('wine_list', { uuid: wine.winemaker });
+    $scope.wine.svi_profile.body = ($scope.wine.svi_profile.body_light) ? 'light' :
+                                                        ($scope.wine.svi_profile.body_medium) ? 'medium' : 'strong';
+
+    $scope.wine.svi_profile.texture = ($scope.wine.svi_profile.texture_light) ? 'light' :
+                                                        ($scope.wine.svi_profile.texture_medium) ? 'medium' : 'strong';
+
+    $scope.wine.svi_profile.nature = ($scope.wine.svi_profile.nature_light) ? 'light' :
+                                                        ($scope.wine.svi_profile.nature_medium) ? 'medium' : 'strong';
+
+    $scope.varieties = WineCharacteristicsFactory.varieties;
+
+    $scope.validateWine = function (_wine_) {
+      WineFactory.saveOrUpdate(_wine_,
+        function (response) {
+          $state.go('winemakers.wine_list', { uuid: $scope.wine.winemaker });
         },
         function () {
           Mixpanel.track('Error trying to save wine');
@@ -36,6 +43,7 @@
 
 })(angular.module('vinibar.winemaker.wine_form', [
   'vinibar.wines.factory',
+  'vinibar.winemaker.characteristics',
   'ui.router',
   'Mixpanel'
 ]));

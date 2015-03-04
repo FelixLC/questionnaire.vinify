@@ -1,0 +1,41 @@
+<form name="winemakerForm">
+  <div class="section-svi">
+    <div class="container container">
+      <div class="table">
+        <div class="table-cell">
+          <div class="form-group">
+            <label class="svi-label svi-label--white" for="winemaker_name">Nom du producteur</label>
+            <input type="text" ng-model="winemaker.winemaker_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="svi-label svi-label--white" for="region">Région</label>
+            <input type="text" ng-model="winemaker.region" class="form-control">
+          </div>
+        </div>
+        <div class="table-cell">
+          <div class="form-group">
+            <label class="svi-label svi-label--white" for="winemaker_name">Nom du domaine</label>
+            <input type="text" ng-model="winemaker.winemaker_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="svi-label svi-label--white" for="region">Appellation Principale</label>
+            <input type="text" ng-model="winemaker.appellation" class="form-control">
+          </div>
+        </div>
+        <div class="table-cell centered">
+          <img src="assets/svi/logo.svg" alt="">
+        </div>
+      </div>
+      <div>
+        <div class="form-group">
+            <label class="svi-label svi-label--white" for="region">Description</label>
+            <textarea rows="4" ng-model="winemaker.description" class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="centered section-svi section-svi--white">
+      <button class="button-svi" ng-click="goToWineForm(winemaker)">Ajouter un vin</button>
+      <button class="button-svi" ng-click="validateWinemaker(winemaker)">Valider</button>
+  </div>
+</form>

@@ -1,0 +1,90 @@
+@color-svi: #AE0035;
+#svi .container {
+  max-width: 970px;
+}
+#svi .button-svi {
+  font-size: 18px;
+  cursor: pointer;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  padding: 8px 14px 7px;
+  border: 2px solid  @color-svi;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: #fff;
+  background-color: @color-svi;
+  vertical-align: middle;
+  border-bottom-color: rgba(0,0,0,0.40);
+}
+#svi .button-svi:hover {
+  border-bottom-color: transparent !important;
+}
+#svi .button-svi::not([disabled]):active {
+  border-bottom-color: transparent !important;
+  -webkit-box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+  box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+#svi .section-svi {
+  background-color: @color-svi;
+  padding: 20px;
+
+    &--white {
+      background-color: #fff;
+    }
+}
+#svi .svi-header {
+    &--white {
+      color: #fff;
+    }
+}
+#svi .svi-label {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+
+    &--white {
+      color: #fff;
+    }
+}
+#svi .help {
+  font-size: 14px;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+
+    &--white {
+      color: #fff;
+    }
+}
+#svi input {
+  border: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+#svi .checkbox {
+  font-size: 16px;
+}
+#svi .centered-content input,
+#svi .centered-content button,
+#svi .centered-content select,
+#svi .centered-content div {
+  margin: 0 auto;
+}
+#svi .table {
+  display: table;
+  width: 100%;
+}
+#svi .table-cell {
+  padding: 0 20px;
+  display: table-cell;
+  vertical-align: middle;
+}
+#svi .item-note {
+  float: right;
+  font-size: 14px;
+}

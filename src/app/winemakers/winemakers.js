@@ -11,6 +11,28 @@
         'vinibar.winemaker.wine_list',
         'vinibar.winemaker.wine_list'
       ])
+      .config(function ($stateProvider) {
+        $stateProvider.state('winemakers', {
+          url: '/salon-vignerons-independants',
+          views: {
+            main: {
+              controller: 'wineMakersCtrl',
+              templateUrl: 'winemakers/winemakers.tpl.html'
+            }
+          }
+        });
+      })
+      // .run(function (currentWinemaster, $state) {
+      //   if (!currentWinemaster.email) {
+      //     $state.go('winemakers.welcome');
+      //   }
+      // })
+      .controller('wineMakersCtrl', function ($scope, $state, currentWinemaster) {
+        $scope.navbarTitle = $state.current.data.navTitle;
+        if (!currentWinemaster.email) {
+          $state.go('winemakers.welcome');
+        }
+      })
       .factory('currentWinemaster', currentWinemaster);
 
   /* @ngInject */

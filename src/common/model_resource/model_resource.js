@@ -72,7 +72,7 @@
        *
        * :params are replaced by whatever is passed to the request parameters when calling the actual method.
        */
-      var resource = $resource(settings.apiEndPoint + '/' + model +
+      var resource = $resource(settings.restApiEndPoint + '/svi/' + model +
         '/:' + options.id_name + '/:listController/:doController', parameters, actions);
 
       // We need to expose this so that consumers of different resources can be more aware of their structure.

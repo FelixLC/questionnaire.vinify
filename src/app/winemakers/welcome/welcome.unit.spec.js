@@ -3,16 +3,21 @@ describe('welcomeWinemakerCtrl Controller', function () {
 
   var welcomeWinemakerCtrl,
       Mixpanel,
+      currentWinemaster,
       WinemakerResource,
       WinemakerFactory,
       $scope;
 
   beforeEach(module('vinibar.winemaker.welcome'));
-  beforeEach(module('vinibar.mockresources.domain'));
+  beforeEach(module('vinibar.mockresources.winemaker'));
 
   beforeEach(inject(function ($rootScope, $controller, _$state_, WinemakerMockResource) {
     $scope = $rootScope.$new();
     $state = _$state_;
+
+    currentWinemaster = {
+
+    };
 
     WinemakerResource = WinemakerMockResource;
     WinemakerFactory = jasmine.createSpyObj('WinemakerFactory', [ 'setWinemakers' ]);
@@ -23,6 +28,7 @@ describe('welcomeWinemakerCtrl Controller', function () {
     welcomeWinemakerCtrl = $controller('welcomeWinemakerCtrl', {
       $scope: $scope,
       Mixpanel: Mixpanel,
+      currentWinemaster: currentWinemaster,
       WinemakerFactory: WinemakerFactory,
       WinemakerResource: WinemakerResource,
       $state: $state
@@ -42,8 +48,7 @@ describe('welcomeWinemakerCtrl Controller', function () {
 
     $scope.query('felix.lechevallier@gmail.com');
     expect(Mixpanel.identify).toHaveBeenCalledWith('felix.lechevallier@gmail.com');
-    expect(WinemakerFactory.setWinemakers).toHaveBeenCalledWith([ 'Domain', 'domain' ]);
-    expect($state.go).toHaveBeenCalledWith('winemaker_list');
+    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_list');
   });
 
   it('should query the list, alias and go to winemaker_form', function () {
@@ -53,8 +58,7 @@ describe('welcomeWinemakerCtrl Controller', function () {
 
     $scope.query('felix.lechevallier@gmail.com');
     expect(Mixpanel.alias).toHaveBeenCalledWith('felix.lechevallier@gmail.com');
-    expect(WinemakerFactory.setWinemakers).not.toHaveBeenCalled();
-    expect($state.go).toHaveBeenCalledWith('winemaker_form');
+    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_form');
   });
 
   it('should query the list, alias and go to winemaker_form', function () {
@@ -64,8 +68,7 @@ describe('welcomeWinemakerCtrl Controller', function () {
 
     $scope.query('felix.lechevallier@gmail.com');
     expect(Mixpanel.alias).toHaveBeenCalledWith('felix.lechevallier@gmail.com');
-    expect(WinemakerFactory.setWinemakers).not.toHaveBeenCalled();
-    expect($state.go).toHaveBeenCalledWith('winemaker_form');
+    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_form');
   });
 
 

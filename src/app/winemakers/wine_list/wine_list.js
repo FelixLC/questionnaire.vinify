@@ -3,20 +3,16 @@
 
   app.config(function ($stateProvider) {
 
-    $stateProvider.state('wine_list', {
+    $stateProvider.state('winemakers.wine_list', {
       url: '/liste-vins/:uuid',
-      views: {
-        main: {
-          controller: 'wineListCtrl',
-          templateUrl: 'winemakers/wine_list/wine_list.tpl.html'
-        }
-      },
+      controller: 'wineListCtrl',
+      templateUrl: 'winemakers/wine_list/wine_list.tpl.html',
       resolve: {
         winemaker: function (WinemakerResource, $stateParams) {
           return WinemakerResource.get({ uuid: $stateParams.uuid });
         }
       },
-      data: { pageTitle: 'Mes Vins' }
+      data: { pageTitle: 'Mes Vins', navTitle: 'Mes Vins' }
     });
   });
 
@@ -24,16 +20,21 @@
     $scope.winemaker = winemaker;
 
     $scope.modifyWinemaker = function (winemaker) {
-      $state.go('winemaker_form', { uuid: winemaker.uuid });
+      $state.go('winemakers.winemaker_form', { uuid: winemaker.uuid });
     };
 
     $scope.modifyWine = function (wine) {
       WineFactory.winemaker = winemaker.uuid;
-      $state.go('wine_form', { uuid: wine.uuid });
+      $state.go('winemakers.wine_form', { uuid: wine.uuid });
+    };
+
+    $scope.addWine = function () {
+      WineFactory.winemaker = winemaker.uuid;
+      $state.go('winemakers.wine_form');
     };
 
     $scope.validate = function () {
-      $state.go('thanks');
+      $state.go('winemakers.winemaker_thanks');
     };
   });
 

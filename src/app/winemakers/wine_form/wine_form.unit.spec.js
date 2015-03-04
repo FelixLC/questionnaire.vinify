@@ -16,7 +16,9 @@ describe('wineFormCtrl Controller', function () {
     $state = _$state_;
     $stateParams = _$stateParams_;
     WineFactory = jasmine.createSpyObj('WineFactory', [ 'saveOrUpdate' ]);
-    wine = {};
+    wine = {
+      data: { winemaker: 123, svi_profile: {} }
+    };
 
     Mixpanel = jasmine.createSpyObj('Mixpanel', [ 'track' ]);
 
@@ -44,7 +46,7 @@ describe('wineFormCtrl Controller', function () {
       success({ winemaker: 123 });
     });
     $scope.validateWine(wine);
-    expect($state.go).toHaveBeenCalledWith('wine_list', { uuid: 123 });
+    expect($state.go).toHaveBeenCalledWith('winemakers.wine_list', { uuid: 123 });
   });
 
   it('should track an error', function () {
@@ -55,7 +57,5 @@ describe('wineFormCtrl Controller', function () {
     expect($state.go).not.toHaveBeenCalled();
     expect(Mixpanel.track).toHaveBeenCalled();
   });
-
-
 
 });
