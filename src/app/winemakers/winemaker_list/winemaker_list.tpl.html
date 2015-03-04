@@ -1,16 +1,8 @@
 <div class="section-svi">
   <div class="container">
     <div class="table">
-      <div class="table-cell">
+      <div class="table-cell table-cell--bottom">
           <h3 class="svi-header--white">Liste des domaines</h3>
-          <div ng-repeat="winemaker in winemakers">
-            <p class="svi-label svi-label--white">{{winemaker.winemaker_name}} - {{winemaker.region}}
-              <span class="item-note">
-                <span class="clickable clickable--white " ng-click="modifyWinemaker(winemaker)">modifier </span>&middot;
-                <span class="clickable clickable--white " ng-click="deleteWinemaker(winemaker)"> supprimer</span>
-              </span>
-            </p>
-          </div>
       </div>
       <div class="table-cell centered">
         <img src="assets/svi/logo.svg" alt="">
@@ -19,6 +11,33 @@
   </div>
 </div>
 <div class="centered section-svi section-svi--white">
+  <div class="container">
+    <table class="table">
+      <thead ng-if="winemakers.length">
+        <tr>
+          <td></td>
+          <td><p class="svi-label">Nom</p></td>
+          <td class="hidden-xs"><p class="svi-label">Région</p></td>
+          <td class="hidden-xs"><p class="svi-label">Appellation</p></td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="winemaker in winemakers">
+          <td><img class="bottle-logo" src="assets/svi/grapes.svg" alt=""></td>
+          <td><p class="svi-label">{{winemaker.winemaker_name}}</p></td>
+          <td class="hidden-xs"><p class="svi-label">{{winemaker.region}}</p></td>
+          <td class="hidden-xs"><p class="svi-label">{{winemaker.appellation}}</p></td>
+          <td>
+            <p class="item-note svi-label">
+              <span class="clickable" ng-click="modifyWinemaker(winemaker)">voir </span>&middot;
+              <span class="clickable" ng-click="deleteWinemaker(winemaker)"> supprimer</span>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
     <div class="centered">
       <button class="button-svi" ui-sref="winemakers.winemaker_form">Ajouter un domaine</button>
     </div>

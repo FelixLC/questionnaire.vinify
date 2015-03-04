@@ -16,7 +16,7 @@
     });
   });
 
-  app.controller('wineListCtrl', function ($scope, $state, $stateParams, winemaker, WineFactory, currentWinemaster, WinemakerResource) {
+  app.controller('wineListCtrl', function ($scope, $state, $stateParams, winemaker, WineFactory, currentWinemaster, WinemakerResource, $window) {
     $scope.winemaker = winemaker;
 
     $scope.modifyWinemaker = function (winemaker) {
@@ -37,7 +37,25 @@
     };
 
     $scope.deleteWine = function (wine) {
-      WineFactory.remove(wine,
+      if ($window.confirm("Attention, cette action est irréversible")) {
+        WineFactory.remove(wine,
+          function (success) {
+            WinemakerResource.get({ uuid: $stateParams.uuid },
+              function (response) {
+                $scope.winemaker = response;
+              },
+              function (error) {
+
+              });
+          },
+          function (error) {
+
+          });
+      }
+    };
+
+    $scope.duplicateWine = function (wine) {
+      WineFactory.duplicate(wine,
         function (success) {
           WinemakerResource.get({ uuid: $stateParams.uuid },
             function (response) {

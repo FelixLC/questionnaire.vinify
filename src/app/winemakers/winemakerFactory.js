@@ -58,10 +58,16 @@
             return data;
           })
           .error(function (error) {
-            return $q.when({ data: {} });
+            return $q.when({ data: {
+              description: '',
+              appellation: ''
+            } });
           });
       } else {
-        return $q.when({ data: {} });
+        return $q.when({ data: {
+          description: '',
+          appellation: ''
+        } });
       }
     }
 

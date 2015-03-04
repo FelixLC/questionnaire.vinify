@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-      .module('vinibar.wines.factory', [ 'vinibar.winemakers', 'Mixpanel', 'toaster', 'settings' ])
+      .module('vinibar.wines.factory', [ 'vinibar.winemakers', 'Mixpanel', 'toaster', 'settings', 'lodash' ])
       .factory('WineFactory', WineFactory);
 
   /* @ngInject */
-  function WineFactory (Mixpanel, toaster, $http, $q, settings, currentWinemaster) {
+  function WineFactory (Mixpanel, toaster, $http, $q, settings, currentWinemaster, _) {
     var api = {
         winemaker: null,
         region: '',
@@ -14,7 +14,8 @@
         winemaker_name: '',
         saveOrUpdate: saveOrUpdate,
         getOrCreate: getOrCreate,
-        remove: remove
+        remove: remove,
+        duplicate: duplicate
     };
 
     // //////////////
@@ -96,7 +97,10 @@
                 mineral: '',
                 floral: '',
                 vegetal: '',
-                animal: ''
+                animal: '',
+                variety_1: '',
+                variety_2: '',
+                variety_3: ''
               },
               display_name: '',
               region: '',
@@ -128,7 +132,10 @@
             mineral: '',
             floral: '',
             vegetal: '',
-            animal: ''
+            animal: '',
+            variety_1: '',
+            variety_2: '',
+            variety_3: ''
           },
           display_name: '',
           region: '',
@@ -157,6 +164,12 @@
               failure(error);
             }
           });
+    }
+
+    function duplicate (wine, success, failure) {
+      var wineDuplicate = _.cloneDeep(wine);
+      wineDuplicate.uuid = '';
+      api.saveOrUpdate(wineDuplicate, success, failure);
     }
 
     return api;

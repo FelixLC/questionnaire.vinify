@@ -4,7 +4,7 @@
       <div class="table-cell">
           <h3 class="svi-header--white">{{winemaker.winemaker_name}}</h3>
           <p class="svi-label svi-label--white">{{winemaker.region}}</p>
-          <p class="help help--white" ng-click="modifyWinemaker(winemaker)"><span class="clickable clickable--white">modifier</span></p>
+          <p class="help help--white" ng-click="modifyWinemaker(winemaker)"><span class="clickable clickable--white">modifier les informations</span></p>
       </div>
       <div class="table-cell centered">
         <img src="assets/svi/logo.svg" alt="">
@@ -15,15 +15,30 @@
 <div class="section-svi section-svi--white">
   <div class="container">
     <table class="table">
+      <thead ng-if="winemaker.wines.length">
+        <tr>
+          <td></td>
+          <td><p class="svi-label">Nom</p></td>
+          <td class="hidden-xs"><p class="svi-label">Région</p></td>
+          <td class="hidden-xs"><p class="svi-label">Appelation</p></td>
+          <td><p class="svi-label">Couleur</p></td>
+          <td><p class="svi-label">Millésime</p></td>
+          <td></td>
+        </tr>
+      </thead>
       <tbody>
         <tr ng-repeat="wine in winemaker.wines">
           <td><img class="bottle-logo" src="assets/wines/mystery-bottle.png" alt=""></td>
           <td><p class="svi-label">{{wine.display_name}}</p></td>
-          <td><p class="svi-label hidden-xs">{{wine.region}}</p></td>
+          <td class="hidden-xs"><p class="svi-label">{{wine.region}}</p></td>
+          <td class="hidden-xs"><p class="svi-label">{{wine.appellation}}</p></td>
+          <td><p class="svi-label">{{wine.color}}</p></td>
           <td><p class="svi-label">{{wine.vintage}}</p></td>
           <td><p class="svi-label">
             <span class="item-note">
-              <span class="clickable" ng-click="modifyWine(wine)">modifier </span>&middot;<span class="clickable" ng-click="deleteWine(wine)"> supprimer</span>
+              <span class="clickable" ng-click="modifyWine(wine)">modifier </span>&middot;
+              <span class="clickable" ng-click="duplicateWine(wine)">dupliquer </span>&middot;
+              <span class="clickable" ng-click="deleteWine(wine)"> supprimer</span>
             </span>
           </p></td>
         </tr>
