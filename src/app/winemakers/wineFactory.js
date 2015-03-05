@@ -166,10 +166,23 @@
           });
     }
 
-    function duplicate (wine, success, failure) {
-      var wineDuplicate = _.cloneDeep(wine);
-      wineDuplicate.uuid = '';
-      api.saveOrUpdate(wineDuplicate, success, failure);
+    function duplicate (wine, vintage, success, failure) {
+      return $http.post(settings.apiEndPoint + '/wines/svi/duplicatewine/', {
+            email: currentWinemaster.email,
+            wine_uuid: wine.uuid,
+            new_vintage: vintage
+          })
+          .success(function (data, status, headers, config) {
+            if (success && angular.isFunction(success)) {
+              success(data);
+            }
+          })
+          .error(function (error) {
+            Mixpanel.track('Failed to duplicate wine :' + wine.uuid);
+            if (failure && angular.isFunction(failure)) {
+              failure(error);
+            }
+          });
     }
 
     return api;

@@ -68,6 +68,7 @@ module.exports = {
       'bower_components/angular-load/angular-load.js',
       'bower_components/angular-toaster/angular-toaster.js',
       'bower_components/angular-resource/angular-resource.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-bootstrap/ui-bootstrap-custom-tpls.min.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angulartics/dist/angulartics.min.js',
@@ -75,7 +76,9 @@ module.exports = {
       'bower_components/angulartics/dist/angulartics-mixpanel.min.js',
       'bower_components/angular-soap/soapclient.js',
       'bower_components/angular-soap/angular.soap.js',
-      'node_modules/lodash-compat/index.js'
+      'bower_components/angular-mass-autocomplete/massautocomplete.js',
+      'node_modules/lodash-compat/index.js',
+      'vendor/fuzzySearch.js'
     ],
     css: [
     ],
