@@ -77,8 +77,7 @@ module.exports = {
       'bower_components/angular-soap/soapclient.js',
       'bower_components/angular-soap/angular.soap.js',
       'bower_components/angular-mass-autocomplete/massautocomplete.js',
-      'node_modules/lodash-compat/index.js',
-      'vendor/fuzzySearch.js'
+      'node_modules/lodash-compat/index.js'
     ],
     css: [
     ],

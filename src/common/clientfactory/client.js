@@ -72,9 +72,9 @@ angular.module('clientFactory', [ 'settings' ])
 
     // instantiate our initial object
     var Client = function () {
-      this.uuid = "",
-      this.first_name = null,
-      this.last_name = null,
+      this.uuid = "";
+      this.first_name = null;
+      this.last_name = null;
       this.email = null;
       this.password = null;
       this.profile = new Profile();
