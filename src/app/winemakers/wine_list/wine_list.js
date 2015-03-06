@@ -81,7 +81,7 @@
     };
 
     $scope.validate = function () {
-      $state.go('winemakers.winemaker_thanks');
+      $state.go('winemakers.winemaker_list');
     };
 
     $scope.open = function (_wine) {

@@ -23,6 +23,7 @@
                         $stateParams,
                         wine,
                         Mixpanel,
+                        toaster,
                         $sce,
                         WineCharacteristicsFactory) {
 
@@ -63,24 +64,37 @@
     $scope.winemaker_name = WineFactory.winemaker_name;
 
     $scope.wine.svi_profile.body = ($scope.wine.svi_profile.body_light) ? 'light' :
-                                                        ($scope.wine.svi_profile.body_medium) ? 'medium' : 'strong';
+                                                        ($scope.wine.svi_profile.body_medium) ? 'medium' :
+                                                        ($scope.wine.svi_profile.body_medium) ? 'strong' : '';
 
     $scope.wine.svi_profile.texture = ($scope.wine.svi_profile.texture_light) ? 'light' :
-                                                        ($scope.wine.svi_profile.texture_medium) ? 'medium' : 'strong';
+                                                        ($scope.wine.svi_profile.texture_medium) ? 'medium' :
+                                                        ($scope.wine.svi_profile.texture_medium) ? 'strong' : '';
 
     $scope.wine.svi_profile.nature = ($scope.wine.svi_profile.nature_light) ? 'light' :
-                                                        ($scope.wine.svi_profile.nature_medium) ? 'medium' : 'strong';
+                                                        ($scope.wine.svi_profile.nature_medium) ? 'medium' :
+                                                        ($scope.wine.svi_profile.nature_medium) ? 'strong' : '';
 
     $scope.varieties = WineCharacteristicsFactory.varieties;
 
-    $scope.validateWine = function (_wine_) {
-      WineFactory.saveOrUpdate(_wine_,
-        function (response) {
-          $state.go('winemakers.wine_list', { uuid: $scope.wine.winemaker });
-        },
-        function () {
-          Mixpanel.track('Error trying to save wine');
-        });
+    $scope.validateWine = function (_wine_, form) {
+
+      if (form.display_name.$invalid || form.region.$invalid || form.appellation.$invalid ||
+            form.color.$invalid || form.vintage.$invalid) {
+        toaster.pop('info', 'Merci de remplir le nom, la région, l\'appellation, la couleur et le millésime du vin');
+      } else if (form.variety_1.$invalid) {
+        toaster.pop('info', 'Merci de remplir au moins un cépage');
+      } else if (form.body.$invalid || form.nature.$invalid || form.texture.$invalid) {
+        toaster.pop('info', 'Merci de remplir la structure du vin');
+      } else {
+        WineFactory.saveOrUpdate(_wine_,
+          function (response) {
+            $state.go('winemakers.wine_list', { uuid: $scope.wine.winemaker });
+          },
+          function () {
+            Mixpanel.track('Error trying to save wine');
+          });
+      }
     };
   });
 
@@ -88,6 +102,7 @@
   'vinibar.wines.factory',
   'vinibar.winemaker.characteristics',
   'ui.router',
+  'toaster',
   'MassAutoComplete',
   'Mixpanel'
 ]));

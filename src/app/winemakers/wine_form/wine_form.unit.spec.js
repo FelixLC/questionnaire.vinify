@@ -45,7 +45,36 @@ describe('wineFormCtrl Controller', function () {
     WineFactory.saveOrUpdate.and.callFake(function (wine, success, failure) {
       success({ winemaker: 123 });
     });
-    $scope.validateWine(wine);
+    var form = {
+      display_name: {
+        $invalid: false
+      },
+      region: {
+        $invalid: false
+      },
+      appellation: {
+        $invalid: false
+      },
+      color: {
+        $invalid: false
+      },
+      vintage: {
+        $invalid: false
+      },
+      variety_1: {
+        $invalid: false
+      },
+      body: {
+        $invalid: false
+      },
+      nature: {
+        $invalid: false
+      },
+      texture: {
+        $invalid: false
+      }
+    };
+    $scope.validateWine(wine, form);
     expect($state.go).toHaveBeenCalledWith('winemakers.wine_list', { uuid: 123 });
   });
 
@@ -53,7 +82,36 @@ describe('wineFormCtrl Controller', function () {
     WineFactory.saveOrUpdate.and.callFake(function (wine, success, failure) {
       failure();
     });
-    $scope.validateWine(wine);
+    var form = {
+      display_name: {
+        $invalid: false
+      },
+      region: {
+        $invalid: false
+      },
+      appellation: {
+        $invalid: false
+      },
+      color: {
+        $invalid: false
+      },
+      vintage: {
+        $invalid: false
+      },
+      variety_1: {
+        $invalid: false
+      },
+      body: {
+        $invalid: false
+      },
+      nature: {
+        $invalid: false
+      },
+      texture: {
+        $invalid: false
+      }
+    };
+    $scope.validateWine(wine, form);
     expect($state.go).not.toHaveBeenCalled();
     expect(Mixpanel.track).toHaveBeenCalled();
   });

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="table">
       <div class="table-cell">
-          <h3 class="svi-header--white">Liste des vins du domaine {{winemaker.winemaker_name}}</h3>
+          <h3 class="svi-header--white">Liste des vins du domaine "{{winemaker.winemaker_name}}"</h3>
           <p class="svi-label--white">{{winemaker.region}}</p>
           <p class="help help--white" ng-click="modifyWinemaker(winemaker)"><span class="clickable clickable--white">modifier les informations</span></p>
       </div>
@@ -20,7 +20,7 @@
           <td></td>
           <td><p class="svi-label">Nom</p></td>
           <td class="hidden-xs"><p class="svi-label">Région</p></td>
-          <td class="hidden-xs"><p class="svi-label">Appelation</p></td>
+          <td class="hidden-xs"><p class="svi-label">Appellation</p></td>
           <td><p class="svi-label">Couleur</p></td>
           <td><p class="svi-label">Millésime</p></td>
           <td></td>
@@ -47,7 +47,7 @@
     <div class="centered">
       <button class="button-svi" ng-click="addWine(winemaker)">Ajouter un vin</button>
       <button class="button-svi" ng-if="winemaker.wines.length" ng-click="validate(winemaker)">Valider ma fiche</button>
-      <button class="button-svi" ng-if="winemaker.wines.length" ui-sref="winemakers.winemaker_form">Ajouter un domaine</button>
+      <!-- <button class="button-svi" ng-if="winemaker.wines.length" ui-sref="winemakers.winemaker_form">Ajouter un domaine</button> -->
     </div>
   </div>
 </div>

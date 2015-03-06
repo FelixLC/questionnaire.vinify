@@ -56,7 +56,7 @@ describe('wineListCtrl Controller', function () {
 
   it('should go to thanks', function () {
     $scope.validate();
-    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_thanks');
+    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_list');
   });
 
 
