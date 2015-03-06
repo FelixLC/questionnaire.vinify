@@ -15,7 +15,7 @@
 <div class="section-svi section-svi--white">
   <div class="container">
     <table class="table">
-      <thead ng-if="winemaker.wines.length">
+      <thead>
         <tr>
           <td></td>
           <td><p class="svi-label">Nom</p></td>
@@ -29,7 +29,7 @@
       <tbody>
         <tr ng-repeat="wine in winemaker.wines">
           <td><img class="bottle-logo" src="assets/wines/mystery-bottle.png" alt=""></td>
-          <td><p class="svi-label">{{wine.display_name}}</p></td>
+          <td ng-click="modifyWine(wine)"><p class="svi-label">{{wine.display_name}}</p></td>
           <td class="hidden-xs"><p class="svi-label">{{wine.region}}</p></td>
           <td class="hidden-xs"><p class="svi-label">{{wine.appellation}}</p></td>
           <td><p class="svi-label">{{wine.color}}</p></td>
@@ -37,7 +37,7 @@
           <td><p class="svi-label">
             <span class="item-note">
               <span class="clickable" ng-click="modifyWine(wine)">modifier </span>&middot;
-              <span class="clickable" ng-click="duplicateWine(wine)">dupliquer </span>&middot;
+              <span class="clickable" ng-click="open(wine)">dupliquer </span>&middot;
               <span class="clickable" ng-click="deleteWine(wine)"> supprimer</span>
             </span>
           </p></td>
@@ -46,8 +46,8 @@
     </table>
     <div class="centered">
       <button class="button-svi" ng-click="addWine(winemaker)">Ajouter un vin</button>
-      <button class="button-svi" ng-click="validate(winemaker)">Valider ma fiche</button>
-      <button class="button-svi" ui-sref="winemakers.winemaker_form">Ajouter un domaine</button>
+      <button class="button-svi" ng-if="winemaker.wines.length" ng-click="validate(winemaker)">Valider ma fiche</button>
+      <button class="button-svi" ng-if="winemaker.wines.length" ui-sref="winemakers.winemaker_form">Ajouter un domaine</button>
     </div>
   </div>
 </div>

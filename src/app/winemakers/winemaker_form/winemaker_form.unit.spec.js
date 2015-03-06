@@ -56,18 +56,34 @@ describe('wineMakerFormCtrl Controller', function () {
     WinemakerFactory.saveOrUpdate.and.callFake(function (winemaker, success, failure) {
       success({ uuid: 123 });
     });
-    $scope.validateWinemaker(winemaker);
-    expect($state.go).toHaveBeenCalledWith('winemakers.winemaker_list');
+    var form = {
+      winemaker_name: {
+        $error: false
+      },
+      region: {
+        $error: false
+      }
+    };
+    $scope.validateWinemaker(winemaker, form);
+    expect($state.go).toHaveBeenCalled();
   });
 
   it('should track an error', function () {
     WinemakerFactory.saveOrUpdate.and.callFake(function (winemaker, success, failure) {
       failure();
     });
+    var form = {
+      winemaker_name: {
+        $error: false
+      },
+      region: {
+        $error: false
+      }
+    };
     $scope.goToWineForm(winemaker);
     expect($state.go).not.toHaveBeenCalled();
     expect(Mixpanel.track).toHaveBeenCalled();
-    $scope.validateWinemaker(winemaker);
+    $scope.validateWinemaker(winemaker, form);
     expect($state.go).not.toHaveBeenCalled();
     expect(Mixpanel.track).toHaveBeenCalled();
   });

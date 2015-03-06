@@ -16,13 +16,24 @@
     });
   });
 
-  app.controller('wineMakerFormCtrl', function ($scope, $state, $stateParams, Mixpanel, WinemakerFactory, WineFactory,  winemaker, $sce, WineCharacteristicsFactory) {
+  app.controller('wineMakerFormCtrl',
+    function ($scope,
+                        $state,
+                        $stateParams,
+                        Mixpanel,
+                        WinemakerFactory,
+                        toaster,
+                        WineFactory,
+                        winemaker,
+                        $sce,
+                        WineCharacteristicsFactory) {
 
     $scope.winemaker = winemaker.data;
+    $scope.regions = WineCharacteristicsFactory.regions;
 
-    var states = WineCharacteristicsFactory.appellations;
+    var appellations = WineCharacteristicsFactory.appellations;
 
-    var fuzzySearch = new Fuse(states, {
+    var appellationSearch = new Fuse(appellations, {
       shouldSort: true,
       includeScore: true,
       caseSensitive: false,
@@ -30,78 +41,51 @@
       threshold: 0.4
     });
 
-    function fuzzySuggest (term) {
+    function appellationSuggest (term) {
       if (!term) {
         return [];
       }
 
-      return fuzzySearch
+      return appellationSearch
         .search(term)
         .slice(0, 10)
         .map(function (i) {
-          var val = states[i.item];
+          var val = appellations[i.item];
           return { label: val, value: val };
-          //   value: val,
-          //   label: $sce.trustAsHtml(
-          //     '<div class="container-fluid">' +
-          //     '  <div class="pull-left">' +
-          //          val +
-          //     '  </div>' +
-          //     // '  <div class="pull-right"> ' +
-          //     // '   <span class="badge">' +
-          //     //       (Math.round(i.score * 100) / 100) +
-          //     // '   </span>' +
-          //     // ' </div>' +
-          //     '</div>')
-          // };
         });
     }
 
     $scope.ac_fuse_options = {
-      suggest: fuzzySuggest
+      suggest: appellationSuggest
     };
 
-    // function suggestTerms (term) {
-    //   var q = term.toLowerCase().trim();
-    //   var results = [];
+    var winemakers = WineCharacteristicsFactory.winemakers;
 
-    //   // Find first 10 appellations that start with `term`.
-    //   for (var i = 0; i < appellations.length && results.length < 10; i++) {
-    //     var region = appellations[i];
-    //     if (appellation.toLowerCase().indexOf(q) === 0) {
-    //       results.push({ label: appellation, value: appellation });
-    //     }
-    //   }
+    var winemakerSearch = new Fuse(winemakers, {
+      shouldSort: true,
+      includeScore: true,
+      caseSensitive: false,
+      id: false,
+      threshold: 0.4
+    });
 
-    //   return results;
-    // }
+    function winemakerSuggest (term) {
+      if (!term) {
+        return [];
+      }
 
-    // $scope.autocomplete_options = {
-    //   suggest: suggestTerms
-    // };
+      return winemakerSearch
+        .search(term)
+        .slice(0, 10)
+        .map(function (i) {
+          var val = winemakers[i.item];
+          return { label: val, value: val };
+        });
+    }
 
-    // $scope.dirty = {};
-
-    // var states = [ 'Alabama', 'Alaska', 'California',  'Dakota' ];
-
-    // function suggest_state (term) {
-    //   var q = term.toLowerCase().trim();
-    //   var results = [];
-
-    //   // Find first 10 states that start with `term`.
-    //   for (var i = 0; i < states.length && results.length < 10; i++) {
-    //     var state = states[i];
-    //     if (state.toLowerCase().indexOf(q) === 0) {
-    //       results.push({ label: state, value: state });
-    //     }
-    //   }
-
-    //   return results;
-    // }
-
-    // $scope.ac_fuse_options = {
-    //   suggest: suggest_state
-    // };
+    $scope.winemakerSearch = {
+      suggest: winemakerSuggest
+    };
 
     $scope.goToWineForm = function (winemaker) {
       WinemakerFactory.saveOrUpdate(winemaker,
@@ -117,14 +101,18 @@
         });
     };
 
-    $scope.validateWinemaker = function (winemaker) {
-      WinemakerFactory.saveOrUpdate(winemaker,
-        function (_winemaker) {
-          $state.go('winemakers.winemaker_list');
-        },
-        function (error) {
-          Mixpanel.track('Error trying to save winemaker : ' + $stateParams.email);
-        });
+    $scope.validateWinemaker = function (winemaker, winemakerForm) {
+      if (winemakerForm.winemaker_name.$invalid || winemakerForm.region.$invalid) {
+        toaster.pop('info', 'Merci de remplir le nom et la région de votre domaine');
+      } else {
+        WinemakerFactory.saveOrUpdate(winemaker,
+          function (_winemaker) {
+            $state.go('winemakers.wine_list', { uuid: _winemaker.uuid });
+          },
+          function (error) {
+            Mixpanel.track('Error trying to save winemaker : ' + $stateParams.email);
+          });
+      }
     };
 
   });
@@ -134,6 +122,7 @@
   'vinibar.wines.factory',
   'vinibar.winemaker.characteristics',
   'ui.router',
+  'toaster',
   'ngSanitize',
   'MassAutoComplete',
   'Mixpanel'

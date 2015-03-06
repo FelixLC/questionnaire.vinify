@@ -25,7 +25,7 @@
       <tbody>
         <tr ng-repeat="winemaker in winemakers">
           <td><img class="bottle-logo" src="assets/svi/grapes.svg" alt=""></td>
-          <td><p class="svi-label">{{winemaker.winemaker_name}}</p></td>
+          <td ng-click="modifyWinemaker(winemaker)"><p class="svi-label">{{winemaker.winemaker_name}}</p></td>
           <td class="hidden-xs"><p class="svi-label">{{winemaker.region}}</p></td>
           <td class="hidden-xs"><p class="svi-label">{{winemaker.appellation}}</p></td>
           <td>

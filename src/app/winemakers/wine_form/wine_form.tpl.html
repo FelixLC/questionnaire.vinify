@@ -1,5 +1,5 @@
 <form name="wineForm">
-  <div class="section-svi section-svi--support">
+  <div class="section-svi">
     <div class="container">
       <h3 class="svi-header--white">Ajouter un vin </h3>
       <div class="table">
@@ -10,7 +10,7 @@
           </div>
           <div class="form-group">
             <label class="svi-label svi-label--white" for="region">Région</label>
-            <input type="text" ng-model="wine.region" class="form-control">
+            <select class="form-control" name="region" ng-model="wine.region" ng-options="region for region in regions" required></select>
           </div>
           <div class="form-group">
             <label class="svi-label svi-label--white" for="color">Couleur</label>
@@ -24,7 +24,9 @@
         <div class="table-cell table-cell--bottom">
           <div class="form-group">
             <label class="svi-label svi-label--white" for="appellation">Appellation</label>
-            <input type="text" ng-model="wine.appellation" class="form-control">
+            <div mass-autocomplete>
+              <input ng-model="wine.appellation" class="form-control" mass-autocomplete-item="ac_fuse_options">
+            </div>
           </div>
           <div class="form-group">
             <label class="svi-label svi-label--white" for="vintage">Millésime</label>
@@ -53,7 +55,7 @@
         </div>
         <div class="table-cell centered">
           <img src="assets/svi/logo.svg" alt="">
-          <p class="svi-label svi-label--white">{{winemaker_name}}</p>
+          <h3 class="svi-label svi-label--white">{{winemaker_name}}</h3>
         </div>
       </div>
     </div>

@@ -16,7 +16,46 @@
     });
   });
 
-  app.controller('wineFormCtrl', function ($scope, WineFactory, $state, $stateParams, wine, Mixpanel, WineCharacteristicsFactory) {
+  app.controller('wineFormCtrl',
+    function ($scope,
+                        WineFactory,
+                        $state,
+                        $stateParams,
+                        wine,
+                        Mixpanel,
+                        $sce,
+                        WineCharacteristicsFactory) {
+
+    $scope.regions = WineCharacteristicsFactory.regions;
+
+    var appellations = WineCharacteristicsFactory.appellations;
+
+    var appellationSearch = new Fuse(appellations, {
+      shouldSort: true,
+      includeScore: true,
+      caseSensitive: false,
+      id: false,
+      threshold: 0.4
+    });
+
+    function appellationSuggest (term) {
+      if (!term) {
+        return [];
+      }
+
+      return appellationSearch
+        .search(term)
+        .slice(0, 10)
+        .map(function (i) {
+          var val = appellations[i.item];
+          return { label: val, value: val };
+        });
+    }
+
+    $scope.ac_fuse_options = {
+      suggest: appellationSuggest
+    };
+
     $scope.wine = wine.data;
 
     $scope.wine.region =  $scope.wine.region || WineFactory.region;
@@ -49,5 +88,6 @@
   'vinibar.wines.factory',
   'vinibar.winemaker.characteristics',
   'ui.router',
+  'MassAutoComplete',
   'Mixpanel'
 ]));

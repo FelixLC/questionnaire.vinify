@@ -6,11 +6,13 @@
         <div class="table-cell">
           <div class="form-group">
             <label class="svi-label svi-label--white" for="winemaker_name">Nom du producteur *</label>
-            <input ng-model="winemaker.winemaker_name" class="form-control">
+            <div mass-autocomplete>
+              <input name="winemaker_name" ng-model="winemaker.winemaker_name" class="form-control" mass-autocomplete-item="winemakerSearch" required>
+            </div>
           </div>
           <div class="form-group">
             <label class="svi-label svi-label--white" for="region">Région *</label>
-            <input type="text" ng-model="winemaker.region" class="form-control">
+            <select class="form-control" name="region" ng-model="winemaker.region" ng-options="region for region in regions" required></select>
           </div>
         </div>
         <div class="table-cell table-cell--bottom">
@@ -34,7 +36,7 @@
     </div>
   </div>
   <div class="centered section-svi--white">
-      <button class="button-svi" ng-click="goToWineForm(winemaker)">Ajouter un vin</button>
-      <button class="button-svi" ng-if="winemaker.wines.length" ng-click="validateWinemaker(winemaker)">Valider</button>
+      <!-- <button class="button-svi" ng-click="goToWineForm(winemaker)">Ajouter un vin</button> -->
+      <button class="button-svi" ng-click="validateWinemaker(winemaker, winemakerForm)">Valider</button>
   </div>
 </form>
