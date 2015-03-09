@@ -18,6 +18,7 @@
       // restApiEndPoint: 'http://127.0.0.1:8000/restapi',
       apiEndPoint: 'https://api.vinify.co/api',
       restApiEndPoint: 'https://api.vinify.co/restapi',
+      // restApiEndPoint: 'https://backoffice.vinify.co/restapi',
       // apiEndPoint: 'https://backoffice.vinify.co/api',
       // backendEndPoint: 'https://backoffice.vinify.co/api'
       backendEndPoint: 'https://api.vinify.co/api'

@@ -311,9 +311,7 @@
                   class="form-control"
                   id="delivery_last_name"/>
               </div>
-            </div>
-
-            <div class="form-group country-company">
+            <div ng-hide="client.userinfos.same_billing" class="form-group country-company">
               <div>
                 <label for="country">Pays</label>
                 <input type="text"
@@ -333,7 +331,8 @@
                   id="company"/>
               </div>
             </div>
-            <div class="form-group">
+
+            <div ng-hide="client.userinfos.same_billing" class="form-group">
               <label for="billing_address.street" class="sr-only">Rue</label>
               <input type="text"
                 ng-model="client.userinfos.billing_address.street"
@@ -343,7 +342,7 @@
                 name="billing_address.street"
                 />
             </div>
-            <div class="u-w50 inline-left form-group">
+            <div ng-hide="client.userinfos.same_billing" class="u-w50 inline-left form-group">
             <label for="billing_address.company">Ville</label>
               <label for="billing_address.zipcode" class="sr-only">CP</label>
               <input type="text"
@@ -352,7 +351,7 @@
                 class="form-control"
                 id="billing_address.zipcode"/>
             </div>
-            <div class="u-w50 inline-right form-group">
+            <div ng-hide="client.userinfos.same_billing" class="u-w50 inline-right form-group">
             <label for="billing_address.company">&nbsp;</label>
               <label for="billing_address.city" class="sr-only">Ville</label>
               <input type="text"
@@ -372,6 +371,7 @@
 <!--            <h4 ng-hide="isGift" ng-show="client.order_type === 'Vinibar' " class="centered">69 €</h4>
             <h4 ng-hide="isGift" ng-show="client.order_type === 'Découverte' " class="centered">39 €</h4> -->
           </div>
+        </div>
 
         </form>
       </div>
@@ -394,4 +394,3 @@
         </form>
       </div>
     </div>    <!-- ROW -->
-

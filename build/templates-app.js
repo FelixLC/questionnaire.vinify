@@ -1716,9 +1716,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                  class=\"form-control\"\n" +
     "                  id=\"delivery_last_name\"/>\n" +
     "              </div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <div class=\"form-group country-company\">\n" +
+    "            <div ng-hide=\"client.userinfos.same_billing\" class=\"form-group country-company\">\n" +
     "              <div>\n" +
     "                <label for=\"country\">Pays</label>\n" +
     "                <input type=\"text\"\n" +
@@ -1738,7 +1736,8 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                  id=\"company\"/>\n" +
     "              </div>\n" +
     "            </div>\n" +
-    "            <div class=\"form-group\">\n" +
+    "\n" +
+    "            <div ng-hide=\"client.userinfos.same_billing\" class=\"form-group\">\n" +
     "              <label for=\"billing_address.street\" class=\"sr-only\">Rue</label>\n" +
     "              <input type=\"text\"\n" +
     "                ng-model=\"client.userinfos.billing_address.street\"\n" +
@@ -1748,7 +1747,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                name=\"billing_address.street\"\n" +
     "                />\n" +
     "            </div>\n" +
-    "            <div class=\"u-w50 inline-left form-group\">\n" +
+    "            <div ng-hide=\"client.userinfos.same_billing\" class=\"u-w50 inline-left form-group\">\n" +
     "            <label for=\"billing_address.company\">Ville</label>\n" +
     "              <label for=\"billing_address.zipcode\" class=\"sr-only\">CP</label>\n" +
     "              <input type=\"text\"\n" +
@@ -1757,7 +1756,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "                class=\"form-control\"\n" +
     "                id=\"billing_address.zipcode\"/>\n" +
     "            </div>\n" +
-    "            <div class=\"u-w50 inline-right form-group\">\n" +
+    "            <div ng-hide=\"client.userinfos.same_billing\" class=\"u-w50 inline-right form-group\">\n" +
     "            <label for=\"billing_address.company\">&nbsp;</label>\n" +
     "              <label for=\"billing_address.city\" class=\"sr-only\">Ville</label>\n" +
     "              <input type=\"text\"\n" +
@@ -1777,6 +1776,7 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "<!--            <h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Vinibar' \" class=\"centered\">69 €</h4>\n" +
     "            <h4 ng-hide=\"isGift\" ng-show=\"client.order_type === 'Découverte' \" class=\"centered\">39 €</h4> -->\n" +
     "          </div>\n" +
+    "        </div>\n" +
     "\n" +
     "        </form>\n" +
     "      </div>\n" +
@@ -1799,7 +1799,6 @@ angular.module("order/parts/order.userinfos.tpl.html", []).run(["$templateCache"
     "        </form>\n" +
     "      </div>\n" +
     "    </div>    <!-- ROW -->\n" +
-    "\n" +
     "");
 }]);
 
