@@ -30,20 +30,20 @@ describe('GiftCard Purchase Workflow', function () {
   it('should fill lucky boy & giver infos', function () {
     expect(browser.getCurrentUrl()).toEqual('http://0.0.0.0:9001/#/cadeau/vinibar/infos?test=true');
     element(by.cssContainingText('option', 'Mme')).click();
-    element(by.model('gift.order.receiver_first_name')).sendKeys('Félix');
-    element(by.model('gift.order.receiver_last_name')).sendKeys('Le Chevallier');
+    element(by.model('gift.order.receiver_first_name')).sendKeys('John');
+    element(by.model('gift.order.receiver_last_name')).sendKeys('Mc Test');
     element(by.model('gift.order.receiver_email')).sendKeys('felix+test' + Math.random() * 1000 + '@vinify.co');
     element(by.model('gift.order.message')).sendKeys('un cadeau pour toi !');
     element(by.model('gift.order.comment')).sendKeys('Il aime le chocolat');
 
     element.all(by.css('.gift-checkbox')).first().click();
-    element(by.model('gift.order.receiver_address.first_name')).sendKeys('Félix');
-    element(by.model('gift.order.receiver_address.last_name')).sendKeys('Le Chevallier');
+    element(by.model('gift.order.receiver_address.first_name')).sendKeys('John');
+    element(by.model('gift.order.receiver_address.last_name')).sendKeys('Mc Test');
     element(by.model('gift.order.receiver_address.street')).sendKeys('12 rue boinod');
     element(by.model('gift.order.receiver_address.zipcode')).sendKeys('75018');
     element(by.model('gift.order.receiver_address.city')).sendKeys('Paris');
 
-    element(by.css('.is-not-client')).click();
+    element(by.css('#is-not-client')).click();
     element(by.model('gift.giver.first_name')).sendKeys('John');
     element(by.model('gift.giver.last_name')).sendKeys('MacTest');
     element(by.model('gift.giver.email')).sendKeys('felix+test' + Math.random() * 1000 + '@vinify.co');

@@ -78,8 +78,8 @@ describe('Discovery Purchase Workflow', function () {
   it('should fill user infos', function () {
     // fill userinfos
     element(by.cssContainingText('option', 'Mme')).click();
-    element(by.model('client.userinfos.first_name')).sendKeys('Félix');
-    element(by.model('client.userinfos.last_name')).sendKeys('Le Chevallier');
+    element(by.model('client.userinfos.first_name')).sendKeys('John');
+    element(by.model('client.userinfos.last_name')).sendKeys('Mc Test');
     element(by.model('client.userinfos.phone')).sendKeys('0683620433');
     element.all(by.css('option')).get(5).click();
     element.all(by.css('option')).get(41).click();

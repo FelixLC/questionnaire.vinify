@@ -30,5 +30,5 @@ angular.module('vinibar.wines', [
   $rootScope.Description.setMetaDescription($scope.wine.domain);
   $rootScope.Description.setMetaKeywords($scope.wine.variety + ', ' + $scope.wine.food + ', ' + $scope.wine.meat_fish);
   $rootScope.Description.setMetaUrl('https://www.vinify.co/' + $scope.wine.slug);
-  $rootScope.Description.setMetaImage('https://www.vinify.co/assets/wines/' + $scope.wine.product_code + '.jpg');
+  $rootScope.Description.setMetaImage('https://www.vinify.co/assets/wines/' + $scope.wine.product_code + '.png');
 });
