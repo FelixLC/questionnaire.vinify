@@ -2125,7 +2125,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "        <div class=\"wines-preview container\">\n" +
     "          <div>\n" +
     "            <div ng-click=\"openModal(preview[0])\" class=\"bottle-row\" ng-mouseenter=\"wine_1 = !wine_1\" ng-mouseleave=\"wine_1 = !wine_1\">\n" +
-    "              <img ng-src=\"assets/wines/{{preview[0].product_code}}.jpg\" alt=\"\">\n" +
+    "              <img ng-src=\"assets/wines/{{preview[0].product_code}}.png\" alt=\"\">\n" +
     "              <div class=\"preview-overlay\" ng-show=\"wine_1\">\n" +
     "                <div>\n" +
     "                  <h4>Cépages</h4>\n" +
@@ -2143,7 +2143,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "          </div>\n" +
     "         <div>\n" +
     "            <div ng-click=\"openModal(preview[1])\" class=\"bottle-row\" ng-mouseenter=\"wine_2 = !wine_2\" ng-mouseleave=\"wine_2 = !wine_2\">\n" +
-    "              <img ng-src=\"assets/wines/{{preview[1].product_code}}.jpg\" alt=\"\">\n" +
+    "              <img ng-src=\"assets/wines/{{preview[1].product_code}}.png\" alt=\"\">\n" +
     "              <div class=\"preview-overlay\" ng-show=\"wine_2\">\n" +
     "                <div>\n" +
     "                  <h4>Cépages</h4>\n" +
@@ -2161,7 +2161,7 @@ angular.module("preview/preview.tpl.html", []).run(["$templateCache", function($
     "          </div>\n" +
     "          <div>\n" +
     "            <div ng-click=\"openModal(preview[2])\" class=\"bottle-row\" ng-mouseenter=\"wine_3 = !wine_3\" ng-mouseleave=\"wine_3 = !wine_3\">\n" +
-    "              <img ng-src=\"assets/wines/{{preview[2].product_code}}.jpg\" alt=\"\">\n" +
+    "              <img ng-src=\"assets/wines/{{preview[2].product_code}}.png\" alt=\"\">\n" +
     "              <div class=\"preview-overlay\" ng-show=\"wine_3\">\n" +
     "                <div>\n" +
     "                  <h4>Cépages</h4>\n" +
@@ -3507,7 +3507,7 @@ angular.module("wines/wines.tpl.html", []).run(["$templateCache", function($temp
     "  <div class=\"container wine-content\">\n" +
     "    <div class=\"row\">\n" +
     "      <div class=\"col-lg-4 centered\">\n" +
-    "        <img ng-src=\"assets/wines/{{wine.product_code}}.jpg\" alt=\"{{wine.region + ' - ' + wine.display_name}}\">\n" +
+    "        <img ng-src=\"assets/wines/{{wine.product_code}}.png\" alt=\"{{wine.region + ' - ' + wine.display_name}}\">\n" +
     "        <h3>{{wine.display_name}}</h3>\n" +
     "        <h4>{{wine.appellation}}</h4>\n" +
     "        <h4>{{wine.region}} - {{wine.color}} - {{wine.vintage}}</h4>\n" +
