@@ -10,7 +10,7 @@ angular.module('vinibar.questionnaire', [
   'split'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider
     .state('questionnaire', {
       url: '/questionnaire',
@@ -21,11 +21,11 @@ angular.module('vinibar.questionnaire', [
         }
       },
       resolve: {
-          promiseObj:  ["$http", "$templateCache", function ($http, $templateCache) {
+          promiseObj:  function ($http, $templateCache) {
             // $http returns a promise for the url data
             return $http.get('assets/fruits.jpg', { cache: $templateCache });
 
-          }]
+          }
       },
       data: { pageTitle: 'Questionnaire' }
     })
@@ -61,9 +61,9 @@ angular.module('vinibar.questionnaire', [
       url: '/starter',
       templateUrl: 'questionnaire/parts/questionnaire.starter.tpl.html'
     });
-}])
+})
 
-.controller('questionnaireCtrl', ["$document", "Mixpanel", "Recommender", "Receive", "$scope", "$http", "$location", "Client", "currentClient", "$state", "$rootScope", "$modal", "$log", "$timeout", "toaster", "$window", "$stateParams", "settings", "split", function questionnaireCtrl ($document,
+.controller('questionnaireCtrl', function questionnaireCtrl ($document,
                                                                                       Mixpanel,
                                                                                       Recommender,
                                                                                       Receive,
@@ -283,4 +283,4 @@ angular.module('vinibar.questionnaire', [
     });
   };
 
-}]);
+});

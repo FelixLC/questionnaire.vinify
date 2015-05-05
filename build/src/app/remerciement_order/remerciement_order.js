@@ -4,7 +4,7 @@ angular.module('vinibar.remerciement_order', [
   'ngAutocomplete'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider.state('remerciement_order', {
     url: '/remerciement_order',
     views: {
@@ -15,8 +15,8 @@ angular.module('vinibar.remerciement_order', [
     },
     data: { pageTitle: 'remerciement_order' }
   });
-}])
+})
 
-.controller('remerciement_orderCtrl', ["$timeout", "$window", "$scope", "$http", "$location", "User", function remerciement_orderCtrl ($timeout, $window, $scope, $http, $location, User) {
+.controller('remerciement_orderCtrl', function remerciement_orderCtrl ($timeout, $window, $scope, $http, $location, User) {
   $scope.user = {};
-}]);
+});

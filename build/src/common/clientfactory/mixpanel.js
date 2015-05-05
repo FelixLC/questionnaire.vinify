@@ -7,10 +7,10 @@
 
   angular
         .module('Mixpanel', [ 'settings', 'angulartics.google.analytics', 'angulartics.mixpanel' ])
-        .config(["$analyticsProvider", function ($analyticsProvider) {
+        .config(function ($analyticsProvider) {
           // turn off automatic tracking
           $analyticsProvider.virtualPageviews(false);
-        }])
+        })
         .factory('Mixpanel', Mixpanel);
 
     /* @ngInject */
@@ -65,5 +65,4 @@
       }
     }
   }
-  Mixpanel.$inject = ["settings", "$analytics"];
 })();

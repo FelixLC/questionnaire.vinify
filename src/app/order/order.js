@@ -159,7 +159,7 @@ angular.module('vinibar.order', [
               function (data) { // order failed
                 $rootScope.loading = false;
                 toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
-                couponCheckerFail(response); // handles toaster in case of errors
+                couponCheckerFail(data); // handles toaster in case of errors
               });
           }
         },

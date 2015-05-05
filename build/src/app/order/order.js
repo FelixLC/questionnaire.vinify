@@ -9,7 +9,7 @@ angular.module('vinibar.order', [
   'orderService'
 ])
 
-.config(["$stateProvider", function config ($stateProvider) {
+.config(function config ($stateProvider) {
   $stateProvider
     .state('order', {
       url: '/order',
@@ -37,9 +37,9 @@ angular.module('vinibar.order', [
       url: '/confirmation',
       templateUrl: 'order/parts/order.confirmation.tpl.html'
     });
-}])
+})
 
-.controller('orderCtrl', ["Mixpanel", "Receive", "$scope", "$location", "currentClient", "$state", "$rootScope", "toaster", "Order", function orderCtrl (Mixpanel, Receive, $scope, $location, currentClient, $state, $rootScope, toaster, Order) {
+.controller('orderCtrl', function orderCtrl (Mixpanel, Receive, $scope, $location, currentClient, $state, $rootScope, toaster, Order) {
   var init = function () {
     $scope.isState = function (state) { return $state.is(state);};
     $scope.client = currentClient.currentClient;
@@ -159,7 +159,7 @@ angular.module('vinibar.order', [
               function (data) { // order failed
                 $rootScope.loading = false;
                 toaster.pop('info', 'Oops, il y a eu une erreur !', 'Merci de réessayer');
-                couponCheckerFail(response); // handles toaster in case of errors
+                couponCheckerFail(data); // handles toaster in case of errors
               });
           }
         },
@@ -174,7 +174,7 @@ angular.module('vinibar.order', [
 
   };
 
-}])
+})
 
 .filter('characters', function () {
   return function (input, chars, breakOnWord) {
