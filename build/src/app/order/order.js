@@ -75,6 +75,8 @@ angular.module('vinibar.order', [
                                             'Vous ne pouvez pas utiliser un code parrainnage avec l\'offre découverte');
     } else if (response === 'Gift Coupon not allowed') {
       toaster.pop('info', 'Pour activer votre cadeau', 'rendez vous sur Cadeau / Recevoir dans la barre de navigation de la page d\'acceuil');
+    } else if (response === 'Delivery Coupon not allowed') {
+      toaster.pop('info', 'Ce coupon de livraison', 'n\'est pas valable pour l\'offre ' + $scope.client.order_type);
     }
   };
 
@@ -89,12 +91,14 @@ angular.module('vinibar.order', [
       toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value * 100 + ' % !');
     } else if (response.coupon_type === 'Monetary') {
       toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' € !');
+    } else if (response.coupon_type === 'Delivery') {
+      toaster.pop('success', 'Coupon validé !', 'Livraison Offerte');
     }
   };
 
   $scope.blur = function () {
     if ($scope.coupon.coupon) {
-      Order.testCoupon($scope.coupon,
+      Order.testCoupon($scope.coupon, $scope.client.order_type,
         // coupon validated
         function (response) {
           couponCheckerSuccess(response);
@@ -139,7 +143,8 @@ angular.module('vinibar.order', [
 
             Order.create($scope.client.order_type, $scope.client.order_uuid, $scope.coupon.coupon,
               function (data) { // order created
-                $scope.client.order = data;
+                $scope.client.order = data.order;
+                $scope.client.delivery_costs = data.delivery_costs;
                 $scope.client.order.final_price = Math.round($scope.client.order.final_price * 100) / 100;
                 currentClient.currentClient = $scope.client;
 

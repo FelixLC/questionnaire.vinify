@@ -17,8 +17,15 @@
 
     // //////////////
 
-    function testCoupon (coupon, success, failure) {
-      $http.post(settings.apiEndPoint + '/orders/testcoupon/', coupon)
+    function testCoupon (coupon, order_type, success, failure) {
+      console.log(order_type);
+      var data = {
+                  'coupon' : coupon.coupon,
+                  'order_type' : (order_type === 'Vinibar') ? 'Vinibar' : 'Discovery'
+                  };
+      console.log(data);
+
+      $http.post(settings.apiEndPoint + '/orders/testcoupon/', data)
           .success(function (data, status, headers, config) {
             return success(data);
           })

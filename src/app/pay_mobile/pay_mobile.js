@@ -33,6 +33,7 @@ angular.module('vinibar.pay_mobile', [
 })
 
 .controller('payMobileCtrl', function payMobileCtrl (Mixpanel, $scope, $http, currentClient, $rootScope, settings, $state, Order, toaster, $modal, $window) {
+  var d_costs = currentClient.currentClient.delivery_costs;
   var init = function (argument) {
     $scope.state = 'order.paiement';
     $scope.date = new Date();
@@ -55,7 +56,7 @@ angular.module('vinibar.pay_mobile', [
     $scope.serializedOrder = $scope.client.order;
     $scope.delivery = {
       mode: 'Colissimo',
-      cost: ($scope.client.order_type === 'Vinibar') ? 11.9 : 8.90,
+      cost: d_costs['Colissimo'],
       mrLoaded: false
     };
     $scope.selected = { shop: false };
@@ -88,15 +89,18 @@ angular.module('vinibar.pay_mobile', [
   $scope.updateOrder = function (num) {
     $rootScope.loading = true;
     if (num === 1) {
-      $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 8.9 : 4.90;
+      // $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 8.90 : 4.90;
+      $scope.delivery.cost = d_costs['Point Relais'];
       $scope.delivery.mode = 'Point Relais';
       $scope.selected.shop = true;
       $scope.mondialRelay();
     } else if (num === 2) {
-      $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 11.9 : 8.90;
+      // $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 11.9 : 8.90;
+      $scope.delivery.cost = d_costs['Colissimo'];
       $scope.delivery.mode = 'Colissimo';
     } else if (num === 3) {
-      $scope.delivery.cost = 0;
+      // $scope.delivery.cost = 0;
+      $scope.delivery.cost = d_costs['Vinify'];
       $scope.delivery.mode = 'Vinify';
     } else if (num === 4) {
       $scope.delivery.cost = ($scope.client.order_type === 'Vinibar') ? 11.9 : 8.90;
