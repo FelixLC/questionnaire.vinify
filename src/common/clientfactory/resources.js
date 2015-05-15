@@ -130,8 +130,8 @@ angular.module('Resources', [ 'settings' ])
     Gift.prototype.createGiftOrder = function () {
       return $http.post(settings.apiEndPoint + '/orders/gift/create/', this.order);
     };
-    Gift.prototype.testCoupon = function (_coupon, success, failure) {
-      $http.post(settings.apiEndPoint + '/orders/testcoupon/', { coupon: _coupon })
+    Gift.prototype.testCoupon = function (_coupon, orderType, success, failure) {
+      $http.post(settings.apiEndPoint + '/orders/testcoupon/', { coupon: _coupon, order_type: orderType })
           .success(function (data, status, headers, config) {
             return success(data);
           })
