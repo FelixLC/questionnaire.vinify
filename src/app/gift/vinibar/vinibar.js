@@ -153,6 +153,7 @@ angular.module('vinibar.gift.vinibar', [
       toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' € !');
     } else if (response.coupon_type === 'Delivery') {
       toaster.pop('success', 'Coupon validé !', 'Livraison Offerte');
+      $scope.gift.order.delivery_cost = 0;
     }
   };
 
@@ -166,8 +167,8 @@ angular.module('vinibar.gift.vinibar', [
             $scope.coupon.coupon = "";
           } else if (response.coupon_type === 'Percentage') {
             $scope.gift.order.coupon = "";
-            toaster.pop('error', 'Vous ne pouvez pas utiliser ce coupon pour un cadeu !');
-          } else if (response.coupon_type === 'Monetary') {
+            toaster.pop('error', 'Vous ne pouvez pas utiliser ce coupon pour un cadeau !');
+          } else {
             couponCheckerSuccess(response);
             $scope.coupon.isChecked = true;
             $scope.coupon.value = response.value;
