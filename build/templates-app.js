@@ -498,8 +498,8 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <div class=\"col-container\">\n" +
     "        <p class=\"col-subtitle\">Prix du bar</p>\n" +
-    "        <p ng-if=\"gift.order.gift_type === 'Vinibar' \" class=\"centered\">69.00 €</p>\n" +
-    "        <p ng-if=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print' \" class=\"centered\">80.90 € *</p>\n" +
+    "        <p ng-if=\"gift.order.gift_type === 'Vinibar' || freeDelivery\" class=\"centered\">69.00 €</p>\n" +
+    "        <p ng-if=\"!freeDelivery && (gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print')\" class=\"centered\">80.90 € *</p>\n" +
     "      </div>\n" +
     "      <div>\n" +
     "              <p ng-if=\"gift.order.gift_type === 'Card' || gift.order.gift_type === 'Email' || gift.order.gift_type === 'Print'\" class=\"help centered\">* le prix comprend la livraison <br> à domicile en France métropolitaine</p>\n" +
@@ -529,7 +529,8 @@ angular.module("gift/vinibar/details.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-12\">\n" +
     "      <div class=\"col-container centered\">\n" +
     "        <p>Total de la commande</p>\n" +
-    "        <p>{{69 + gift.order.delivery_cost + gift.order.credits - coupon.value | number:2}} €</p>\n" +
+    "        <p ng-if=\"!freeDelivery\">{{69 + gift.order.delivery_cost + gift.order.credits - coupon.value | number:2}} €</p>\n" +
+    "        <p ng-if=\"freeDelivery\">{{69 + gift.order.credits - coupon.value | number:2}} €</p>\n" +
     "      </div>\n" +
     "      <div class=\"btn-block-primary centered margin-top\" ng-class=\"{'disabled-block': gift.order.coupon && !coupon.isChecked}\" ng-click=\"goTo('gift.vinibar.infos')\">Continuer</div>\n" +
     "    </div>\n" +

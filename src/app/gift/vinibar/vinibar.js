@@ -126,34 +126,44 @@ angular.module('vinibar.gift.vinibar', [
 
   var couponCheckerFail = function (response) {
     if (response === 'This code is not valid') {
+      $scope.freeDelivery = false;
       toaster.pop('info', 'Oops, votre code d\'accès semble erroné !',
                                           ' Veuillez réessayer ou contacter charlotte@vinify.co');
     } else if (response === 'This coupon has been redeemed') {
+      $scope.freeDelivery = false;
       toaster.pop('info', 'Malheureusement, Ce code est expiré !');
     } else if (response === 'Referrals may not be used on Discovery orders') {
+      $scope.freeDelivery = false;
       toaster.pop('info', 'Malheureusement',
                                             'Vous ne pouvez pas utiliser un code parrainnage avec l\'offre découverte');
     } else if (response === 'Gift Coupon not allowed') {
+      $scope.freeDelivery = false;
       toaster.pop('info', 'Pour activer votre cadeau', 'rendez vous sur Cadeau / Recevoir dans la barre de navigation de la page d\'acceuil');
     } else if (response === 'Delivery Coupon not allowed') {
+      $scope.freeDelivery = false;
       toaster.pop('info', 'Ce coupon de livraison', 'n\'est pas valable pour cette offre');
     }
   };
 
   var couponCheckerSuccess = function (response) {
     if (response.coupon_type === 'Referral' && $scope.client.order_type === 'Vinibar') {
+      $scope.freeDelivery = false;
       toaster.pop('success', 'Coupon validé !', 'Vous économisez 10€ !');
     } else if (response.coupon_type === 'Referral' && $scope.client.order_type != 'Vinibar') {
       toaster.pop('info', 'Vous ne pouvez pas utiliser un code parrainnage', 'avec l\'offre découverte. ' +
                                             'Vous pouvez cependant acquérir un Vinibar à 59€ !');
       $scope.coupon.coupon = "";
     } else if (response.coupon_type === 'Percentage') {
+      $scope.freeDelivery = false;
       toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value * 100 + ' % !');
     } else if (response.coupon_type === 'Monetary') {
+      $scope.freeDelivery = false;
       toaster.pop('success', 'Coupon validé !', 'Vous économisez ' + response.value + ' € !');
     } else if (response.coupon_type === 'Delivery') {
       toaster.pop('success', 'Coupon validé !', 'Livraison Offerte');
       $scope.gift.order.delivery_cost = 0;
+      $scope.freeDelivery = true;
+      $scope.costs['vinibar']['Colissimo'] = 0;
     }
   };
 
